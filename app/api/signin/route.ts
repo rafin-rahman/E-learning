@@ -15,13 +15,13 @@ export async function POST(request: NextRequest) {
 
   if (!user) {
     return NextResponse.json({
-      message: "Password or email address is wrong",
+      error: "Password or email address is wrong",
     });
   }
   const passwordMatch = await bcrypt.compare(password, user.password);
   if (!passwordMatch) {
     return NextResponse.json({
-      message: "Password or email address is wrong",
+      error: "Password or email address is wrong",
     });
   }
 

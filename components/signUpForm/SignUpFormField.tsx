@@ -21,7 +21,7 @@ interface SignUpFormFieldProps {
   formControl: Control<z.infer<typeof formSchema>, any>;
 }
 
-const CustomFormField: React.FC<SignUpFormFieldProps> = ({
+const SignUpFormField: React.FC<SignUpFormFieldProps> = ({
   label,
   name,
   placeholder,
@@ -51,4 +51,4 @@ const CustomFormField: React.FC<SignUpFormFieldProps> = ({
   );
 };
 
-export default CustomFormField;
+export default SignUpFormField;

@@ -6,7 +6,7 @@ import { Form } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import React from "react";
 import { signUpFormSchema as formSchema } from "@/lib/zodSchema.js";
-import CustomFormField from "@/components/signUpForm/CustomFormField";
+import SignUpFormField from "@/components/signUpForm/SignUpFormField";
 
 export default function SignUpForm() {
   const [serverMessage, setServerMessage] = React.useState<string>("");
@@ -40,26 +40,26 @@ export default function SignUpForm() {
     <div className={"m-4 "}>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
-          <CustomFormField
+          <SignUpFormField
             name={"firstName"}
             label={"First Name"}
             placeholder={"First Name"}
             formControl={form.control}
           />
-          <CustomFormField
+          <SignUpFormField
             name={"lastName"}
             label={"Last Name"}
             placeholder={"Last Name"}
             formControl={form.control}
           />
-          <CustomFormField
+          <SignUpFormField
             name={"email"}
             label={"Email"}
             inputType={"email"}
             placeholder={"email"}
             formControl={form.control}
           />
-          <CustomFormField
+          <SignUpFormField
             name={"password"}
             label={"Password"}
             inputType={"password"}

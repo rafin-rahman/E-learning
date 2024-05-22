@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import SignUpForm from "@/components/signUpForm/SignUpForm";
 import SignInForm from "@/components/signInForm/SignInForm";
 
 export default function signin() {
