@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
     .setProtectedHeader({ alg })
     .setIssuedAt()
     .setExpirationTime("2min")
-    .setSubject(user.id)
+    .setSubject(user.id.toString())
     .sign(secret);
 
   return NextResponse.json({ token: jwt });
