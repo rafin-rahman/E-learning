@@ -19,13 +19,14 @@ export default async function signInAction(
   });
   const data = await response.json();
   cookies().set("Authorization", data.token, {
-    //max age of 2 minutes
-    maxAge: 120,
+    //max age of 10 minutes
+    maxAge: 600,
     path: "/",
     sameSite: "strict",
     secure: true,
     httpOnly: true,
   });
+
   if (data.token) {
     // redirect to home page
     redirect("/protected");
