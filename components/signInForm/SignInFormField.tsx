@@ -12,7 +12,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { signInFormSchema as formSchema } from "@/lib/zodSchema.js";
 
-interface SignUpFormFieldProps {
+interface SignInFormFieldProps {
   name: FieldPath<z.infer<typeof formSchema>>;
   label: string;
   placeholder: string;
@@ -21,7 +21,7 @@ interface SignUpFormFieldProps {
   formControl: Control<z.infer<typeof formSchema>, any>;
 }
 
-const SignUpFormField: React.FC<SignUpFormFieldProps> = ({
+const SignInFormField: React.FC<SignInFormFieldProps> = ({
   label,
   name,
   placeholder,
@@ -51,4 +51,4 @@ const SignUpFormField: React.FC<SignUpFormFieldProps> = ({
   );
 };
 
-export default SignUpFormField;
+export default SignInFormField;
