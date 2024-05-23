@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
   });
 
   if (existingUser) {
-    return NextResponse.json({ message: "User already exists" });
+    return NextResponse.json({ error: "User already exists" });
   }
 
   const hashedPassword = await bcrypt.hash(password, 10);
@@ -37,8 +37,8 @@ export async function POST(request: NextRequest) {
         password: hashedPassword,
       },
     });
-    return NextResponse.json({ message: "User created", user: newUser });
-  } catch (error) {
-    return NextResponse.json({ message: "User creation failed", error });
+    return NextResponse.json({ error: "User created", user: newUser });
+  } catch (err) {
+    return NextResponse.json({ error: "User creation failed", err });
   }
 }

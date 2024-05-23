@@ -11,7 +11,6 @@ import SignInFormField from "@/components/signInForm/SignInFormField";
 import signInAction from "../../app/signin/signInAction";
 
 export default function SignInForm() {
-  const [error, formAction] = useFormState(signInAction, undefined);
   const [errorMessage, setError] = useState<string | null>(null);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),

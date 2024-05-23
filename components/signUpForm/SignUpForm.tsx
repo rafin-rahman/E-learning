@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import React from "react";
 import { signUpFormSchema as formSchema } from "@/lib/zodSchema.js";
 import SignUpFormField from "@/components/signUpForm/SignUpFormField";
+import signUpAction from "@/app/signup/signUpAction";
 
 export default function SignUpForm() {
   const [serverMessage, setServerMessage] = React.useState<string>("");
@@ -21,19 +22,34 @@ export default function SignUpForm() {
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    const response = await fetch("/api/signup", {
-      method: "POST",
-      body: JSON.stringify(values),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const data = await response.json();
-    // set serverMessage for 2 seconds then reset it to empty string
-    setServerMessage(data.message);
-    setTimeout(() => {
-      setServerMessage("");
-    }, 2000);
+    try {
+      const formData = new FormData();
+      formData.append("email", values.email);
+      formData.append("password", values.password);
+      formData.append("firstName", values.firstName);
+      formData.append("lastName", values.lastName);
+      const errorMessage = await signUpAction({}, formData);
+      if (errorMessage) {
+        setServerMessage(errorMessage);
+      }
+    } catch (err) {
+      console.error("Error during sign-up:", err);
+      setServerMessage("An unexpected error occurred. Please try again.");
+    }
+
+    // const response = await fetch("/api/signup", {
+    //   method: "POST",
+    //   body: JSON.stringify(values),
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    // });
+    // const data = await response.json();
+    // // set serverMessage for 2 seconds then reset it to empty string
+    // setServerMessage(data.message);
+    // setTimeout(() => {
+    //   setServerMessage("");
+    // }, 2000);
   };
 
   return (
