@@ -4,7 +4,14 @@ import bcrypt from "bcryptjs";
 
 export async function POST(request: NextRequest) {
   const body = await request.json();
-  const { email, password, firstName, lastName } = body;
+
+  interface User {
+    firstName: string;
+    lastName: string;
+    email: string;
+    password: string;
+  }
+  const { email, password, firstName, lastName } = body as User;
   console.log(firstName);
 
   // Check if user already exists
@@ -18,12 +25,13 @@ export async function POST(request: NextRequest) {
   }
 
   const hashedPassword = await bcrypt.hash(password, 10);
+
   try {
     await prisma.user.create({
       data: {
-        userFirstName: "firstName",
-        lastName: lastName,
-        email: email,
+        firstName,
+        lastName,
+        email,
         password: hashedPassword,
       },
     });

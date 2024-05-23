@@ -14,15 +14,15 @@ datasource db {
 }
 
 model User {
-  id            String    @id @default(uuid())
-  email         String    @unique
-  userFirstName String
-  lastName      String
-  password      String
-  role          String[]
-  permissions   String[]
-  createdAt     DateTime  @default(now())
-  session       session[]
+  id          String    @id @default(uuid())
+  email       String    @unique
+  firstName   String
+  lastName    String
+  password    String
+  role        String[]
+  permissions String[]
+  createdAt   DateTime  @default(now())
+  session     session[]
 }
 
 model session {
