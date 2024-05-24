@@ -15,14 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={roboto_mono.className}>
       <body>
-        <nav
-          className={
-            "pb-2 pt-2 mb-5 bg-blue-100 flex justify-center items-center scroll-m-20 text-2xl font-extrabold tracking-wider  text-gray-600"
-          }
-        >
-          Nav bar
-        </nav>
-        {children}
+        <div>{children}</div>
       </body>
     </html>
   );

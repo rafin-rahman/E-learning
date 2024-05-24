@@ -33,7 +33,7 @@ export default async function signInAction(
   });
   if (data.token) {
     // redirect to home page
-    redirect("/protected");
+    redirect("/authenticated");
   } else {
     return data.error;
   }

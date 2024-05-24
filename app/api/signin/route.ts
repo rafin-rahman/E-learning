@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
   const jwt = await new jose.SignJWT()
     .setProtectedHeader({ alg })
     .setIssuedAt()
-    .setExpirationTime("2min")
+    .setExpirationTime("10min")
     .setSubject(user.id.toString())
     .sign(secret);
 

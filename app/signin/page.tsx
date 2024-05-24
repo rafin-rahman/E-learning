@@ -14,7 +14,7 @@ export default function signin() {
     <div className={"container"}>
       <h1 className={"text-4xl mb-10"}>Sign in page</h1>
       <Button asChild variant={"outline"} className={"mr-4"}>
-        <Link href={"/"}>Back to Home page</Link>
+        <Link href={"/"}> {"< "}Home page</Link>
       </Button>
 
       <SignInForm />
