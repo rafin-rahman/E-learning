@@ -1,15 +1,15 @@
-import {
-  CalendarIcon,
-  ChartPieIcon,
-  DocumentDuplicateIcon,
-  FolderIcon,
-  HomeIcon,
-  UsersIcon,
-} from "@heroicons/react/24/outline";
-
+import { FolderIcon, HomeIcon, UsersIcon } from "@heroicons/react/24/outline";
+import Image from "next/image";
+import { cookies } from "next/headers";
+import * as jose from "jose";
 const navigation = [
   { name: "Home", href: "#", icon: HomeIcon, count: "5", current: true },
-  { name: "Courses", href: "#", icon: UsersIcon, current: false },
+  {
+    name: "Courses",
+    href: "/authenticated/manage_courses",
+    icon: UsersIcon,
+    current: false,
+  },
   {
     name: "Users",
     href: "#",
@@ -17,35 +17,39 @@ const navigation = [
     count: "12",
     current: false,
   },
-  {
-    name: "Calendar",
-    href: "#",
-    icon: CalendarIcon,
-    count: "20+",
-    current: false,
-  },
-  { name: "Documents", href: "#", icon: DocumentDuplicateIcon, current: false },
-  { name: "Reports", href: "#", icon: ChartPieIcon, current: false },
 ];
 const teams = [
-  { id: 1, name: "Heroicons", href: "#", initial: "H", current: false },
-  { id: 2, name: "Tailwind Labs", href: "#", initial: "T", current: false },
-  { id: 3, name: "Workcation", href: "#", initial: "W", current: false },
+  { id: 1, name: "Option", href: "#", initial: "1", current: false },
+  { id: 2, name: "Option", href: "#", initial: "2", current: false },
+  { id: 3, name: "Option", href: "#", initial: "3", current: false },
 ];
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Sidebar() {
+export default async function Sidebar() {
+  // check if the user is authenticated by looking for a specific cookie
+  const userCookie = cookies().get("Authorization");
+  //use jose to find user info from the cookie
+  const secret = new TextEncoder().encode(process.env.JWT_SECRET);
+  if (userCookie) {
+    const jwt = userCookie.value;
+    const { payload } = await jose.jwtVerify(jwt, secret, {});
+    const userId = payload.sub;
+  }
+
   return (
     <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6 h-full min-h-screen">
       <div className="flex h-16 shrink-0 items-center">
-        <img
+        <Image
           className="h-8 w-auto"
-          src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-          alt="Your Company"
+          src="/logo/Logo-DarkBG-no-text.svg"
+          alt="Online Qualification"
+          width={120}
+          height={32}
         />
+        <span className={"text-white ml-3"}>Online Qualification</span>
       </div>
       <nav className="flex flex-1 flex-col">
         <ul role="list" className="flex flex-1 flex-col gap-y-7">
@@ -82,7 +86,7 @@ export default function Sidebar() {
           </li>
           <li>
             <div className="text-xs font-semibold leading-6 text-gray-400">
-              Your teams
+              Other options
             </div>
             <ul role="list" className="-mx-2 mt-2 space-y-1">
               {teams.map((team) => (
