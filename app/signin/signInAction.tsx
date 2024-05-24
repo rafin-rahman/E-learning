@@ -9,6 +9,7 @@ export default async function signInAction(
   // Get data from the sign in form
   const email = formData.get("email");
   const password = formData.get("password");
+
   // Send data to the API route
   const response = await fetch(process.env.LOCALHOST_URL + "/api/signin", {
     method: "POST",
@@ -18,6 +19,10 @@ export default async function signInAction(
     },
   });
   const data = await response.json();
+  if (data.token === undefined) {
+    return data.error;
+  }
+
   cookies().set("Authorization", data.token, {
     //max age of 10 minutes
     maxAge: 600,
@@ -26,7 +31,6 @@ export default async function signInAction(
     secure: true,
     httpOnly: true,
   });
-
   if (data.token) {
     // redirect to home page
     redirect("/protected");

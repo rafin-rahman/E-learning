@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { roboto_mono } from "@/lib/font";
 
 export const metadata: Metadata = {
   title: "NextJS RBAC Auth",
@@ -12,7 +13,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={roboto_mono.className}>
       <body>
         <nav
           className={

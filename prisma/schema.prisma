@@ -13,16 +13,35 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// list of roles
+// admin
+// student
+// admissions_manager
+// admission_officer
+// course_manager
+// super_admin
+
 model User {
-  id          String    @id @default(uuid())
-  email       String    @unique
-  firstName   String
-  lastName    String
-  password    String
-  role        String[]
-  permissions String[]
-  createdAt   DateTime  @default(now())
-  session     session[]
+  id           String           @id @default(uuid())
+  firstName    String
+  lastName     String
+  email        String           @unique
+  password     String
+  profileImage String?
+  role         String[]
+  permissions  String[]
+  createdAt    DateTime         @default(now())
+  session      session[]
+  profile      StudentProfile[]
+}
+
+model StudentProfile {
+  id        String   @id @default(uuid())
+  status    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
 }
 
 model session {
@@ -33,4 +52,16 @@ model session {
   expiresAt DateTime
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Course {
+  id          String   @id @default(uuid())
+  title       String
+  description String
+  image       String
+  price       Float
+  duration    String
+  category    String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }

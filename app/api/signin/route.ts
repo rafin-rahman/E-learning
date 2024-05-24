@@ -12,7 +12,6 @@ export async function POST(request: NextRequest) {
       email: email,
     },
   });
-
   if (!user) {
     return NextResponse.json({
       error: "Password or email address is wrong",
