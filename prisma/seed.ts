@@ -15,23 +15,23 @@ async function main() {
   await prisma.user.createMany({
     data: [
       {
-        firstName: "Admin",
-        lastName: "Admin2",
+        firstName: "Esmee",
+        lastName: "Garrett",
         email: "admin@gmail.com",
         password: await hashPassword("123123"),
         role: ["ADMIN"],
       },
       {
-        firstName: "User",
-        lastName: "User2",
+        firstName: "Keanu",
+        lastName: "Patton",
         email: "basic@gmail.com",
         password: await hashPassword("123123"),
         role: ["admission_officer"],
         permissions: ["can_delete_students"],
       },
       {
-        firstName: "Super_admin",
-        lastName: "Super_admin2",
+        firstName: "Hugo",
+        lastName: "Mcgee",
         email: "superadmin@gmail.com",
         password: await hashPassword("123123"),
         role: ["SUPER_ADMIN"],

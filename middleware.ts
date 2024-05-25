@@ -44,5 +44,5 @@ export async function middleware(request: NextRequest) {
 }
 // matching paths
 export const config = {
-  matcher: "/authenticated/:path*",
+  matcher: "/dashboard/:path*",
 };

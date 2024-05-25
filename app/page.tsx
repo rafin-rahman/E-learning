@@ -16,12 +16,16 @@ export default function Home() {
           <Link href={"signup"}>Sign up</Link>
         </Button>
       )}
-
       {!isAuthenticated && (
         <Button asChild variant={"destructive"} className={"mr-4"}>
           <Link href={"signin"}>Sign in</Link>
         </Button>
       )}
+      {isAuthenticated && (
+        <Button asChild variant={"ghost"} className={"mr-4"}>
+          <Link href={"dashboard"}>{"< "}Dashboard</Link>
+        </Button>
+      )}{" "}
       {isAuthenticated && (
         <Button asChild variant={"destructive"} className={"mr-4"}>
           <Link href={"logout"}>Logout</Link>

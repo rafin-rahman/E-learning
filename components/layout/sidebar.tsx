@@ -2,11 +2,12 @@ import { FolderIcon, HomeIcon, UsersIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import { cookies } from "next/headers";
 import * as jose from "jose";
+
 const navigation = [
   { name: "Home", href: "#", icon: HomeIcon, count: "5", current: true },
   {
     name: "Courses",
-    href: "/authenticated/manage_courses",
+    href: "/dashboard/manage_courses",
     icon: UsersIcon,
     current: false,
   },
@@ -24,6 +25,22 @@ const teams = [
   { id: 3, name: "Option", href: "#", initial: "3", current: false },
 ];
 
+let userInfo: any = {};
+async function fetchUserInfo(userId: string) {
+  const response = await fetch(`${process.env.LOCALHOST_URL}/api/user`, {
+    method: "POST",
+    body: JSON.stringify({ userId }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  if (!response.ok) {
+    throw new Error("Failed to fetch user info");
+  }
+  const data = await response.json();
+  return data;
+}
+
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
 }
@@ -33,10 +50,19 @@ export default async function Sidebar() {
   const userCookie = cookies().get("Authorization");
   //use jose to find user info from the cookie
   const secret = new TextEncoder().encode(process.env.JWT_SECRET);
+  let userId: string | undefined;
+
   if (userCookie) {
     const jwt = userCookie.value;
     const { payload } = await jose.jwtVerify(jwt, secret, {});
-    const userId = payload.sub;
+    userId = payload.sub;
+  }
+  if (userId) {
+    try {
+      userInfo = await fetchUserInfo(userId);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   return (
@@ -120,7 +146,9 @@ export default async function Sidebar() {
                 alt=""
               />
               <span className="sr-only">Your profile</span>
-              <span aria-hidden="true">Tom Cook</span>
+              <span aria-hidden="true">
+                {userInfo.firstName} {userInfo.lastName}
+              </span>
             </a>
           </li>
         </ul>

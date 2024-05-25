@@ -25,7 +25,7 @@ export default function logout() {
           Yes, log me out
         </Button>
         <Button asChild variant={"outline"}>
-          <Link href={"/authenticated"}>Visit /Authenticated route</Link>
+          <Link href={"/dashboard"}>Visit /Dashboard route</Link>
         </Button>
       </div>
     </div>
