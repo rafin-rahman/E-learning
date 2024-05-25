@@ -35,7 +35,7 @@ export async function middleware(request: NextRequest) {
         secure: true,
         httpOnly: true,
       });
-      console.log("refreshed token with 10 more minutes");
+      console.log("Middleware.ts - Refreshed session with 10 more minutes");
       return response;
     }
   } catch (err) {

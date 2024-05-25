@@ -2,6 +2,7 @@ import { FolderIcon, HomeIcon, UsersIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import { cookies } from "next/headers";
 import * as jose from "jose";
+import { redirect } from "next/navigation";
 
 const navigation = [
   { name: "Home", href: "#", icon: HomeIcon, count: "5", current: true },
@@ -26,6 +27,7 @@ const teams = [
 ];
 
 let userInfo: any = {};
+
 async function fetchUserInfo(userId: string) {
   const response = await fetch(`${process.env.LOCALHOST_URL}/api/user`, {
     method: "POST",
@@ -34,8 +36,13 @@ async function fetchUserInfo(userId: string) {
       "Content-Type": "application/json",
     },
   });
+
   if (!response.ok) {
-    throw new Error("Failed to fetch user info");
+    redirect("/logout");
+    const data = await response.json();
+
+    // logout user using logoutAction
+    throw new Error("Error: " + data.error || "An error occurred");
   }
   const data = await response.json();
   return data;

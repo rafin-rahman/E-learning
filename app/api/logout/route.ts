@@ -1,9 +1,12 @@
 import { NextResponse } from "next/server";
-import { cookies } from "next/headers";
 
-export async function GET() {
-  const cookieStore = cookies();
-  cookieStore.set("Authorization", "", { maxAge: -1, path: "/" });
+export function removeCookie() {
+  const response = NextResponse.json({ message: "Logged out" });
+  const earlier = new Date(Date.now() - 1000).toUTCString();
+  response.headers.append(
+    "Set-Cookie",
+    `Authorization=; Max-Age=0; HttpOnly; SameSite=strict; Expires=${earlier}; Path=/;`
+  );
 
-  return NextResponse.json({ message: "Logged out" });
+  return response;
 }

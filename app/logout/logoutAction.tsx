@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 
 export default async function logoutAction(currentState: any): Promise<string> {
+  console.log("logoutAction");
   // logout user
   cookies().set("Authorization", "", {
     maxAge: 0,
