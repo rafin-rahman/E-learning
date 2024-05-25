@@ -38,7 +38,7 @@ async function fetchUserInfo(userId: string) {
   });
 
   if (!response.ok) {
-    redirect("/logout");
+    // redirect("/logout");
     const data = await response.json();
 
     // logout user using logoutAction
