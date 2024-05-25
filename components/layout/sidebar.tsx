@@ -26,8 +26,6 @@ const teams = [
   { id: 3, name: "Option", href: "#", initial: "3", current: false },
 ];
 
-let userInfo: any = {};
-
 async function fetchUserInfo(userId: string) {
   const response = await fetch(`${process.env.LOCALHOST_URL}/api/user`, {
     method: "POST",
@@ -38,12 +36,9 @@ async function fetchUserInfo(userId: string) {
   });
 
   if (!response.ok) {
-    // redirect("/logout");
-    const data = await response.json();
-
-    // logout user using logoutAction
-    throw new Error("Error: " + data.error || "An error occurred");
+    return null;
   }
+
   const data = await response.json();
   return data;
 }
@@ -64,11 +59,16 @@ export default async function Sidebar() {
     const { payload } = await jose.jwtVerify(jwt, secret, {});
     userId = payload.sub;
   }
+
+  if (!userId) {
+    redirect("/logout");
+  }
+
+  let userInfo;
   if (userId) {
-    try {
-      userInfo = await fetchUserInfo(userId);
-    } catch (error) {
-      console.error(error);
+    userInfo = await fetchUserInfo(userId);
+    if (!userInfo) {
+      redirect("/logout");
     }
   }
 

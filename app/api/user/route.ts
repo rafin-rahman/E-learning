@@ -1,6 +1,5 @@
 import prisma from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
-import { cookies } from "next/headers";
 // get user info using prisma
 export async function POST(request: NextRequest) {
   const body = await request.json();
@@ -20,5 +19,6 @@ export async function POST(request: NextRequest) {
       }
     );
   }
+
   return NextResponse.json(user);
 }

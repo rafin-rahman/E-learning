@@ -15,7 +15,8 @@ export default function SomethingWrong() {
       </Button>
       <div className={"flex mx-auto flex-col text-center pt-20"}>
         <h1 className={"text-4xl mb-10 "}>
-          Something went wrong, you must re-login
+          <span className={"block"}>Ops!</span> Something went wrong, you must
+          logout and login again
         </h1>
         <Button
           variant={"destructive"}
@@ -24,10 +25,7 @@ export default function SomethingWrong() {
             logoutUser();
           }}
         >
-          Yes, log me out
-        </Button>
-        <Button asChild variant={"outline"}>
-          <Link href={"/dashboard"}>Visit /Dashboard route</Link>
+          Logout
         </Button>
       </div>
     </div>
