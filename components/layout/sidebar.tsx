@@ -5,7 +5,13 @@ import * as jose from "jose";
 import { redirect } from "next/navigation";
 
 const navigation = [
-  { name: "Home", href: "#", icon: HomeIcon, count: "5", current: true },
+  {
+    name: "Home",
+    href: "/dashboard/homeApp",
+    icon: HomeIcon,
+    count: "5",
+    current: true,
+  },
   {
     name: "Courses",
     href: "/dashboard/manage_courses",
@@ -21,9 +27,9 @@ const navigation = [
   },
 ];
 const teams = [
-  { id: 1, name: "Option", href: "#", initial: "1", current: false },
-  { id: 2, name: "Option", href: "#", initial: "2", current: false },
-  { id: 3, name: "Option", href: "#", initial: "3", current: false },
+  { id: 1, name: "Option1", href: "#", initial: "1", current: false },
+  { id: 2, name: "Option2", href: "#", initial: "2", current: false },
+  { id: 3, name: "Option3", href: "#", initial: "3", current: false },
 ];
 
 async function fetchUserInfo(userId: string) {
@@ -79,8 +85,9 @@ export default async function Sidebar() {
           className="h-8 w-auto"
           src="/logo/Logo-DarkBG-no-text.svg"
           alt="Online Qualification"
-          width={120}
-          height={32}
+          width={100}
+          height={100}
+          priority
         />
         <span className={"text-white ml-3"}>Online Qualification</span>
       </div>

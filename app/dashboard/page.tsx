@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import SignUpForm from "@/components/signUpForm/SignUpForm";
 
 export default function Authenticated() {
   return (

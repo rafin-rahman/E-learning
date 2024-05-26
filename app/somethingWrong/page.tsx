@@ -7,6 +7,8 @@ export default function SomethingWrong() {
   async function logoutUser() {
     await logoutAction({});
   }
+  //TODO if no cookies, redirect to home page '/'
+  // currently, even if user not logged in, this page will be shown
 
   return (
     <div className={"container "}>
