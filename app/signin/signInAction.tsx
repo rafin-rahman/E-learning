@@ -37,19 +37,6 @@ export default async function signInAction(
     .setSubject(user.id.toString())
     .sign(secret);
 
-  // Send data to the API route
-  // const response = await fetch(process.env.LOCALHOST_URL + "/api/signin", {
-  //   method: "POST",
-  //   body: JSON.stringify({ email, password }),
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //   },
-  // });
-  // const data = await response.json();
-  // if (data.token === undefined) {
-  //   return data.error;
-  // }
-
   cookies().set("Authorization", jwt, {
     //max age of 10 minutes
     maxAge: 600,

@@ -46,13 +46,16 @@ const teams = [
 ];
 
 async function fetchUserInfo(userId: string) {
-  const response = await fetch(`${process.env.LOCALHOST_URL}/api/user`, {
-    method: "POST",
-    body: JSON.stringify({ userId }),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_LOCALHOST_URL}/api/user`,
+    {
+      method: "POST",
+      body: JSON.stringify({ userId }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
 
   if (!response.ok) {
     return null;

@@ -2,12 +2,15 @@
 import { useEffect, useState } from "react";
 
 async function getCourseSubjects() {
-  const res = await fetch("http://localhost:3000/api/course/courseSubject", {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  const res = await fetch(
+    process.env.NEXT_PUBLIC_LOCALHOST_URL + "/api/course/courseSubject",
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
   if (!res.ok) {
     throw new Error("Failed to fetch course subjects");
   }

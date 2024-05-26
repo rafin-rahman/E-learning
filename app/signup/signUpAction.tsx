@@ -12,13 +12,16 @@ export default async function signUpAction(
   const lastName = formData.get("lastName");
 
   // Send data to the API route
-  const response = await fetch(process.env.LOCALHOST_URL + "/api/signup", {
-    method: "POST",
-    body: JSON.stringify({ email, password, firstName, lastName }),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  const response = await fetch(
+    process.env.NEXT_PUBLIC_LOCALHOST_URL + "/api/signup",
+    {
+      method: "POST",
+      body: JSON.stringify({ email, password, firstName, lastName }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
   const data = await response.json();
   console.log(data);
   if (data.token) {
