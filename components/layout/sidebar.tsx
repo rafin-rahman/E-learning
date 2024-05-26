@@ -14,7 +14,6 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { Button } from "@/components/ui/button";
 
 //TODO sidebar navigation needs to highlight the current page
 const navigation = [
