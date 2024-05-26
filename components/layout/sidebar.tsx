@@ -8,6 +8,13 @@ import { cookies } from "next/headers";
 import * as jose from "jose";
 import { redirect } from "next/navigation";
 import UserMenu from "@/components/layout/sidebarComponents/UserMenu";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { Button } from "@/components/ui/button";
 
 //TODO sidebar navigation needs to highlight the current page
 const navigation = [
@@ -27,7 +34,7 @@ const navigation = [
   },
   {
     name: "Manage Users",
-    href: "#",
+    href: "/dashboard/admin/manageUsers",
     icon: UsersIcon,
     count: "",
     current: false,
@@ -158,10 +165,19 @@ export default async function Sidebar() {
           </li>
           <li className="-mx-6 mt-auto">
             <div>
-              <UserMenu
-                firstName={userInfo.firstName}
-                lastName={userInfo.lastName}
-              />
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger className={"w-full"}>
+                    <UserMenu
+                      firstName={userInfo.firstName}
+                      lastName={userInfo.lastName}
+                    />
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>User role: {userInfo.role}</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
             </div>
           </li>
         </ul>

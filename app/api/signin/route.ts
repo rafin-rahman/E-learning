@@ -1,3 +1,4 @@
+//TODO this API route is not being used, we are using the server action signInAction.tsx file instead
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 import bcrypt from "bcryptjs";

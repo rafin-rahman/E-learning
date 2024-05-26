@@ -26,7 +26,7 @@ async function main() {
         lastName: "Patton",
         email: "basic@gmail.com",
         password: await hashPassword("123123"),
-        role: ["admission_officer"],
+        role: ["COURSE_MANAGER"],
         permissions: ["can_delete_students"],
       },
       {

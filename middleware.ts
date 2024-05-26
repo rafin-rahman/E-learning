@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { cookies } from "next/headers";
 import * as jose from "jose";
+import { checkRole } from "@/lib/middlewareFunctions";
 
 export async function middleware(request: NextRequest) {
   // Check for cookies and redirect if not present
@@ -15,12 +16,46 @@ export async function middleware(request: NextRequest) {
   const jwt = cookie.value;
 
   try {
-    const { payload } = await jose.jwtVerify(jwt, secret, {});
+    const { payload } = (await jose.jwtVerify(jwt, secret, {})) as {
+      payload: { userRole: string[]; sub: string };
+    };
 
-    // console.log("Payload - User Role", payload);
+    const userRole = payload.userRole;
+    const currentRoute: string = request.nextUrl.pathname;
+
+    // Define the configuration for your routes and their allowed roles
+    const routeRoleConfig = [
+      {
+        route: "/dashboard/admin/manageUsers",
+        roles: ["ADMIN"],
+      },
+      {
+        route: "/dashboard/admin/manageCourses",
+        roles: ["COURSE_MANAGER"],
+      },
+      // Add more route configurations here as needed
+      // {route: "another-route-path", roles: ["ROLE1", "ROLE2"]}
+    ];
+
+    // Loop over the configuration and check each route
+    for (const configItem of routeRoleConfig) {
+      const redirectUrl = checkRole(
+        currentRoute,
+        userRole,
+        configItem.route,
+        configItem.roles
+      );
+      if (redirectUrl) {
+        return NextResponse.redirect(new URL(redirectUrl, request.url));
+      }
+    }
+
     // if cookies are valid refresh the token
     if (payload.sub != null) {
-      const newJwt = await new jose.SignJWT()
+      const newJwt = await new jose.SignJWT({
+        userRole: userRole,
+        userId: payload.sub,
+      })
         .setProtectedHeader({ alg: "HS256" })
         .setIssuedAt()
         .setExpirationTime("10min")
