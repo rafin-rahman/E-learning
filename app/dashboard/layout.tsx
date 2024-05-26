@@ -11,7 +11,7 @@ export default function layout({
         <div className={"w-1/6"}>
           <Sidebar />
         </div>
-        <div className={"mt-4"}> {children}</div>
+        <div className={"mt-4 w-full"}> {children}</div>
       </div>
     </>
   );

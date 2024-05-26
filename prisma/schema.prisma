@@ -13,14 +13,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// list of roles
-// admin
-// student
-// admissions_manager
-// admission_officer
-// course_manager
-// super_admin
-
 model User {
   id           String           @id @default(uuid())
   firstName    String
@@ -62,12 +54,13 @@ model Course {
   price             Float
   discountedPrice   Float?
   duration          String
-  subject           String
   courseType        String
   courseLevel       String
   courseCode        String
-  deliveryPartnerId String?
+  courseSubject     CourseSubject    @relation(fields: [courseSubjectId], references: [id])
+  courseSubjectId   String
   deliveryPartner   DeliveryPartner? @relation(fields: [deliveryPartnerId], references: [id])
+  deliveryPartnerId String?
   createdAt         DateTime         @default(now())
   updatedAt         DateTime         @updatedAt
 }
@@ -82,3 +75,42 @@ model DeliveryPartner {
   updatedAt DateTime @updatedAt
   Course    Course[]
 }
+
+model CourseSubject {
+  id        String   @id @default(uuid())
+  name      String
+  Course    Course[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Course Subjects
+// BUSINESS_AND_MANAGEMENT,
+// ARTIFICIAL_INTELLIGENCE,
+// CYBER_SECURITY,
+// CONSTRUCTION_MANAGEMENT,
+// NURSING,
+// PGCE,
+// PSYCHOLOGY,
+// IT_AND_COMPUTER_SCIENCE,
+// MARKETING,
+// CRIMINOLOGY,
+// HUMAN_RESOURCES,
+// DISASTER_AND_EMERGENCY_MANAGEMENT,
+// PUBLIC_HEALTH,
+// ENGINEERING,
+// HEALTHCARE,
+// HUMANITIES,
+// LEADERSHIP,
+// DISASTER_AND_EMERGENCY_MANAGEMENT,
+// CREATIVE_WRITING,
+// ENVIRONMENTAL_SCIENCE,
+// RENEWABLE_ENERGY
+
+// list of roles
+// admin
+// student
+// admissions_manager
+// admission_officer
+// course_manager
+// super_admin

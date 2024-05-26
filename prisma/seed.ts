@@ -1,10 +1,8 @@
 import bcrypt from "bcryptjs";
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
-// import random_courses from "@/lib/courses_seed_prisma";
 
 async function main() {
-  // console.log(random_courses);
   // function to hash password
   const hashPassword = async (password: string) => {
     return await bcrypt.hash(password, 10);
@@ -42,6 +40,265 @@ async function main() {
   });
 
   await prisma.course.deleteMany();
+  await prisma.deliveryPartner.deleteMany();
+  await prisma.courseSubject.deleteMany();
+
+  // Array of course subjects
+  const courseSubjects = [
+    { name: "Artificial Intelligence" },
+    { name: "Business & Management" },
+    { name: "Construction Management" },
+    { name: "Criminology" },
+    { name: "Cyber Security" },
+    { name: "Disaster & Emergency Management" },
+    { name: "Engineering" },
+    { name: "Healthcare" },
+    { name: "Human Resources (HR)" },
+    { name: "Humanities" },
+    { name: "IT & Computer Science" },
+    { name: "Leadership" },
+    { name: "Marketing" },
+    { name: "MBA" },
+    { name: "Nursing" },
+    { name: "PGCE" },
+    { name: "Psychology" },
+    { name: "Public Health" },
+    { name: "Teaching" },
+  ];
+
+  // Array of delivery partners
+  const deliveryPartners = [
+    {
+      name: "University of Oxford",
+      logo: "",
+      phone: "01865 270000",
+      email: "info@ox.ac.uk",
+    },
+    {
+      name: "Harvard University",
+      logo: "",
+      phone: "617-495-1000",
+      email: "info@harvard.edu",
+    },
+    {
+      name: "Stanford University",
+      logo: "",
+      phone: "650-723-2300",
+      email: "info@stanford.edu",
+    },
+    {
+      name: "Massachusetts Institute of Technology (MIT)",
+      logo: "",
+      phone: "617-253-1000",
+      email: "info@mit.edu",
+    },
+    {
+      name: "University of Cambridge",
+      logo: "",
+      phone: "01223 337733",
+      email: "info@cam.ac.uk",
+    },
+    {
+      name: "Imperial College London",
+      logo: "",
+      phone: "020 7589 5111",
+      email: "info@imperial.ac.uk",
+    },
+    {
+      name: "London School of Economics (LSE)",
+      logo: "",
+      phone: "020 7405 7686",
+      email: "info@lse.ac.uk",
+    },
+    {
+      name: "University of Edinburgh",
+      logo: "",
+      phone: "0131 650 1000",
+      email: "info@ed.ac.uk",
+    },
+    {
+      name: "University of Melbourne",
+      logo: "",
+      phone: "+61 3 9035 5511",
+      email: "info@unimelb.edu.au",
+    },
+    {
+      name: "University of Toronto",
+      logo: "",
+      phone: "416-978-2011",
+      email: "info@utoronto.ca",
+    },
+  ];
+
+  // Create CourseSubjects
+  const createdSubjects = await Promise.all(
+    courseSubjects.map((subject) =>
+      prisma.courseSubject.create({ data: subject })
+    )
+  );
+
+  // Create DeliveryPartners
+  const createdPartners = await Promise.all(
+    deliveryPartners.map((partner) =>
+      prisma.deliveryPartner.create({ data: partner })
+    )
+  );
+
+  // Helper function to find subject and partner safely
+  const findSubjectId = (name: string) => {
+    const subject = createdSubjects.find((subject) => subject.name === name);
+    if (!subject) throw new Error(`Subject with name ${name} not found`);
+    return subject.id;
+  };
+
+  const findPartnerId = (index: number) => {
+    const partner = createdPartners[index];
+    if (!partner) throw new Error(`Partner at index ${index} not found`);
+    return partner.id;
+  };
+  // Array of courses
+  const courses = [
+    {
+      title: "Introduction to Programming",
+      description: "Learn the basics of programming.",
+      image: "programming-course.png",
+      price: 199.99,
+      discountedPrice: 149.99,
+      duration: "10 weeks",
+      courseType: "Self-paced",
+      courseLevel: "Beginner",
+      courseCode: "CS101",
+      courseSubjectId: findSubjectId("IT & Computer Science"),
+      deliveryPartnerId: findPartnerId(0), // Assigning first partner
+    },
+    {
+      title: "Advanced Algorithms",
+      description: "Explore complex algorithms in computer science.",
+      image: "algorithms-course.png",
+      price: 299.99,
+      discountedPrice: 249.99,
+      duration: "12 weeks",
+      courseType: "Instructor-led",
+      courseLevel: "Advanced",
+      courseCode: "CS201",
+      courseSubjectId: findSubjectId("Artificial Intelligence"),
+      deliveryPartnerId: findPartnerId(1), // Assigning second partner
+    },
+    {
+      title: "Data Structures",
+      description: "Understand fundamental data structures.",
+      image: "data-structures-course.png",
+      price: 149.99,
+      discountedPrice: 129.99,
+      duration: "8 weeks",
+      courseType: "Self-paced",
+      courseLevel: "Intermediate",
+      courseCode: "CS102",
+      courseSubjectId: findSubjectId("IT & Computer Science"),
+      deliveryPartnerId: findPartnerId(0), // Assigning first partner
+    },
+    {
+      title: "Calculus I",
+      description: "Introduction to calculus.",
+      image: "calculus-course.png",
+      price: 199.99,
+      discountedPrice: 179.99,
+      duration: "10 weeks",
+      courseType: "Instructor-led",
+      courseLevel: "Beginner",
+      courseCode: "MATH101",
+      courseSubjectId: findSubjectId("Business & Management"),
+      deliveryPartnerId: findPartnerId(1), // Assigning second partner
+    },
+    {
+      title: "Cyber Security Basics",
+      description: "Learn the fundamentals of cyber security.",
+      image: "cyber-security-course.png",
+      price: 250.0,
+      discountedPrice: 200.0,
+      duration: "8 weeks",
+      courseType: "Self-paced",
+      courseLevel: "Intermediate",
+      courseCode: "CS203",
+      courseSubjectId: findSubjectId("Cyber Security"),
+      deliveryPartnerId: findPartnerId(2), // Assigning third partner
+    },
+    {
+      title: "Engineering Mechanics",
+      description: "Fundamentals of mechanics in engineering.",
+      image: "engineering-mechanics-course.png",
+      price: 300.0,
+      discountedPrice: 270.0,
+      duration: "12 weeks",
+      courseType: "Instructor-led",
+      courseLevel: "Intermediate",
+      courseCode: "ENG101",
+      courseSubjectId: findSubjectId("Engineering"),
+      deliveryPartnerId: findPartnerId(3), // Assigning fourth partner
+    },
+    {
+      title: "Introduction to Healthcare",
+      description: "Overview of healthcare systems and practices.",
+      image: "healthcare-intro-course.png",
+      price: 200.0,
+      discountedPrice: 180.0,
+      duration: "10 weeks",
+      courseType: "Self-paced",
+      courseLevel: "Beginner",
+      courseCode: "HC101",
+      courseSubjectId: findSubjectId("Healthcare"),
+      deliveryPartnerId: findPartnerId(4), // Assigning fifth partner
+    },
+    {
+      title: "Human Resources Management",
+      description: "Learn the essentials of HR management.",
+      image: "hr-management-course.png",
+      price: 180.0,
+      discountedPrice: 160.0,
+      duration: "8 weeks",
+      courseType: "Instructor-led",
+      courseLevel: "Intermediate",
+      courseCode: "HR101",
+      courseSubjectId: findSubjectId("Human Resources (HR)"),
+      deliveryPartnerId: findPartnerId(5), // Assigning sixth partner
+    },
+    {
+      title: "Leadership Skills",
+      description: "Develop your leadership abilities.",
+      image: "leadership-skills-course.png",
+      price: 220.0,
+      discountedPrice: 200.0,
+      duration: "8 weeks",
+      courseType: "Self-paced",
+      courseLevel: "Advanced",
+      courseCode: "LD101",
+      courseSubjectId: findSubjectId("Leadership"),
+      deliveryPartnerId: findPartnerId(6), // Assigning seventh partner
+    },
+    {
+      title: "Marketing Strategies",
+      description: "Learn effective marketing strategies.",
+      image: "marketing-strategies-course.png",
+      price: 250.0,
+      discountedPrice: 230.0,
+      duration: "8 weeks",
+      courseType: "Instructor-led",
+      courseLevel: "Advanced",
+      courseCode: "MK101",
+      courseSubjectId: findSubjectId("Marketing"),
+      deliveryPartnerId: findPartnerId(7), // Assigning eighth partner
+    },
+  ];
+
+  // Create courses in the database
+  await Promise.all(
+    courses.map((courseData) =>
+      prisma.course.create({
+        data: courseData,
+      })
+    )
+  );
+
   // seed courses, here's the structure of the course object:
   // [{
   //   "title": "MBA in Strategic Management",
@@ -56,752 +313,6 @@ async function main() {
   //     "courseCode": "BM-0002"
   // },
   // etc..]
-
-  await prisma.course.createMany({
-    data: [
-      {
-        title: "MBA in Strategic Management",
-        description:
-          "Develop strategic thinking and business planning skills to excel in executive roles.",
-        image: "",
-        price: 22000,
-        discountedPrice: 20000,
-        duration: "2 Year",
-        subject: "Business & Management",
-        courseType: "Part Time",
-        courseLevel: "Postgraduate",
-        courseCode: "BM-0002",
-      },
-      {
-        title: "BSc in Artificial Intelligence",
-        description:
-          "Explore the fundamentals of AI, machine learning, and robotics to build innovative solutions.",
-        image: "",
-        price: 18000,
-        discountedPrice: null,
-        duration: "3 Year",
-        subject: "Artificial Intelligence",
-        courseType: "Full Time",
-        courseLevel: "Undergraduate",
-        courseCode: "AI-0001",
-      },
-      {
-        title: "MSc in Cyber Security",
-        description:
-          "Gain advanced knowledge in cyber defense, ethical hacking, and information security management.",
-        image: "",
-        price: 21000,
-        discountedPrice: 19000,
-        duration: "2 Year",
-        subject: "Cyber Security",
-        courseType: "Full Time",
-        courseLevel: "Postgraduate",
-        courseCode: "CS-0001",
-      },
-      {
-        title: "Master of Construction Management",
-        description:
-          "Learn to manage construction projects, resources, and teams effectively for successful project completion.",
-        image: "",
-        price: 23000,
-        discountedPrice: null,
-        duration: "2 Year",
-        subject: "Construction Management",
-        courseType: "Part Time",
-        courseLevel: "Postgraduate",
-        courseCode: "CM-0001",
-      },
-      {
-        title: "BSc in Nursing",
-        description:
-          "Prepare for a rewarding career in nursing with comprehensive training in patient care and medical procedures.",
-        image: "",
-        price: 17000,
-        discountedPrice: null,
-        duration: "3 Year",
-        subject: "Nursing",
-        courseType: "Full Time",
-        courseLevel: "Undergraduate",
-        courseCode: "NU-0001",
-      },
-      {
-        title: "PGCE in Primary Education",
-        description:
-          "Become a qualified primary school teacher with hands-on teaching experience and educational theory.",
-        image: "",
-        price: 15000,
-        discountedPrice: 13000,
-        duration: "1 Year",
-        subject: "PGCE",
-        courseType: "Full Time",
-        courseLevel: "Postgraduate",
-        courseCode: "PG-0001",
-      },
-      {
-        title: "MSc in Psychology",
-        description:
-          "Explore advanced topics in psychology, including cognitive, developmental, and clinical psychology.",
-        image: "",
-        price: 20000,
-        discountedPrice: 18000,
-        duration: "2 Year",
-        subject: "Psychology",
-        courseType: "Full Time",
-        courseLevel: "Postgraduate",
-        courseCode: "PS-0001",
-      },
-      {
-        title: "BSc in IT & Computer Science",
-        description:
-          "Learn the fundamentals of computer science, programming, and software development.",
-        image: "",
-        price: 19000,
-        discountedPrice: null,
-        duration: "3 Year",
-        subject: "IT & Computer Science",
-        courseType: "Full Time",
-        courseLevel: "Undergraduate",
-        courseCode: "IT-0001",
-      },
-      {
-        title: "MSc in Data Science",
-        description:
-          "Master data analysis, machine learning, and big data technologies for a competitive edge in the tech industry.",
-        image: "",
-        price: 21000,
-        discountedPrice: 19000,
-        duration: "2 Year",
-        subject: "IT & Computer Science",
-        courseType: "Full Time",
-        courseLevel: "Postgraduate",
-        courseCode: "IT-0002",
-      },
-      {
-        title: "MBA in Marketing",
-        description:
-          "Develop strategic marketing skills to create, implement, and manage effective marketing campaigns.",
-        image: "",
-        price: 22000,
-        discountedPrice: 20000,
-        duration: "2 Year",
-        subject: "Marketing",
-        courseType: "Part Time",
-        courseLevel: "Postgraduate",
-        courseCode: "MK-0001",
-      },
-      {
-        title: "MSc in Criminology",
-        description:
-          "Study the nature of crime, criminal behavior, and the criminal justice system.",
-        image: "",
-        price: 20000,
-        discountedPrice: 18000,
-        duration: "2 Year",
-        subject: "Criminology",
-        courseType: "Full Time",
-        courseLevel: "Postgraduate",
-        courseCode: "CR-0001",
-      },
-      {
-        title: "BSc in Human Resources Management",
-        description:
-          "Learn key HR functions, including recruitment, training, and employee relations.",
-        image: "",
-        price: 18000,
-        discountedPrice: null,
-        duration: "3 Year",
-        subject: "Human Resources",
-        courseType: "Full Time",
-        courseLevel: "Undergraduate",
-        courseCode: "HR-0001",
-      },
-      {
-        title: "MSc in Disaster and Emergency Management",
-        description:
-          "Prepare to manage and respond to natural and man-made disasters effectively.",
-        image: "",
-        price: 21000,
-        discountedPrice: 19000,
-        duration: "2 Year",
-        subject: "Disaster & Emergency Management",
-        courseType: "Full Time",
-        courseLevel: "Postgraduate",
-        courseCode: "DE-0001",
-      },
-      {
-        title: "Master of Public Health",
-        description:
-          "Focus on the prevention of disease and the promotion of health in communities.",
-        image: "",
-        price: 22000,
-        discountedPrice: 20000,
-        duration: "2 Year",
-        subject: "Public Health",
-        courseType: "Full Time",
-        courseLevel: "Postgraduate",
-        courseCode: "PH-0001",
-      },
-      {
-        title: "MSc in Engineering Management",
-        description:
-          "Combine engineering principles with business management to lead engineering teams and projects.",
-        image: "",
-        price: 23000,
-        discountedPrice: 21000,
-        duration: "2 Year",
-        subject: "Engineering",
-        courseType: "Part Time",
-        courseLevel: "Postgraduate",
-        courseCode: "EN-0001",
-      },
-      {
-        title: "MBA in Healthcare Management",
-        description:
-          "Develop the skills to manage healthcare organizations and improve patient care services.",
-        image: "",
-        price: 24000,
-        discountedPrice: 22000,
-        duration: "2 Year",
-        subject: "Healthcare",
-        courseType: "Part Time",
-        courseLevel: "Postgraduate",
-        courseCode: "HC-0001",
-      },
-      {
-        title: "MA in Humanities",
-        description:
-          "Explore the rich field of humanities, including literature, history, and philosophy.",
-        image: "",
-        price: 20000,
-        discountedPrice: 18000,
-        duration: "2 Year",
-        subject: "Humanities",
-        courseType: "Full Time",
-        courseLevel: "Postgraduate",
-        courseCode: "HU-0001",
-      },
-      {
-        title: "MBA in Leadership",
-        description:
-          "Enhance your leadership abilities and learn to manage and inspire teams effectively.",
-        image: "",
-        price: 25000,
-        discountedPrice: 23000,
-        duration: "2 Year",
-        subject: "Leadership",
-        courseType: "Part Time",
-        courseLevel: "Postgraduate",
-        courseCode: "LD-0001",
-      },
-      {
-        title: "PGCE in Secondary Education",
-        description:
-          "Gain the qualifications to teach at the secondary school level with specialized subject knowledge.",
-        image: "",
-        price: 16000,
-        discountedPrice: 14000,
-        duration: "1 Year",
-        subject: "PGCE",
-        courseType: "Full Time",
-        courseLevel: "Postgraduate",
-        courseCode: "PG-0002",
-      },
-      {
-        title: "MSc in Cyber Forensics",
-        description:
-          "Learn to investigate and prevent cyber crimes using advanced forensics techniques.",
-        image: "",
-        price: 22000,
-        discountedPrice: 20000,
-        duration: "2 Year",
-        subject: "Cyber Security",
-        courseType: "Full Time",
-        courseLevel: "Postgraduate",
-        courseCode: "CS-0002",
-      },
-      {
-        title: "BSc in Marketing",
-        description:
-          "Develop a solid foundation in marketing principles, digital marketing, and consumer behavior.",
-        image: "",
-        price: 19000,
-        discountedPrice: null,
-        duration: "3 Year",
-        subject: "Marketing",
-        courseType: "Full Time",
-        courseLevel: "Undergraduate",
-        courseCode: "MK-0002",
-      },
-      {
-        title: "BSc in Public Health",
-        description:
-          "Learn about public health practices, health promotion, and disease prevention.",
-        image: "",
-        price: 17000,
-        discountedPrice: null,
-        duration: "3 Year",
-        subject: "Public Health",
-        courseType: "Full Time",
-        courseLevel: "Undergraduate",
-        courseCode: "PH-0002",
-      },
-      {
-        title: "MSc in Disaster Risk Reduction",
-        description:
-          "Prepare for careers in disaster risk management and reduction with a focus on sustainability.",
-        image: "",
-        price: 21000,
-        discountedPrice: 19000,
-        duration: "2 Year",
-        subject: "Disaster & Emergency Management",
-        courseType: "Full Time",
-        courseLevel: "Postgraduate",
-        courseCode: "DE-0002",
-      },
-      {
-        title: "MSc in Human Resources Development",
-        description:
-          "Develop advanced skills in training, development, and organizational behavior.",
-        image: "",
-        price: 22000,
-        discountedPrice: 20000,
-        duration: "2 Year",
-        subject: "Human Resources",
-        courseType: "Full Time",
-        courseLevel: "Postgraduate",
-        courseCode: "HR-0002",
-      },
-      {
-        title: "BA in Humanities",
-        description:
-          "Study various aspects of human culture, including art, history, and philosophy.",
-        image: "",
-        price: 18000,
-        discountedPrice: null,
-        duration: "3 Year",
-        subject: "Humanities",
-        courseType: "Full Time",
-        courseLevel: "Undergraduate",
-        courseCode: "HU-0002",
-      },
-      {
-        title: "MSc in Big Data Analytics",
-        description:
-          "Gain expertise in big data technologies, data mining, and statistical analysis.",
-        image: "",
-        price: 21000,
-        discountedPrice: 19000,
-        duration: "2 Year",
-        subject: "IT & Computer Science",
-        courseType: "Full Time",
-        courseLevel: "Postgraduate",
-        courseCode: "IT-0003",
-      },
-      {
-        title: "MBA in International Business",
-        description:
-          "Develop a global perspective on business and learn to navigate international markets.",
-        image: "",
-        price: 24000,
-        discountedPrice: 22000,
-        duration: "2 Year",
-        subject: "Business & Management",
-        courseType: "Part Time",
-        courseLevel: "Postgraduate",
-        courseCode: "BM-0003",
-      },
-      {
-        title: "BSc in Software Engineering",
-        description:
-          "Learn the principles of software design, development, and testing for various applications.",
-        image: "",
-        price: 19000,
-        discountedPrice: null,
-        duration: "3 Year",
-        subject: "IT & Computer Science",
-        courseType: "Full Time",
-        courseLevel: "Undergraduate",
-        courseCode: "IT-0004",
-      },
-      {
-        title: "MSc in Nursing Leadership",
-        description:
-          "Prepare for leadership roles in nursing with a focus on management and healthcare policies.",
-        image: "",
-        price: 22000,
-        discountedPrice: 20000,
-        duration: "2 Year",
-        subject: "Nursing",
-        courseType: "Part Time",
-        courseLevel: "Postgraduate",
-        courseCode: "NU-0002",
-      },
-      {
-        title: "MBA in Digital Marketing",
-        description:
-          "Learn the latest digital marketing strategies, including SEO, social media, and online advertising.",
-        image: "",
-        price: 23000,
-        discountedPrice: 21000,
-        duration: "2 Year",
-        subject: "Marketing",
-        courseType: "Part Time",
-        courseLevel: "Postgraduate",
-        courseCode: "MK-0003",
-      },
-      {
-        title: "MSc in Clinical Psychology",
-        description:
-          "Focus on the diagnosis and treatment of mental health disorders through clinical practice and research.",
-        image: "",
-        price: 21000,
-        discountedPrice: 19000,
-        duration: "2 Year",
-        subject: "Psychology",
-        courseType: "Full Time",
-        courseLevel: "Postgraduate",
-        courseCode: "PS-0002",
-      },
-      {
-        title: "BSc in Mechanical Engineering",
-        description:
-          "Learn about mechanical systems, materials science, and manufacturing processes.",
-        image: "",
-        price: 20000,
-        discountedPrice: null,
-        duration: "3 Year",
-        subject: "Engineering",
-        courseType: "Full Time",
-        courseLevel: "Undergraduate",
-        courseCode: "EN-0002",
-      },
-      {
-        title: "MSc in AI and Machine Learning",
-        description:
-          "Focus on advanced AI concepts, including deep learning and neural networks.",
-        image: "",
-        price: 22000,
-        discountedPrice: 20000,
-        duration: "2 Year",
-        subject: "Artificial Intelligence",
-        courseType: "Full Time",
-        courseLevel: "Postgraduate",
-        courseCode: "AI-0002",
-      },
-      {
-        title: "MBA in Finance",
-        description:
-          "Develop financial management skills to excel in corporate finance and investment banking.",
-        image: "",
-        price: 24000,
-        discountedPrice: 22000,
-        duration: "2 Year",
-        subject: "Business & Management",
-        courseType: "Part Time",
-        courseLevel: "Postgraduate",
-        courseCode: "BM-0004",
-      },
-      {
-        title: "MSc in Sustainable Construction",
-        description:
-          "Learn sustainable building practices and environmental management in construction.",
-        image: "",
-        price: 21000,
-        discountedPrice: 19000,
-        duration: "2 Year",
-        subject: "Construction Management",
-        courseType: "Full Time",
-        courseLevel: "Postgraduate",
-        courseCode: "CM-0002",
-      },
-      {
-        title: "BSc in Criminology and Sociology",
-        description:
-          "Explore the intersection of criminology and sociology to understand crime and society.",
-        image: "",
-        price: 18000,
-        discountedPrice: null,
-        duration: "3 Year",
-        subject: "Criminology",
-        courseType: "Full Time",
-        courseLevel: "Undergraduate",
-        courseCode: "CR-0002",
-      },
-      {
-        title: "MBA in Operations Management",
-        description:
-          "Develop skills to optimize business operations and improve organizational efficiency.",
-        image: "",
-        price: 23000,
-        discountedPrice: 21000,
-        duration: "2 Year",
-        subject: "Business & Management",
-        courseType: "Part Time",
-        courseLevel: "Postgraduate",
-        courseCode: "BM-0005",
-      },
-      {
-        title: "MSc in Humanitarian Engineering",
-        description:
-          "Focus on engineering solutions for humanitarian challenges and sustainable development.",
-        image: "",
-        price: 22000,
-        discountedPrice: 20000,
-        duration: "2 Year",
-        subject: "Engineering",
-        courseType: "Full Time",
-        courseLevel: "Postgraduate",
-        courseCode: "EN-0003",
-      },
-      {
-        title: "MSc in Health Informatics",
-        description:
-          "Learn to manage healthcare data and systems to improve patient care and outcomes.",
-        image: "",
-        price: 21000,
-        discountedPrice: 19000,
-        duration: "2 Year",
-        subject: "Healthcare",
-        courseType: "Full Time",
-        courseLevel: "Postgraduate",
-        courseCode: "HC-0002",
-      },
-      {
-        title: "BSc in Cyber Security",
-        description:
-          "Learn to protect information systems from cyber threats and attacks.",
-        image: "",
-        price: 19000,
-        discountedPrice: null,
-        duration: "3 Year",
-        subject: "Cyber Security",
-        courseType: "Full Time",
-        courseLevel: "Undergraduate",
-        courseCode: "CS-0003",
-      },
-      {
-        title: "MSc in Organizational Leadership",
-        description:
-          "Develop leadership strategies and skills to lead organizations effectively.",
-        image: "",
-        price: 22000,
-        discountedPrice: 20000,
-        duration: "2 Year",
-        subject: "Leadership",
-        courseType: "Full Time",
-        courseLevel: "Postgraduate",
-        courseCode: "LD-0002",
-      },
-      {
-        title: "PGCE in Special Education",
-        description:
-          "Prepare to teach and support students with special educational needs.",
-        image: "",
-        price: 16000,
-        discountedPrice: 14000,
-        duration: "1 Year",
-        subject: "PGCE",
-        courseType: "Full Time",
-        courseLevel: "Postgraduate",
-        courseCode: "PG-0003",
-      },
-      {
-        title: "MSc in Artificial Intelligence for Healthcare",
-        description:
-          "Apply AI technologies to improve healthcare systems and patient outcomes.",
-        image: "",
-        price: 23000,
-        discountedPrice: 21000,
-        duration: "2 Year",
-        subject: "Artificial Intelligence",
-        courseType: "Full Time",
-        courseLevel: "Postgraduate",
-        courseCode: "AI-0003",
-      },
-      {
-        title: "MBA in Human Resource Management",
-        description:
-          "Develop strategic HR management skills to enhance organizational performance.",
-        image: "",
-        price: 23000,
-        discountedPrice: 21000,
-        duration: "2 Year",
-        subject: "Human Resources",
-        courseType: "Part Time",
-        courseLevel: "Postgraduate",
-        courseCode: "HR-0003",
-      },
-      {
-        title: "MSc in Cognitive Psychology",
-        description:
-          "Focus on the scientific study of mental processes such as perception, memory, and problem-solving.",
-        image: "",
-        price: 21000,
-        discountedPrice: 19000,
-        duration: "2 Year",
-        subject: "Psychology",
-        courseType: "Full Time",
-        courseLevel: "Postgraduate",
-        courseCode: "PS-0003",
-      },
-      {
-        title: "BSc in Healthcare Management",
-        description:
-          "Learn the principles of managing healthcare facilities and improving patient care services.",
-        image: "",
-        price: 18000,
-        discountedPrice: null,
-        duration: "3 Year",
-        subject: "Healthcare",
-        courseType: "Full Time",
-        courseLevel: "Undergraduate",
-        courseCode: "HC-0003",
-      },
-      {
-        title: "MBA in Project Management",
-        description:
-          "Learn to manage complex projects from inception to completion with advanced project management techniques.",
-        image: "",
-        price: 23000,
-        discountedPrice: 21000,
-        duration: "2 Year",
-        subject: "Business & Management",
-        courseType: "Part Time",
-        courseLevel: "Postgraduate",
-        courseCode: "BM-0006",
-      },
-      {
-        title: "MSc in Construction Project Management",
-        description:
-          "Develop skills in managing construction projects, including planning, execution, and risk management.",
-        image: "",
-        price: 21000,
-        discountedPrice: 19000,
-        duration: "2 Year",
-        subject: "Construction Management",
-        courseType: "Full Time",
-        courseLevel: "Postgraduate",
-        courseCode: "CM-0003",
-      },
-      {
-        title: "BSc in Human Resources and Business",
-        description:
-          "Combine HR management with business administration to enhance your career prospects.",
-        image: "",
-        price: 18000,
-        discountedPrice: null,
-        duration: "3 Year",
-        subject: "Human Resources",
-        courseType: "Full Time",
-        courseLevel: "Undergraduate",
-        courseCode: "HR-0004",
-      },
-      {
-        title: "MSc in Clinical Data Management",
-        description:
-          "Learn to manage and analyze clinical data to support healthcare research and practices.",
-        image: "",
-        price: 21000,
-        discountedPrice: 19000,
-        duration: "2 Year",
-        subject: "Healthcare",
-        courseType: "Full Time",
-        courseLevel: "Postgraduate",
-        courseCode: "HC-0004",
-      },
-      {
-        title: "BSc in Psychology",
-        description:
-          "Study the science of mind and behavior with a comprehensive psychology curriculum.",
-        image: "",
-        price: 18000,
-        discountedPrice: null,
-        duration: "3 Year",
-        subject: "Psychology",
-        courseType: "Full Time",
-        courseLevel: "Undergraduate",
-        courseCode: "PS-0004",
-      },
-      {
-        title: "MSc in AI and Robotics",
-        description:
-          "Focus on the development and application of AI and robotics technologies.",
-        image: "",
-        price: 22000,
-        discountedPrice: 20000,
-        duration: "2 Year",
-        subject: "Artificial Intelligence",
-        courseType: "Full Time",
-        courseLevel: "Postgraduate",
-        courseCode: "AI-0004",
-      },
-      {
-        title: "MBA in Supply Chain Management",
-        description:
-          "Develop the skills to manage and optimize supply chains in a global business environment.",
-        image: "",
-        price: 24000,
-        discountedPrice: 22000,
-        duration: "2 Year",
-        subject: "Business & Management",
-        courseType: "Part Time",
-        courseLevel: "Postgraduate",
-        courseCode: "BM-0007",
-      },
-      {
-        title: "MSc in Applied Criminology",
-        description:
-          "Study the practical applications of criminology in the criminal justice system.",
-        image: "",
-        price: 21000,
-        discountedPrice: 19000,
-        duration: "2 Year",
-        subject: "Criminology",
-        courseType: "Full Time",
-        courseLevel: "Postgraduate",
-        courseCode: "CR-0003",
-      },
-      {
-        title: "BSc in Disaster Management",
-        description:
-          "Prepare for careers in disaster response and management with a focus on emergency planning.",
-        image: "",
-        price: 18000,
-        discountedPrice: null,
-        duration: "3 Year",
-        subject: "Disaster & Emergency Management",
-        courseType: "Full Time",
-        courseLevel: "Undergraduate",
-        courseCode: "DE-0003",
-      },
-      {
-        title: "MSc in Educational Leadership",
-        description:
-          "Develop leadership skills for educational settings, focusing on policy and management.",
-        image: "",
-        price: 22000,
-        discountedPrice: 20000,
-        duration: "2 Year",
-        subject: "Leadership",
-        courseType: "Full Time",
-        courseLevel: "Postgraduate",
-        courseCode: "LD-0003",
-      },
-      {
-        title: "BSc in Information Technology",
-        description:
-          "Learn about information systems, programming, and network management.",
-        image: "",
-        price: 19000,
-        discountedPrice: null,
-        duration: "3 Year",
-        subject: "IT & Computer Science",
-        courseType: "Full Time",
-        courseLevel: "Undergraduate",
-        courseCode: "IT-0005",
-      },
-    ],
-  });
 
   console.log("Database seeded successfully.");
 }

@@ -1,6 +1,6 @@
 import prisma from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
-// get user info using prisma
+// get user info by id
 export async function POST(request: NextRequest) {
   const body = await request.json();
   const { userId } = body;
