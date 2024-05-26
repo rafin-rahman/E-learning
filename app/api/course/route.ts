@@ -3,11 +3,14 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
   try {
-    const levels = await prisma.courseLevel.findMany();
+    const courses = await prisma.course.findMany({
+      include: {
+        courseLevel: true,
+      },
+    });
 
-    return NextResponse.json(levels);
+    return NextResponse.json(courses);
   } catch (error) {
-    console.log(error);
     return NextResponse.json({ message: error }, { status: 500 });
   }
 }

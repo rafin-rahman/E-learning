@@ -31,7 +31,7 @@ export async function middleware(request: NextRequest) {
       },
       {
         route: "/dashboard/admin/manageCourses",
-        roles: ["COURSE_MANAGER"],
+        roles: ["COURSE_MANAGER", "SUPER_ADMIN"],
       },
       // Add more route configurations here as needed
       // {route: "another-route-path", roles: ["ROLE1", "ROLE2"]}

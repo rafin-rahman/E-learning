@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { Checkbox } from "@/components/ui/checkbox";
+import CourseCard from "@/components/course/manageCourses/CourseCard";
 
 async function getCourseLevels() {
   const res = await fetch(
@@ -33,10 +34,26 @@ async function getCourseSubjects() {
   }
   return res.json();
 }
+async function getCourses() {
+  const res = await fetch(
+    process.env.NEXT_PUBLIC_LOCALHOST_URL + "/api/course",
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  if (!res.ok) {
+    throw new Error("Failed to fetch course subjects");
+  }
+  return res.json();
+}
 
 export default function ManageCourses() {
   const [courseSubjects, setCourseSubjects] = useState([]);
   const [courseLevels, setCourseLevels] = useState([]);
+  const [courses, setCourses] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -55,10 +72,19 @@ export default function ManageCourses() {
       } catch (err: any) {
         setError(err.message);
       }
+      // set courses
+      try {
+        const courses = await getCourses();
+        setCourses(courses);
+      } catch (err: any) {
+        setError(err.message);
+      }
     }
 
     fetchData();
   }, []);
+
+  console.log(courses);
   return (
     <div className={"container"}>
       <h1 className={"text-4xl mb-10"}>Manage Courses</h1>
@@ -95,7 +121,21 @@ export default function ManageCourses() {
             </ul>
           </div>
         </div>
-        <div className={"flex-auto"}>Course list</div>
+        <div className={"flex-auto ml-5 "}>
+          <div className={"font-bold mb-8"}>Course list</div>
+          <div className={"flex gap-4 flex-wrap"}>
+            {courses.map((course: any) => (
+              <CourseCard
+                key={course.id}
+                title={course.title}
+                tag={course.courseLevel.name}
+                editLink={""}
+                viewLink={""}
+                courseImage={null}
+              />
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
