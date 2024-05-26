@@ -1,6 +1,8 @@
 "use server";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
+import prisma from "@/lib/prisma";
+import * as jose from "jose";
 
 export default async function signInAction(
   currentState: any,

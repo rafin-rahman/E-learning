@@ -16,6 +16,8 @@ export async function middleware(request: NextRequest) {
 
   try {
     const { payload } = await jose.jwtVerify(jwt, secret, {});
+
+    // console.log("Payload - User Role", payload);
     // if cookies are valid refresh the token
     if (payload.sub != null) {
       const newJwt = await new jose.SignJWT()

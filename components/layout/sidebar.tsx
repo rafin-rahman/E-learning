@@ -1,29 +1,35 @@
-import { FolderIcon, HomeIcon, UsersIcon } from "@heroicons/react/24/outline";
+import {
+  QueueListIcon,
+  HomeIcon,
+  UsersIcon,
+} from "@heroicons/react/24/outline";
 import Image from "next/image";
 import { cookies } from "next/headers";
 import * as jose from "jose";
 import { redirect } from "next/navigation";
 import UserMenu from "@/components/layout/sidebarComponents/UserMenu";
 
+//TODO sidebar navigation needs to highlight the current page
 const navigation = [
   {
     name: "Home",
     href: "/dashboard/homeApp",
     icon: HomeIcon,
-    count: "5",
-    current: true,
-  },
-  {
-    name: "Courses",
-    href: "/dashboard/manage_courses",
-    icon: UsersIcon,
+    count: "",
     current: false,
   },
   {
-    name: "Users",
+    name: "Manage Courses",
+    href: "/dashboard/admin/manageCourses",
+    icon: QueueListIcon,
+    count: "",
+    current: false,
+  },
+  {
+    name: "Manage Users",
     href: "#",
-    icon: FolderIcon,
-    count: "12",
+    icon: UsersIcon,
+    count: "",
     current: false,
   },
 ];

@@ -12,27 +12,28 @@ export async function POST(request: NextRequest) {
       email: email,
     },
   });
-  if (!user) {
-    return NextResponse.json({
-      error: "Password or email address is wrong",
-    });
-  }
-  const passwordMatch = await bcrypt.compare(password, user.password);
-  if (!passwordMatch) {
-    return NextResponse.json({
-      error: "Password or email address is wrong",
-    });
-  }
+  // if (!user) {
+  //   return NextResponse.json({
+  //     error: "Password or email address is wrong",
+  //   });
+  // }
+  // const passwordMatch = await bcrypt.compare(password, user.password);
+  // if (!passwordMatch) {
+  //   return NextResponse.json({
+  //     error: "Password or email address is wrong",
+  //   });
+  // }
+  //
+  // // create JWT token
+  // const secret = new TextEncoder().encode(process.env.JWT_SECRET);
+  // const alg = "HS256";
+  //
+  // const jwt = await new jose.SignJWT({ userRole: user.role, userId: user.id })
+  //   .setProtectedHeader({ alg })
+  //   .setIssuedAt()
+  //   .setExpirationTime("10min")
+  //   .setSubject(user.id.toString())
+  //   .sign(secret);
 
-  // create JWT token
-  const secret = new TextEncoder().encode(process.env.JWT_SECRET);
-  const alg = "HS256";
-  const jwt = await new jose.SignJWT()
-    .setProtectedHeader({ alg })
-    .setIssuedAt()
-    .setExpirationTime("10min")
-    .setSubject(user.id.toString())
-    .sign(secret);
-
-  return NextResponse.json({ token: jwt });
+  return NextResponse.json("{ token: jwt }");
 }
