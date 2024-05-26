@@ -130,6 +130,19 @@ async function main() {
     },
   ];
 
+  // Array of course levels
+  const courseLevels = [
+    { name: "Postgraduate" },
+    { name: "Undergraduate" },
+    { name: "Top-Up undergraduate" },
+    { name: "Top-Up postgraduate" },
+    { name: "CPD" },
+    { name: "Professional course" },
+    { name: "Foundation" },
+    { name: "Diploma" },
+    { name: "Certificate" },
+  ];
+
   // Create CourseSubjects
   const createdSubjects = await Promise.all(
     courseSubjects.map((subject) =>
@@ -144,6 +157,11 @@ async function main() {
     )
   );
 
+  // Create CourseLevels
+  const createdCourseLevels = await Promise.all(
+    courseLevels.map((level) => prisma.courseLevel.create({ data: level }))
+  );
+
   // Helper function to find subject and partner safely
   const findSubjectId = (name: string) => {
     const subject = createdSubjects.find((subject) => subject.name === name);
@@ -156,6 +174,12 @@ async function main() {
     if (!partner) throw new Error(`Partner at index ${index} not found`);
     return partner.id;
   };
+
+  const findCourseLevelId = (name: string) => {
+    const level = createdCourseLevels.find((level) => level.name === name);
+    if (!level) throw new Error(`Course level with name ${name} not found`);
+    return level.id;
+  };
   // Array of courses
   const courses = [
     {
@@ -166,7 +190,7 @@ async function main() {
       discountedPrice: 149.99,
       duration: "10 weeks",
       courseType: "Self-paced",
-      courseLevel: "Beginner",
+      courseLevelId: findCourseLevelId("Certificate"),
       courseCode: "CS101",
       courseSubjectId: findSubjectId("IT & Computer Science"),
       deliveryPartnerId: findPartnerId(0), // Assigning first partner
@@ -179,7 +203,7 @@ async function main() {
       discountedPrice: 249.99,
       duration: "12 weeks",
       courseType: "Instructor-led",
-      courseLevel: "Advanced",
+      courseLevelId: findCourseLevelId("Postgraduate"),
       courseCode: "CS201",
       courseSubjectId: findSubjectId("Artificial Intelligence"),
       deliveryPartnerId: findPartnerId(1), // Assigning second partner
@@ -192,7 +216,7 @@ async function main() {
       discountedPrice: 129.99,
       duration: "8 weeks",
       courseType: "Self-paced",
-      courseLevel: "Intermediate",
+      courseLevelId: findCourseLevelId("Undergraduate"),
       courseCode: "CS102",
       courseSubjectId: findSubjectId("IT & Computer Science"),
       deliveryPartnerId: findPartnerId(0), // Assigning first partner
@@ -205,7 +229,7 @@ async function main() {
       discountedPrice: 179.99,
       duration: "10 weeks",
       courseType: "Instructor-led",
-      courseLevel: "Beginner",
+      courseLevelId: findCourseLevelId("Foundation"),
       courseCode: "MATH101",
       courseSubjectId: findSubjectId("Business & Management"),
       deliveryPartnerId: findPartnerId(1), // Assigning second partner
@@ -218,7 +242,7 @@ async function main() {
       discountedPrice: 200.0,
       duration: "8 weeks",
       courseType: "Self-paced",
-      courseLevel: "Intermediate",
+      courseLevelId: findCourseLevelId("Professional course"),
       courseCode: "CS203",
       courseSubjectId: findSubjectId("Cyber Security"),
       deliveryPartnerId: findPartnerId(2), // Assigning third partner
@@ -231,7 +255,7 @@ async function main() {
       discountedPrice: 270.0,
       duration: "12 weeks",
       courseType: "Instructor-led",
-      courseLevel: "Intermediate",
+      courseLevelId: findCourseLevelId("Undergraduate"),
       courseCode: "ENG101",
       courseSubjectId: findSubjectId("Engineering"),
       deliveryPartnerId: findPartnerId(3), // Assigning fourth partner
@@ -244,7 +268,7 @@ async function main() {
       discountedPrice: 180.0,
       duration: "10 weeks",
       courseType: "Self-paced",
-      courseLevel: "Beginner",
+      courseLevelId: findCourseLevelId("Certificate"),
       courseCode: "HC101",
       courseSubjectId: findSubjectId("Healthcare"),
       deliveryPartnerId: findPartnerId(4), // Assigning fifth partner
@@ -257,7 +281,7 @@ async function main() {
       discountedPrice: 160.0,
       duration: "8 weeks",
       courseType: "Instructor-led",
-      courseLevel: "Intermediate",
+      courseLevelId: findCourseLevelId("Professional course"),
       courseCode: "HR101",
       courseSubjectId: findSubjectId("Human Resources (HR)"),
       deliveryPartnerId: findPartnerId(5), // Assigning sixth partner
@@ -270,7 +294,7 @@ async function main() {
       discountedPrice: 200.0,
       duration: "8 weeks",
       courseType: "Self-paced",
-      courseLevel: "Advanced",
+      courseLevelId: findCourseLevelId("Professional course"),
       courseCode: "LD101",
       courseSubjectId: findSubjectId("Leadership"),
       deliveryPartnerId: findPartnerId(6), // Assigning seventh partner
@@ -283,7 +307,7 @@ async function main() {
       discountedPrice: 230.0,
       duration: "8 weeks",
       courseType: "Instructor-led",
-      courseLevel: "Advanced",
+      courseLevelId: findCourseLevelId("CPD"),
       courseCode: "MK101",
       courseSubjectId: findSubjectId("Marketing"),
       deliveryPartnerId: findPartnerId(7), // Assigning eighth partner
