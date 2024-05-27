@@ -17,7 +17,9 @@ export default function RootLayout({
     <html lang="en" className={roboto_mono.className}>
       <body>
         <div>{children}</div>
-        <Toaster />
+        <div className={""}>
+          <Toaster />
+        </div>
       </body>
     </html>
   );

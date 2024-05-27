@@ -8,9 +8,11 @@ import React from "react";
 import { signUpFormSchema as formSchema } from "@/lib/zodSchema.js";
 import SignUpFormField from "@/components/signUpForm/SignUpFormField";
 import signUpAction from "@/app/signup/signUpAction";
+import { useToast } from "@/components/ui/use-toast";
 
 export default function SignUpForm() {
-  const [serverMessage, setServerMessage] = React.useState<string>("");
+  const [loading, setLoading] = React.useState<boolean>(false);
+  const { toast } = useToast();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -22,34 +24,35 @@ export default function SignUpForm() {
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    setLoading(true);
+
     try {
       const formData = new FormData();
       formData.append("email", values.email);
       formData.append("password", values.password);
       formData.append("firstName", values.firstName);
       formData.append("lastName", values.lastName);
-      const errorMessage = await signUpAction({}, formData);
-      if (errorMessage) {
-        setServerMessage(errorMessage);
+      const response = await signUpAction({}, formData);
+
+      if (response) {
+        setLoading(false);
+        toast({
+          variant: "destructive",
+          title: "Notification",
+          description: response,
+          duration: 2000,
+        });
       }
     } catch (err) {
+      setLoading(false);
       console.error("Error during sign-up:", err);
-      setServerMessage("An unexpected error occurred. Please try again.");
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "An unexpected error occurred. Please try again.",
+        duration: 2000,
+      });
     }
-
-    // const response = await fetch("/api/signup", {
-    //   method: "POST",
-    //   body: JSON.stringify(values),
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // });
-    // const data = await response.json();
-    // // set serverMessage for 2 seconds then reset it to empty string
-    // setServerMessage(data.message);
-    // setTimeout(() => {
-    //   setServerMessage("");
-    // }, 2000);
   };
 
   return (
@@ -84,10 +87,9 @@ export default function SignUpForm() {
             formControl={form.control}
           />
 
-          <Button type={"submit"} className={"mt-2"}>
-            Sign up
+          <Button type={"submit"} className={"mt-2"} disabled={loading}>
+            {loading ? "Loading..." : "Sign Up"}
           </Button>
-          {serverMessage && <p>{serverMessage}</p>}
         </form>
       </Form>
     </div>

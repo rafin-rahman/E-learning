@@ -9,9 +9,12 @@ import React, { useState } from "react";
 import { signInFormSchema as formSchema } from "@/lib/zodSchema.js";
 import SignInFormField from "@/components/signInForm/SignInFormField";
 import signInAction from "../../app/signin/signInAction";
+import { useToast } from "@/components/ui/use-toast";
 
 export default function SignInForm() {
   const [errorMessage, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+  const { toast } = useToast();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -21,17 +24,31 @@ export default function SignInForm() {
   });
   // this is an empty object, it helps to show form error messages from ZOD library
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    setLoading(true);
     try {
       const formData = new FormData();
       formData.append("email", values.email);
       formData.append("password", values.password);
-      const errorMessage = await signInAction({}, formData);
-      if (errorMessage) {
-        setError(errorMessage);
+      const response = await signInAction({}, formData);
+      if (response) {
+        setLoading(false);
+        toast({
+          variant: "destructive",
+          title: "Notification",
+          description: response,
+          duration: 2000,
+        });
       }
     } catch (err) {
+      setLoading(false);
       console.error("Error during sign-in:", err);
-      setError("An unexpected error occurred. Please try again.");
+
+      toast({
+        variant: "destructive",
+        title: "Notification",
+        description: "An unexpected error occurred. Please try again.",
+        duration: 2000,
+      });
     }
   };
 
@@ -55,10 +72,9 @@ export default function SignInForm() {
             formControl={form.control}
           />
 
-          <Button type={"submit"} className={"mt-2"}>
-            Sign In
+          <Button type={"submit"} className={"mt-2"} disabled={loading}>
+            {loading ? "Loading..." : "Sign In"}
           </Button>
-          {errorMessage && <p>{errorMessage}</p>}
         </form>
       </Form>
     </div>
