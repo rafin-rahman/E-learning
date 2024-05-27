@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use server";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
@@ -11,8 +10,8 @@ export default async function signInAction(
   formData: FormData
 ): Promise<string> {
   // Get data from the sign in form
-  const email = formData.get("email");
-  const password = formData.get("password");
+  const email = formData.get("email") as string;
+  const password = formData.get("password") as string;
 
   const user = await prisma.user.findUnique({
     where: {
