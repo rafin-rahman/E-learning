@@ -90,7 +90,7 @@ export default async function Sidebar() {
   if (userId) {
     userInfo = await fetchUserInfo(userId);
     if (!userInfo) {
-      redirect("/logout");
+      redirect("/somethingWrong");
     }
   }
 

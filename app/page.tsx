@@ -13,12 +13,12 @@ export default function Home() {
       <h1 className={"text-4xl font-bold mb-10 text-center"}>Home page</h1>
       {!isAuthenticated && (
         <Button asChild variant={"destructive"} className={"m-10 mx-80"}>
-          <Link href={"signup"}>Sign up</Link>
+          <Link href={"signin"}>Sign in</Link>
         </Button>
       )}
       {!isAuthenticated && (
         <Button asChild variant={"destructive"} className={"m-10 mx-80"}>
-          <Link href={"signin"}>Sign in</Link>
+          <Link href={"signup"}>Sign up</Link>
         </Button>
       )}
       {isAuthenticated && (

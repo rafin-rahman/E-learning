@@ -11,7 +11,7 @@ export default function SomethingWrong() {
   // currently, even if user not logged in, this page will be shown
 
   return (
-    <div className={"container "}>
+    <div className={"container mt-20"}>
       <Button asChild variant={"outline"} className={"mr-4"}>
         <Link href={"/"}> {"< "}Home page</Link>
       </Button>
