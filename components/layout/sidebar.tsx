@@ -2,6 +2,7 @@ import {
   QueueListIcon,
   HomeIcon,
   UsersIcon,
+  BeakerIcon,
 } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import { cookies } from "next/headers";
@@ -35,6 +36,13 @@ const navigation = [
     name: "Manage Users",
     href: "/dashboard/admin/manageUsers",
     icon: UsersIcon,
+    count: "",
+    current: false,
+  },
+  {
+    name: "File upload [beta]",
+    href: "/dashboard/admin/uploadFile",
+    icon: BeakerIcon,
     count: "",
     current: false,
   },
