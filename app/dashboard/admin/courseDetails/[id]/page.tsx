@@ -9,6 +9,7 @@ import {
 import { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
+import getImageUrlAction from "@/app/dashboard/admin/courseDetails/[id]/getImageUrlAction";
 
 type Course = {
   id: string;
@@ -72,9 +73,12 @@ export default function CourseDetails({ params }: { params: { id: string } }) {
     return res.json();
   }
   useEffect(() => {
-    setPreview(
-      "https://smu7wqatocnljzs9.public.blob.vercel-storage.com/course/userID/hello-YyhQVyztTzns7i0kvr49Kvk8SDkNIZ.jpg"
-    );
+    async function getImageUrl() {
+      const res = await getImageUrlAction(params.id);
+      if (res) setPreview(res);
+    }
+    getImageUrl();
+
     async function fetchCourse() {
       try {
         const course = await getCourseDetails();
