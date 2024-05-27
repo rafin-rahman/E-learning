@@ -214,6 +214,19 @@ export default function ManageCourses() {
               ))}
             </ul>
           </div>
+          {filteredCourses.length !== courses.length && (
+            <Button
+              variant={"destructive"}
+              onClick={() => {
+                setSelectedSubjects([]);
+                setSelectedLevels([]);
+                setSearch("");
+              }}
+              className={"mt-6 w-full"}
+            >
+              Clear filters
+            </Button>
+          )}
         </div>
         <div className={"flex-auto ml-5"}>
           <div className={"flex mb-8 items-center"}>
@@ -224,24 +237,12 @@ export default function ManageCourses() {
               className={"max-w-48 ml-10 "}
               type="search"
               placeholder="Search courses"
+              value={search}
               onChange={(e) => {
                 handleSearch(e);
               }}
             />
 
-            {filteredCourses.length !== courses.length && (
-              <Button
-                variant={"destructive"}
-                onClick={() => {
-                  setSelectedSubjects([]);
-                  setSelectedLevels([]);
-                  setSearch("");
-                }}
-                className={"ml-2 "}
-              >
-                x
-              </Button>
-            )}
             <div className={"ml-auto -translate-x-20"}>
               <Button variant={"ghost"}>Add new</Button>
             </div>

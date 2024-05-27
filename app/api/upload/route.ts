@@ -17,3 +17,5 @@ export async function POST(request: NextRequest) {
 
   return NextResponse.json(blobResult);
 }
+
+export async function GET(request: NextRequest) {}

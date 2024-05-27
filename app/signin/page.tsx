@@ -29,26 +29,20 @@ export default function signin() {
           <p>
             <span className={"uppercase"}>Course Manager</span>
             <br />
-            Email:
-            <strong>basic@gmail.com</strong> <br />
-            Password:
-            <strong>123123</strong>
+            Email: <strong>basic@gmail.com</strong> <br />
+            Password: <strong>123123</strong>
           </p>
           <p>
             <span className={"uppercase"}>Admin</span>
             <br />
-            Email:
-            <strong>admin@gmail.com</strong> <br />
-            Password:
-            <strong>123123</strong>
+            Email: <strong>admin@gmail.com</strong> <br />
+            Password: <strong>123123</strong>
           </p>
           <p>
             <span className={"uppercase"}>Super Admin</span>
             <br />
-            Email:
-            <strong>superadmin@gmail.com</strong> <br />
-            Password:
-            <strong>123123</strong>
+            Email: <strong>superadmin@gmail.com</strong> <br />
+            Password: <strong> 123123</strong>
           </p>
         </div>
       </div>

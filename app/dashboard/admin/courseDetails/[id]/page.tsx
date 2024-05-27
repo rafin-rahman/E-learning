@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import {
@@ -5,8 +6,79 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
+import { useEffect, useState } from "react";
+
+type Course = {
+  id: string;
+  title: string;
+  description: string;
+  duration: string;
+  courseLevel: {
+    id: string;
+    name: string;
+  };
+  courseSubject: {
+    id: string;
+    name: string;
+  };
+  price: string;
+  deliveryPartner: {
+    id: string;
+    name: string;
+  };
+  courseCode: string;
+};
 
 export default function CourseDetails({ params }: { params: { id: string } }) {
+  const [course, setCourse] = useState<Course>({
+    id: "",
+    title: "loading...",
+    description: "loading...",
+    duration: "loading...",
+    courseLevel: {
+      id: "",
+      name: "loading...",
+    },
+    courseSubject: {
+      id: "",
+      name: "loading...",
+    },
+    price: "loading...",
+    deliveryPartner: {
+      id: "",
+      name: "loading...",
+    },
+    courseCode: "loading...",
+  });
+
+  async function getCourseDetails(): Promise<Course> {
+    const res = await fetch(
+      process.env.NEXT_PUBLIC_LOCALHOST_URL + "/api/course/" + params.id,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    if (!res.ok) {
+      throw new Error("Failed to fetch course");
+    }
+
+    return res.json();
+  }
+  useEffect(() => {
+    async function fetchCourse() {
+      try {
+        const course = await getCourseDetails();
+        setCourse(course);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    fetchCourse();
+  }, []);
   return (
     <div className={"container mx-10"}>
       <Button asChild variant={"outline"} className={"my-10 "}>
@@ -16,12 +88,10 @@ export default function CourseDetails({ params }: { params: { id: string } }) {
       </Button>
 
       <div className={"font-light text-gray-400"}>
-        #Undergraduate by{" "}
-        <span className={"font-normal"}>University of Oxford</span>
+        {course.courseLevel.name} - by{" "}
+        <span className={"font-normal"}>{course.deliveryPartner.name}</span>
       </div>
-      <div className={"text-4xl font-extrabold mb-8"}>
-        Master of Business Administration (Leadership)
-      </div>
+      <div className={"text-4xl font-extrabold mb-8"}>{course.title}</div>
       <div className={"text-xl"}>
         Advance your career and earning potential by developing real-world
         business acumen and critical leadership skills with an online MBA from
@@ -38,20 +108,20 @@ export default function CourseDetails({ params }: { params: { id: string } }) {
       <div>
         <ul className={"flex justify-around  my-4 text-center font-light"}>
           <li className={"border-r-2  w-64 py-4"}>
-            <div className={"font-normal"}>Level</div>
-            <div>Postgraduate</div>
+            <div className={"font-normal"}>Subject</div>
+            <div>{course.courseSubject.name}</div>
           </li>
           <li className={"border-r-2  w-64 py-4"}>
             <div className={"font-normal"}>Duration</div>
-            <div>3 years</div>
+            <div>{course.duration}</div>
           </li>
           <li className={"border-r-2  w-64 py-4"}>
-            <div className={"font-normal"}>Language</div>
-            <div>English</div>
+            <div className={"font-normal"}>Course code</div>
+            <div>{course.courseCode}</div>
           </li>
           <li className={"  w-64 py-4"}>
             <div className={"font-normal"}>Tuition Fees</div>
-            <div>£20,000</div>
+            <div>£{course.price}</div>
           </li>
         </ul>
         <div className={"text-2xl font-extrabold mb-6 mt-10"}>

@@ -17,8 +17,8 @@ export default function SomethingWrong() {
       </Button>
       <div className={"flex mx-auto flex-col text-center pt-20"}>
         <h1 className={"text-4xl mb-10 "}>
-          <span className={"block"}>Ops!</span> Something went wrong, you must
-          logout and login again
+          <span className={"block"}>Ops!</span> There ware major database
+          changes, you must logout and login again
         </h1>
         <Button
           variant={"destructive"}

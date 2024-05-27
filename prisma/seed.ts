@@ -184,7 +184,8 @@ async function main() {
   const courses = [
     {
       title: "Introduction to Programming",
-      description: "Learn the basics of programming.",
+      description:
+        "This course provides a comprehensive introduction to programming, covering fundamental concepts, syntax, and problem-solving techniques. Students will learn to write and debug code, work with data structures, and develop basic algorithms. Ideal for beginners.",
       image: "programming-course.png",
       price: 199.99,
       discountedPrice: 149.99,
@@ -193,11 +194,12 @@ async function main() {
       courseLevelId: findCourseLevelId("Certificate"),
       courseCode: "CS101",
       courseSubjectId: findSubjectId("IT & Computer Science"),
-      deliveryPartnerId: findPartnerId(0), // Assigning first partner
+      deliveryPartnerId: findPartnerId(0),
     },
     {
       title: "Advanced Algorithms",
-      description: "Explore complex algorithms in computer science.",
+      description:
+        "Dive deep into complex algorithms with this course, exploring advanced topics like graph theory, dynamic programming, and optimization. Students will enhance their problem-solving skills and learn to implement efficient algorithms in various programming languages.",
       image: "algorithms-course.png",
       price: 299.99,
       discountedPrice: 249.99,
@@ -206,11 +208,12 @@ async function main() {
       courseLevelId: findCourseLevelId("Postgraduate"),
       courseCode: "CS201",
       courseSubjectId: findSubjectId("Artificial Intelligence"),
-      deliveryPartnerId: findPartnerId(1), // Assigning second partner
+      deliveryPartnerId: findPartnerId(1),
     },
     {
       title: "Data Structures",
-      description: "Understand fundamental data structures.",
+      description:
+        "Understand the essential data structures used in computer science, including arrays, linked lists, stacks, queues, trees, and graphs. This course focuses on efficient data organization and manipulation techniques, crucial for optimizing algorithm performance.",
       image: "data-structures-course.png",
       price: 149.99,
       discountedPrice: 129.99,
@@ -219,11 +222,12 @@ async function main() {
       courseLevelId: findCourseLevelId("Undergraduate"),
       courseCode: "CS102",
       courseSubjectId: findSubjectId("IT & Computer Science"),
-      deliveryPartnerId: findPartnerId(0), // Assigning first partner
+      deliveryPartnerId: findPartnerId(0),
     },
     {
       title: "Calculus I",
-      description: "Introduction to calculus.",
+      description:
+        "Explore the fundamental concepts of calculus, including limits, derivatives, and integrals. This course provides a solid foundation in mathematical principles essential for advanced studies in science, engineering, and economics.",
       image: "calculus-course.png",
       price: 199.99,
       discountedPrice: 179.99,
@@ -232,11 +236,12 @@ async function main() {
       courseLevelId: findCourseLevelId("Foundation"),
       courseCode: "MATH101",
       courseSubjectId: findSubjectId("Business & Management"),
-      deliveryPartnerId: findPartnerId(1), // Assigning second partner
+      deliveryPartnerId: findPartnerId(1),
     },
     {
       title: "Cyber Security Basics",
-      description: "Learn the fundamentals of cyber security.",
+      description:
+        "Learn the essentials of cyber security, including threat identification, risk management, and protective measures. This course covers key concepts in securing digital information and protecting systems against cyber threats and attacks.",
       image: "cyber-security-course.png",
       price: 250.0,
       discountedPrice: 200.0,
@@ -245,11 +250,12 @@ async function main() {
       courseLevelId: findCourseLevelId("Professional course"),
       courseCode: "CS203",
       courseSubjectId: findSubjectId("Cyber Security"),
-      deliveryPartnerId: findPartnerId(2), // Assigning third partner
+      deliveryPartnerId: findPartnerId(2),
     },
     {
       title: "Engineering Mechanics",
-      description: "Fundamentals of mechanics in engineering.",
+      description:
+        "Study the fundamental principles of mechanics in engineering, focusing on force systems, equilibrium, and the behavior of materials. This course provides a critical understanding of mechanical systems and their applications in various engineering fields.",
       image: "engineering-mechanics-course.png",
       price: 300.0,
       discountedPrice: 270.0,
@@ -258,11 +264,12 @@ async function main() {
       courseLevelId: findCourseLevelId("Undergraduate"),
       courseCode: "ENG101",
       courseSubjectId: findSubjectId("Engineering"),
-      deliveryPartnerId: findPartnerId(3), // Assigning fourth partner
+      deliveryPartnerId: findPartnerId(3),
     },
     {
       title: "Introduction to Healthcare",
-      description: "Overview of healthcare systems and practices.",
+      description:
+        "Gain an overview of healthcare systems, policies, and practices. This course introduces students to the structure and function of healthcare organizations, patient care, and the various roles of healthcare professionals.",
       image: "healthcare-intro-course.png",
       price: 200.0,
       discountedPrice: 180.0,
@@ -271,11 +278,12 @@ async function main() {
       courseLevelId: findCourseLevelId("Certificate"),
       courseCode: "HC101",
       courseSubjectId: findSubjectId("Healthcare"),
-      deliveryPartnerId: findPartnerId(4), // Assigning fifth partner
+      deliveryPartnerId: findPartnerId(4),
     },
     {
       title: "Human Resources Management",
-      description: "Learn the essentials of HR management.",
+      description:
+        "Learn the key principles and practices of human resource management, including recruitment, training, performance management, and employee relations. This course prepares students for effective HR management in various organizational settings.",
       image: "hr-management-course.png",
       price: 180.0,
       discountedPrice: 160.0,
@@ -284,11 +292,12 @@ async function main() {
       courseLevelId: findCourseLevelId("Professional course"),
       courseCode: "HR101",
       courseSubjectId: findSubjectId("Human Resources (HR)"),
-      deliveryPartnerId: findPartnerId(5), // Assigning sixth partner
+      deliveryPartnerId: findPartnerId(5),
     },
     {
       title: "Leadership Skills",
-      description: "Develop your leadership abilities.",
+      description:
+        "Develop essential leadership skills, including communication, decision-making, and team management. This course focuses on practical techniques and strategies to enhance leadership abilities and drive organizational success.",
       image: "leadership-skills-course.png",
       price: 220.0,
       discountedPrice: 200.0,
@@ -297,11 +306,12 @@ async function main() {
       courseLevelId: findCourseLevelId("Professional course"),
       courseCode: "LD101",
       courseSubjectId: findSubjectId("Leadership"),
-      deliveryPartnerId: findPartnerId(6), // Assigning seventh partner
+      deliveryPartnerId: findPartnerId(6),
     },
     {
       title: "Marketing Strategies",
-      description: "Learn effective marketing strategies.",
+      description:
+        "Learn effective marketing strategies, including market research, branding, and digital marketing. This course equips students with the knowledge and skills to develop and implement successful marketing plans for various businesses.",
       image: "marketing-strategies-course.png",
       price: 250.0,
       discountedPrice: 230.0,
@@ -310,11 +320,12 @@ async function main() {
       courseLevelId: findCourseLevelId("CPD"),
       courseCode: "MK101",
       courseSubjectId: findSubjectId("Marketing"),
-      deliveryPartnerId: findPartnerId(7), // Assigning eighth partner
+      deliveryPartnerId: findPartnerId(7),
     },
     {
       title: "AI for Business Leaders",
-      description: "Integrating AI strategies into business leadership.",
+      description:
+        "Integrate AI strategies into business leadership with this comprehensive course. Explore the applications of artificial intelligence in decision-making, operations, and innovation, enhancing business performance and competitive advantage.",
       image: "ai-business-leaders-course.png",
       price: 4500,
       discountedPrice: 4000,
@@ -327,7 +338,8 @@ async function main() {
     },
     {
       title: "Machine Learning Techniques",
-      description: "Exploring advanced machine learning methodologies.",
+      description:
+        "Explore advanced machine learning methodologies, including supervised and unsupervised learning, neural networks, and deep learning. This course provides hands-on experience with real-world data sets and machine learning frameworks.",
       image: "ml-techniques-course.png",
       price: 4700,
       discountedPrice: 4200,
@@ -341,7 +353,7 @@ async function main() {
     {
       title: "Ethics in AI",
       description:
-        "Understanding ethical implications in artificial intelligence.",
+        "Understand the ethical implications of artificial intelligence, including bias, privacy, and accountability. This course examines the societal impact of AI technologies and explores frameworks for ethical decision-making in AI development and deployment.",
       image: "ethics-ai-course.png",
       price: 3000,
       discountedPrice: 2800,
@@ -354,7 +366,8 @@ async function main() {
     },
     {
       title: "Quantum Computing Fundamentals",
-      description: "Basics of quantum computation for beginners.",
+      description:
+        "Learn the basics of quantum computation, including qubits, superposition, and entanglement. This course introduces the principles of quantum mechanics and explores the potential applications of quantum computing in various industries.",
       image: "quantum-computing-course.png",
       price: 5200,
       discountedPrice: 4800,
@@ -367,7 +380,8 @@ async function main() {
     },
     {
       title: "Advanced Neural Networks",
-      description: "Deep dive into complex neural network architectures.",
+      description:
+        "Delve into complex neural network architectures, including convolutional and recurrent neural networks. This course covers advanced topics in deep learning, providing practical experience with cutting-edge techniques and applications.",
       image: "advanced-neural-networks-course.png",
       price: 5500,
       discountedPrice: 5000,
@@ -380,7 +394,8 @@ async function main() {
     },
     {
       title: "Entrepreneurship in Business",
-      description: "Cultivating entrepreneurial skills in business settings.",
+      description:
+        "Cultivate entrepreneurial skills with this course, focusing on innovation, business planning, and startup management. Learn to identify opportunities, develop business models, and navigate the challenges of launching and growing a successful business.",
       image: "entrepreneurship-business-course.png",
       price: 4300,
       discountedPrice: 3900,
@@ -393,7 +408,8 @@ async function main() {
     },
     {
       title: "Strategic Management",
-      description: "Techniques and strategies for effective management.",
+      description:
+        "Master techniques and strategies for effective management with this course. Explore strategic planning, competitive analysis, and organizational design to enhance your ability to lead and manage complex business environments.",
       image: "strategic-management-course.png",
       price: 4600,
       discountedPrice: 4200,
@@ -406,7 +422,8 @@ async function main() {
     },
     {
       title: "Leadership and Change Management",
-      description: "Leading change effectively within organizations.",
+      description:
+        "Learn to lead change effectively within organizations. This course covers change management theories, leadership strategies, and practical tools to help you drive successful transformations and navigate organizational change.",
       image: "leadership-change-mgmt-course.png",
       price: 4800,
       discountedPrice: 4500,
@@ -419,7 +436,8 @@ async function main() {
     },
     {
       title: "Business Analytics",
-      description: "Analyzing data to make better business decisions.",
+      description:
+        "Analyze data to make better business decisions. This course covers statistical analysis, data visualization, and predictive modeling, equipping students with the skills to interpret data and apply insights to real-world business problems.",
       image: "business-analytics-course.png",
       price: 5000,
       discountedPrice: 4700,
@@ -433,7 +451,7 @@ async function main() {
     {
       title: "Project Management in Construction",
       description:
-        "Mastering project management techniques in the construction industry.",
+        "Master project management techniques in the construction industry. This course covers project planning, scheduling, budgeting, and risk management, providing practical skills to manage construction projects effectively from inception to completion.",
       image: "project-management-construction-course.png",
       price: 3300,
       discountedPrice: 3100,
@@ -447,7 +465,7 @@ async function main() {
     {
       title: "Introduction to Criminology",
       description:
-        "Exploring the fundamentals of criminological theory and practice.",
+        "Explore the fundamentals of criminological theory and practice. This course examines the causes and consequences of criminal behavior, the functioning of the criminal justice system, and contemporary issues in crime and punishment.",
       image: "intro-criminology-course.png",
       price: 2200,
       discountedPrice: 2000,
@@ -460,7 +478,8 @@ async function main() {
     },
     {
       title: "Emergency Response Planning",
-      description: "Preparing and managing emergency situations effectively.",
+      description:
+        "Prepare and manage emergency situations effectively with this course. Learn the principles of emergency response planning, including risk assessment, resource management, and crisis communication to ensure preparedness for various emergency scenarios.",
       image: "emergency-response-course.png",
       price: 3600,
       discountedPrice: 3400,
@@ -473,7 +492,8 @@ async function main() {
     },
     {
       title: "Fundamentals of Engineering",
-      description: "Covering the essential concepts of engineering.",
+      description:
+        "Cover the essential concepts of engineering with this foundational course. Topics include materials science, mechanics, thermodynamics, and electrical circuits, providing a broad overview of engineering principles and their real-world applications.",
       image: "engineering-fundamentals-course.png",
       price: 3200,
       discountedPrice: 2900,
@@ -487,7 +507,7 @@ async function main() {
     {
       title: "Advanced Healthcare Systems",
       description:
-        "A deeper look into modern healthcare systems around the world.",
+        "Take a deeper look into modern healthcare systems around the world. This course explores advanced topics in healthcare policy, management, and technology, preparing students to address complex challenges in global healthcare delivery.",
       image: "advanced-healthcare-systems-course.png",
       price: 4600,
       discountedPrice: 4300,
@@ -501,7 +521,7 @@ async function main() {
     {
       title: "HR Management Strategies",
       description:
-        "Effective human resource strategies for modern organizations.",
+        "Explore effective human resource strategies for modern organizations. This course covers talent management, organizational development, and employee engagement, providing practical tools to enhance HR practices and improve organizational performance.",
       image: "hr-management-strategies-course.png",
       price: 2500,
       discountedPrice: 2300,
@@ -514,7 +534,8 @@ async function main() {
     },
     {
       title: "Contemporary Humanities Issues",
-      description: "Exploring current issues and debates in the humanities.",
+      description:
+        "Explore current issues and debates in the humanities with this course. Topics include cultural studies, philosophy, literature, and history, providing a broad perspective on contemporary human experiences and societal challenges.",
       image: "contemporary-humanities-issues-course.png",
       price: 2100,
       discountedPrice: 1900,
@@ -528,7 +549,7 @@ async function main() {
     {
       title: "Advanced IT Security",
       description:
-        "In-depth strategies and technologies to protect information systems.",
+        "Learn in-depth strategies and technologies to protect information systems from cyber threats. This course covers advanced topics in network security, encryption, and ethical hacking, providing hands-on experience with cutting-edge security tools and techniques.",
       image: "advanced-it-security-course.png",
       price: 5200,
       discountedPrice: 4800,
@@ -541,7 +562,8 @@ async function main() {
     },
     {
       title: "Leadership in Non-Profit Organizations",
-      description: "Effective leadership strategies for the non-profit sector.",
+      description:
+        "Develop effective leadership strategies for the non-profit sector. This course covers topics such as fundraising, volunteer management, and organizational sustainability, equipping students with the skills to lead and manage non-profit organizations successfully.",
       image: "non-profit-leadership-course.png",
       price: 3000,
       discountedPrice: 2700,
@@ -554,7 +576,8 @@ async function main() {
     },
     {
       title: "Modern Architecture Design",
-      description: "Exploring contemporary design and architecture trends.",
+      description:
+        "Explore contemporary design and architecture trends with this course. Topics include sustainable design, urban planning, and digital modeling, providing students with a comprehensive understanding of modern architectural practices and their impact on the built environment.",
       image: "modern-architecture-design-course.png",
       price: 3100,
       discountedPrice: 2800,
@@ -568,7 +591,7 @@ async function main() {
     {
       title: "Psychology of Criminal Behavior",
       description:
-        "Understanding the psychological factors driving criminal actions.",
+        "Understand the psychological factors driving criminal actions with this course. Explore theories of criminal behavior, mental health issues, and forensic psychology, providing insights into the mind of a criminal and the implications for the criminal justice system.",
       image: "psychology-criminal-behavior-course.png",
       price: 2600,
       discountedPrice: 2400,
@@ -581,7 +604,8 @@ async function main() {
     },
     {
       title: "Cybersecurity Threats and Mitigation",
-      description: "Identifying and mitigating cyber threats effectively.",
+      description:
+        "Identify and mitigate cyber threats effectively with this course. Learn about the latest cyber threat landscapes, risk assessment methodologies, and mitigation strategies to protect information systems and ensure cybersecurity resilience.",
       image: "cybersecurity-threats-course.png",
       price: 4200,
       discountedPrice: 4000,
@@ -594,7 +618,8 @@ async function main() {
     },
     {
       title: "Epidemiology and Public Health",
-      description: "Studying the spread and control of diseases.",
+      description:
+        "Study the spread and control of diseases with this course. Learn about epidemiological methods, public health interventions, and global health challenges, providing a comprehensive understanding of how to protect and improve population health.",
       image: "epidemiology-public-health-course.png",
       price: 4700,
       discountedPrice: 4500,
@@ -608,7 +633,7 @@ async function main() {
     {
       title: "Advanced Structural Engineering",
       description:
-        "Deep dive into advanced concepts and techniques in structural engineering.",
+        "Dive into advanced concepts and techniques in structural engineering. This course covers topics such as finite element analysis, seismic design, and material science, providing students with the knowledge to tackle complex engineering challenges.",
       image: "advanced-structural-engineering-course.png",
       price: 5200,
       discountedPrice: 4900,
@@ -622,7 +647,7 @@ async function main() {
     {
       title: "Mental Health Nursing",
       description:
-        "Focusing on psychiatric and mental health nursing practices.",
+        "Focus on psychiatric and mental health nursing practices with this course. Learn about mental health assessment, therapeutic interventions, and patient care strategies, preparing students to support individuals with mental health conditions.",
       image: "mental-health-nursing-course.png",
       price: 3600,
       discountedPrice: 3300,
@@ -635,7 +660,8 @@ async function main() {
     },
     {
       title: "Principles of Teaching",
-      description: "Core principles and effective strategies for teaching.",
+      description:
+        "Explore the core principles and effective strategies for teaching. This course covers instructional design, classroom management, and assessment techniques, providing practical skills to enhance teaching effectiveness and student learning outcomes.",
       image: "principles-teaching-course.png",
       price: 2300,
       discountedPrice: 2100,
@@ -649,7 +675,7 @@ async function main() {
     {
       title: "Human Resource Development",
       description:
-        "Strategies for developing and enhancing human resources in organizations.",
+        "Learn strategies for developing and enhancing human resources in organizations. This course covers training and development, performance management, and organizational development, providing tools to improve employee skills and drive organizational success.",
       image: "hr-development-course.png",
       price: 2500,
       discountedPrice: 2300,
@@ -663,7 +689,7 @@ async function main() {
     {
       title: "Innovations in Digital Marketing",
       description:
-        "Exploring innovative strategies and tools in digital marketing.",
+        "Explore innovative strategies and tools in digital marketing. This course covers topics such as content marketing, social media, SEO, and data analytics, providing practical skills to create effective digital marketing campaigns and measure their success.",
       image: "innovations-digital-marketing-course.png",
       price: 3200,
       discountedPrice: 2900,
@@ -672,6 +698,146 @@ async function main() {
       courseLevelId: findCourseLevelId("Professional course"),
       courseCode: "MK301",
       courseSubjectId: findSubjectId("Marketing"),
+      deliveryPartnerId: findPartnerId(2),
+    },
+    {
+      title: "Introduction to Environmental Science",
+      description:
+        "This course offers an overview of environmental science, exploring the interactions between the natural environment and human activities. Topics include ecology, sustainability, and environmental policy.",
+      image: "environmental-science-course.png",
+      price: 180.0,
+      discountedPrice: 160.0,
+      duration: "8 weeks",
+      courseType: "Self-paced",
+      courseLevelId: findCourseLevelId("Certificate"),
+      courseCode: "ES101",
+      courseSubjectId: findSubjectId("Humanities"),
+      deliveryPartnerId: findPartnerId(7),
+    },
+    {
+      title: "Modern Software Development",
+      description:
+        "Gain practical skills in modern software development methodologies, including Agile, DevOps, and continuous integration/continuous deployment (CI/CD). This course covers the latest tools and practices for efficient software engineering.",
+      image: "software-development-course.png",
+      price: 250.0,
+      discountedPrice: 220.0,
+      duration: "10 weeks",
+      courseType: "Instructor-led",
+      courseLevelId: findCourseLevelId("Professional course"),
+      courseCode: "SD101",
+      courseSubjectId: findSubjectId("IT & Computer Science"),
+      deliveryPartnerId: findPartnerId(3),
+    },
+    {
+      title: "Financial Accounting Fundamentals",
+      description:
+        "Learn the basics of financial accounting, including balance sheets, income statements, and cash flow management. This course provides foundational knowledge essential for careers in finance and accounting.",
+      image: "financial-accounting-course.png",
+      price: 200.0,
+      discountedPrice: 180.0,
+      duration: "8 weeks",
+      courseType: "Online",
+      courseLevelId: findCourseLevelId("Undergraduate"),
+      courseCode: "FA101",
+      courseSubjectId: findSubjectId("Business & Management"),
+      deliveryPartnerId: findPartnerId(9),
+    },
+    {
+      title: "Robotics Engineering",
+      description:
+        "Explore the fundamentals of robotics engineering, including mechanical design, control systems, and programming. This course provides hands-on experience with building and programming robots.",
+      image: "robotics-engineering-course.png",
+      price: 3200,
+      discountedPrice: 2900,
+      duration: "16 weeks",
+      courseType: "In-person",
+      courseLevelId: findCourseLevelId("Undergraduate"),
+      courseCode: "RE101",
+      courseSubjectId: findSubjectId("Engineering"),
+      deliveryPartnerId: findPartnerId(4),
+    },
+    {
+      title: "Clinical Psychology",
+      description:
+        "Study the principles of clinical psychology, including diagnosis, treatment, and research methods. This course prepares students for advanced studies and careers in mental health professions.",
+      image: "clinical-psychology-course.png",
+      price: 2800,
+      discountedPrice: 2500,
+      duration: "12 weeks",
+      courseType: "Online",
+      courseLevelId: findCourseLevelId("Postgraduate"),
+      courseCode: "CP101",
+      courseSubjectId: findSubjectId("Psychology"),
+      deliveryPartnerId: findPartnerId(1),
+    },
+    {
+      title: "Sustainable Urban Planning",
+      description:
+        "Learn about sustainable urban planning practices, including green building, renewable energy, and smart city technologies. This course addresses the challenges and solutions for sustainable urban development.",
+      image: "sustainable-urban-planning-course.png",
+      price: 3100,
+      discountedPrice: 2800,
+      duration: "14 weeks",
+      courseType: "In-person",
+      courseLevelId: findCourseLevelId("Professional course"),
+      courseCode: "UP101",
+      courseSubjectId: findSubjectId("Construction Management"),
+      deliveryPartnerId: findPartnerId(5),
+    },
+    {
+      title: "Global Health Policy",
+      description:
+        "Examine global health policy issues, including healthcare access, disease prevention, and international health organizations. This course provides a comprehensive understanding of global health challenges and solutions.",
+      image: "global-health-policy-course.png",
+      price: 4500,
+      discountedPrice: 4200,
+      duration: "20 weeks",
+      courseType: "Online",
+      courseLevelId: findCourseLevelId("Postgraduate"),
+      courseCode: "GH101",
+      courseSubjectId: findSubjectId("Public Health"),
+      deliveryPartnerId: findPartnerId(9),
+    },
+    {
+      title: "Ethics in Biotechnology",
+      description:
+        "Explore the ethical issues surrounding biotechnology, including genetic engineering, cloning, and stem cell research. This course provides a framework for understanding the ethical implications of biotechnological advancements.",
+      image: "ethics-biotechnology-course.png",
+      price: 2300,
+      discountedPrice: 2100,
+      duration: "10 weeks",
+      courseType: "Instructor-led",
+      courseLevelId: findCourseLevelId("CPD"),
+      courseCode: "BT101",
+      courseSubjectId: findSubjectId("Healthcare"),
+      deliveryPartnerId: findPartnerId(8),
+    },
+    {
+      title: "Digital Transformation Strategies",
+      description:
+        "Understand the principles and practices of digital transformation in organizations. This course covers the latest trends and technologies driving digital change, including cloud computing, big data, and AI.",
+      image: "digital-transformation-course.png",
+      price: 3000,
+      discountedPrice: 2700,
+      duration: "12 weeks",
+      courseType: "Online",
+      courseLevelId: findCourseLevelId("Professional course"),
+      courseCode: "DT101",
+      courseSubjectId: findSubjectId("Business & Management"),
+      deliveryPartnerId: findPartnerId(6),
+    },
+    {
+      title: "Advanced Pharmacology",
+      description:
+        "Delve into the advanced principles of pharmacology, including drug interactions, pharmacokinetics, and pharmacodynamics. This course is essential for students pursuing careers in medical and healthcare fields.",
+      image: "advanced-pharmacology-course.png",
+      price: 3600,
+      discountedPrice: 3300,
+      duration: "15 weeks",
+      courseType: "Online",
+      courseLevelId: findCourseLevelId("Postgraduate"),
+      courseCode: "PHAR101",
+      courseSubjectId: findSubjectId("Healthcare"),
       deliveryPartnerId: findPartnerId(2),
     },
   ];
