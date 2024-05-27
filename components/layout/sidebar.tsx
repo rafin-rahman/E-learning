@@ -103,7 +103,7 @@ export default async function Sidebar() {
   }
 
   return (
-    <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6 h-full min-h-screen">
+    <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6  h-screen sticky top-0 ">
       <div className="flex h-16 shrink-0 items-center">
         <Image
           className="h-8 w-auto"

@@ -4,6 +4,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import CourseCard from "@/components/course/manageCourses/CourseCard";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 // Define types for subjects and levels
 type CourseSubject = {
@@ -15,12 +16,17 @@ type CourseLevel = {
   id: string;
   name: string;
 };
+type DeliveryPartner = {
+  id: string;
+  name: string;
+};
 
 type Course = {
   id: string;
   title: string;
   courseSubject: CourseSubject;
   courseLevel: CourseLevel;
+  deliveryPartner: DeliveryPartner;
 };
 
 async function getCourseLevels(): Promise<CourseLevel[]> {
@@ -147,6 +153,36 @@ export default function ManageCourses() {
       <h1 className={"text-4xl mb-10"}>Manage Courses</h1>
       <div className={"flex"}>
         <div className={"flex-none w-56"}>
+          <div className={"font-bold mb-4"}>Course Level</div>
+          <div className={"overflow-y-auto max-h-96 border-b-4"}>
+            <ul>
+              <li>
+                <Checkbox
+                  checked={selectedLevels.length === 0}
+                  onCheckedChange={() => setSelectedLevels([])}
+                />
+                <span className={"ml-3"}>All</span>
+              </li>
+              {courseLevels.map((level: CourseLevel) => (
+                <li key={level.id}>
+                  <Checkbox
+                    checked={selectedLevels.includes(level.name)}
+                    onCheckedChange={(checked) => {
+                      if (checked) {
+                        handleLevelChange(level.name);
+                      } else {
+                        setSelectedLevels(
+                          selectedLevels.filter((name) => name !== level.name)
+                        );
+                      }
+                    }}
+                  />
+                  <span className={"ml-3"}>{level.name}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <br />
           <div className={"font-bold mb-4"}>Subjects</div>
           <div className={"overflow-y-auto max-h-96 border-b-4"}>
             <ul>
@@ -178,51 +214,21 @@ export default function ManageCourses() {
               ))}
             </ul>
           </div>
-          <br />
-
-          <div className={"font-bold mb-4"}>Course Level</div>
-          <div className={"overflow-y-auto max-h-96 border-b-4"}>
-            <ul>
-              <li>
-                <Checkbox
-                  checked={selectedLevels.length === 0}
-                  onCheckedChange={() => setSelectedLevels([])}
-                />
-                <span className={"ml-3"}>All</span>
-              </li>
-              {courseLevels.map((level: CourseLevel) => (
-                <li key={level.id}>
-                  <Checkbox
-                    checked={selectedLevels.includes(level.name)}
-                    onCheckedChange={(checked) => {
-                      if (checked) {
-                        handleLevelChange(level.name);
-                      } else {
-                        setSelectedLevels(
-                          selectedLevels.filter((name) => name !== level.name)
-                        );
-                      }
-                    }}
-                  />
-                  <span className={"ml-3"}>{level.name}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
         </div>
         <div className={"flex-auto ml-5"}>
-          <div className={"flex mb-8"}>
+          <div className={"flex mb-8 items-center"}>
             <div className={"font-bold"}>
               Course list - {filteredCourses.length}
             </div>
             <Input
-              className={"max-w-48 ml-10 -translate-y-2"}
+              className={"max-w-48 ml-10 "}
               type="search"
               placeholder="Search courses"
               onChange={(e) => {
                 handleSearch(e);
               }}
             />
+
             {filteredCourses.length !== courses.length && (
               <Button
                 variant={"destructive"}
@@ -231,27 +237,33 @@ export default function ManageCourses() {
                   setSelectedLevels([]);
                   setSearch("");
                 }}
-                className={"ml-2 -translate-y-2"}
+                className={"ml-2 "}
               >
                 x
               </Button>
             )}
+            <div className={"ml-auto -translate-x-20"}>
+              <Button variant={"ghost"}>Add new</Button>
+            </div>
           </div>
-          <div className={"flex gap-4 flex-wrap"}>
-            {filteredCourses.map((course: Course) => (
-              <CourseCard
-                key={course.id}
-                title={course.title}
-                tag={course.courseLevel.name}
-                editLink={""}
-                viewLink={""}
-                courseImage={null}
-              />
-            ))}
-            {filteredCourses.length === 0 && (
-              <div className={"text-center "}>No courses found</div>
-            )}
-          </div>
+          <ScrollArea className="h-dvh w-full ">
+            <div className={"flex gap-4 flex-wrap justify-around"}>
+              {filteredCourses.map((course: Course) => (
+                <CourseCard
+                  key={course.id}
+                  title={course.title}
+                  tag={course.courseLevel.name}
+                  deliveryPartner={course.deliveryPartner.name}
+                  editLink={""}
+                  viewLink={"/dashboard/admin/courseDetails/" + course.id}
+                  courseImage={null}
+                />
+              ))}
+              {filteredCourses.length === 0 && (
+                <div className={"text-center "}>No courses found</div>
+              )}
+            </div>
+          </ScrollArea>
         </div>
       </div>
     </div>

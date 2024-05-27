@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { roboto_mono } from "@/lib/font";
+import { poppins } from "@/lib/font";
 import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
@@ -14,7 +14,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={roboto_mono.className}>
+    <html lang="en" className={poppins.className}>
       <body>
         <div>{children}</div>
         <div className={""}>
