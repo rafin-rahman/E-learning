@@ -4,7 +4,7 @@ import SignUpForm from "@/components/signUpForm/SignUpForm";
 
 export default function signup() {
   return (
-    <div className={"container"}>
+    <div className={"container mt-20"}>
       <h1 className={"text-4xl mb-10"}>Sign up page</h1>
       <Button asChild variant={"outline"} className={"mr-4"}>
         <Link href={"/"}> {"< "}Home page</Link>

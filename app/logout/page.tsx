@@ -9,15 +9,15 @@ export default function logout() {
   }
 
   return (
-    <div className={"container "}>
-      <Button asChild variant={"outline"} className={"mr-4"}>
+    <div className={"container   flex flex-col justify-center min-h-screen  "}>
+      <Button asChild variant={"outline"} className={"m-10 mx-96"}>
         <Link href={"/"}> {"< "}Home page</Link>
       </Button>
       <div className={"flex mx-auto flex-col text-center pt-20"}>
         <h1 className={"text-4xl mb-10 "}>Are you sure you want to logout?</h1>
         <Button
           variant={"destructive"}
-          className={"mr-4"}
+          className={"m-10 mx-80"}
           onClick={() => {
             logoutUser();
           }}

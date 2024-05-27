@@ -11,7 +11,7 @@ export default function signin() {
   }
 
   return (
-    <div className={"container"}>
+    <div className={"container mt-20"}>
       <h1 className={"text-4xl mb-10"}>Sign in page</h1>
       <Button asChild variant={"outline"} className={"mr-4"}>
         <Link href={"/"}> {"< "}Home page</Link>
@@ -21,6 +21,37 @@ export default function signin() {
       <p>
         Don't have an account? <Link href={"signup"}>Sign Up</Link>
       </p>
+
+      {/*  this is test application, anyone who visits the page should be able to test it using our default logins for ADMIN, SUPER_ADMIN, COURSE_MANAGER  */}
+      <div className={"text-gray-400"}>
+        <h2 className={"text-2xl mt-40 mb-4 "}>Test logins</h2>
+        <div className={"flex gap-8"}>
+          <p>
+            <span className={"uppercase"}>Course Manager</span>
+            <br />
+            Email:
+            <strong>basic@gmail.com</strong> <br />
+            Password:
+            <strong>123123</strong>
+          </p>
+          <p>
+            <span className={"uppercase"}>Admin</span>
+            <br />
+            Email:
+            <strong>admin@gmail.com</strong> <br />
+            Password:
+            <strong>123123</strong>
+          </p>
+          <p>
+            <span className={"uppercase"}>Super Admin</span>
+            <br />
+            Email:
+            <strong>superadmin@gmail.com</strong> <br />
+            Password:
+            <strong>123123</strong>
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
