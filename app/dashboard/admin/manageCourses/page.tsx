@@ -91,7 +91,7 @@ export default function ManageCourses() {
       <div className={"flex"}>
         <div className={"flex-none w-56"}>
           <div className={"font-bold mb-4"}>Subjects</div>
-          <div className={"overflow-y-auto h-96 border-b-4"}>
+          <div className={"overflow-y-auto max-h-96 border-b-4 "}>
             <ul>
               <li>
                 <Checkbox />
@@ -105,8 +105,10 @@ export default function ManageCourses() {
               ))}
             </ul>
           </div>
-          <div className={"font-bold mt-4"}>Course Level</div>
-          <div className={"overflow-y-auto h-96 border-b-4"}>
+          <br />
+
+          <div className={"font-bold mb-4"}>Course Level</div>
+          <div className={"overflow-y-auto max-h-96 border-b-4"}>
             <ul>
               <li>
                 <Checkbox />
@@ -122,7 +124,7 @@ export default function ManageCourses() {
           </div>
         </div>
         <div className={"flex-auto ml-5 "}>
-          <div className={"font-bold mb-8"}>Course list</div>
+          <div className={"font-bold mb-8"}>Course list - {courses.length}</div>
           <div className={"flex gap-4 flex-wrap"}>
             {courses.map((course: any) => (
               <CourseCard
