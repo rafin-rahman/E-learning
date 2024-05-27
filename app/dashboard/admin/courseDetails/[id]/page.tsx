@@ -7,6 +7,8 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
 import { useEffect, useState } from "react";
+import { Input } from "@/components/ui/input";
+import Image from "next/image";
 
 type Course = {
   id: string;
@@ -50,6 +52,8 @@ export default function CourseDetails({ params }: { params: { id: string } }) {
     },
     courseCode: "loading...",
   });
+  const [file, setFile] = useState<File | null>(null);
+  const [preview, setPreview] = useState<string | null>(null);
 
   async function getCourseDetails(): Promise<Course> {
     const res = await fetch(
@@ -68,6 +72,9 @@ export default function CourseDetails({ params }: { params: { id: string } }) {
     return res.json();
   }
   useEffect(() => {
+    setPreview(
+      "https://smu7wqatocnljzs9.public.blob.vercel-storage.com/course/userID/hello-YyhQVyztTzns7i0kvr49Kvk8SDkNIZ.jpg"
+    );
     async function fetchCourse() {
       try {
         const course = await getCourseDetails();
@@ -79,6 +86,52 @@ export default function CourseDetails({ params }: { params: { id: string } }) {
 
     fetchCourse();
   }, []);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append("file", file as Blob);
+    formData.append("courseID", course.id);
+
+    const response = await fetch(
+      process.env.NEXT_PUBLIC_LOCALHOST_URL + "/api/course/image",
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
+    if (!response.ok) {
+      console.error("Error uploading file");
+      return { error: "Error uploading file" };
+    }
+
+    const data = await response.json();
+    setPreview(data.url);
+
+    // save data.url to the course.image database
+    const saveImageApi = await fetch(
+      process.env.NEXT_PUBLIC_LOCALHOST_URL + "/api/course/image/" + course.id,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ url: data.url }),
+      }
+    );
+
+    const saveImageApiData = await saveImageApi.json();
+
+    if (!saveImageApi.ok) {
+      console.error("Error saving image URL to course");
+      console.error(saveImageApiData.message);
+      return { error: "Error saving image URL to course" };
+    }
+
+    return data.file;
+  };
+
   return (
     <div className={"container mx-10"}>
       <Button asChild variant={"outline"} className={"my-10 "}>
@@ -98,14 +151,39 @@ export default function CourseDetails({ params }: { params: { id: string } }) {
         Central Queensland University. Master key business functions to become
         an industry leader that inspires and delivers.
       </div>
-      <div
-        className={
-          "h-40 my-4 bg-amber-300 flex items-center justify-center text-4xl text-gray-600"
-        }
-      >
-        Course image coming soon
-      </div>
-
+      {preview ? (
+        <div
+          className={
+            "relative h-80 my-4  flex items-center justify-center text-4xl text-gray-600"
+          }
+        >
+          <Image
+            src={preview}
+            alt="preview"
+            className={"w-full h-full object-cover"}
+            fill
+          />
+        </div>
+      ) : (
+        <div
+          className={
+            "h-40 my-4 bg-amber-300 flex items-center justify-center text-4xl text-gray-600"
+          }
+        >
+          Course image coming soon
+        </div>
+      )}
+      <form onSubmit={handleSubmit}>
+        <Input
+          className={"h-20"}
+          type={"file"}
+          onChange={(e) => setFile(e.target.files?.[0] || null)}
+          accept="image/jpeg, image/png, image/jpg"
+        />
+        <Button type={"submit"} className={"w-full mt-4"}>
+          Submit
+        </Button>
+      </form>
       <div>
         <ul className={"flex justify-around  my-4 text-center font-light"}>
           <li className={"border-r-2  w-64 py-4"}>
