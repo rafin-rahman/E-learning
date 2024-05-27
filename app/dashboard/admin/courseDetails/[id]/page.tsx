@@ -105,6 +105,7 @@ export default function CourseDetails({ params }: { params: { id: string } }) {
       >
         Course image coming soon
       </div>
+
       <div>
         <ul className={"flex justify-around  my-4 text-center font-light"}>
           <li className={"border-r-2  w-64 py-4"}>

@@ -9,12 +9,10 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "No file uploaded" }, { status: 400 });
   }
 
-  const pathName = "users/userID/asdas";
+  const pathName = "course/userID/asdas";
   const blobResult = await put(pathName, file, {
     access: "public",
   });
 
   return NextResponse.json(blobResult);
 }
-
-export async function GET(request: NextRequest) {}

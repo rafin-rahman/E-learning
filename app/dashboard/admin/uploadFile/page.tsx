@@ -2,10 +2,11 @@
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 export default function UploadFile() {
   const [file, setFile] = useState<File | null>(null);
-
+  const [preview, setPreview] = useState<string | null>(null);
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -25,6 +26,7 @@ export default function UploadFile() {
     }
 
     const data = await response.json();
+    setPreview(data.url);
     console.log(data.file);
     return data.file;
   };
@@ -44,6 +46,15 @@ export default function UploadFile() {
           Submit
         </Button>
       </form>
+      {preview && (
+        <Image
+          src={preview}
+          alt="preview"
+          className={"mt-4"}
+          width={300}
+          height={300}
+        />
+      )}
     </div>
   );
 }
