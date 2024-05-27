@@ -2,6 +2,8 @@
 import { useEffect, useState } from "react";
 import { Checkbox } from "@/components/ui/checkbox";
 import CourseCard from "@/components/course/manageCourses/CourseCard";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 // Define types for subjects and levels
 type CourseSubject = {
@@ -75,6 +77,7 @@ export default function ManageCourses() {
   const [courses, setCourses] = useState<Course[]>([]);
   const [selectedSubjects, setSelectedSubjects] = useState<string[]>([]);
   const [selectedLevels, setSelectedLevels] = useState<string[]>([]);
+  const [search, setSearch] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -121,6 +124,11 @@ export default function ManageCourses() {
     );
   };
 
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
+    console.log(search);
+  };
+
   const filteredCourses = courses.filter((course: Course) => {
     const subjectMatch =
       selectedSubjects.length === 0 ||
@@ -128,7 +136,10 @@ export default function ManageCourses() {
     const levelMatch =
       selectedLevels.length === 0 ||
       selectedLevels.includes(course.courseLevel.name);
-    return subjectMatch && levelMatch;
+    const searchMatch = course.title
+      .toLowerCase()
+      .includes(search.toLowerCase());
+    return subjectMatch && levelMatch && searchMatch;
   });
 
   return (
@@ -200,8 +211,31 @@ export default function ManageCourses() {
           </div>
         </div>
         <div className={"flex-auto ml-5"}>
-          <div className={"font-bold mb-8"}>
-            Course list - {filteredCourses.length}
+          <div className={"flex mb-8"}>
+            <div className={"font-bold"}>
+              Course list - {filteredCourses.length}
+            </div>
+            <Input
+              className={"max-w-48 ml-10 -translate-y-2"}
+              type="search"
+              placeholder="Search courses"
+              onChange={(e) => {
+                handleSearch(e);
+              }}
+            />
+            {filteredCourses.length !== courses.length && (
+              <Button
+                variant={"destructive"}
+                onClick={() => {
+                  setSelectedSubjects([]);
+                  setSelectedLevels([]);
+                  setSearch("");
+                }}
+                className={"ml-2 -translate-y-2"}
+              >
+                x
+              </Button>
+            )}
           </div>
           <div className={"flex gap-4 flex-wrap"}>
             {filteredCourses.map((course: Course) => (
@@ -214,6 +248,9 @@ export default function ManageCourses() {
                 courseImage={null}
               />
             ))}
+            {filteredCourses.length === 0 && (
+              <div className={"text-center "}>No courses found</div>
+            )}
           </div>
         </div>
       </div>
