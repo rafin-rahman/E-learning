@@ -186,7 +186,8 @@ async function main() {
       title: "Introduction to Programming",
       description:
         "This course provides a comprehensive introduction to programming, covering fundamental concepts, syntax, and problem-solving techniques. Students will learn to write and debug code, work with data structures, and develop basic algorithms. Ideal for beginners.",
-      image: "programming-course.png",
+      image:
+        "https://smu7wqatocnljzs9.public.blob.vercel-storage.com/course/courseID/hello-2LMYIRQFjAxtmRc8HT9xzutdIJtWCv.jpg",
       price: 199.99,
       discountedPrice: 149.99,
       duration: "10 weeks",
@@ -200,7 +201,8 @@ async function main() {
       title: "Advanced Algorithms",
       description:
         "Dive deep into complex algorithms with this course, exploring advanced topics like graph theory, dynamic programming, and optimization. Students will enhance their problem-solving skills and learn to implement efficient algorithms in various programming languages.",
-      image: "algorithms-course.png",
+      image:
+        "https://smu7wqatocnljzs9.public.blob.vercel-storage.com/course/courseID/hello-2LMYIRQFjAxtmRc8HT9xzutdIJtWCv.jpg",
       price: 299.99,
       discountedPrice: 249.99,
       duration: "12 weeks",
@@ -214,7 +216,8 @@ async function main() {
       title: "Data Structures",
       description:
         "Understand the essential data structures used in computer science, including arrays, linked lists, stacks, queues, trees, and graphs. This course focuses on efficient data organization and manipulation techniques, crucial for optimizing algorithm performance.",
-      image: "data-structures-course.png",
+      image:
+        "https://smu7wqatocnljzs9.public.blob.vercel-storage.com/course/courseID/hello-2LMYIRQFjAxtmRc8HT9xzutdIJtWCv.jpg",
       price: 149.99,
       discountedPrice: 129.99,
       duration: "8 weeks",
@@ -228,7 +231,8 @@ async function main() {
       title: "Calculus I",
       description:
         "Explore the fundamental concepts of calculus, including limits, derivatives, and integrals. This course provides a solid foundation in mathematical principles essential for advanced studies in science, engineering, and economics.",
-      image: "calculus-course.png",
+      image:
+        "https://smu7wqatocnljzs9.public.blob.vercel-storage.com/course/courseID/hello-2LMYIRQFjAxtmRc8HT9xzutdIJtWCv.jpg",
       price: 199.99,
       discountedPrice: 179.99,
       duration: "10 weeks",
@@ -242,7 +246,8 @@ async function main() {
       title: "Cyber Security Basics",
       description:
         "Learn the essentials of cyber security, including threat identification, risk management, and protective measures. This course covers key concepts in securing digital information and protecting systems against cyber threats and attacks.",
-      image: "cyber-security-course.png",
+      image:
+        "https://smu7wqatocnljzs9.public.blob.vercel-storage.com/course/courseID/hello-2LMYIRQFjAxtmRc8HT9xzutdIJtWCv.jpg",
       price: 250.0,
       discountedPrice: 200.0,
       duration: "8 weeks",
@@ -256,7 +261,8 @@ async function main() {
       title: "Engineering Mechanics",
       description:
         "Study the fundamental principles of mechanics in engineering, focusing on force systems, equilibrium, and the behavior of materials. This course provides a critical understanding of mechanical systems and their applications in various engineering fields.",
-      image: "engineering-mechanics-course.png",
+      image:
+        "https://smu7wqatocnljzs9.public.blob.vercel-storage.com/course/courseID/hello-2LMYIRQFjAxtmRc8HT9xzutdIJtWCv.jpg",
       price: 300.0,
       discountedPrice: 270.0,
       duration: "12 weeks",
@@ -270,7 +276,8 @@ async function main() {
       title: "Introduction to Healthcare",
       description:
         "Gain an overview of healthcare systems, policies, and practices. This course introduces students to the structure and function of healthcare organizations, patient care, and the various roles of healthcare professionals.",
-      image: "healthcare-intro-course.png",
+      image:
+        "https://smu7wqatocnljzs9.public.blob.vercel-storage.com/course/courseID/hello-2LMYIRQFjAxtmRc8HT9xzutdIJtWCv.jpg",
       price: 200.0,
       discountedPrice: 180.0,
       duration: "10 weeks",
@@ -284,7 +291,8 @@ async function main() {
       title: "Human Resources Management",
       description:
         "Learn the key principles and practices of human resource management, including recruitment, training, performance management, and employee relations. This course prepares students for effective HR management in various organizational settings.",
-      image: "hr-management-course.png",
+      image:
+        "https://smu7wqatocnljzs9.public.blob.vercel-storage.com/course/courseID/hello-2LMYIRQFjAxtmRc8HT9xzutdIJtWCv.jpg",
       price: 180.0,
       discountedPrice: 160.0,
       duration: "8 weeks",
@@ -298,7 +306,8 @@ async function main() {
       title: "Leadership Skills",
       description:
         "Develop essential leadership skills, including communication, decision-making, and team management. This course focuses on practical techniques and strategies to enhance leadership abilities and drive organizational success.",
-      image: "leadership-skills-course.png",
+      image:
+        "https://smu7wqatocnljzs9.public.blob.vercel-storage.com/course/courseID/hello-2LMYIRQFjAxtmRc8HT9xzutdIJtWCv.jpg",
       price: 220.0,
       discountedPrice: 200.0,
       duration: "8 weeks",
@@ -312,7 +321,8 @@ async function main() {
       title: "Marketing Strategies",
       description:
         "Learn effective marketing strategies, including market research, branding, and digital marketing. This course equips students with the knowledge and skills to develop and implement successful marketing plans for various businesses.",
-      image: "marketing-strategies-course.png",
+      image:
+        "https://smu7wqatocnljzs9.public.blob.vercel-storage.com/course/courseID/hello-2LMYIRQFjAxtmRc8HT9xzutdIJtWCv.jpg",
       price: 250.0,
       discountedPrice: 230.0,
       duration: "8 weeks",
@@ -326,7 +336,8 @@ async function main() {
       title: "AI for Business Leaders",
       description:
         "Integrate AI strategies into business leadership with this comprehensive course. Explore the applications of artificial intelligence in decision-making, operations, and innovation, enhancing business performance and competitive advantage.",
-      image: "ai-business-leaders-course.png",
+      image:
+        "https://smu7wqatocnljzs9.public.blob.vercel-storage.com/course/courseID/hello-2LMYIRQFjAxtmRc8HT9xzutdIJtWCv.jpg",
       price: 4500,
       discountedPrice: 4000,
       duration: "6 months",
@@ -340,7 +351,8 @@ async function main() {
       title: "Machine Learning Techniques",
       description:
         "Explore advanced machine learning methodologies, including supervised and unsupervised learning, neural networks, and deep learning. This course provides hands-on experience with real-world data sets and machine learning frameworks.",
-      image: "ml-techniques-course.png",
+      image:
+        "https://smu7wqatocnljzs9.public.blob.vercel-storage.com/course/courseID/hello-2LMYIRQFjAxtmRc8HT9xzutdIJtWCv.jpg",
       price: 4700,
       discountedPrice: 4200,
       duration: "8 months",
@@ -354,7 +366,8 @@ async function main() {
       title: "Ethics in AI",
       description:
         "Understand the ethical implications of artificial intelligence, including bias, privacy, and accountability. This course examines the societal impact of AI technologies and explores frameworks for ethical decision-making in AI development and deployment.",
-      image: "ethics-ai-course.png",
+      image:
+        "https://smu7wqatocnljzs9.public.blob.vercel-storage.com/course/courseID/hello-2LMYIRQFjAxtmRc8HT9xzutdIJtWCv.jpg",
       price: 3000,
       discountedPrice: 2800,
       duration: "4 months",
@@ -368,7 +381,8 @@ async function main() {
       title: "Quantum Computing Fundamentals",
       description:
         "Learn the basics of quantum computation, including qubits, superposition, and entanglement. This course introduces the principles of quantum mechanics and explores the potential applications of quantum computing in various industries.",
-      image: "quantum-computing-course.png",
+      image:
+        "https://smu7wqatocnljzs9.public.blob.vercel-storage.com/course/courseID/hello-2LMYIRQFjAxtmRc8HT9xzutdIJtWCv.jpg",
       price: 5200,
       discountedPrice: 4800,
       duration: "5 months",
@@ -382,7 +396,8 @@ async function main() {
       title: "Advanced Neural Networks",
       description:
         "Delve into complex neural network architectures, including convolutional and recurrent neural networks. This course covers advanced topics in deep learning, providing practical experience with cutting-edge techniques and applications.",
-      image: "advanced-neural-networks-course.png",
+      image:
+        "https://smu7wqatocnljzs9.public.blob.vercel-storage.com/course/courseID/hello-2LMYIRQFjAxtmRc8HT9xzutdIJtWCv.jpg",
       price: 5500,
       discountedPrice: 5000,
       duration: "6 months",
@@ -396,7 +411,8 @@ async function main() {
       title: "Entrepreneurship in Business",
       description:
         "Cultivate entrepreneurial skills with this course, focusing on innovation, business planning, and startup management. Learn to identify opportunities, develop business models, and navigate the challenges of launching and growing a successful business.",
-      image: "entrepreneurship-business-course.png",
+      image:
+        "https://smu7wqatocnljzs9.public.blob.vercel-storage.com/course/courseID/hello-2LMYIRQFjAxtmRc8HT9xzutdIJtWCv.jpg",
       price: 4300,
       discountedPrice: 3900,
       duration: "7 months",
@@ -410,7 +426,8 @@ async function main() {
       title: "Strategic Management",
       description:
         "Master techniques and strategies for effective management with this course. Explore strategic planning, competitive analysis, and organizational design to enhance your ability to lead and manage complex business environments.",
-      image: "strategic-management-course.png",
+      image:
+        "https://smu7wqatocnljzs9.public.blob.vercel-storage.com/course/courseID/hello-2LMYIRQFjAxtmRc8HT9xzutdIJtWCv.jpg",
       price: 4600,
       discountedPrice: 4200,
       duration: "6 months",
@@ -424,7 +441,8 @@ async function main() {
       title: "Leadership and Change Management",
       description:
         "Learn to lead change effectively within organizations. This course covers change management theories, leadership strategies, and practical tools to help you drive successful transformations and navigate organizational change.",
-      image: "leadership-change-mgmt-course.png",
+      image:
+        "https://smu7wqatocnljzs9.public.blob.vercel-storage.com/course/courseID/hello-2LMYIRQFjAxtmRc8HT9xzutdIJtWCv.jpg",
       price: 4800,
       discountedPrice: 4500,
       duration: "6 months",
@@ -438,7 +456,8 @@ async function main() {
       title: "Business Analytics",
       description:
         "Analyze data to make better business decisions. This course covers statistical analysis, data visualization, and predictive modeling, equipping students with the skills to interpret data and apply insights to real-world business problems.",
-      image: "business-analytics-course.png",
+      image:
+        "https://smu7wqatocnljzs9.public.blob.vercel-storage.com/course/courseID/hello-2LMYIRQFjAxtmRc8HT9xzutdIJtWCv.jpg",
       price: 5000,
       discountedPrice: 4700,
       duration: "5 months",
@@ -452,7 +471,8 @@ async function main() {
       title: "Project Management in Construction",
       description:
         "Master project management techniques in the construction industry. This course covers project planning, scheduling, budgeting, and risk management, providing practical skills to manage construction projects effectively from inception to completion.",
-      image: "project-management-construction-course.png",
+      image:
+        "https://smu7wqatocnljzs9.public.blob.vercel-storage.com/course/courseID/hello-2LMYIRQFjAxtmRc8HT9xzutdIJtWCv.jpg",
       price: 3300,
       discountedPrice: 3100,
       duration: "9 months",
@@ -466,7 +486,8 @@ async function main() {
       title: "Introduction to Criminology",
       description:
         "Explore the fundamentals of criminological theory and practice. This course examines the causes and consequences of criminal behavior, the functioning of the criminal justice system, and contemporary issues in crime and punishment.",
-      image: "intro-criminology-course.png",
+      image:
+        "https://smu7wqatocnljzs9.public.blob.vercel-storage.com/course/courseID/hello-2LMYIRQFjAxtmRc8HT9xzutdIJtWCv.jpg",
       price: 2200,
       discountedPrice: 2000,
       duration: "8 weeks",
@@ -480,7 +501,8 @@ async function main() {
       title: "Emergency Response Planning",
       description:
         "Prepare and manage emergency situations effectively with this course. Learn the principles of emergency response planning, including risk assessment, resource management, and crisis communication to ensure preparedness for various emergency scenarios.",
-      image: "emergency-response-course.png",
+      image:
+        "https://smu7wqatocnljzs9.public.blob.vercel-storage.com/course/courseID/hello-2LMYIRQFjAxtmRc8HT9xzutdIJtWCv.jpg",
       price: 3600,
       discountedPrice: 3400,
       duration: "12 weeks",
@@ -494,7 +516,8 @@ async function main() {
       title: "Fundamentals of Engineering",
       description:
         "Cover the essential concepts of engineering with this foundational course. Topics include materials science, mechanics, thermodynamics, and electrical circuits, providing a broad overview of engineering principles and their real-world applications.",
-      image: "engineering-fundamentals-course.png",
+      image:
+        "https://smu7wqatocnljzs9.public.blob.vercel-storage.com/course/courseID/hello-2LMYIRQFjAxtmRc8HT9xzutdIJtWCv.jpg",
       price: 3200,
       discountedPrice: 2900,
       duration: "16 weeks",
@@ -508,7 +531,8 @@ async function main() {
       title: "Advanced Healthcare Systems",
       description:
         "Take a deeper look into modern healthcare systems around the world. This course explores advanced topics in healthcare policy, management, and technology, preparing students to address complex challenges in global healthcare delivery.",
-      image: "advanced-healthcare-systems-course.png",
+      image:
+        "https://smu7wqatocnljzs9.public.blob.vercel-storage.com/course/courseID/hello-2LMYIRQFjAxtmRc8HT9xzutdIJtWCv.jpg",
       price: 4600,
       discountedPrice: 4300,
       duration: "20 weeks",
@@ -522,7 +546,8 @@ async function main() {
       title: "HR Management Strategies",
       description:
         "Explore effective human resource strategies for modern organizations. This course covers talent management, organizational development, and employee engagement, providing practical tools to enhance HR practices and improve organizational performance.",
-      image: "hr-management-strategies-course.png",
+      image:
+        "https://smu7wqatocnljzs9.public.blob.vercel-storage.com/course/courseID/hello-2LMYIRQFjAxtmRc8HT9xzutdIJtWCv.jpg",
       price: 2500,
       discountedPrice: 2300,
       duration: "8 weeks",
@@ -536,7 +561,8 @@ async function main() {
       title: "Contemporary Humanities Issues",
       description:
         "Explore current issues and debates in the humanities with this course. Topics include cultural studies, philosophy, literature, and history, providing a broad perspective on contemporary human experiences and societal challenges.",
-      image: "contemporary-humanities-issues-course.png",
+      image:
+        "https://smu7wqatocnljzs9.public.blob.vercel-storage.com/course/courseID/hello-2LMYIRQFjAxtmRc8HT9xzutdIJtWCv.jpg",
       price: 2100,
       discountedPrice: 1900,
       duration: "12 weeks",
@@ -550,7 +576,8 @@ async function main() {
       title: "Advanced IT Security",
       description:
         "Learn in-depth strategies and technologies to protect information systems from cyber threats. This course covers advanced topics in network security, encryption, and ethical hacking, providing hands-on experience with cutting-edge security tools and techniques.",
-      image: "advanced-it-security-course.png",
+      image:
+        "https://smu7wqatocnljzs9.public.blob.vercel-storage.com/course/courseID/hello-2LMYIRQFjAxtmRc8HT9xzutdIJtWCv.jpg",
       price: 5200,
       discountedPrice: 4800,
       duration: "14 weeks",
@@ -564,7 +591,8 @@ async function main() {
       title: "Leadership in Non-Profit Organizations",
       description:
         "Develop effective leadership strategies for the non-profit sector. This course covers topics such as fundraising, volunteer management, and organizational sustainability, equipping students with the skills to lead and manage non-profit organizations successfully.",
-      image: "non-profit-leadership-course.png",
+      image:
+        "https://smu7wqatocnljzs9.public.blob.vercel-storage.com/course/courseID/hello-2LMYIRQFjAxtmRc8HT9xzutdIJtWCv.jpg",
       price: 3000,
       discountedPrice: 2700,
       duration: "10 weeks",
@@ -578,7 +606,8 @@ async function main() {
       title: "Modern Architecture Design",
       description:
         "Explore contemporary design and architecture trends with this course. Topics include sustainable design, urban planning, and digital modeling, providing students with a comprehensive understanding of modern architectural practices and their impact on the built environment.",
-      image: "modern-architecture-design-course.png",
+      image:
+        "https://smu7wqatocnljzs9.public.blob.vercel-storage.com/course/courseID/hello-2LMYIRQFjAxtmRc8HT9xzutdIJtWCv.jpg",
       price: 3100,
       discountedPrice: 2800,
       duration: "10 weeks",
@@ -592,7 +621,8 @@ async function main() {
       title: "Psychology of Criminal Behavior",
       description:
         "Understand the psychological factors driving criminal actions with this course. Explore theories of criminal behavior, mental health issues, and forensic psychology, providing insights into the mind of a criminal and the implications for the criminal justice system.",
-      image: "psychology-criminal-behavior-course.png",
+      image:
+        "https://smu7wqatocnljzs9.public.blob.vercel-storage.com/course/courseID/hello-2LMYIRQFjAxtmRc8HT9xzutdIJtWCv.jpg",
       price: 2600,
       discountedPrice: 2400,
       duration: "12 weeks",
@@ -606,7 +636,8 @@ async function main() {
       title: "Cybersecurity Threats and Mitigation",
       description:
         "Identify and mitigate cyber threats effectively with this course. Learn about the latest cyber threat landscapes, risk assessment methodologies, and mitigation strategies to protect information systems and ensure cybersecurity resilience.",
-      image: "cybersecurity-threats-course.png",
+      image:
+        "https://smu7wqatocnljzs9.public.blob.vercel-storage.com/course/courseID/hello-2LMYIRQFjAxtmRc8HT9xzutdIJtWCv.jpg",
       price: 4200,
       discountedPrice: 4000,
       duration: "8 weeks",
@@ -620,7 +651,8 @@ async function main() {
       title: "Epidemiology and Public Health",
       description:
         "Study the spread and control of diseases with this course. Learn about epidemiological methods, public health interventions, and global health challenges, providing a comprehensive understanding of how to protect and improve population health.",
-      image: "epidemiology-public-health-course.png",
+      image:
+        "https://smu7wqatocnljzs9.public.blob.vercel-storage.com/course/courseID/hello-2LMYIRQFjAxtmRc8HT9xzutdIJtWCv.jpg",
       price: 4700,
       discountedPrice: 4500,
       duration: "15 weeks",
@@ -634,7 +666,8 @@ async function main() {
       title: "Advanced Structural Engineering",
       description:
         "Dive into advanced concepts and techniques in structural engineering. This course covers topics such as finite element analysis, seismic design, and material science, providing students with the knowledge to tackle complex engineering challenges.",
-      image: "advanced-structural-engineering-course.png",
+      image:
+        "https://smu7wqatocnljzs9.public.blob.vercel-storage.com/course/courseID/hello-2LMYIRQFjAxtmRc8HT9xzutdIJtWCv.jpg",
       price: 5200,
       discountedPrice: 4900,
       duration: "18 weeks",
@@ -648,7 +681,8 @@ async function main() {
       title: "Mental Health Nursing",
       description:
         "Focus on psychiatric and mental health nursing practices with this course. Learn about mental health assessment, therapeutic interventions, and patient care strategies, preparing students to support individuals with mental health conditions.",
-      image: "mental-health-nursing-course.png",
+      image:
+        "https://smu7wqatocnljzs9.public.blob.vercel-storage.com/course/courseID/hello-2LMYIRQFjAxtmRc8HT9xzutdIJtWCv.jpg",
       price: 3600,
       discountedPrice: 3300,
       duration: "12 weeks",
@@ -662,7 +696,8 @@ async function main() {
       title: "Principles of Teaching",
       description:
         "Explore the core principles and effective strategies for teaching. This course covers instructional design, classroom management, and assessment techniques, providing practical skills to enhance teaching effectiveness and student learning outcomes.",
-      image: "principles-teaching-course.png",
+      image:
+        "https://smu7wqatocnljzs9.public.blob.vercel-storage.com/course/courseID/hello-2LMYIRQFjAxtmRc8HT9xzutdIJtWCv.jpg",
       price: 2300,
       discountedPrice: 2100,
       duration: "10 weeks",
@@ -676,7 +711,8 @@ async function main() {
       title: "Human Resource Development",
       description:
         "Learn strategies for developing and enhancing human resources in organizations. This course covers training and development, performance management, and organizational development, providing tools to improve employee skills and drive organizational success.",
-      image: "hr-development-course.png",
+      image:
+        "https://smu7wqatocnljzs9.public.blob.vercel-storage.com/course/courseID/hello-2LMYIRQFjAxtmRc8HT9xzutdIJtWCv.jpg",
       price: 2500,
       discountedPrice: 2300,
       duration: "14 weeks",
@@ -690,7 +726,8 @@ async function main() {
       title: "Innovations in Digital Marketing",
       description:
         "Explore innovative strategies and tools in digital marketing. This course covers topics such as content marketing, social media, SEO, and data analytics, providing practical skills to create effective digital marketing campaigns and measure their success.",
-      image: "innovations-digital-marketing-course.png",
+      image:
+        "https://smu7wqatocnljzs9.public.blob.vercel-storage.com/course/courseID/hello-2LMYIRQFjAxtmRc8HT9xzutdIJtWCv.jpg",
       price: 3200,
       discountedPrice: 2900,
       duration: "12 weeks",
@@ -704,7 +741,8 @@ async function main() {
       title: "Introduction to Environmental Science",
       description:
         "This course offers an overview of environmental science, exploring the interactions between the natural environment and human activities. Topics include ecology, sustainability, and environmental policy.",
-      image: "environmental-science-course.png",
+      image:
+        "https://smu7wqatocnljzs9.public.blob.vercel-storage.com/course/courseID/hello-2LMYIRQFjAxtmRc8HT9xzutdIJtWCv.jpg",
       price: 180.0,
       discountedPrice: 160.0,
       duration: "8 weeks",
@@ -718,7 +756,8 @@ async function main() {
       title: "Modern Software Development",
       description:
         "Gain practical skills in modern software development methodologies, including Agile, DevOps, and continuous integration/continuous deployment (CI/CD). This course covers the latest tools and practices for efficient software engineering.",
-      image: "software-development-course.png",
+      image:
+        "https://smu7wqatocnljzs9.public.blob.vercel-storage.com/course/courseID/hello-2LMYIRQFjAxtmRc8HT9xzutdIJtWCv.jpg",
       price: 250.0,
       discountedPrice: 220.0,
       duration: "10 weeks",
@@ -732,7 +771,8 @@ async function main() {
       title: "Financial Accounting Fundamentals",
       description:
         "Learn the basics of financial accounting, including balance sheets, income statements, and cash flow management. This course provides foundational knowledge essential for careers in finance and accounting.",
-      image: "financial-accounting-course.png",
+      image:
+        "https://smu7wqatocnljzs9.public.blob.vercel-storage.com/course/courseID/hello-2LMYIRQFjAxtmRc8HT9xzutdIJtWCv.jpg",
       price: 200.0,
       discountedPrice: 180.0,
       duration: "8 weeks",
@@ -746,7 +786,8 @@ async function main() {
       title: "Robotics Engineering",
       description:
         "Explore the fundamentals of robotics engineering, including mechanical design, control systems, and programming. This course provides hands-on experience with building and programming robots.",
-      image: "robotics-engineering-course.png",
+      image:
+        "https://smu7wqatocnljzs9.public.blob.vercel-storage.com/course/courseID/hello-2LMYIRQFjAxtmRc8HT9xzutdIJtWCv.jpg",
       price: 3200,
       discountedPrice: 2900,
       duration: "16 weeks",
@@ -760,7 +801,8 @@ async function main() {
       title: "Clinical Psychology",
       description:
         "Study the principles of clinical psychology, including diagnosis, treatment, and research methods. This course prepares students for advanced studies and careers in mental health professions.",
-      image: "clinical-psychology-course.png",
+      image:
+        "https://smu7wqatocnljzs9.public.blob.vercel-storage.com/course/courseID/hello-2LMYIRQFjAxtmRc8HT9xzutdIJtWCv.jpg",
       price: 2800,
       discountedPrice: 2500,
       duration: "12 weeks",
@@ -774,7 +816,8 @@ async function main() {
       title: "Sustainable Urban Planning",
       description:
         "Learn about sustainable urban planning practices, including green building, renewable energy, and smart city technologies. This course addresses the challenges and solutions for sustainable urban development.",
-      image: "sustainable-urban-planning-course.png",
+      image:
+        "https://smu7wqatocnljzs9.public.blob.vercel-storage.com/course/courseID/hello-2LMYIRQFjAxtmRc8HT9xzutdIJtWCv.jpg",
       price: 3100,
       discountedPrice: 2800,
       duration: "14 weeks",
@@ -788,7 +831,8 @@ async function main() {
       title: "Global Health Policy",
       description:
         "Examine global health policy issues, including healthcare access, disease prevention, and international health organizations. This course provides a comprehensive understanding of global health challenges and solutions.",
-      image: "global-health-policy-course.png",
+      image:
+        "https://smu7wqatocnljzs9.public.blob.vercel-storage.com/course/courseID/hello-2LMYIRQFjAxtmRc8HT9xzutdIJtWCv.jpg",
       price: 4500,
       discountedPrice: 4200,
       duration: "20 weeks",
@@ -802,7 +846,8 @@ async function main() {
       title: "Ethics in Biotechnology",
       description:
         "Explore the ethical issues surrounding biotechnology, including genetic engineering, cloning, and stem cell research. This course provides a framework for understanding the ethical implications of biotechnological advancements.",
-      image: "ethics-biotechnology-course.png",
+      image:
+        "https://smu7wqatocnljzs9.public.blob.vercel-storage.com/course/courseID/hello-2LMYIRQFjAxtmRc8HT9xzutdIJtWCv.jpg",
       price: 2300,
       discountedPrice: 2100,
       duration: "10 weeks",
@@ -816,7 +861,8 @@ async function main() {
       title: "Digital Transformation Strategies",
       description:
         "Understand the principles and practices of digital transformation in organizations. This course covers the latest trends and technologies driving digital change, including cloud computing, big data, and AI.",
-      image: "digital-transformation-course.png",
+      image:
+        "https://smu7wqatocnljzs9.public.blob.vercel-storage.com/course/courseID/hello-2LMYIRQFjAxtmRc8HT9xzutdIJtWCv.jpg",
       price: 3000,
       discountedPrice: 2700,
       duration: "12 weeks",
@@ -830,7 +876,8 @@ async function main() {
       title: "Advanced Pharmacology",
       description:
         "Delve into the advanced principles of pharmacology, including drug interactions, pharmacokinetics, and pharmacodynamics. This course is essential for students pursuing careers in medical and healthcare fields.",
-      image: "advanced-pharmacology-course.png",
+      image:
+        "https://smu7wqatocnljzs9.public.blob.vercel-storage.com/course/courseID/hello-2LMYIRQFjAxtmRc8HT9xzutdIJtWCv.jpg",
       price: 3600,
       discountedPrice: 3300,
       duration: "15 weeks",

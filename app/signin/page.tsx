@@ -3,6 +3,7 @@ import Link from "next/link";
 import SignInForm from "@/components/signInForm/SignInForm";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { roboto_mono } from "@/lib/font";
 
 export default function signin() {
   // if the user is already logged in, redirect to the home page
@@ -23,27 +24,29 @@ export default function signin() {
       </p>
 
       {/*  this is test application, anyone who visits the page should be able to test it using our default logins for ADMIN, SUPER_ADMIN, COURSE_MANAGER  */}
-      <div className={"text-gray-400"}>
-        <h2 className={"text-2xl mt-40 mb-4 "}>Test logins</h2>
-        <div className={"flex gap-8"}>
-          <p>
-            <span className={"uppercase"}>Course Manager</span>
-            <br />
-            Email: <strong>basic@gmail.com</strong> <br />
-            Password: <strong>123123</strong>
-          </p>
-          <p>
-            <span className={"uppercase"}>Admin</span>
-            <br />
-            Email: <strong>admin@gmail.com</strong> <br />
-            Password: <strong>123123</strong>
-          </p>
-          <p>
-            <span className={"uppercase"}>Super Admin</span>
-            <br />
-            Email: <strong>superadmin@gmail.com</strong> <br />
-            Password: <strong> 123123</strong>
-          </p>
+      <div className={roboto_mono.className}>
+        <div className={"text-gray-400"}>
+          <h2 className={"text-2xl mt-40 mb-4 "}>Test logins</h2>
+          <div className={"flex gap-8"}>
+            <p>
+              <span className={"uppercase"}>Course Manager</span>
+              <br />
+              Email: <strong>basic@gmail.com</strong> <br />
+              Password: <strong>123123</strong>
+            </p>
+            <p>
+              <span className={"uppercase"}>Admin</span>
+              <br />
+              Email: <strong>admin@gmail.com</strong> <br />
+              Password: <strong>123123</strong>
+            </p>
+            <p>
+              <span className={"uppercase"}>Super Admin</span>
+              <br />
+              Email: <strong>superadmin@gmail.com</strong> <br />
+              Password: <strong> 123123</strong>
+            </p>
+          </div>
         </div>
       </div>
     </div>

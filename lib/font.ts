@@ -8,6 +8,7 @@ export const inter = Inter({
 export const roboto_mono = Roboto_Mono({
   subsets: ["latin"],
   display: "swap",
+  weight: ["400", "200"],
 });
 
 export const poppins = Poppins({
