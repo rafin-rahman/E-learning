@@ -1,11 +1,20 @@
 export function checkRole(
   currentRoute: string,
-  userRole: string[],
+  userRoles: string[],
   route: string,
   allowedRoles: string[]
 ) {
-  if (currentRoute === route && !allowedRoles.includes(userRole[0])) {
-    return "/unauthorized";
+  const routePattern = new RegExp("^" + route.replace(/:\w+\*/g, ".*") + "$");
+  if (routePattern.test(currentRoute)) {
+    const hasAccess = userRoles.some((role) => allowedRoles.includes(role));
+    if (!hasAccess) {
+      // log a descriptive message to the console
+      console.log(
+        `User with role ${userRoles[0]} tried to access ${currentRoute} but is not allowed`
+      );
+
+      return "/unauthorized";
+    }
   }
   return null;
 }

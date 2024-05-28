@@ -37,7 +37,9 @@ export default function Home() {
 
       {isAuthenticated && (
         <Button asChild variant={"ghost"} className={"m-10 mx-80"}>
-          <Link href={"dashboard"}>{"< "}Dashboard</Link>
+          <Link href={"dashboard"}>
+            {"< "}Dashboard <span className={"font-light"}>[staff only]</span>
+          </Link>
         </Button>
       )}
 

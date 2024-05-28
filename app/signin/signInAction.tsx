@@ -12,12 +12,26 @@ export default async function signInAction(
   // Get data from the sign in form
   const email = formData.get("email") as string;
   const password = formData.get("password") as string;
-
-  const user = await prisma.user.findUnique({
+  let student;
+  const staff = await prisma.user.findUnique({
     where: {
       email: email,
     },
   });
+
+  if (!staff) {
+    student = await prisma.student.findUnique({
+      where: {
+        email: email,
+      },
+    });
+
+    if (!student) {
+      return "Password or email address is wrong";
+    }
+  }
+
+  const user = staff || student;
   if (!user) {
     return "Password or email address is wrong";
   }
@@ -46,8 +60,19 @@ export default async function signInAction(
   });
 
   if (jwt) {
-    // redirect to home page
-    redirect("/dashboard");
+    // check if the user is a staff or student
+
+    if (staff) {
+      // redirect to staff dashboard
+      redirect("/dashboard");
+    }
+
+    if (student) {
+      // redirect to student dashboard
+      redirect("/studentSpace");
+    }
+
+    redirect("/");
   } else {
     return "Something went wrong in the signinAction.tsx";
   }

@@ -1,26 +1,38 @@
 import { Button } from "@/components/ui/button";
 import { PencilSquareIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function CourseCard({
   title,
-  courseImage,
   tag,
   viewLink,
   editLink,
   deliveryPartner,
+  imageUrl,
 }: {
   title: string;
-  courseImage: string | null;
   tag: string;
   viewLink: string;
   editLink: string;
   deliveryPartner: string;
+  imageUrl: string | null;
 }) {
   return (
-    <div className="w-64 h-64  shadow group relative ">
-      {courseImage ? (
-        <img className="w-full" src={"courseImage"} alt="Card image" />
+    <div className="w-64 h-80  shadow group relative ">
+      {imageUrl ? (
+        <div
+          className={
+            "relative h-32   flex items-center justify-center text-4xl text-gray-600"
+          }
+        >
+          <Image
+            className="w-full h-full object-cover"
+            src={imageUrl}
+            alt="Card image"
+            fill
+          />
+        </div>
       ) : (
         <div className={"h-20 bg-amber-300"}></div>
       )}

@@ -27,6 +27,7 @@ type Course = {
   courseSubject: CourseSubject;
   courseLevel: CourseLevel;
   deliveryPartner: DeliveryPartner;
+  image: string;
 };
 
 async function getCourseLevels(): Promise<CourseLevel[]> {
@@ -257,7 +258,7 @@ export default function ManageCourses() {
                   deliveryPartner={course.deliveryPartner.name}
                   editLink={""}
                   viewLink={"/dashboard/admin/courseDetails/" + course.id}
-                  courseImage={null}
+                  imageUrl={course.image}
                 />
               ))}
               {filteredCourses.length === 0 && (

@@ -26,12 +26,20 @@ export async function middleware(request: NextRequest) {
     // Define the configuration for your routes and their allowed roles
     const routeRoleConfig = [
       {
+        route: "/studentSpace:path*", // All student routes
+        roles: ["STUDENT"],
+      },
+      {
+        route: "/dashboard:path*", // All staff routes
+        roles: ["STAFF"],
+      },
+      {
         route: "/dashboard/admin/manageUsers",
-        roles: ["ADMIN"],
+        roles: ["SUPER_ADMIN", "ADMIN"],
       },
       {
         route: "/dashboard/admin/manageCourses",
-        roles: ["COURSE_MANAGER", "SUPER_ADMIN"],
+        roles: ["SUPER_ADMIN", "COURSE_MANAGER"],
       },
       // Add more route configurations here as needed
       // {route: "another-route-path", roles: ["ROLE1", "ROLE2"]}
@@ -81,5 +89,5 @@ export async function middleware(request: NextRequest) {
 }
 // matching paths
 export const config = {
-  matcher: "/dashboard/:path*",
+  matcher: ["/dashboard/:path*", "/studentSpace/:path*"],
 };

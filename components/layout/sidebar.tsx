@@ -53,24 +53,40 @@ const teams = [
   { id: 3, name: "Option3", href: "#", initial: "3", current: false },
 ];
 
-async function fetchUserInfo(userId: string) {
-  const response = await fetch(
+async function fetchUserInfo(id: string) {
+  let loggedUserData;
+  const userData = await fetch(
     `${process.env.NEXT_PUBLIC_LOCALHOST_URL}/api/user`,
     {
       method: "POST",
-      body: JSON.stringify({ userId }),
+      body: JSON.stringify({ userId: id }),
       headers: {
         "Content-Type": "application/json",
       },
     }
   );
 
-  if (!response.ok) {
-    return null;
-  }
+  if (!userData.ok) {
+    const studentData = await fetch(
+      `${process.env.NEXT_PUBLIC_LOCALHOST_URL}/api/student`,
+      {
+        method: "POST",
+        body: JSON.stringify({ studentId: id }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
-  const data = await response.json();
-  return data;
+    if (!studentData.ok) {
+      return null;
+    }
+    loggedUserData = await studentData.json();
+    return loggedUserData;
+  }
+  loggedUserData = await userData.json();
+
+  return loggedUserData;
 }
 
 function classNames(...classes: any) {
@@ -94,10 +110,13 @@ export default async function Sidebar() {
     redirect("/logout");
   }
 
-  let userInfo;
+  let validatedUser;
   if (userId) {
-    userInfo = await fetchUserInfo(userId);
-    if (!userInfo) {
+    validatedUser = await fetchUserInfo(userId);
+    if (!validatedUser) {
+      console.log(
+        "sidebar.tsx - User info not found when using fetchUserInfo() function"
+      );
       redirect("/somethingWrong");
     }
   }
@@ -179,12 +198,12 @@ export default async function Sidebar() {
                 <Tooltip>
                   <TooltipTrigger className={"w-full"}>
                     <UserMenu
-                      firstName={userInfo.firstName}
-                      lastName={userInfo.lastName}
+                      firstName={validatedUser.firstName}
+                      lastName={validatedUser.lastName}
                     />
                   </TooltipTrigger>
                   <TooltipContent>
-                    <p>User role: {userInfo.role}</p>
+                    <p>User role: {validatedUser.role}</p>
                   </TooltipContent>
                 </Tooltip>
               </TooltipProvider>

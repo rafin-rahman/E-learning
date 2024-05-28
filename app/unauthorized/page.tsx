@@ -10,7 +10,7 @@ export default function UnAuthorized() {
         You don't have permission to access this resource{" "}
       </h1>
       <Button asChild variant={"outline"} className={"mr-4"}>
-        <Link href={"/dashboard"}> {"< "}Home page</Link>
+        <Link href={"/"}> {"< "}Home page</Link>
       </Button>
     </div>
   );
