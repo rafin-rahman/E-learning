@@ -1,5 +1,5 @@
+"use client";
 import { Button } from "@/components/ui/button";
-import { PencilSquareIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import Image from "next/image";
 
