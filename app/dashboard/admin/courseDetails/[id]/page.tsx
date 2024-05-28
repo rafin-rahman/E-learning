@@ -187,13 +187,6 @@ export default function CourseDetails({ params }: { params: { id: string } }) {
           }
         >
           Loading...
-          <Button
-            asChild
-            className={"h-10 w-10   shadow p-2 rounded-2xl right-10 bottom-10 "}
-            onClick={() => setToggle(!toggleImageUploadForm)}
-          >
-            <ArrowUpTrayIcon className={""} />
-          </Button>
         </div>
       )}
 
