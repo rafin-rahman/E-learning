@@ -11,6 +11,13 @@ export async function GET(request: NextRequest) {
       },
     });
 
+    if (!courses) {
+      return NextResponse.json(
+        { message: "No courses found" },
+        { status: 404 }
+      );
+    }
+
     return NextResponse.json(courses);
   } catch (error) {
     return NextResponse.json({ message: error }, { status: 500 });

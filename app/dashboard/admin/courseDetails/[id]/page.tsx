@@ -66,6 +66,7 @@ export default function CourseDetails({ params }: { params: { id: string } }) {
         headers: {
           "Content-Type": "application/json",
         },
+        cache: "no-cache",
       }
     );
     if (!res.ok) {

@@ -70,7 +70,6 @@ async function getCourses(): Promise<Course[]> {
       headers: {
         "Content-Type": "application/json",
       },
-      cache: "no-cache",
     }
   );
   if (!res.ok) {
