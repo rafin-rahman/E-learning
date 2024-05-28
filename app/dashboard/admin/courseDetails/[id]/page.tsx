@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import getImageUrlAction from "@/app/dashboard/admin/courseDetails/[id]/getImageUrlAction";
+import { ArrowUpTrayIcon } from "@heroicons/react/24/solid";
 
 type Course = {
   id: string;
@@ -54,7 +55,8 @@ export default function CourseDetails({ params }: { params: { id: string } }) {
     courseCode: "loading...",
   });
   const [file, setFile] = useState<File | null>(null);
-  const [preview, setPreview] = useState<string | null>(null);
+  const [courseImageUrl, setCourseImageUrl] = useState<string | null>(null);
+  const [toggleImageUploadForm, setToggle] = useState<boolean>(false);
 
   async function getCourseDetails(): Promise<Course> {
     const res = await fetch(
@@ -75,7 +77,7 @@ export default function CourseDetails({ params }: { params: { id: string } }) {
   useEffect(() => {
     async function getImageUrl() {
       const res = await getImageUrlAction(params.id);
-      if (res) setPreview(res);
+      if (res) setCourseImageUrl(res);
     }
     getImageUrl();
 
@@ -111,7 +113,7 @@ export default function CourseDetails({ params }: { params: { id: string } }) {
     }
 
     const data = await response.json();
-    setPreview(data.url);
+    setCourseImageUrl(data.url);
 
     // save data.url to the course.image database
     const saveImageApi = await fetch(
@@ -155,39 +157,52 @@ export default function CourseDetails({ params }: { params: { id: string } }) {
         Central Queensland University. Master key business functions to become
         an industry leader that inspires and delivers.
       </div>
-      {preview ? (
+      {courseImageUrl ? (
         <div
           className={
-            "relative h-80 my-4  flex items-center justify-center text-4xl text-gray-600"
+            "relative h-80 my-4  flex items-center justify-center text-4xl text-gray-600 group"
           }
         >
           <Image
-            src={preview}
+            src={courseImageUrl}
             alt="preview"
             className={"w-full h-full object-cover"}
             fill
           />
+          <Button
+            asChild
+            className={
+              "h-10 w-10 absolute bg-white shadow p-2 rounded-2xl right-10 bottom-10 hidden group-hover:block"
+            }
+            onClick={() => setToggle(!toggleImageUploadForm)}
+          >
+            <ArrowUpTrayIcon className={"text-black hover:text-white"} />
+          </Button>
         </div>
       ) : (
         <div
           className={
-            "h-40 my-4 bg-amber-300 flex items-center justify-center text-4xl text-gray-600"
+            "h-80 my-4  flex items-center justify-center text-4xl text-gray-600"
           }
         >
-          Course image coming soon
+          Loading...
         </div>
       )}
-      <form onSubmit={handleSubmit}>
-        <Input
-          className={"h-20"}
-          type={"file"}
-          onChange={(e) => setFile(e.target.files?.[0] || null)}
-          accept="image/jpeg, image/png, image/jpg"
-        />
-        <Button type={"submit"} className={"w-full mt-4"}>
-          Submit
-        </Button>
-      </form>
+
+      {toggleImageUploadForm && (
+        <form onSubmit={handleSubmit}>
+          <Input
+            className={"h-20"}
+            type={"file"}
+            onChange={(e) => setFile(e.target.files?.[0] || null)}
+            accept="image/jpeg, image/png, image/jpg"
+          />
+          <Button type={"submit"} className={"w-full mt-4"}>
+            Submit
+          </Button>
+        </form>
+      )}
+
       <div>
         <ul className={"flex justify-around  my-4 text-center font-light"}>
           <li className={"border-r-2  w-64 py-4"}>

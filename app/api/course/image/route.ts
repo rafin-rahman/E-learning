@@ -11,6 +11,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "No file uploaded" }, { status: 400 });
   }
 
+  // Get course by courseID
   const course = await prisma.course.findFirst({
     where: {
       id: courseID,
