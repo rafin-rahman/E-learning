@@ -43,7 +43,5 @@ export async function POST(request: NextRequest) {
     access: "public",
   });
 
-  return NextResponse.json(blobResult, {
-    headers: { "Cache-Control": "no-store" },
-  });
+  return NextResponse.json(blobResult);
 }
