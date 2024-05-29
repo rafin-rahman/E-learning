@@ -25,7 +25,7 @@ async function main() {
       {
         firstName: "Keanu",
         lastName: "Patton",
-        email: "basic@gmail.com",
+        email: "course@gmail.com",
         telephone: "1234567890",
         password: await hashPassword("123123"),
         role: ["STAFF", "COURSE_MANAGER"],
