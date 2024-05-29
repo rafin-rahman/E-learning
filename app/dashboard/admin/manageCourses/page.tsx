@@ -69,7 +69,6 @@ async function getCourses(): Promise<Course[]> {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "Cache-Control": "no-store",
       },
     }
   );
@@ -107,6 +106,8 @@ export default function ManageCourses() {
       // set courses
       try {
         const courses = await getCourses();
+        console.log(courses);
+
         setCourses(courses);
       } catch (err: any) {
         setError(err.message);
