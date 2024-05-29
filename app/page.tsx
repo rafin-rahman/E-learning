@@ -42,6 +42,14 @@ export default function Home() {
           </Link>
         </Button>
       )}
+      {isAuthenticated && (
+        <Button asChild variant={"ghost"} className={"m-10 mx-80"}>
+          <Link href={"studentSpace"}>
+            {"< "}Student Space
+            <span className={"font-light"}>[Student only]</span>
+          </Link>
+        </Button>
+      )}
 
       {isAuthenticated && (
         <Button asChild variant={"destructive"} className={"m-10 mx-80"}>

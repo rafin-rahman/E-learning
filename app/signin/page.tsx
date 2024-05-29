@@ -26,7 +26,7 @@ export default function signin() {
       {/*  this is test application, anyone who visits the page should be able to test it using our default logins for ADMIN, SUPER_ADMIN, COURSE_MANAGER  */}
       <div className={roboto_mono.className}>
         <div className={"text-gray-400"}>
-          <h2 className={"text-2xl mt-40 mb-4 "}>Test logins</h2>
+          <h2 className={"text-2xl mt-40 mb-4 "}>STAFF </h2>
           <div className={"flex gap-8"}>
             <p>
               <span className={"uppercase"}>Course Manager</span>
@@ -45,6 +45,23 @@ export default function signin() {
               <br />
               Email: <strong>superadmin@gmail.com</strong> <br />
               Password: <strong> 123123</strong>
+            </p>
+          </div>
+        </div>
+        <div className={"text-gray-400 mt-20 mb-20"}>
+          <h2 className={"text-2xl mb-4 "}>STUDENT </h2>
+          <div className={"flex gap-8"}>
+            <p>
+              <span className={"uppercase"}>Student</span>
+              <br />
+              Email: <strong>student@gmail.com</strong> <br />
+              Password: <strong>123123</strong>
+            </p>
+            <p>
+              <span className={"uppercase"}>Student</span>
+              <br />
+              Email: <strong>student2@gmail.com</strong> <br />
+              Password: <strong>123123</strong>
             </p>
           </div>
         </div>

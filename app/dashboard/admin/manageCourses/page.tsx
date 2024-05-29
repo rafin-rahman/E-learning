@@ -106,7 +106,6 @@ export default function ManageCourses() {
       // set courses
       try {
         const courses = await getCourses();
-        console.log(courses);
 
         setCourses(courses);
       } catch (err: any) {
