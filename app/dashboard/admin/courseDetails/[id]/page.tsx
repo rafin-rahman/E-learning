@@ -57,6 +57,7 @@ export default function CourseDetails({ params }: { params: { id: string } }) {
   const [file, setFile] = useState<File | null>(null);
   const [courseImageUrl, setCourseImageUrl] = useState<string | null>(null);
   const [toggleImageUploadForm, setToggle] = useState<boolean>(false);
+  const [imageUploadLoading, setImageUploadLoading] = useState<boolean>(false);
 
   async function getCourseDetails(): Promise<Course> {
     const res = await fetch(
@@ -96,6 +97,7 @@ export default function CourseDetails({ params }: { params: { id: string } }) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setImageUploadLoading(true);
 
     const formData = new FormData();
     formData.append("file", file as Blob);
@@ -109,6 +111,7 @@ export default function CourseDetails({ params }: { params: { id: string } }) {
       }
     );
     if (!response.ok) {
+      setImageUploadLoading(false);
       console.error("Error uploading file");
       return { error: "Error uploading file" };
     }
@@ -135,9 +138,27 @@ export default function CourseDetails({ params }: { params: { id: string } }) {
       console.error(saveImageApiData.message);
       return { error: "Error saving image URL to course" };
     }
-
+    setImageUploadLoading(false);
     return data.file;
   };
+
+  const uploadImageForm = (
+    <form onSubmit={handleSubmit}>
+      <Input
+        className={`h-20 `}
+        type={"file"}
+        onChange={(e) => setFile(e.target.files?.[0] || null)}
+        accept="image/jpeg, image/png, image/jpg"
+      />
+      <Button
+        type={"submit"}
+        className={"w-full mt-4"}
+        disabled={imageUploadLoading}
+      >
+        {imageUploadLoading ? "Uploading..." : "Upload"}
+      </Button>
+    </form>
+  );
 
   return (
     <div className={"container mx-10"}>
@@ -177,32 +198,23 @@ export default function CourseDetails({ params }: { params: { id: string } }) {
             }
             onClick={() => setToggle(!toggleImageUploadForm)}
           >
-            <ArrowUpTrayIcon className={"text-black hover:text-white"} />
+            <ArrowUpTrayIcon
+              className={"text-gray-950 shadow hover:text-white"}
+            />
           </Button>
         </div>
       ) : (
         <div
           className={
-            "h-80 my-4  flex items-center justify-center text-4xl text-gray-600"
+            "h-80 my-4  flex  flex-col items-center justify-center text-4xl text-gray-600"
           }
         >
-          Loading...
+          <p className={"mb-10"}>No image available</p>
+          {uploadImageForm}
         </div>
       )}
 
-      {toggleImageUploadForm && (
-        <form onSubmit={handleSubmit}>
-          <Input
-            className={"h-20"}
-            type={"file"}
-            onChange={(e) => setFile(e.target.files?.[0] || null)}
-            accept="image/jpeg, image/png, image/jpg"
-          />
-          <Button type={"submit"} className={"w-full mt-4"}>
-            Submit
-          </Button>
-        </form>
-      )}
+      {toggleImageUploadForm && <div> {uploadImageForm}</div>}
 
       <div>
         <ul className={"flex justify-around  my-4 text-center font-light"}>
