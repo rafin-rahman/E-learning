@@ -31,7 +31,7 @@ export default function signin() {
             <p>
               <span className={"uppercase"}>Course Manager</span>
               <br />
-              Email: <strong>basic@gmail.com</strong> <br />
+              Email: <strong>course@gmail.com</strong> <br />
               Password: <strong>123123</strong>
             </p>
             <p>
