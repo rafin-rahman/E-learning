@@ -1,9 +1,3 @@
-import {
-  QueueListIcon,
-  HomeIcon,
-  UsersIcon,
-  BeakerIcon,
-} from "@heroicons/react/24/outline";
 import Image from "next/image";
 import { cookies } from "next/headers";
 import * as jose from "jose";
