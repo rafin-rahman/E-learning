@@ -2,6 +2,8 @@ import prisma from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
+  // no cache
+  request.headers.set("Cache-Control", "no-cache");
   try {
     const courses = await prisma.course.findMany({
       include: {
