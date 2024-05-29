@@ -27,7 +27,7 @@ export default function signin() {
       <div className={roboto_mono.className}>
         <div className={"text-gray-400"}>
           <h2 className={"text-2xl mt-40 mb-4 "}>STAFF </h2>
-          <div className={"flex gap-8"}>
+          <div className={"flex gap-8 flex-wrap"}>
             <p>
               <span className={"uppercase"}>Course Manager</span>
               <br />
@@ -50,7 +50,7 @@ export default function signin() {
         </div>
         <div className={"text-gray-400 mt-20 mb-20"}>
           <h2 className={"text-2xl mb-4 "}>STUDENT </h2>
-          <div className={"flex gap-8"}>
+          <div className={"flex gap-8 flex-wrap"}>
             <p>
               <span className={"uppercase"}>Student</span>
               <br />

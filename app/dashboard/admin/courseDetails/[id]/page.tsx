@@ -209,7 +209,9 @@ export default function CourseDetails({ params }: { params: { id: string } }) {
             "h-80 my-4  flex  flex-col items-center justify-center text-4xl text-gray-600"
           }
         >
-          <p className={"mb-10"}>No image available</p>
+          <p className={"mb-10"}>
+            {imageUploadLoading ? "Loading image..." : "No image available"}
+          </p>
           {uploadImageForm}
         </div>
       )}

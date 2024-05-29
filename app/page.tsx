@@ -25,25 +25,25 @@ export default function Home() {
       </div>
       <p className={"mt-10"}>Learn anywhere, anytime</p>
       {!isAuthenticated && (
-        <Button asChild variant={"destructive"} className={"m-10 mx-80"}>
+        <Button asChild variant={"destructive"} className={"m-10 w-40 mx-auto"}>
           <Link href={"signin"}>Sign in</Link>
         </Button>
       )}
       {!isAuthenticated && (
-        <Button asChild variant={"default"} className={"m-10 mx-80"}>
+        <Button asChild variant={"default"} className={"m-10 w-72 mx-auto"}>
           <Link href={"signup"}>Register an account as a STUDENT</Link>
         </Button>
       )}
 
       {isAuthenticated && (
-        <Button asChild variant={"ghost"} className={"m-10 mx-80"}>
+        <Button asChild variant={"ghost"} className={"m-10 w-72 mx-auto"}>
           <Link href={"dashboard"}>
             {"< "}Dashboard <span className={"font-light"}>[staff only]</span>
           </Link>
         </Button>
       )}
       {isAuthenticated && (
-        <Button asChild variant={"ghost"} className={"m-10 mx-80"}>
+        <Button asChild variant={"ghost"} className={"m-10 w-72 mx-auto"}>
           <Link href={"studentSpace"}>
             {"< "}Student Space
             <span className={"font-light"}>[Student only]</span>
@@ -52,7 +52,7 @@ export default function Home() {
       )}
 
       {isAuthenticated && (
-        <Button asChild variant={"destructive"} className={"m-10 mx-80"}>
+        <Button asChild variant={"destructive"} className={"m-10 w-40 mx-auto"}>
           <Link href={"logout"}>Logout</Link>
         </Button>
       )}

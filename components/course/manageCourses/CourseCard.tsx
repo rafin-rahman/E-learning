@@ -22,7 +22,7 @@ export default function CourseCard({
       {imageUrl ? (
         <div
           className={
-            "relative h-32   flex items-center justify-center text-4xl text-gray-600"
+            "relative h-32 flex items-center justify-center text-4xl text-gray-600"
           }
         >
           <Image

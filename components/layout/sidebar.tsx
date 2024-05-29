@@ -15,6 +15,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { SEO } from "@/lib/company";
 
 //TODO sidebar navigation needs to highlight the current page
 const navigation = [
@@ -126,7 +127,7 @@ export default async function Sidebar() {
       <div className="flex h-16 shrink-0 items-center">
         <Image
           className="h-8 w-auto"
-          src="/logo/Logo-DarkBG-no-text.svg"
+          src={SEO.logo_dark_no_text}
           alt="Online Qualification"
           width={100}
           height={100}

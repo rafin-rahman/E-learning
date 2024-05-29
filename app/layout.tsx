@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { poppins } from "@/lib/font";
 import { Toaster } from "@/components/ui/toaster";
+import { SEO } from "@/lib/company";
 
 export const metadata: Metadata = {
-  title: "NextJS RBAC Auth",
-  description: "template app for NextJS with RBAC auth",
+  title: SEO.companyName,
+  description: SEO.description,
 };
 
 export default function RootLayout({
