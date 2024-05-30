@@ -34,7 +34,7 @@ export async function middleware(request: NextRequest) {
         roles: ["STAFF"],
       },
       {
-        route: "/dashboard/admin/manageUsers",
+        route: "/dashboard/admin/manageUsers:path*",
         roles: ["SUPER_ADMIN", "ADMIN"],
       },
       {
