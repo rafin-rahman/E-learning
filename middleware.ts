@@ -26,11 +26,11 @@ export async function middleware(request: NextRequest) {
     // Define the configuration for your routes and their allowed roles
     const routeRoleConfig = [
       {
-        route: "/studentSpace:path*", // All student routes
+        route: "/studentSpace:path*",
         roles: ["STUDENT"],
       },
       {
-        route: "/dashboard:path*", // All staff routes
+        route: "/dashboard:path*",
         roles: ["STAFF"],
       },
       {

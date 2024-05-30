@@ -77,11 +77,13 @@ export default function CourseDetails({ params }: { params: { id: string } }) {
     return res.json();
   }
   useEffect(() => {
+    setImageUploadLoading(true);
     async function getImageUrl() {
       const res = await getImageUrlAction(params.id);
       if (res) setCourseImageUrl(res);
     }
     getImageUrl();
+    setImageUploadLoading(false);
 
     async function fetchCourse() {
       try {
@@ -198,9 +200,7 @@ export default function CourseDetails({ params }: { params: { id: string } }) {
             }
             onClick={() => setToggle(!toggleImageUploadForm)}
           >
-            <ArrowUpTrayIcon
-              className={"text-gray-950 shadow hover:text-white"}
-            />
+            <ArrowUpTrayIcon className={"text-black shadow hover:text-white"} />
           </Button>
         </div>
       ) : (
