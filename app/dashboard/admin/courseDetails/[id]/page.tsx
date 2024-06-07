@@ -157,7 +157,11 @@ export default function CourseDetails({ params }: { params: { id: string } }) {
         className={"w-full mt-4"}
         disabled={imageUploadLoading}
       >
-        {imageUploadLoading ? "Uploading..." : "Upload"}
+        {!file
+          ? "Select Image"
+          : imageUploadLoading
+          ? "Uploading..."
+          : "Upload"}
       </Button>
     </form>
   );
