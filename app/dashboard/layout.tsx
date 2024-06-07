@@ -1,4 +1,4 @@
-import Sidebar from "@/components/layout/sidebar";
+import StaffSidebar from "@/components/layout/staffSidebar";
 import StaffMobileNavbar from "@/components/layout/staffMobileNavbar";
 
 export default function layout({
@@ -13,7 +13,7 @@ export default function layout({
       </div>
       <div className={"flex"}>
         <div className={"w-1/6 hidden sm:block"}>
-          <Sidebar />
+          <StaffSidebar />
         </div>
 
         <div className={"mt-4 w-full"}> {children}</div>

@@ -60,7 +60,7 @@ function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default async function Sidebar() {
+export default async function StaffSidebar() {
   // check if the user is authenticated by looking for a specific cookie
   const userCookie = cookies().get("Authorization");
   //use jose to find user info from the cookie

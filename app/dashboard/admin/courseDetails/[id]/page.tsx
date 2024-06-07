@@ -150,7 +150,7 @@ export default function CourseDetails({ params }: { params: { id: string } }) {
         className={`h-20 `}
         type={"file"}
         onChange={(e) => setFile(e.target.files?.[0] || null)}
-        accept="image/jpeg, image/png, image/jpg"
+        accept="image/jpeg, image/png, image/jpg, image/webp"
       />
       <Button
         type={"submit"}

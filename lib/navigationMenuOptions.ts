@@ -35,3 +35,27 @@ export const staffNavigationMenuOptions = [
     current: false,
   },
 ];
+
+// export const studentNavigationMenuOptions = [
+//   {
+//     name: "Courses",
+//     href: "/studentSpace/homeApp",
+//     icon: HomeIcon,
+//     count: "",
+//     current: false,
+//   },
+//   {
+//     name: "My Learning",
+//     href: "/studentSpace/myCourses",
+//     icon: QueueListIcon,
+//     count: "",
+//     current: false,
+//   },
+//   {
+//     name: "My Profile",
+//     href: "/studentSpace/myProfile",
+//     icon: QueueListIcon,
+//     count: "",
+//     current: false,
+//   },
+// ];
