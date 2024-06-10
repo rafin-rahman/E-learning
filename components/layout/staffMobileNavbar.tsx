@@ -34,7 +34,7 @@ export default function StaffMobileNavbar() {
             <Bars3Icon className={"h-10 w-10"} />
           </Button>
         </SheetTrigger>
-        <SheetContent side={"left"} className={"bg-gray-900"}>
+        <SheetContent side={"left"} className={"bg-gray-900 "}>
           <SheetHeader>
             <SheetTitle className={"text-white"}>
               Online Qualification

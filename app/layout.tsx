@@ -3,6 +3,8 @@ import "./globals.css";
 import { poppins } from "@/lib/font";
 import { Toaster } from "@/components/ui/toaster";
 import { SEO } from "@/lib/company";
+import Providers from "@/app/providers";
+import React from "react";
 
 export const metadata: Metadata = {
   title: SEO.companyName,
@@ -17,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={poppins.className}>
       <body>
-        <div>{children}</div>
+        <Providers>{children}</Providers>
         <div className={""}>
           <Toaster />
         </div>
