@@ -2,6 +2,7 @@ import { StarIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import { SEO } from "@/lib/company";
 import { Button } from "@/components/ui/button";
+import { ExploreSubjectsTabs } from "@/components/student/studentSpace/ExploreSubjectsTabs";
 
 export default function StudentSpace() {
   const logoUrl = [
@@ -111,6 +112,7 @@ export default function StudentSpace() {
           </div>
           <div> All subjects</div>
         </div>
+        <ExploreSubjectsTabs />
       </div>
       <h2 className={"text-4xl text-center font-black my-40"}>
         Learn with <span className={"text-red-500"}>200+</span> world-class
