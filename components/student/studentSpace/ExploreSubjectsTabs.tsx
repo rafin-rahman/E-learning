@@ -65,7 +65,7 @@ export function ExploreSubjectsTabs() {
               }
             >
               <div className={"h-72 w-48 bg-amber-300 rounded-2xl"}>
-                //TODO add image and follow https://www.futurelearn.com/
+                {/*//TODO add image and follow https://www.futurelearn.com/*/}
               </div>
               <div className={"h-72 w-48 bg-amber-300 rounded-2xl"}></div>
             </div>
