@@ -14,7 +14,7 @@ import Image from "next/image";
 
 export function ExploreSubjectsTabs() {
   return (
-    <Tabs defaultValue="account" className="w-full mt-10">
+    <Tabs defaultValue="business" className="w-full mt-10">
       <TabsList className="grid w-full grid-cols-6">
         <TabsTrigger value="business">Business & Management</TabsTrigger>
         <TabsTrigger value="healthcare">Healthcare & Medicine</TabsTrigger>
