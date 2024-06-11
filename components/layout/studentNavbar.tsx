@@ -68,12 +68,14 @@ export default function StudentNavbar() {
   return (
     <div className={"h-20 bg-gray-100 flex items-center"}>
       <div className={"relative h-14 w-14 left-10"}>
-        <Image
-          src={SEO.logo_light_no_text}
-          alt={"logo"}
-          className={"  object-fill"}
-          fill
-        />
+        <Link href={"/studentSpace"}>
+          <Image
+            src={SEO.logo_light_no_text}
+            alt={"logo"}
+            className={"  object-fill"}
+            fill
+          />
+        </Link>
       </div>
       <div className={"ml-20 flex w-full text-black "}>
         <NavigationMenu>

@@ -18,6 +18,16 @@ const config = {
       },
     },
     extend: {
+      fontSize: {
+        "10xl": "8rem", // Equivalent to 128px
+        "11xl": "9rem", // Equivalent to 144px
+        "12xl": "10rem", // Equivalent to 160px
+      },
+      fontWeight: {
+        extrabold: "800",
+        superbold: "900", // Custom weight that is bolder than extrabold
+        ultrabold: "950", // Even bolder custom weight
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

@@ -165,23 +165,25 @@ export default function AllCourses() {
                 />
                 <span className={"ml-3"}>All</span>
               </li>
-              {courseLevels.map((level: CourseLevel) => (
-                <li key={level.id}>
-                  <Checkbox
-                    checked={selectedLevels.includes(level.name)}
-                    onCheckedChange={(checked) => {
-                      if (checked) {
-                        handleLevelChange(level.name);
-                      } else {
-                        setSelectedLevels(
-                          selectedLevels.filter((name) => name !== level.name)
-                        );
-                      }
-                    }}
-                  />
-                  <span className={"ml-3"}>{level.name}</span>
-                </li>
-              ))}
+              {courseLevels
+                .sort((a, b) => a.name.localeCompare(b.name))
+                .map((level: CourseLevel) => (
+                  <li key={level.id}>
+                    <Checkbox
+                      checked={selectedLevels.includes(level.name)}
+                      onCheckedChange={(checked) => {
+                        if (checked) {
+                          handleLevelChange(level.name);
+                        } else {
+                          setSelectedLevels(
+                            selectedLevels.filter((name) => name !== level.name)
+                          );
+                        }
+                      }}
+                    />
+                    <span className={"ml-3"}>{level.name}</span>
+                  </li>
+                ))}
             </ul>
           </div>
           <br />
@@ -195,25 +197,27 @@ export default function AllCourses() {
                 />
                 <span className={"ml-3"}>All</span>
               </li>
-              {courseSubjects.map((subject: CourseSubject) => (
-                <li key={subject.id}>
-                  <Checkbox
-                    checked={selectedSubjects.includes(subject.name)}
-                    onCheckedChange={(checked) => {
-                      if (checked) {
-                        handleSubjectChange(subject.name);
-                      } else {
-                        setSelectedSubjects(
-                          selectedSubjects.filter(
-                            (name) => name !== subject.name
-                          )
-                        );
-                      }
-                    }}
-                  />
-                  <span className={"ml-3"}>{subject.name}</span>
-                </li>
-              ))}
+              {courseSubjects
+                .sort((a, b) => a.name.localeCompare(b.name))
+                .map((subject: CourseSubject) => (
+                  <li key={subject.id}>
+                    <Checkbox
+                      checked={selectedSubjects.includes(subject.name)}
+                      onCheckedChange={(checked) => {
+                        if (checked) {
+                          handleSubjectChange(subject.name);
+                        } else {
+                          setSelectedSubjects(
+                            selectedSubjects.filter(
+                              (name) => name !== subject.name
+                            )
+                          );
+                        }
+                      }}
+                    />
+                    <span className={"ml-3"}>{subject.name}</span>
+                  </li>
+                ))}
             </ul>
           </div>
           {filteredCourses.length !== courses.length && (
@@ -244,10 +248,6 @@ export default function AllCourses() {
                 handleSearch(e);
               }}
             />
-
-            <div className={"ml-auto -translate-x-20"}>
-              <Button variant={"ghost"}>Add new</Button>
-            </div>
           </div>
           <ScrollArea className="h-dvh w-full ">
             <div className={"flex gap-4 flex-wrap justify-around"}>
@@ -258,7 +258,9 @@ export default function AllCourses() {
                   tag={course.courseLevel.name}
                   deliveryPartner={course.deliveryPartner.name}
                   editLink={""}
-                  viewLink={"/dashboard/admin/courseDetails/" + course.id}
+                  viewLink={
+                    "/studentSpace/allCourses/courseDetails/" + course.id
+                  }
                   imageUrl={course.image}
                 />
               ))}

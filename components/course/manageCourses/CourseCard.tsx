@@ -50,17 +50,24 @@ export default function CourseCard({
         </span>
       </div>
       {/*<div className="text-center pb-4 absolute top-1/2 left-1/2 transform -translate-x-1/3 -translate-y-1/3 hidden group-hover:block ">*/}
-      <div className="pb-4 absolute hidden group-hover:block left-6  ">
+      <div
+        className={`w-full h-14 absolute hidden group-hover:flex items-center justify-center`}
+      >
         <Link href={viewLink}>
-          <Button variant={"secondary"} className={"mr-4 mb-2 text-xs"}>
+          <Button
+            variant={"secondary"}
+            className={`mr-4 text-xs ${!editLink && "p-10"} `}
+          >
             View
           </Button>
         </Link>
-        <Link href={editLink}>
-          <Button variant={"secondary"} className={"mr-4 text-xs"}>
-            Edit
-          </Button>
-        </Link>
+        {editLink && (
+          <Link href={editLink}>
+            <Button variant={"secondary"} className={"mr-4 text-xs"}>
+              Edit
+            </Button>
+          </Link>
+        )}
       </div>
     </div>
   );
