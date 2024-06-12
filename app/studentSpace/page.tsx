@@ -1,8 +1,8 @@
 import { StarIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
-import { SEO } from "@/lib/company";
 import { Button } from "@/components/ui/button";
 import { ExploreSubjectsTabs } from "@/components/student/studentSpace/ExploreSubjectsTabs";
+import Link from "next/link";
 
 export default function StudentSpace() {
   const logoUrl = [
@@ -97,7 +97,7 @@ export default function StudentSpace() {
               "bg-transparent border-black hover:bg-black hover:text-white hover:border-none h-14"
             }
           >
-            Explore courses
+            <Link href={"/studentSpace/allCourses"}>Explore courses</Link>
           </Button>
         </div>
       </div>
@@ -110,7 +110,6 @@ export default function StudentSpace() {
               <div className={"w-20 bg-red-500 h-1 mt-3"}></div>
             </div>
           </div>
-          <div> All subjects</div>
         </div>
         <ExploreSubjectsTabs />
       </div>

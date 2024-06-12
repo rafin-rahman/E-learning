@@ -14,7 +14,6 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import { Bars4Icon } from "@heroicons/react/24/outline";
 
 const components: {
   title: string;
