@@ -4,7 +4,13 @@ import { cookies } from "next/headers";
 import Image from "next/image";
 
 import Homepage from "@/components/homepage/homepage";
+import PublicNavbar from "@/components/layout/publicNavbar";
 
 export default function Home() {
-  return <Homepage />;
+  return (
+    <div>
+      <PublicNavbar />
+      <Homepage />;
+    </div>
+  );
 }
