@@ -5,6 +5,8 @@ import CourseCard from "@/components/course/manageCourses/CourseCard";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 // Define types for subjects and levels
 type CourseSubject = {
@@ -87,6 +89,7 @@ export default function allCourseUrl() {
   const [search, setSearch] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
 
+  const router = useRouter();
   useEffect(() => {
     async function fetchData() {
       // set course subjects
@@ -152,7 +155,14 @@ export default function allCourseUrl() {
 
   return (
     <div className={"container"}>
-      <h1 className={"text-4xl mb-10 mt-10"}>Manage Courses</h1>
+      <Button
+        variant={"outline"}
+        className={"my-10 "}
+        onClick={() => router.push("/")}
+      >
+        {"< "} Back
+      </Button>
+      <h1 className={"text-4xl mb-10 "}>Manage Courses</h1>
       <div className={"flex"}>
         <div className={"flex-none w-56"}>
           <div className={"font-bold mb-4"}>Course Level</div>

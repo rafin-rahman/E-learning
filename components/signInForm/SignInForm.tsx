@@ -1,20 +1,28 @@
 "use client";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
-import { useFormState } from "react-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { signInFormSchema as formSchema } from "@/lib/zodSchema.js";
 import SignInFormField from "@/components/signInForm/SignInFormField";
 import signInAction from "../../app/signin/signInAction";
 import { useToast } from "@/components/ui/use-toast";
 
-export default function SignInForm() {
+const SignInForm = () => {
   const [errorMessage, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const { toast } = useToast();
+  const signInEmailRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (signInEmailRef.current) {
+      console.log("use effect signinform");
+      signInEmailRef.current.focus();
+    }
+  }, []);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -62,6 +70,7 @@ export default function SignInForm() {
             inputType={"email"}
             placeholder={"email"}
             formControl={form.control}
+            ref={signInEmailRef}
           />
           <SignInFormField
             name={"password"}
@@ -79,4 +88,6 @@ export default function SignInForm() {
       </Form>
     </div>
   );
-}
+};
+
+export default SignInForm;

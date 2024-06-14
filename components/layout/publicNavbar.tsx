@@ -46,7 +46,7 @@ const PublicNavbar: React.FC<PublicNavbarProps> = ({ isLoggedIn }) => {
                     <NavigationMenuLink asChild>
                       <a
                         className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                        href="/courses"
+                        href="/courses/allCourses"
                       >
                         {/*<Icons.logo className="h-6 w-6" />*/}
                         {/*<Bars4Icon className="h-6 w-6" />*/}
@@ -103,17 +103,14 @@ const PublicNavbar: React.FC<PublicNavbarProps> = ({ isLoggedIn }) => {
       </div>
       {isLoggedIn ? (
         <div className={"flex gap-4"}>
+          <Button variant={"ghost"} className={"relative  right-10 w-full "}>
+            <Link href={"/studentSpace"} className="font-black">
+              Student Hub
+            </Link>
+          </Button>
           <Button variant={"default"} className={"relative w-24 right-10 "}>
             <Link href={"/logout"} className="">
               Logout
-            </Link>
-          </Button>
-          <Button
-            variant={"default"}
-            className={"relative w-24 right-10 w-full "}
-          >
-            <Link href={"/studentSpace"} className="">
-              Student space
             </Link>
           </Button>
         </div>
