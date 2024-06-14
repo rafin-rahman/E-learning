@@ -78,7 +78,7 @@ async function getCourses(): Promise<Course[]> {
   return res.json();
 }
 
-export default function AllCourses() {
+export default function allCourseUrl() {
   const [courseSubjects, setCourseSubjects] = useState<CourseSubject[]>([]);
   const [courseLevels, setCourseLevels] = useState<CourseLevel[]>([]);
   const [courses, setCourses] = useState<Course[]>([]);
@@ -152,7 +152,7 @@ export default function AllCourses() {
 
   return (
     <div className={"container"}>
-      <h1 className={"text-4xl mb-10"}>Manage Courses</h1>
+      <h1 className={"text-4xl mb-10 mt-10"}>Manage Courses</h1>
       <div className={"flex"}>
         <div className={"flex-none w-56"}>
           <div className={"font-bold mb-4"}>Course Level</div>
@@ -258,9 +258,7 @@ export default function AllCourses() {
                   tag={course.courseLevel.name}
                   deliveryPartner={course.deliveryPartner.name}
                   editLink={""}
-                  viewLink={
-                    "/studentSpace/allCourses/courseDetails/" + course.id
-                  }
+                  viewLink={"/courses/allCourses/courseDetails/" + course.id}
                   imageUrl={course.image}
                 />
               ))}

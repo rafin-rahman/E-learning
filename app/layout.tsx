@@ -21,7 +21,7 @@ export default function RootLayout({
       <body>
         <div
           className={
-            " flex h-6 justify-center bg-amber-300 items-center opacity-35 text-xs"
+            "flex h-6 justify-center bg-amber-300 items-center opacity-35 text-xs"
           }
         >
           <p>

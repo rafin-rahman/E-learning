@@ -154,7 +154,7 @@ export default function CourseDetails({ params }: { params: { id: string } }) {
   return (
     <div className={"container mx-10"}>
       <Button asChild variant={"outline"} className={"my-10 "}>
-        <Link href={"/studentSpace/allCourses"}>{"< "} All courses</Link>
+        <Link href={"/courses/allCourses"}>{"< "} All courses</Link>
       </Button>
 
       <div className={"font-light text-gray-400"}>

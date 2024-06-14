@@ -16,55 +16,11 @@ import {
 } from "@/components/ui/navigation-menu";
 import { Button } from "@/components/ui/button";
 
-const components: {
-  title: string;
-  href: string;
-  description: string;
-  bg_color: string;
-}[] = [
-  {
-    title: "Online Degree",
-    href: "/docs/primitives/alert-dialog",
-    description:
-      "Access and manage your online degrees and academic progress here.",
-    bg_color: "bg-gray-100",
-  },
-  {
-    title: "Certified courses",
-    href: "/docs/primitives/hover-card",
-    description:
-      "Track and manage your professional certifications and achievements here.",
-    bg_color: "bg-gray-100",
-  },
-  {
-    title: "Short Courses",
-    href: "/docs/primitives/progress",
-    description: "Manage and track your CPD courses and progress here.",
-    bg_color: "bg-gray-100",
-  },
-  {
-    title: "Academic Support",
-    href: "/docs/primitives/scroll-area",
-    description: "Get tutoring, study resources, and personalized assistance. ",
-    bg_color: "",
-  },
-  {
-    title: "Student Support",
-    href: "/docs/primitives/tabs",
-    description:
-      "Assistance with academic success, well-being, and personal growth.",
-    bg_color: "",
-  },
-  {
-    title: "Technical Support",
-    href: "/docs/primitives/tooltip",
-    description:
-      "Resolve issues, ensuring smooth, uninterrupted learning experiences.",
-    bg_color: "",
-  },
-];
+type PublicNavbarProps = {
+  isLoggedIn: boolean;
+};
 
-export default function PublicNavbar() {
+const PublicNavbar: React.FC<PublicNavbarProps> = ({ isLoggedIn }) => {
   return (
     <div className={"h-20 bg-gray-100 flex items-center"}>
       <div className={"relative h-14 w-14 left-10"}>
@@ -90,7 +46,7 @@ export default function PublicNavbar() {
                     <NavigationMenuLink asChild>
                       <a
                         className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                        href="/studentSpace/allCourses"
+                        href="/courses"
                       >
                         {/*<Icons.logo className="h-6 w-6" />*/}
                         {/*<Bars4Icon className="h-6 w-6" />*/}
@@ -145,14 +101,32 @@ export default function PublicNavbar() {
           </NavigationMenuList>
         </NavigationMenu>
       </div>
-      <Button variant={"default"} className={"relative w-24 right-10 "}>
-        <Link href={"/signin"} className="">
-          Login
-        </Link>
-      </Button>
+      {isLoggedIn ? (
+        <div className={"flex gap-4"}>
+          <Button variant={"default"} className={"relative w-24 right-10 "}>
+            <Link href={"/logout"} className="">
+              Logout
+            </Link>
+          </Button>
+          <Button
+            variant={"default"}
+            className={"relative w-24 right-10 w-full "}
+          >
+            <Link href={"/studentSpace"} className="">
+              Student space
+            </Link>
+          </Button>
+        </div>
+      ) : (
+        <Button variant={"default"} className={"relative w-24 right-10 "}>
+          <Link href={"/signin"} className="">
+            Login
+          </Link>
+        </Button>
+      )}
     </div>
   );
-}
+};
 
 const ListItem = React.forwardRef<
   React.ElementRef<"a">,
@@ -179,3 +153,5 @@ const ListItem = React.forwardRef<
   );
 });
 ListItem.displayName = "ListItem";
+
+export default PublicNavbar;

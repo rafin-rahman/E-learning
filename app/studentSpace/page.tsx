@@ -97,7 +97,7 @@ export default function StudentSpace() {
               "bg-transparent border-black hover:bg-black hover:text-white hover:border-none h-14"
             }
           >
-            <Link href={"/studentSpace/allCourses"}>Explore courses</Link>
+            <Link href={"/courses/allCourses"}>Explore courses</Link>
           </Button>
         </div>
       </div>
@@ -111,7 +111,8 @@ export default function StudentSpace() {
             </div>
           </div>
         </div>
-        <ExploreSubjectsTabs />
+
+        <ExploreSubjectsTabs allCourseUrl={"/courses/allCourses"} />
       </div>
       <h2 className={"text-4xl text-center font-black my-40"}>
         Learn with <span className={"text-red-500"}>200+</span> world-class

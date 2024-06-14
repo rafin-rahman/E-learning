@@ -12,7 +12,11 @@ import Link from "next/link";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Image from "next/image";
 
-export function ExploreSubjectsTabs() {
+export function ExploreSubjectsTabs({
+  allCourseUrl,
+}: {
+  allCourseUrl: string;
+}) {
   return (
     <Tabs defaultValue="business" className="w-full mt-10">
       <TabsList className="grid w-full grid-cols-6">
@@ -135,7 +139,7 @@ export function ExploreSubjectsTabs() {
           </CardContent>
           <CardFooter>
             <Button>
-              <Link href={"/studentSpace/allCourses"}>Explore courses</Link>
+              <Link href={allCourseUrl}>Explore courses</Link>
             </Button>
           </CardFooter>
         </Card>
@@ -254,7 +258,7 @@ export function ExploreSubjectsTabs() {
           </CardContent>
           <CardFooter>
             <Button>
-              <Link href={"/studentSpace/allCourses"}>Explore courses</Link>
+              <Link href={allCourseUrl}>Explore courses</Link>
             </Button>
           </CardFooter>
         </Card>
@@ -368,7 +372,7 @@ export function ExploreSubjectsTabs() {
           </CardContent>
           <CardFooter>
             <Button>
-              <Link href={"/studentSpace/allCourses"}>Explore courses</Link>
+              <Link href={allCourseUrl}>Explore courses</Link>
             </Button>
           </CardFooter>
         </Card>
@@ -485,7 +489,7 @@ export function ExploreSubjectsTabs() {
           </CardContent>
           <CardFooter>
             <Button>
-              <Link href={"/studentSpace/allCourses"}>Explore courses</Link>
+              <Link href={allCourseUrl}>Explore courses</Link>
             </Button>
           </CardFooter>
         </Card>
@@ -601,7 +605,7 @@ export function ExploreSubjectsTabs() {
           </CardContent>
           <CardFooter>
             <Button>
-              <Link href={"/studentSpace/allCourses"}>Explore courses</Link>
+              <Link href={allCourseUrl}>Explore courses</Link>
             </Button>
           </CardFooter>
         </Card>
@@ -716,7 +720,7 @@ export function ExploreSubjectsTabs() {
           </CardContent>
           <CardFooter>
             <Button>
-              <Link href={"/studentSpace/allCourses"}>Explore courses</Link>
+              <Link href={allCourseUrl}>Explore courses</Link>
             </Button>
           </CardFooter>
         </Card>

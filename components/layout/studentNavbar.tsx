@@ -67,7 +67,7 @@ export default function StudentNavbar() {
   return (
     <div className={"h-20 bg-gray-100 flex items-center"}>
       <div className={"relative h-14 w-14 left-10"}>
-        <Link href={"/studentSpace"}>
+        <Link href={"/"}>
           <Image
             src={SEO.logo_light_no_text}
             alt={"logo"}
@@ -89,7 +89,7 @@ export default function StudentNavbar() {
                     <NavigationMenuLink asChild>
                       <a
                         className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                        href="/studentSpace/allCourses"
+                        href="/courses"
                       >
                         {/*<Icons.logo className="h-6 w-6" />*/}
                         {/*<Bars4Icon className="h-6 w-6" />*/}
