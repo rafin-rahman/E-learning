@@ -28,7 +28,7 @@ const PublicNavbar: React.FC<PublicNavbarProps> = ({ isLoggedIn }) => {
           <Image
             src={SEO.logo_light_no_text}
             alt={"logo"}
-            className={"  object-fill"}
+            className={"object-fill"}
             fill
           />
         </Link>

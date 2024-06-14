@@ -14,12 +14,13 @@ export const SEO = {
   keywords: ["e-learning", "career", "certification", "edTech"],
 };
 export const socials = {
-  facebook: "",
+  facebook: "/icons/socialMedia/outline facebook.png",
   x: "",
-  instagram: "",
-  linkedin: "",
+  instagram: "/icons/socialMedia/outline instagram.png",
+  linkedin: "/icons/socialMedia/outline linkedin.png",
   youtube: "",
   tiktok: "",
+  web: "/icons/socialMedia/outline web.png",
 };
 
 export const addresses = [

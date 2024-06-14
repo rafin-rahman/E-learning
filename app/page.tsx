@@ -5,6 +5,7 @@ import Image from "next/image";
 
 import Homepage from "@/components/homepage/homepage";
 import PublicNavbar from "@/components/layout/publicNavbar";
+import Footer from "@/components/layout/sidebarComponents/Footer";
 
 export default function Home() {
   const cookie = cookies().get("Authorization");
@@ -14,7 +15,8 @@ export default function Home() {
   return (
     <div>
       <PublicNavbar isLoggedIn={isLoggedIn} />
-      <Homepage />;
+      <Homepage />
+      <Footer />
     </div>
   );
 }
