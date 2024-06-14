@@ -138,7 +138,7 @@ export function ExploreSubjectsTabs({
             </div>
           </CardContent>
           <CardFooter>
-            <Button>
+            <Button asChild>
               <Link href={allCourseUrl}>Explore courses</Link>
             </Button>
           </CardFooter>

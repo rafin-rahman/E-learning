@@ -21,7 +21,7 @@ export default function RootLayout({
       <body>
         <div
           className={
-            "flex h-6 justify-center bg-amber-300 items-center opacity-35 text-xs"
+            "flex flex-wrap h-12 sm:h-6 justify-center bg-gradient-to-r from-amber-300 to-red-400 items-center text-center opacity-50 text-xs"
           }
         >
           <p>
@@ -30,7 +30,7 @@ export default function RootLayout({
           </p>
         </div>
         <Providers>{children}</Providers>
-        <div className={""}>
+        <div>
           <Toaster />
         </div>
       </body>

@@ -90,8 +90,11 @@ export default function StudentSpace() {
             Make your 2024 count. Get Unlimited and access 1400+ online courses
             from top universities.{" "}
           </div>
-          <Button className={"bg-red-500 h-14"}>Get Unlimited learning</Button>
+          <Button asChild className={"bg-red-500 h-14"}>
+            <Link href={"#"}>Get Unlimited learning</Link>
+          </Button>
           <Button
+            asChild
             variant={"outline"}
             className={
               "bg-transparent border-black hover:bg-black hover:text-white hover:border-none h-14"

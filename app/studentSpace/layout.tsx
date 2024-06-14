@@ -1,4 +1,5 @@
-import StudentNavbar from "@/components/layout/studentNavbar";
+import PublicNavbar from "@/components/layout/publicNavbar";
+import Footer from "@/components/layout/sidebarComponents/Footer";
 
 export default function layout({
   children,
@@ -7,8 +8,9 @@ export default function layout({
 }>) {
   return (
     <>
-      <StudentNavbar />
-      <div className={"mt-4 w-full"}> {children}</div>
+      <PublicNavbar isLoggedIn={true} />
+      <div className={"mt-4 w-full"}>{children}</div>
+      <Footer />
     </>
   );
 }

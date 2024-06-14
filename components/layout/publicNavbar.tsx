@@ -21,6 +21,54 @@ type PublicNavbarProps = {
 };
 
 const PublicNavbar: React.FC<PublicNavbarProps> = ({ isLoggedIn }) => {
+  const components: {
+    title: string;
+    href: string;
+    description: string;
+    bg_color: string;
+  }[] = [
+    {
+      title: "Online Degree",
+      href: "/docs/primitives/alert-dialog",
+      description:
+        "Access and manage your online degrees and academic progress here.",
+      bg_color: "bg-gray-100",
+    },
+    {
+      title: "Certified courses",
+      href: "/docs/primitives/hover-card",
+      description:
+        "Track and manage your professional certifications and achievements here.",
+      bg_color: "bg-gray-100",
+    },
+    {
+      title: "Short Courses",
+      href: "/docs/primitives/progress",
+      description: "Manage and track your CPD courses and progress here.",
+      bg_color: "bg-gray-100",
+    },
+    {
+      title: "Academic Support",
+      href: "/docs/primitives/scroll-area",
+      description:
+        "Get tutoring, study resources, and personalized assistance. ",
+      bg_color: "",
+    },
+    {
+      title: "Student Support",
+      href: "/docs/primitives/tabs",
+      description:
+        "Assistance with academic success, well-being, and personal growth.",
+      bg_color: "",
+    },
+    {
+      title: "Technical Support",
+      href: "/docs/primitives/tooltip",
+      description:
+        "Resolve issues, ensuring smooth, uninterrupted learning experiences.",
+      bg_color: "",
+    },
+  ];
   return (
     <div className={"h-20 bg-gray-100 flex items-center"}>
       <div className={"relative h-14 w-14 left-10"}>
@@ -76,28 +124,73 @@ const PublicNavbar: React.FC<PublicNavbarProps> = ({ isLoggedIn }) => {
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>
+            {isLoggedIn && (
+              <NavigationMenuItem>
+                <NavigationMenuTrigger className={"rounded-none"}>
+                  My learning
+                </NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+                    {components.map((component) => (
+                      <ListItem
+                        key={component.title}
+                        title={component.title}
+                        href={component.href}
+                        className={component.bg_color}
+                      >
+                        {component.description}
+                      </ListItem>
+                    ))}
+                  </ul>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+            )}
+            {isLoggedIn && (
+              <NavigationMenuItem>
+                <Link href="/studentSpace/myProfile" legacyBehavior passHref>
+                  <NavigationMenuLink
+                    className={`${navigationMenuTriggerStyle()} rounded-none`}
+                  >
+                    My profile
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+            )}
 
-            <NavigationMenuItem>
-              <Link href="/about-us" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  E-Learning for business
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <Link href="/about-us" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  About us
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <Link href="/contact-us" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  Contact us
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
+            {!isLoggedIn && (
+              <NavigationMenuItem>
+                <Link href="#" legacyBehavior passHref>
+                  <NavigationMenuLink
+                    className={`${navigationMenuTriggerStyle()} rounded-none`}
+                  >
+                    E-Learning for business
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+            )}
+            {!isLoggedIn && (
+              <NavigationMenuItem>
+                <Link href="/about-us" legacyBehavior passHref>
+                  <NavigationMenuLink
+                    className={`${navigationMenuTriggerStyle()} rounded-none`}
+                  >
+                    About us
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+            )}
+
+            {!isLoggedIn && (
+              <NavigationMenuItem>
+                <Link href="/contact-us" legacyBehavior passHref>
+                  <NavigationMenuLink
+                    className={`${navigationMenuTriggerStyle()} rounded-none`}
+                  >
+                    Contact us
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+            )}
           </NavigationMenuList>
         </NavigationMenu>
       </div>

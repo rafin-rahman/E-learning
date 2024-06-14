@@ -157,13 +157,15 @@ export default function CourseDetails({ params }: { params: { id: string } }) {
         <Link href={"/courses/allCourses"}>{"< "} All courses</Link>
       </Button>
 
-      <div className={"font-light text-gray-400"}>
+      <div className={"font-light text-gray-400 mb-4"}>
         {course.courseLevel.name} - by{" "}
         <span className={"font-normal"}>{course.deliveryPartner.name}</span>
       </div>
-      <div className={"flex gap-4"}>
+      <div className={"flex flex-wrap gap-4"}>
         <div className={"text-4xl font-extrabold mb-8"}>{course.title}</div>
-        <Button>Join now {formatPrice(course.price)}</Button>
+        <Button variant={"destructive"}>
+          Join now {formatPrice(course.price)}
+        </Button>
       </div>
       <div className={"text-xl"}>
         Advance your career and earning potential by developing real-world
@@ -215,124 +217,239 @@ export default function CourseDetails({ params }: { params: { id: string } }) {
             <div>£{course.price}</div>
           </li>
         </ul>
-        <div className={"text-2xl font-extrabold mb-6 mt-10"}>
-          What you will learn
-        </div>
-        <div className="relative">
+        <div className={"flex flex-wrap"}>
+          <div className={"sm:w-1/2 bg-gray-200 p-10"}>
+            <h2 className={"text-4xl font-bold"}>
+              What skills will you learn?
+            </h2>
+            <ul className={"mt-4"}>
+              <li> Computer programming</li>
+              <li> Software engineering</li>
+              <li> Coding</li>
+              <li> Data science</li>
+              <li> AI innovation</li>
+              <li> Data mining</li>
+              <li> Machine learning</li>
+              <li> Cyber operations</li>
+              <li> Navigating algorithms</li>
+              <li> Entrepreneurial skills</li>
+            </ul>
+          </div>
+
           <div
-            className="absolute inset-0 flex items-center"
-            aria-hidden="true"
+            className={
+              "w-96 sm:w-1/2 h-96 relative sm:bg-gradient-to-r from-gray-200 to-white"
+            }
           >
-            <div className="w-full border-t border-gray-300" />
+            <Image
+              src={"/images/backgrounds/learner in red.webp"}
+              className={"object-contain scale-90 "}
+              alt={"test image"}
+              fill
+            />
           </div>
         </div>
-
-        <Collapsible>
-          <CollapsibleTrigger>
-            <div className={"text-xl  mb-6 mt-10"}>
-              Week 1 - Fundamentals of Senior Management
-            </div>
-          </CollapsibleTrigger>
-          <CollapsibleContent className={"bg-gray-50 w-80 p-4"}>
-            <div className={"py-2"}>
-              <div className={"font-bold"}>- Getting started</div>
-              <div className={"font-light  text-justify"}>
-                This section includes all the information you will need to get
-                started in this course.
+        <div className={"mb-10"}>
+          <Collapsible>
+            <CollapsibleTrigger className={"w-full text-left "}>
+              <div
+                className={"text-2xl font-extrabold mb-6 mt-10 text-red-400"}
+              >
+                - What do I need to apply?
+              </div>
+            </CollapsibleTrigger>
+            <CollapsibleContent>
+              <p className={"font-bold mb-4"}>
+                To apply for this degree, you will need:
+              </p>
+              <li>
+                A bachelor’s degree in Computer Science or a related discipline
+                at a level equivalent to a UK second-class honours degree.
+              </li>
+              <li>
+                {" "}
+                The university will also consider non-standard applicants who
+                can demonstrate that they have relevant and appropriate work
+                experience (above that of user) in computing or a related field,
+                over a sustained period of time, typically four to five years.
+              </li>
+              <li>
+                {" "}
+                International applicants whose first language is not English
+                will need an IELTS score of at least 6.0 (with no less than 5.5
+                in any band), or equivalent.
+              </li>
+            </CollapsibleContent>
+            <div className="relative mt-6">
+              <div
+                className="absolute inset-0 flex items-center"
+                aria-hidden="true"
+              >
+                <div className="w-full border-t border-gray-300" />
               </div>
             </div>
-            <div className={"py-2"}>
-              <div className={"font-bold"}>- Introduction to Week 1</div>
-              <div className={"font-light w-72 text-justify"}>
-                Let's take a look ahead to what we'll be covering this week.
+          </Collapsible>
+          <Collapsible>
+            <CollapsibleTrigger className={"w-full text-left "}>
+              <div
+                className={"text-2xl font-extrabold mb-6 mt-10 text-red-400"}
+              >
+                - What are the learning outcomes?
+              </div>
+            </CollapsibleTrigger>
+            <CollapsibleContent>
+              <p className={" mb-4"}>
+                The content on this MSc in Computer Science has been carefully
+                designed to arm you with the workplace-ready skills to excel in
+                the tech industry.
+              </p>
+              <p>Here are just some of the topics you’ll cover:</p>{" "}
+              <ul className={"my-4"}>
+                <li>• Data structure and algorithms</li>
+                <li>• Artificial Intelligence</li>
+                <li>• Enterprise databases</li>
+                <li>• Responsible technology</li>
+              </ul>
+              <p>
+                You’ll also complete a research project to apply computer
+                science techniques.
+              </p>
+            </CollapsibleContent>
+            <div className="relative mt-6">
+              <div
+                className="absolute inset-0 flex items-center"
+                aria-hidden="true"
+              >
+                <div className="w-full border-t border-gray-300" />
               </div>
             </div>
-            <div className={"py-2"}>
-              <div className={"font-bold"}>- Misleading statistics</div>
-              <div className={"font-light w-72 text-justify"}>
-                Let's explore some common issues that arise with data collection
-                and how they can result in misleading statistics.
+          </Collapsible>
+          <Collapsible>
+            <CollapsibleTrigger className={"w-full text-left "}>
+              <div
+                className={"text-2xl font-extrabold mb-6 mt-10 text-red-400"}
+              >
+                - What you will learn
               </div>
-            </div>
-            <div className={"py-2"}>
-              <div className={"font-bold"}>- Misleading statistics</div>
-              <div className={"font-light w-72 text-justify"}>
-                Learn some common techniques people use to mislead others with
-                percentages.
-              </div>
-            </div>
-          </CollapsibleContent>
-        </Collapsible>
-        <Collapsible>
-          <CollapsibleTrigger>
-            <div className={"text-xl  mb-6 mt-10"}>
-              Week 2 - Sampling and variability
-            </div>
-          </CollapsibleTrigger>
-          <CollapsibleContent>
-            <div className={"py-2"}>
-              <div className={"font-bold"}>- Getting started</div>
-              <div className={"font-light w-72 text-justify"}>
-                This section includes all the information you will need to get
-                started in this course.
-              </div>
-            </div>
-            <div className={"py-2"}>
-              <div className={"font-bold"}>- Introduction to Week 1</div>
-              <div className={"font-light w-72 text-justify"}>
-                Let's take a look ahead to what we'll be covering this week.
-              </div>
-            </div>
-            <div className={"py-2"}>
-              <div className={"font-bold"}>- Misleading statistics</div>
-              <div className={"font-light w-72 text-justify"}>
-                Let's explore some common issues that arise with data collection
-                and how they can result in misleading statistics.
-              </div>
-            </div>
-            <div className={"py-2"}>
-              <div className={"font-bold"}>- Misleading statistics</div>
-              <div className={"font-light w-72 text-justify"}>
-                Learn some common techniques people use to mislead others with
-                percentages.
-              </div>
-            </div>
-          </CollapsibleContent>
-        </Collapsible>
-        <Collapsible>
-          <CollapsibleTrigger>
-            <div className={"text-xl  mb-6 mt-10"}>Week 3 - Study design</div>
-          </CollapsibleTrigger>
-          <CollapsibleContent>
-            <div className={"py-2 "}>
-              <div className={"font-bold"}>- Getting started</div>
-              <div className={"font-light w-72 text-justify"}>
-                This section includes all the information you will need to get
-                started in this course.
-              </div>
-            </div>
-            <div className={"py-2"}>
-              <div className={"font-bold"}>- Introduction to Week 1</div>
-              <div className={"font-light w-72 text-justify"}>
-                Let's take a look ahead to what we'll be covering this week.
-              </div>
-            </div>
-            <div className={"py-2"}>
-              <div className={"font-bold"}>- Misleading statistics</div>
-              <div className={"font-light w-72 text-justify"}>
-                Let's explore some common issues that arise with data collection
-                and how they can result in misleading statistics.
-              </div>
-            </div>
-            <div className={"py-2"}>
-              <div className={"font-bold"}>- Misleading statistics</div>
-              <div className={"font-light w-72 text-justify"}>
-                Learn some common techniques people use to mislead others with
-                percentages.
-              </div>
-            </div>
-          </CollapsibleContent>
-        </Collapsible>
+            </CollapsibleTrigger>
+            <CollapsibleContent>
+              <Collapsible>
+                <CollapsibleTrigger>
+                  <div className={"text-xl  mb-6 mt-10"}>
+                    Week 1 - Fundamentals of Senior Management
+                  </div>
+                </CollapsibleTrigger>
+                <CollapsibleContent className={"bg-gray-50 w-80 p-4"}>
+                  <div className={"py-2"}>
+                    <div className={"font-bold"}>- Getting started</div>
+                    <div className={"font-light  text-justify"}>
+                      This section includes all the information you will need to
+                      get started in this course.
+                    </div>
+                  </div>
+                  <div className={"py-2"}>
+                    <div className={"font-bold"}>- Introduction to Week 1</div>
+                    <div className={"font-light w-72 text-justify"}>
+                      Let's take a look ahead to what we'll be covering this
+                      week.
+                    </div>
+                  </div>
+                  <div className={"py-2"}>
+                    <div className={"font-bold"}>- Misleading statistics</div>
+                    <div className={"font-light w-72 text-justify"}>
+                      Let's explore some common issues that arise with data
+                      collection and how they can result in misleading
+                      statistics.
+                    </div>
+                  </div>
+                  <div className={"py-2"}>
+                    <div className={"font-bold"}>- Misleading statistics</div>
+                    <div className={"font-light w-72 text-justify"}>
+                      Learn some common techniques people use to mislead others
+                      with percentages.
+                    </div>
+                  </div>
+                </CollapsibleContent>
+              </Collapsible>
+              <Collapsible>
+                <CollapsibleTrigger>
+                  <div className={"text-xl  mb-6 mt-10"}>
+                    Week 2 - Sampling and variability
+                  </div>
+                </CollapsibleTrigger>
+                <CollapsibleContent>
+                  <div className={"py-2"}>
+                    <div className={"font-bold"}>- Getting started</div>
+                    <div className={"font-light w-72 text-justify"}>
+                      This section includes all the information you will need to
+                      get started in this course.
+                    </div>
+                  </div>
+                  <div className={"py-2"}>
+                    <div className={"font-bold"}>- Introduction to Week 1</div>
+                    <div className={"font-light w-72 text-justify"}>
+                      Let's take a look ahead to what we'll be covering this
+                      week.
+                    </div>
+                  </div>
+                  <div className={"py-2"}>
+                    <div className={"font-bold"}>- Misleading statistics</div>
+                    <div className={"font-light w-72 text-justify"}>
+                      Let's explore some common issues that arise with data
+                      collection and how they can result in misleading
+                      statistics.
+                    </div>
+                  </div>
+                  <div className={"py-2"}>
+                    <div className={"font-bold"}>- Misleading statistics</div>
+                    <div className={"font-light w-72 text-justify"}>
+                      Learn some common techniques people use to mislead others
+                      with percentages.
+                    </div>
+                  </div>
+                </CollapsibleContent>
+              </Collapsible>
+              <Collapsible>
+                <CollapsibleTrigger>
+                  <div className={"text-xl  mb-6 mt-10"}>
+                    Week 3 - Study design
+                  </div>
+                </CollapsibleTrigger>
+                <CollapsibleContent>
+                  <div className={"py-2 "}>
+                    <div className={"font-bold"}>- Getting started</div>
+                    <div className={"font-light w-72 text-justify"}>
+                      This section includes all the information you will need to
+                      get started in this course.
+                    </div>
+                  </div>
+                  <div className={"py-2"}>
+                    <div className={"font-bold"}>- Introduction to Week 1</div>
+                    <div className={"font-light w-72 text-justify"}>
+                      Let's take a look ahead to what we'll be covering this
+                      week.
+                    </div>
+                  </div>
+                  <div className={"py-2"}>
+                    <div className={"font-bold"}>- Misleading statistics</div>
+                    <div className={"font-light w-72 text-justify"}>
+                      Let's explore some common issues that arise with data
+                      collection and how they can result in misleading
+                      statistics.
+                    </div>
+                  </div>
+                  <div className={"py-2"}>
+                    <div className={"font-bold"}>- Misleading statistics</div>
+                    <div className={"font-light w-72 text-justify"}>
+                      Learn some common techniques people use to mislead others
+                      with percentages.
+                    </div>
+                  </div>
+                </CollapsibleContent>
+              </Collapsible>
+            </CollapsibleContent>
+          </Collapsible>
+        </div>
       </div>
     </div>
   );
