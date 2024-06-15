@@ -12,7 +12,7 @@ export default function layout({
         <StaffMobileNavbar />
       </div>
       <div className={"flex"}>
-        <div className={"w-1/6 hidden sm:block"}>
+        <div className={"w-1/6  hidden sm:block"}>
           <StaffSidebar />
         </div>
 

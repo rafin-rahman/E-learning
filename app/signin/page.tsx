@@ -44,6 +44,12 @@ export default function signin() {
               Password: <strong>123123</strong>
             </p>
             <p>
+              <span className={"uppercase"}>Business Admin</span>
+              <br />
+              Email: <strong>business@gmail.com</strong> <br />
+              Password: <strong>123123</strong>
+            </p>
+            <p>
               <span className={"uppercase"}>Admin</span>
               <br />
               Email: <strong>admin@gmail.com</strong> <br />

@@ -41,7 +41,7 @@ export default function UserMenu({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <div className="flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-white hover:bg-gray-800">
+        <div className="flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 hover:bg-gray-500 hover:bg-opacity-10">
           <img
             className="h-8 w-8 rounded-full bg-gray-800"
             src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
@@ -53,14 +53,14 @@ export default function UserMenu({
           </span>
         </div>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56">
+      <DropdownMenuContent className="w-56 bg-white bg-opacity-90">
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem>
+          <DropdownMenuItem className={"focus:bg-opacity-50 focus:bg-gray-200"}>
             <Link
               href={"/dashboard/settings/myProfile"}
-              className="flex justify-around w-full"
+              className="flex justify-around w-full "
             >
               <User />
               <span>Profile</span>
@@ -130,7 +130,7 @@ export default function UserMenu({
           <span>API</span>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
+        <DropdownMenuItem className={"focus:bg-opacity-50 focus:bg-gray-200"}>
           <Link href={"/logout"} className={"flex justify-around w-full"}>
             <LogOut className="mr-2 h-4 w-4" />
             <span>Log out</span>

@@ -110,17 +110,25 @@ export default async function StaffSidebar() {
   });
 
   return (
-    <div className="flex pt-4 grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6  h-screen sticky top-0">
+    <div className="flex pt-4 grow flex-col gap-y-5 overflow-y-auto bg-white px-6  h-screen sticky top-0">
+      <div className={"  -z-10"}>
+        <Image
+          src={"/images/backgrounds/red background image.jpg"}
+          className={"absolute object-cover h-1/2 blur-3xl -z-10 opacity-25"}
+          alt={"logo"}
+          fill
+        />
+      </div>
       <div className="flex h-16 shrink-0 items-center">
         <Image
           className="h-8 w-auto"
-          src={SEO.logo_dark_no_text}
+          src={SEO.logo_light_no_text}
           alt="Online Qualification"
           width={100}
           height={100}
           priority
         />
-        <span className={"text-white ml-3"}>Online Qualification</span>
+        <span className={" ml-3"}>Online Qualification</span>
       </div>
       <nav className="flex flex-1 flex-col">
         <ul role="list" className="flex flex-1 flex-col gap-y-7">
@@ -133,7 +141,7 @@ export default async function StaffSidebar() {
                     className={classNames(
                       item.current
                         ? "bg-gray-800 text-white"
-                        : "text-gray-400 hover:text-white hover:bg-gray-800",
+                        : "hover:bg-gray-500 hover:bg-opacity-10 ",
                       "group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
                     )}
                   >
@@ -155,6 +163,8 @@ export default async function StaffSidebar() {
               ))}
             </ul>
           </li>
+
+          {/* UNCOMMENT to add other options in the navbar - NOTE: CSS needs to be adapted to the current theme*/}
           {/*<li>*/}
           {/*  <div className="text-xs font-semibold leading-6 text-gray-400">*/}
           {/*    Other options*/}
@@ -190,7 +200,7 @@ export default async function StaffSidebar() {
                       lastName={validatedUser.lastName}
                     />
                   </TooltipTrigger>
-                  <TooltipContent>
+                  <TooltipContent className={"bg-gray-100 bg-opacity-5"}>
                     <p>
                       User role: <br />
                       {validatedUser.role.map((role: string) => {
