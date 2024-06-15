@@ -2,6 +2,8 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import logoutAction from "@/app/logout/logoutAction";
+import Image from "next/image";
+import { SEO } from "@/lib/company";
 
 export default function logout() {
   async function logoutUser() {
@@ -12,6 +14,14 @@ export default function logout() {
     <div
       className={"container h-screen flex flex-col items-center justify-center"}
     >
+      <div className={"relative h-32 w-full mb-16"}>
+        <Image
+          src={SEO.logo_light}
+          className={"object-fill"}
+          fill
+          alt={"logo"}
+        />
+      </div>
       <Button asChild variant={"outline"}>
         <Link href={"/"}> {"< "}Home page</Link>
       </Button>
@@ -28,9 +38,7 @@ export default function logout() {
       >
         Yes, log me out
       </Button>
-      <Button asChild variant={"outline"} className={"sm:w-1/2 w-full"}>
-        <Link href={"/dashboard"}>Visit /Dashboard route</Link>
-      </Button>
+
       {/*</div>*/}
     </div>
   );

@@ -12,6 +12,7 @@ export const staffNavigationMenuOptions = [
     icon: HomeIcon,
     count: "",
     current: false,
+    allowedRoles: [""],
   },
   {
     name: "Manage Courses",
@@ -19,6 +20,7 @@ export const staffNavigationMenuOptions = [
     icon: QueueListIcon,
     count: "",
     current: false,
+    allowedRoles: ["COURSE_MANAGER"],
   },
   {
     name: "Manage Users",
@@ -26,6 +28,7 @@ export const staffNavigationMenuOptions = [
     icon: UsersIcon,
     count: "",
     current: false,
+    allowedRoles: [""],
   },
   {
     name: "File upload [beta]",
@@ -33,6 +36,8 @@ export const staffNavigationMenuOptions = [
     icon: BeakerIcon,
     count: "",
     current: false,
+    // leave [""] if no allowedRoles, do not leave [] or the user will not see the option
+    allowedRoles: [""],
   },
 ];
 

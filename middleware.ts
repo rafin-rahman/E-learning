@@ -23,7 +23,7 @@ export async function middleware(request: NextRequest) {
     const userRole = payload.userRole;
     const currentRoute: string = request.nextUrl.pathname;
 
-    // Define the configuration for your routes and their allowed roles
+    // Define the configuration for your routes and their allowed allowedRoles
     const routeRoleConfig = [
       {
         route: "/studentSpace:path*",
@@ -42,7 +42,7 @@ export async function middleware(request: NextRequest) {
         roles: ["SUPER_ADMIN", "COURSE_MANAGER"],
       },
       // Add more route configurations here as needed
-      // {route: "another-route-path", roles: ["ROLE1", "ROLE2"]}
+      // {route: "another-route-path", allowedRoles: ["ROLE1", "ROLE2"]}
     ];
 
     // Loop over the configuration and check each route

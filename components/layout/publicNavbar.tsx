@@ -196,9 +196,13 @@ const PublicNavbar: React.FC<PublicNavbarProps> = ({ isLoggedIn }) => {
       </div>
       {isLoggedIn ? (
         <div className={"flex gap-4"}>
-          <Button variant={"ghost"} className={"relative  right-10 w-full "}>
+          <Button
+            className={
+              "relative  right-10 w-full bg-gradient-to-r from-amber-300 to-red-400 hover:from-amber-300 hover:via-amber-400  hover:to-red-400 "
+            }
+          >
             <Link href={"/studentSpace"} className="font-black">
-              Student Hub
+              Go to Portal
             </Link>
           </Button>
           <Button variant={"default"} className={"relative w-24 right-10 "}>
@@ -208,7 +212,11 @@ const PublicNavbar: React.FC<PublicNavbarProps> = ({ isLoggedIn }) => {
           </Button>
         </div>
       ) : (
-        <Button variant={"default"} className={"relative w-24 right-10 "}>
+        <Button
+          asChild
+          variant={"default"}
+          className={"relative w-24 right-10 "}
+        >
           <Link href={"/signin"} className="">
             Login
           </Link>

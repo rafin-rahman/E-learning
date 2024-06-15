@@ -11,14 +11,12 @@ import signInAction from "../../app/signin/signInAction";
 import { useToast } from "@/components/ui/use-toast";
 
 const SignInForm = () => {
-  const [errorMessage, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const { toast } = useToast();
   const signInEmailRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (signInEmailRef.current) {
-      console.log("use effect signinform");
       signInEmailRef.current.focus();
     }
   }, []);
@@ -30,7 +28,7 @@ const SignInForm = () => {
       password: "",
     },
   });
-  // this is an empty object, it helps to show form error messages from ZOD library
+
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setLoading(true);
     try {

@@ -4,6 +4,8 @@ import SignInForm from "@/components/signInForm/SignInForm";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { roboto_mono } from "@/lib/font";
+import { SEO } from "@/lib/company";
+import Image from "next/image";
 
 export default function signin() {
   // if the user is already logged in, redirect to the home page
@@ -13,16 +15,23 @@ export default function signin() {
 
   return (
     <div className={"container mt-20"}>
+      <div className={"relative h-32 w-full mb-16"}>
+        <Image
+          src={SEO.logo_light}
+          className={"object-fill"}
+          fill
+          alt={"logo"}
+        />
+      </div>
+
       <h1 className={"text-4xl mb-10 "}>Sign in page</h1>
       <Button asChild variant={"outline"} className={"mr-4"}>
         <Link href={"/"}> {"< "}Home page</Link>
       </Button>
-
       <SignInForm />
       <p>
         Don't have an account? <Link href={"signup"}>Sign Up</Link>
       </p>
-
       {/*  this is test application, anyone who visits the page should be able to test it using our default logins for ADMIN, SUPER_ADMIN, COURSE_MANAGER  */}
       <div className={roboto_mono.className}>
         <div className={"text-gray-400"}>

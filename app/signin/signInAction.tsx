@@ -15,14 +15,14 @@ export default async function signInAction(
   let student;
   const staff = await prisma.user.findUnique({
     where: {
-      email: email,
+      email: email.toLowerCase(),
     },
   });
 
   if (!staff) {
     student = await prisma.student.findUnique({
       where: {
-        email: email,
+        email: email.toLowerCase(),
       },
     });
 

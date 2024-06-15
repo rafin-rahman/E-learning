@@ -13,7 +13,7 @@ import { SEO } from "@/lib/company";
 import { staffNavigationMenuOptions } from "@/lib/navigationMenuOptions";
 
 //TODO sidebar navigation needs to highlight the current page
-const navigation = staffNavigationMenuOptions;
+
 const teams = [
   { id: 1, name: "Option1", href: "#", initial: "1", current: false },
   { id: 2, name: "Option2", href: "#", initial: "2", current: false },
@@ -65,12 +65,21 @@ export default async function StaffSidebar() {
   const userCookie = cookies().get("Authorization");
   //use jose to find user info from the cookie
   const secret = new TextEncoder().encode(process.env.JWT_SECRET);
-  let userId: string | undefined;
+  let userId: string;
+  let userRoles: string[];
 
   if (userCookie) {
     const jwt = userCookie.value;
-    const { payload } = await jose.jwtVerify(jwt, secret, {});
+    const {
+      payload,
+    }: {
+      payload: { sub: string; userRole: string[] };
+    } = await jose.jwtVerify(jwt, secret, {});
     userId = payload.sub;
+    userRoles = payload.userRole;
+  } else {
+    console.log("no user cookie found");
+    redirect("/logout");
   }
 
   if (!userId) {
@@ -82,11 +91,23 @@ export default async function StaffSidebar() {
     validatedUser = await fetchUserInfo(userId);
     if (!validatedUser) {
       console.log(
-        "sidebar.tsx - User info not found when using fetchUserInfo() function"
+        "staffSidebar.tsx - User info not found when using fetchUserInfo() function"
       );
       redirect("/somethingWrong");
     }
   }
+
+  const navigation = staffNavigationMenuOptions.filter((item) => {
+    // check if logged-in user has the required role to see the navigation menu item
+    if (item.allowedRoles.length > 0) {
+      return item.allowedRoles.some(
+        (role) =>
+          userRoles.includes(role) ||
+          userRoles.includes("ADMIN") ||
+          userRoles.includes("SUPER_ADMIN")
+      );
+    }
+  });
 
   return (
     <div className="flex pt-4 grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6  h-screen sticky top-0">

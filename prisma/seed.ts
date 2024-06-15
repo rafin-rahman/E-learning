@@ -296,7 +296,7 @@ async function main() {
     {
       title: "Introduction to Healthcare",
       description:
-        "Gain an overview of healthcare systems, policies, and practices. This course introduces students to the structure and function of healthcare organizations, patient care, and the various roles of healthcare professionals.",
+        "Gain an overview of healthcare systems, policies, and practices. This course introduces students to the structure and function of healthcare organizations, patient care, and the various allowedRoles of healthcare professionals.",
       image: "",
       price: 200.0,
       discountedPrice: 180.0,
