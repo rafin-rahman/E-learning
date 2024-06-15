@@ -46,7 +46,7 @@ export function ExploreSubjectsTabs({
               </div>
               <div className={"border-l-2 border-red-400 pl-10"}>
                 <Image
-                  src={"/images/icons/quote.png"}
+                  src={"/icons/quote.png"}
                   className={"rotate-180 inline"}
                   width={20}
                   height={20}
@@ -55,7 +55,7 @@ export function ExploreSubjectsTabs({
                 The course was beautifully conceptualised, and well presented.
                 The videos were lucid, clear, articulate and informative.{" "}
                 <Image
-                  src={"/images/icons/quote.png"}
+                  src={"/icons/quote.png"}
                   className={"inline"}
                   width={20}
                   height={20}
@@ -163,7 +163,7 @@ export function ExploreSubjectsTabs({
               </div>
               <div className={"border-l-2 border-red-400 pl-10"}>
                 <Image
-                  src={"/images/icons/quote.png"}
+                  src={"/icons/quote.png"}
                   className={"rotate-180 inline"}
                   width={20}
                   height={20}
@@ -174,7 +174,7 @@ export function ExploreSubjectsTabs({
                 well as gaining practical strategies, I have learned something
                 about myself too.{" "}
                 <Image
-                  src={"/images/icons/quote.png"}
+                  src={"/icons/quote.png"}
                   className={"inline"}
                   width={20}
                   height={20}
@@ -283,7 +283,7 @@ export function ExploreSubjectsTabs({
               </div>
               <div className={"border-l-2 border-red-400 pl-10"}>
                 <Image
-                  src={"/images/icons/quote.png"}
+                  src={"/icons/quote.png"}
                   className={"rotate-180 inline"}
                   width={20}
                   height={20}
@@ -293,7 +293,7 @@ export function ExploreSubjectsTabs({
                 definitely use the methods and techniques of inclusion in my
                 classroom. Thank you.{" "}
                 <Image
-                  src={"/images/icons/quote.png"}
+                  src={"/icons/quote.png"}
                   className={"inline"}
                   width={20}
                   height={20}
@@ -396,7 +396,7 @@ export function ExploreSubjectsTabs({
               </div>
               <div className={"border-l-2 border-red-400 pl-10"}>
                 <Image
-                  src={"/images/icons/quote.png"}
+                  src={"/icons/quote.png"}
                   className={"rotate-180 inline"}
                   width={20}
                   height={20}
@@ -406,7 +406,7 @@ export function ExploreSubjectsTabs({
                 explanations, relevant examples, and interactive exercises that
                 allowed me to apply what I learned in a hands-on manner.{" "}
                 <Image
-                  src={"/images/icons/quote.png"}
+                  src={"/icons/quote.png"}
                   className={"inline"}
                   width={20}
                   height={20}
@@ -513,7 +513,7 @@ export function ExploreSubjectsTabs({
               </div>
               <div className={"border-l-2 border-red-400 pl-10"}>
                 <Image
-                  src={"/images/icons/quote.png"}
+                  src={"/icons/quote.png"}
                   className={"rotate-180 inline"}
                   width={20}
                   height={20}
@@ -522,7 +522,7 @@ export function ExploreSubjectsTabs({
                 Great balance of research, personal stories and practical
                 advice. Thank you.{" "}
                 <Image
-                  src={"/images/icons/quote.png"}
+                  src={"/icons/quote.png"}
                   className={"inline"}
                   width={20}
                   height={20}
@@ -628,7 +628,7 @@ export function ExploreSubjectsTabs({
               </div>
               <div className={"border-l-2 border-red-400 pl-10"}>
                 <Image
-                  src={"/images/icons/quote.png"}
+                  src={"/icons/quote.png"}
                   className={"rotate-180 inline"}
                   width={20}
                   height={20}
@@ -638,7 +638,7 @@ export function ExploreSubjectsTabs({
                 with opportunities to hear from researchers in each field and
                 suggested further learning links for personal study.{" "}
                 <Image
-                  src={"/images/icons/quote.png"}
+                  src={"/icons/quote.png"}
                   className={"inline"}
                   width={20}
                   height={20}
