@@ -22,7 +22,7 @@ model User {
   telephone    String?
   password     String
   profileImage String?
-  role         String[] // SUPER_ADMIN, ADMIN, BUSINESS_ADMIN, COURSE_MANAGER, LECTURER, STUDENT_SUPPORT, REGISTRY, FINANCE
+  role         String[] // SUPER_ADMIN, BUSINESS_ADMIN, COURSE_MANAGER, LECTURER, STUDENT_SUPPORT, REGISTRY, FINANCE
   permissions  String[]
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
@@ -120,6 +120,7 @@ model CourseLevel {
 model BusinessClient {
   id                 String               @id @default(uuid())
   name               String
+  shortName          String?
   logo               String?
   domains            String[]
   createdAt          DateTime             @default(now())

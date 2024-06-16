@@ -21,7 +21,7 @@ async function main() {
         email: "admin@gmail.com",
         telephone: "1234567890",
         password: await hashPassword("123123"),
-        role: ["STAFF", "ADMIN"],
+        role: ["STAFF", "SUPER_ADMIN"],
       },
       {
         firstName: "Jonah",
@@ -39,14 +39,6 @@ async function main() {
         password: await hashPassword("123123"),
         role: ["STAFF", "COURSE_MANAGER"],
         permissions: ["can_delete_students"],
-      },
-      {
-        firstName: "Hugo",
-        lastName: "Mcgee",
-        email: "superadmin@gmail.com",
-        telephone: "1234567890",
-        password: await hashPassword("123123"),
-        role: ["STAFF", "SUPER_ADMIN"],
       },
     ],
   });
@@ -914,27 +906,33 @@ async function main() {
   //endregion
 
   //region Business courses
+
+  await prisma.businessClientUser.deleteMany();
   await prisma.businessClient.deleteMany();
 
   await prisma.businessClient.createMany({
     data: [
       {
         name: "Elizabeth School of London Limited",
+        shortName: "ESL",
         logo: "https://www.pengroup.com/_next/image?url=%2Flogos%2FESL%2FESL.png&w=640&q=75",
         domains: ["esl.ac.uk", "elizabethschool.com"],
       },
       {
         name: "Victoria College of Arts and Design",
+        shortName: "VCAD",
         logo: "https://www.pengroup.com/_next/image?url=%2Flogos%2FVCAD%2FVCAD.png&w=640&q=75",
         domains: ["vcad.ac.uk"],
       },
       {
         name: "William College",
+        shortName: "WC",
         logo: "https://www.pengroup.com/_next/image?url=%2Flogos%2FWilliam%2FWilliam.png&w=640&q=75",
         domains: ["williamcollege.com"],
       },
       {
         name: "London Professional College",
+        shortName: "LPC",
         logo: "https://www.pengroup.com/_next/image?url=%2Flogos%2FWilliam%2FWilliam.png&w=640&q=75",
         domains: [
           "londonprofessionalcollege.com",
@@ -977,8 +975,6 @@ async function main() {
   ) {
     return console.error("Business client not found");
   }
-
-  await prisma.businessClientUser.deleteMany();
 
   await prisma.businessClientUser.createMany({
     data: [

@@ -42,7 +42,7 @@ export const columns: ColumnDef<Payment>[] = [
         currency: "GBP",
       }).format(amount);
 
-      return <div className="text-right ">{formatted}</div>;
+      return <div className="text-right">{formatted}</div>;
     },
   },
   {
