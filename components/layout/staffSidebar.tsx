@@ -110,8 +110,8 @@ export default async function StaffSidebar() {
   });
 
   return (
-    <div className="flex pt-4 grow flex-col gap-y-5 overflow-y-auto bg-white px-6  h-screen sticky top-0">
-      <div className={"  -z-10"}>
+    <div className=" group w-20 hover:w-64 transition-all duration-300 flex pt-4 grow flex-col gap-y-5 overflow-y-auto bg-white px-6  h-screen sticky top-0">
+      <div className={"-z-10"}>
         <Image
           src={"/images/backgrounds/red background image.jpg"}
           className={"absolute object-cover h-1/2 blur-3xl -z-10 opacity-25"}
@@ -128,7 +128,9 @@ export default async function StaffSidebar() {
           height={100}
           priority
         />
-        <span className={" ml-3"}>Online Qualification</span>
+        <span className={"hidden group-hover:block ml-3"}>
+          Online Qualification
+        </span>
       </div>
       <nav className="flex flex-1 flex-col">
         <ul role="list" className="flex flex-1 flex-col gap-y-7">
@@ -149,7 +151,13 @@ export default async function StaffSidebar() {
                       className="h-6 w-6 shrink-0"
                       aria-hidden="true"
                     />
-                    {item.name}
+                    <span
+                      className={
+                        " opacity-0 group-hover:opacity-100 transition-all duration-500"
+                      }
+                    >
+                      {item.name}
+                    </span>
                     {item.count ? (
                       <span
                         className="ml-auto w-9 min-w-max whitespace-nowrap rounded-full bg-gray-900 px-2.5 py-0.5 text-center text-xs font-medium leading-5 text-white ring-1 ring-inset ring-gray-700"

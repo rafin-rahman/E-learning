@@ -14,6 +14,10 @@ const nextConfig = {
 				protocol: 'https',
 				hostname: 'plus.unsplash.com',
 				port:''
+			},{
+				protocol: 'https',
+				hostname: 'pengroup.com',
+				port:''
 			}
 		]
 	}

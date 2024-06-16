@@ -1,5 +1,6 @@
 import bcrypt from "bcryptjs";
 import { PrismaClient } from "@prisma/client";
+
 const prisma = new PrismaClient();
 
 async function main() {
@@ -216,6 +217,8 @@ async function main() {
     return level.id;
   };
 
+  //region Courses
+  // random image urls to populate courses background images
   const listOfImgUrls = [
     "https://images.unsplash.com/photo-1520333789090-1afc82db536a?q=80&w=3542&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "https://plus.unsplash.com/premium_photo-1705267936187-aceda1a6c1a6?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -908,6 +911,117 @@ async function main() {
       deliveryPartnerId: findPartnerId(2),
     },
   ];
+  //endregion
+
+  //region Business courses
+  await prisma.businessClient.deleteMany();
+
+  await prisma.businessClient.createMany({
+    data: [
+      {
+        name: "Elizabeth School of London Limited",
+        logo: "https://www.pengroup.com/_next/image?url=%2Flogos%2FESL%2FESL.png&w=640&q=75",
+        domains: ["esl.ac.uk", "elizabethschool.com"],
+      },
+      {
+        name: "Victoria College of Arts and Design",
+        logo: "https://www.pengroup.com/_next/image?url=%2Flogos%2FVCAD%2FVCAD.png&w=640&q=75",
+        domains: ["vcad.ac.uk"],
+      },
+      {
+        name: "William College",
+        logo: "https://www.pengroup.com/_next/image?url=%2Flogos%2FWilliam%2FWilliam.png&w=640&q=75",
+        domains: ["williamcollege.com"],
+      },
+      {
+        name: "London Professional College",
+        logo: "https://www.pengroup.com/_next/image?url=%2Flogos%2FWilliam%2FWilliam.png&w=640&q=75",
+        domains: [
+          "londonprofessionalcollege.com",
+          "lpc.ac.uk",
+          "londonpc.org.uk",
+        ],
+      },
+    ],
+  });
+
+  const businessClientEsl = await prisma.businessClient.findFirst({
+    where: {
+      name: "Elizabeth School of London Limited",
+    },
+  });
+
+  const businessClientVcad = await prisma.businessClient.findFirst({
+    where: {
+      name: "Victoria College of Arts and Design",
+    },
+  });
+
+  const businessClientWilliam = await prisma.businessClient.findFirst({
+    where: {
+      name: "William College",
+    },
+  });
+
+  const businessClientLpc = await prisma.businessClient.findFirst({
+    where: {
+      name: "London Professional College",
+    },
+  });
+
+  if (
+    !businessClientEsl ||
+    !businessClientVcad ||
+    !businessClientWilliam ||
+    !businessClientLpc
+  ) {
+    return console.error("Business client not found");
+  }
+
+  await prisma.businessClientUser.deleteMany();
+
+  await prisma.businessClientUser.createMany({
+    data: [
+      {
+        firstName: "Moshfiqur",
+        lastName: "Rahman",
+        email: "moshfiqur@esl.ac.uk",
+        telephone: "1234567890",
+        password: "123123",
+        roles: ["BUSINESS_ADMIN"],
+        businessClientId: businessClientEsl.id,
+      },
+      {
+        firstName: "Moshfiqur",
+        lastName: "Rahman",
+        email: "moshfiqur@vcad.co.uk",
+        telephone: "1234567890",
+        password: "123123",
+        roles: ["BUSINESS_ADMIN"],
+        businessClientId: businessClientVcad.id,
+      },
+      {
+        firstName: "Moshfiqur",
+        lastName: "Rahman",
+        email: "moshfiqur@williamcollege.com",
+        telephone: "1234567890",
+        password: "123123",
+        roles: ["BUSINESS_ADMIN"],
+        businessClientId: businessClientWilliam.id,
+      },
+      {
+        firstName: "Moshfiqur",
+        lastName: "Rahman",
+        email: "moshfiqur@londonpc.org.uk",
+        telephone: "1234567890",
+        password: "123123",
+        roles: ["BUSINESS_ADMIN"],
+        businessClientId: businessClientEsl.id,
+      },
+    ],
+  });
+
+  //endregion
 
   // Create courses in the database
   await Promise.all(

@@ -47,7 +47,7 @@ export default function UserMenu({
             alt=""
           />
           <span className="sr-only">Your profile</span>
-          <span aria-hidden="true">
+          <span aria-hidden="true" className={"group-hover:block hidden"}>
             {firstName || "NA"} {lastName || "NA"}
           </span>
         </div>

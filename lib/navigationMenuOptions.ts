@@ -1,17 +1,17 @@
 import {
-  BeakerIcon,
-  HomeIcon,
+  BriefcaseIcon,
   QueueListIcon,
   UsersIcon,
 } from "@heroicons/react/24/outline";
 
 export const staffNavigationMenuOptions = [
   {
-    name: "Home",
-    href: "/dashboard/homeApp",
-    icon: HomeIcon,
+    name: "Manage Users",
+    href: "/dashboard/admin/manageUsers",
+    icon: UsersIcon,
     count: "",
     current: false,
+    // leave [""] if no allowedRoles, do not leave [] or the user will not see the option
     allowedRoles: [""],
   },
   {
@@ -23,21 +23,12 @@ export const staffNavigationMenuOptions = [
     allowedRoles: ["COURSE_MANAGER"],
   },
   {
-    name: "Manage Users",
-    href: "/dashboard/admin/manageUsers",
-    icon: UsersIcon,
+    name: "Manage Businesses",
+    href: "/dashboard/business/manage",
+    icon: BriefcaseIcon,
     count: "",
     current: false,
-    allowedRoles: [""],
-  },
-  {
-    name: "File upload [beta]",
-    href: "/dashboard/admin/uploadFile",
-    icon: BeakerIcon,
-    count: "",
-    current: false,
-    // leave [""] if no allowedRoles, do not leave [] or the user will not see the option
-    allowedRoles: [""],
+    allowedRoles: ["BUSINESS_ADMIN"],
   },
 ];
 

@@ -15,6 +15,7 @@ datasource db {
 
 model User {
   id           String    @id @default(uuid())
+  status       String    @default("ACTIVE")
   firstName    String
   lastName     String
   email        String    @unique
@@ -70,6 +71,7 @@ model Session {
 
 model Course {
   id                String           @id @default(uuid())
+  status            String           @default("ACTIVE")
   title             String
   description       String
   image             String
@@ -113,6 +115,31 @@ model CourseLevel {
   Course    Course[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model BusinessClient {
+  id                 String               @id @default(uuid())
+  name               String
+  logo               String?
+  domains            String[]
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @updatedAt
+  businessClientUser BusinessClientUser[]
+}
+
+model BusinessClientUser {
+  id               String         @id @default(uuid())
+  status           String         @default("ACTIVE")
+  firstName        String
+  lastName         String
+  email            String         @unique
+  telephone        String
+  password         String
+  roles            String[] // BUSINESS_ADMIN, BUSINESS_LEARNER
+  businessClient   BusinessClient @relation(fields: [businessClientId], references: [id])
+  businessClientId String
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
 }
 
 // Course Subjects
