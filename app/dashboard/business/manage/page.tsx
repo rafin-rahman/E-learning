@@ -9,9 +9,7 @@ async function getData(): Promise<Businesses[]> {
     throw new Error(response.error);
   }
 
-  const businesses = response as Businesses[];
-
-  return businesses;
+  return response as Businesses[];
 }
 
 export default async function ManageBusinessClients() {
