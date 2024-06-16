@@ -15,7 +15,7 @@ CREATE TABLE "Post" (
 CREATE TABLE "Profile" (
     "id" SERIAL NOT NULL,
     "bio" TEXT,
-    "id" INTEGER NOT NULL,
+
 
     CONSTRAINT "Profile_pkey" PRIMARY KEY ("id")
 );

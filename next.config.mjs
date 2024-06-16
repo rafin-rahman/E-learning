@@ -16,7 +16,7 @@ const nextConfig = {
 				port:''
 			},{
 				protocol: 'https',
-				hostname: 'pengroup.com',
+				hostname: 'www.pengroup.com',
 				port:''
 			}
 		]

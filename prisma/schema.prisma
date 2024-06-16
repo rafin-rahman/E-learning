@@ -119,6 +119,7 @@ model CourseLevel {
 
 model BusinessClient {
   id                 String               @id @default(uuid())
+  status             String               @default("ACTIVE")
   name               String
   shortName          String?
   logo               String?
