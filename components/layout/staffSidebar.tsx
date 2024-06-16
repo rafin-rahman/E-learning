@@ -14,11 +14,11 @@ import { staffNavigationMenuOptions } from "@/lib/navigationMenuOptions";
 
 //TODO sidebar navigation needs to highlight the current page
 
-const teams = [
-  { id: 1, name: "Option1", href: "#", initial: "1", current: false },
-  { id: 2, name: "Option2", href: "#", initial: "2", current: false },
-  { id: 3, name: "Option3", href: "#", initial: "3", current: false },
-];
+// const teams = [
+//   { id: 1, name: "Option1", href: "#", initial: "1", current: false },
+//   { id: 2, name: "Option2", href: "#", initial: "2", current: false },
+//   { id: 3, name: "Option3", href: "#", initial: "3", current: false },
+// ];
 
 async function fetchUserInfo(id: string) {
   let loggedUserData;
