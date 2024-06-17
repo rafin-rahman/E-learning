@@ -1,3 +1,4 @@
+"use client";
 import * as React from "react";
 
 import { cn } from "@/lib/utils";
@@ -23,6 +24,18 @@ import {
 } from "@/components/ui/drawer";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import {
+  Form,
+  FormField,
+  FormControl,
+  FormItem,
+  FormLabel,
+} from "@/components/ui/form";
+import { useToast } from "@/components/ui/use-toast";
+import { createBusinessClientSchema as formSchema } from "@/lib/zodSchema";
 
 export function AddBusinessClient() {
   const [open, setOpen] = React.useState(false);
@@ -36,9 +49,9 @@ export function AddBusinessClient() {
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
-            <DialogTitle>Edit profile</DialogTitle>
+            <DialogTitle>Add new business</DialogTitle>
             <DialogDescription>
-              Make changes to your profile here. Click save when you're done.
+              Make sure the business is approved.
             </DialogDescription>
           </DialogHeader>
           <ProfileForm />
@@ -50,13 +63,13 @@ export function AddBusinessClient() {
   return (
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>
-        <Button variant="outline">Edit Profile</Button>
+        <Button className={"rounded-full text-xl"}>+</Button>
       </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader className="text-left">
-          <DrawerTitle>Edit profile</DrawerTitle>
+          <DrawerTitle>Add new business</DrawerTitle>
           <DrawerDescription>
-            Make changes to your profile here. Click save when you're done.
+            Make sure the business is approved.
           </DrawerDescription>
         </DrawerHeader>
         <ProfileForm className="px-4" />
@@ -71,17 +84,91 @@ export function AddBusinessClient() {
 }
 
 function ProfileForm({ className }: React.ComponentProps<"form">) {
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      shortName: "",
+      logo: "",
+      domains: "",
+    },
+  });
+
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    console.log("values");
+    console.log(values);
+  };
   return (
-    <form className={cn("grid items-start gap-4", className)}>
-      <div className="grid gap-2">
-        <Label htmlFor="email">Email</Label>
-        <Input type="email" id="email" defaultValue="shadcn@example.com" />
-      </div>
-      <div className="grid gap-2">
-        <Label htmlFor="username">Username</Label>
-        <Input id="username" defaultValue="@shadcn" />
-      </div>
-      <Button type="submit">Save changes</Button>
-    </form>
+    <div className={"mx-4 sm:mx-0"}>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)}>
+          <FormField
+            control={form.control}
+            name={"name"}
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Legal business Name</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder={"e.g. Online Qualifications LTD"}
+                    {...field}
+                    type={"text"}
+                  />
+                </FormControl>
+              </FormItem>
+            )}
+          ></FormField>{" "}
+          <FormField
+            control={form.control}
+            name={"shortName"}
+            render={({ field }) => (
+              <FormItem className={"mt-4"}>
+                <Label>Short form</Label>
+                <FormControl>
+                  <Input placeholder={"e.g. OQ"} {...field} type={"text"} />
+                </FormControl>
+              </FormItem>
+            )}
+          ></FormField>
+          <FormField
+            control={form.control}
+            name={"logo"}
+            render={({ field }) => (
+              <FormItem className={"mt-4"}>
+                <FormLabel>Upload logo</FormLabel>
+                <FormControl>
+                  <div>
+                    <Input
+                      {...field}
+                      type={"file"}
+                      accept={"image/png, image/jpeg, image/jpg"}
+                    />
+                  </div>
+                </FormControl>
+              </FormItem>
+            )}
+          ></FormField>{" "}
+          <FormField
+            control={form.control}
+            name={"domains"}
+            render={({ field }) => (
+              <FormItem className={"mt-4"}>
+                <FormLabel>Domains</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder={"e.g. oq.com, onlinequalification.com"}
+                    {...field}
+                    type={"text"}
+                  />
+                </FormControl>
+              </FormItem>
+            )}
+          ></FormField>
+          <Button type={"submit"} className={"mt-4 w-full"}>
+            Add
+          </Button>
+        </form>
+      </Form>
+    </div>
   );
 }
