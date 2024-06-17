@@ -21,6 +21,8 @@ import {
 } from "@/components/ui/table";
 import { Input } from "@/components/ui/input";
 import React from "react";
+import { Button } from "@/components/ui/button";
+import { AddBusinessClient } from "@/components/business/addBusinessClient";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -60,7 +62,7 @@ export function DataTable<TData, TValue>({
             className="max-w-sm"
           />
         </div>
-        <div className="flex items-center py-4">
+        <div className="flex gap-2 items-center py-4">
           <Input
             placeholder="Licenses"
             value={
@@ -71,6 +73,7 @@ export function DataTable<TData, TValue>({
             }
             className="max-w-sm"
           />
+          <AddBusinessClient />
         </div>
       </div>
       <div className="rounded-md border">

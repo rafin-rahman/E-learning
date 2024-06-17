@@ -144,6 +144,17 @@ model BusinessClientUser {
   updatedAt        DateTime       @updatedAt
 }
 
+model BusinessCourses {
+  id          String   @id @default(uuid())
+  status      String   @default("ACTIVE")
+  title       String
+  description String
+  image       String
+  price       Float
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
 // Course Subjects
 // BUSINESS_AND_MANAGEMENT,
 // ARTIFICIAL_INTELLIGENCE,
