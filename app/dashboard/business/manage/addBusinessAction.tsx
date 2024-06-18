@@ -1,16 +1,17 @@
 "use server";
 import prisma from "@/lib/prisma";
 import { put, del, PutBlobResult } from "@vercel/blob";
+import { log } from "node:util";
 
 export default async function addBusinessAction(
   formData: FormData
 ): Promise<string> {
   // find if existing businesses already exists
-  const existingBusinesses = await prisma.businessClient.findMany({
-    where: {
-      name: formData.get("name") as string,
-    },
-  });
+  // const existingBusinesses = await prisma.businessClient.findMany({
+  //   where: {
+  //     name: formData.get("name") as string,
+  //   },
+  // });
 
   // remove all the spaces from formData.domains and create an array by splitting by comma
   const domainsToArray = (formData.get("domains") as string)
@@ -20,6 +21,7 @@ export default async function addBusinessAction(
     .split(",");
 
   const logo = formData.get("logo") as File;
+
   const pathName = "businessClients/" + formData.get("name") + "/" + logo.name;
 
   // Upload the logo to the storage
@@ -32,7 +34,9 @@ export default async function addBusinessAction(
       data: {
         name: formData.get("name") as string,
         shortName: formData.get("shortName") as string,
-        logo: uploadResult.url,
+        country: formData.get("country") as string,
+        // if no logo is uploaded, then set the logo to empty string
+        logo: logo.name ? uploadResult.url : "",
         domains: domainsToArray as string[],
       },
     });

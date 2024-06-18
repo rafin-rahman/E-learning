@@ -35,7 +35,8 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { useToast } from "@/components/ui/use-toast";
+import { CountrySelect } from "@/components/business/countrySelect";
+
 import { createBusinessClientSchema as formSchema } from "@/lib/zodSchema";
 import addBusinessAction from "@/app/dashboard/business/manage/addBusinessAction";
 
@@ -97,6 +98,8 @@ export function AddBusinessClient() {
 function ProfileForm({ className }: React.ComponentProps<"form">) {
   const [logo, setLogo] = React.useState<File | null>(null);
   const [domains, setDomains] = React.useState<string[]>([]);
+  const [countryFromImportedComponent, setCountryFromImportedComponent] =
+    React.useState<string>("");
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -121,15 +124,19 @@ function ProfileForm({ className }: React.ComponentProps<"form">) {
       const formData = new FormData();
       formData.append("name", values.name);
       formData.append("shortName", values.shortName || "");
-      formData.append("country", values.country);
+      formData.append("country", countryFromImportedComponent);
       formData.append("logo", logo as Blob);
       formData.append("domains", values.domains);
-      console.log(values.logo);
-      console.log(values.domains);
       // Call API to create business
       const response = await addBusinessAction(formData);
     } catch (error) {}
   };
+
+  const getCountry = (country: string) => {
+    console.log(country);
+    setCountryFromImportedComponent(country);
+  };
+
   return (
     <div className={"mx-4 sm:mx-0"}>
       <Form {...form}>
@@ -171,7 +178,15 @@ function ProfileForm({ className }: React.ComponentProps<"form">) {
               <FormItem className={"mt-4"}>
                 <Label>Country</Label>
                 <FormControl>
-                  <Input placeholder={"e.g. UK"} {...field} type={""} />
+                  <div className={"mt-6"}>
+                    <CountrySelect callback={getCountry} />
+                    <Input
+                      {...field}
+                      type={"text"}
+                      value={countryFromImportedComponent}
+                      className={"hidden"}
+                    />
+                  </div>
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -191,6 +206,7 @@ function ProfileForm({ className }: React.ComponentProps<"form">) {
                       accept={"image/png, image/jpeg, image/jpg"}
                       onChange={(e) => {
                         setLogo(e.target.files?.[0] || null);
+                        field.onChange(e);
                       }}
                     />
                   </div>

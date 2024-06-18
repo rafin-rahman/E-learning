@@ -122,6 +122,7 @@ model BusinessClient {
   status             String               @default("ACTIVE") // ACTIVE, SUSPENDED
   name               String
   shortName          String?
+  country            String?
   logo               String?
   domains            String[]
   createdAt          DateTime             @default(now())
