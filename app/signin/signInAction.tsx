@@ -4,6 +4,7 @@ import { cookies } from "next/headers";
 import prisma from "@/lib/prisma";
 import bcrypt from "bcryptjs";
 import * as jose from "jose";
+import { userLoginTimeout } from "@/lib/company";
 
 export default async function signInAction(
   currentState: any,
@@ -51,8 +52,7 @@ export default async function signInAction(
     .sign(secret);
 
   cookies().set("Authorization", jwt, {
-    //max age of 10 minutes
-    maxAge: 600,
+    maxAge: 1800,
     path: "/",
     sameSite: "strict",
     secure: true,

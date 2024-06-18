@@ -41,7 +41,7 @@ export const columns: ColumnDef<Businesses>[] = [
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Email
+          Business
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
@@ -52,12 +52,16 @@ export const columns: ColumnDef<Businesses>[] = [
         <div className="flex gap-4 items-center">
           {" "}
           <div className={"relative h-8 w-20"}>
-            <Image
-              src={business.logo}
-              alt={business.name}
-              className=" object-fill"
-              fill
-            />
+            {business.logo ? (
+              <Image
+                src={business.logo}
+                alt={business.name}
+                className="object-contain"
+                fill
+              />
+            ) : (
+              <div className={"text-gray-400 text-xs"}>No logo</div>
+            )}
           </div>
           <div>{business.name}</div>
         </div>

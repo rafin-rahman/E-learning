@@ -3,6 +3,7 @@ import type { NextRequest } from "next/server";
 import { cookies } from "next/headers";
 import * as jose from "jose";
 import { checkRole } from "@/lib/middlewareFunctions";
+import { userLoginTimeout } from "@/lib/company";
 
 export async function middleware(request: NextRequest) {
   // Check for cookies and redirect if not present
@@ -21,19 +22,23 @@ export async function middleware(request: NextRequest) {
     };
 
     //TODO uncomment this to complete the user status check
-    // const userStatus = await fetch(
-    //   `${process.env.NEXT_PUBLIC_LOCALHOST_URL}/api/user`,
-    //   {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({ userId: payload.userId }),
-    //   }
-    // );
-    // const userData = await userStatus.json();
-    //
-    // console.log("Middleware.ts - User status: ", userData.status);
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_LOCALHOST_URL}/api/user`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ userId: payload.userId }),
+      }
+    );
+    const user = await response.json();
+
+    // Logout and redirect if user account is not active
+    if (user.status !== "ACTIVE") {
+      //TODO: add proper error message for the user, so they know their account is suspended
+      return NextResponse.redirect(new URL("/", request.url));
+    }
 
     const userRole = payload.userRole;
     const currentRoute: string = request.nextUrl.pathname;
@@ -89,8 +94,7 @@ export async function middleware(request: NextRequest) {
       // Prepare response to set new cookie
       const response = NextResponse.next();
       response.cookies.set("Authorization", newJwt, {
-        // 10 minutes
-        maxAge: 600,
+        maxAge: 1800,
         path: "/",
         sameSite: "strict",
         secure: true,

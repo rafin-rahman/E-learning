@@ -104,52 +104,52 @@ export default function CourseDetails({ params }: { params: { id: string } }) {
     fetchCourse();
   }, []);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setImageUploadLoading(true);
-
-    const formData = new FormData();
-    formData.append("file", file as Blob);
-    formData.append("courseID", course.id);
-
-    const response = await fetch(
-      process.env.NEXT_PUBLIC_LOCALHOST_URL + "/api/course/image",
-      {
-        method: "POST",
-        body: formData,
-      }
-    );
-    if (!response.ok) {
-      setImageUploadLoading(false);
-      console.error("Error uploading file");
-      return { error: "Error uploading file" };
-    }
-
-    const data = await response.json();
-    setCourseImageUrl(data.url);
-
-    // save data.url to the course.image database
-    const saveImageApi = await fetch(
-      process.env.NEXT_PUBLIC_LOCALHOST_URL + "/api/course/image/" + course.id,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ url: data.url }),
-      }
-    );
-
-    const saveImageApiData = await saveImageApi.json();
-
-    if (!saveImageApi.ok) {
-      console.error("Error saving image URL to course");
-      console.error(saveImageApiData.message);
-      return { error: "Error saving image URL to course" };
-    }
-    setImageUploadLoading(false);
-    return data.file;
-  };
+  // const handleSubmit = async (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   setImageUploadLoading(true);
+  //
+  //   const formData = new FormData();
+  //   formData.append("file", file as Blob);
+  //   formData.append("courseID", course.id);
+  //
+  //   const response = await fetch(
+  //     process.env.NEXT_PUBLIC_LOCALHOST_URL + "/api/course/image",
+  //     {
+  //       method: "POST",
+  //       body: formData,
+  //     }
+  //   );
+  //   if (!response.ok) {
+  //     setImageUploadLoading(false);
+  //     console.error("Error uploading file");
+  //     return { error: "Error uploading file" };
+  //   }
+  //
+  //   const data = await response.json();
+  //   setCourseImageUrl(data.url);
+  //
+  //   // save data.url to the course.image database
+  //   const saveImageApi = await fetch(
+  //     process.env.NEXT_PUBLIC_LOCALHOST_URL + "/api/course/image/" + course.id,
+  //     {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({ url: data.url }),
+  //     }
+  //   );
+  //
+  //   const saveImageApiData = await saveImageApi.json();
+  //
+  //   if (!saveImageApi.ok) {
+  //     console.error("Error saving image URL to course");
+  //     console.error(saveImageApiData.message);
+  //     return { error: "Error saving image URL to course" };
+  //   }
+  //   setImageUploadLoading(false);
+  //   return data.file;
+  // };
 
   return (
     <div className={"container mx-10"}>

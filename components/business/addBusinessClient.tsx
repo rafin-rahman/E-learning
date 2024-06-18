@@ -48,9 +48,13 @@ export function AddBusinessClient() {
     return (
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <Button className={"rounded-full text-xl"}>+</Button>
+          <Button
+            className={"rounded-full text-xl bg-opacity-50 bg-black shadow-xl"}
+          >
+            +
+          </Button>
         </DialogTrigger>
-        <DialogContent className="sm:max-w-[425px]">
+        <DialogContent className="sm:max-w-[425px]3">
           <DialogHeader>
             <DialogTitle>Add new business</DialogTitle>
             <DialogDescription>
@@ -66,7 +70,11 @@ export function AddBusinessClient() {
   return (
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>
-        <Button className={"rounded-full text-xl"}>+</Button>
+        <Button
+          className={"rounded-full text-xl bg-opacity-50 bg-black shadow-xl"}
+        >
+          +
+        </Button>
       </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader className="text-left">
@@ -87,12 +95,14 @@ export function AddBusinessClient() {
 }
 
 function ProfileForm({ className }: React.ComponentProps<"form">) {
+  const [logo, setLogo] = React.useState<File | null>(null);
   const [domains, setDomains] = React.useState<string[]>([]);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
       shortName: "",
+      country: "",
       logo: "",
       domains: "",
     },
@@ -111,9 +121,11 @@ function ProfileForm({ className }: React.ComponentProps<"form">) {
       const formData = new FormData();
       formData.append("name", values.name);
       formData.append("shortName", values.shortName || "");
-      formData.append("logo", values.logo);
+      formData.append("country", values.country);
+      formData.append("logo", logo as Blob);
       formData.append("domains", values.domains);
-
+      console.log(values.logo);
+      console.log(values.domains);
       // Call API to create business
       const response = await addBusinessAction(formData);
     } catch (error) {}
@@ -154,6 +166,19 @@ function ProfileForm({ className }: React.ComponentProps<"form">) {
           ></FormField>
           <FormField
             control={form.control}
+            name={"country"}
+            render={({ field }) => (
+              <FormItem className={"mt-4"}>
+                <Label>Country</Label>
+                <FormControl>
+                  <Input placeholder={"e.g. UK"} {...field} type={""} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          ></FormField>
+          <FormField
+            control={form.control}
             name={"logo"}
             render={({ field }) => (
               <FormItem className={"mt-4"}>
@@ -164,6 +189,9 @@ function ProfileForm({ className }: React.ComponentProps<"form">) {
                       {...field}
                       type={"file"}
                       accept={"image/png, image/jpeg, image/jpg"}
+                      onChange={(e) => {
+                        setLogo(e.target.files?.[0] || null);
+                      }}
                     />
                   </div>
                 </FormControl>
