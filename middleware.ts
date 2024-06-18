@@ -17,8 +17,23 @@ export async function middleware(request: NextRequest) {
 
   try {
     const { payload } = (await jose.jwtVerify(jwt, secret, {})) as {
-      payload: { userRole: string[]; sub: string };
+      payload: { userRole: string[]; sub: string; userId: string };
     };
+
+    //TODO uncomment this to complete the user status check
+    // const userStatus = await fetch(
+    //   `${process.env.NEXT_PUBLIC_LOCALHOST_URL}/api/user`,
+    //   {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({ userId: payload.userId }),
+    //   }
+    // );
+    // const userData = await userStatus.json();
+    //
+    // console.log("Middleware.ts - User status: ", userData.status);
 
     const userRole = payload.userRole;
     const currentRoute: string = request.nextUrl.pathname;

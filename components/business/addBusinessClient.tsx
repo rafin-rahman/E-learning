@@ -1,9 +1,9 @@
-"use client";
 import * as React from "react";
 
 import { cn } from "@/lib/utils";
 import { useMediaQuery } from "react-responsive";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import {
   Dialog,
   DialogContent,
@@ -33,12 +33,15 @@ import {
   FormControl,
   FormItem,
   FormLabel,
+  FormMessage,
 } from "@/components/ui/form";
 import { useToast } from "@/components/ui/use-toast";
 import { createBusinessClientSchema as formSchema } from "@/lib/zodSchema";
+import addBusinessAction from "@/app/dashboard/business/manage/addBusinessAction";
 
 export function AddBusinessClient() {
   const [open, setOpen] = React.useState(false);
+
   const isDesktop = useMediaQuery({ query: "(min-width: 768px)" });
 
   if (isDesktop) {
@@ -84,6 +87,7 @@ export function AddBusinessClient() {
 }
 
 function ProfileForm({ className }: React.ComponentProps<"form">) {
+  const [domains, setDomains] = React.useState<string[]>([]);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -94,9 +98,25 @@ function ProfileForm({ className }: React.ComponentProps<"form">) {
     },
   });
 
+  const DomainsBadge = domains.map((domain) => {
+    return (
+      <Badge variant={"secondary"} key={domain} className={"mr-2"}>
+        {domain}
+      </Badge>
+    );
+  });
+
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    console.log("values");
-    console.log(values);
+    try {
+      const formData = new FormData();
+      formData.append("name", values.name);
+      formData.append("shortName", values.shortName || "");
+      formData.append("logo", values.logo);
+      formData.append("domains", values.domains);
+
+      // Call API to create business
+      const response = await addBusinessAction(formData);
+    } catch (error) {}
   };
   return (
     <div className={"mx-4 sm:mx-0"}>
@@ -115,6 +135,7 @@ function ProfileForm({ className }: React.ComponentProps<"form">) {
                     type={"text"}
                   />
                 </FormControl>
+                <FormMessage />
               </FormItem>
             )}
           ></FormField>{" "}
@@ -127,6 +148,7 @@ function ProfileForm({ className }: React.ComponentProps<"form">) {
                 <FormControl>
                   <Input placeholder={"e.g. OQ"} {...field} type={"text"} />
                 </FormControl>
+                <FormMessage />
               </FormItem>
             )}
           ></FormField>
@@ -145,6 +167,7 @@ function ProfileForm({ className }: React.ComponentProps<"form">) {
                     />
                   </div>
                 </FormControl>
+                <FormMessage />
               </FormItem>
             )}
           ></FormField>{" "}
@@ -159,11 +182,25 @@ function ProfileForm({ className }: React.ComponentProps<"form">) {
                     placeholder={"e.g. oq.com, onlinequalification.com"}
                     {...field}
                     type={"text"}
+                    // onChange update the domains state with the new value, remove all spaces
+                    // if user enters "hello.com, hi.io ,tesst.com    ,bye.com" it will be converted to "hello.com,hi.io,tesst.com,bye.com"
+                    onChange={(e) => {
+                      const value = e.target.value;
+                      setDomains(
+                        value
+                          .replace(/\s/g, "")
+                          .split(",")
+                          .filter((domain) => domain.length > 0)
+                      );
+                      field.onChange(e);
+                    }}
                   />
                 </FormControl>
+                <FormMessage />
               </FormItem>
             )}
           ></FormField>
+          <div className={"mt-4"}>{DomainsBadge}</div>
           <Button type={"submit"} className={"mt-4 w-full"}>
             Add
           </Button>

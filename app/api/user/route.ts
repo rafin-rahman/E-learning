@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 // get user info by id
 export async function POST(request: NextRequest) {
   const body = await request.json();
+
   const { userId } = body;
   const user = await prisma.user.findUnique({
     where: {
