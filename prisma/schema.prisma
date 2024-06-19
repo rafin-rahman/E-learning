@@ -117,44 +117,67 @@ model CourseLevel {
   updatedAt DateTime @updatedAt
 }
 
-model BusinessClient {
-  id                 String               @id @default(uuid())
-  status             String               @default("ACTIVE") // ACTIVE, SUSPENDED
-  name               String
-  shortName          String?
-  country            String?
-  logo               String?
-  domains            String[]
-  createdAt          DateTime             @default(now())
-  updatedAt          DateTime             @updatedAt
-  businessClientUser BusinessClientUser[]
+model Company {
+  id               String             @id @default(uuid())
+  status           String             @default("ACTIVE") // ACTIVE, SUSPENDED
+  name             String
+  shortName        String?
+  country          String?
+  logo             String?
+  domains          String[]
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+  CompanyEmployee  CompanyEmployee[]
+  BusinessPurchase BusinessPurchase[]
 }
 
-model BusinessClientUser {
+model CompanyEmployee {
+  id        String   @id @default(uuid())
+  status    String   @default("ACTIVE") // ACTIVE, SUSPENDED
+  firstName String
+  lastName  String
+  email     String   @unique
+  telephone String
+  password  String
+  roles     String[] // BUSINESS_ADMIN, BUSINESS_LEARNER
+  company   Company  @relation(fields: [companyId], references: [id])
+  companyId String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model BusinessPurchase {
   id               String         @id @default(uuid())
   status           String         @default("ACTIVE") // ACTIVE, SUSPENDED
-  firstName        String
-  lastName         String
-  email            String         @unique
-  telephone        String
-  password         String
-  roles            String[] // BUSINESS_ADMIN, BUSINESS_LEARNER
-  businessClient   BusinessClient @relation(fields: [businessClientId], references: [id])
-  businessClientId String
+  company          Company        @relation(fields: [companyId], references: [id])
+  companyId        String
+  businessCourse   BusinessCourse @relation(fields: [businessCourseId], references: [id])
+  businessCourseId String
   createdAt        DateTime       @default(now())
   updatedAt        DateTime       @updatedAt
 }
 
-model BusinessCourses {
-  id          String   @id @default(uuid())
-  status      String   @default("ACTIVE") // ACTIVE, SUSPENDED
-  title       String
-  description String
-  country     String
-  image       String
-  price       Float
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+model BusinessCourse {
+  id                   String                 @id @default(uuid())
+  status               String                 @default("ACTIVE") // ACTIVE, SUSPENDED
+  title                String
+  description          String
+  country              String
+  thumbnail            String
+  price                Float
+  createdAt            DateTime               @default(now())
+  updatedAt            DateTime               @updatedAt
+  businessCourseModule BusinessCourseModule[]
+  BusinessPurchase     BusinessPurchase[]
+}
+
+model BusinessCourseModule {
+  id               String          @id @default(uuid())
+  title            String
+  description      String
+  order            Int
+  BusinessCourse   BusinessCourse? @relation(fields: [businessCourseId], references: [id])
+  businessCourseId String?
 }
 
 // Course Subjects

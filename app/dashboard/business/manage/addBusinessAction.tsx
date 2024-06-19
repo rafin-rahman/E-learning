@@ -9,7 +9,7 @@ export default async function addBusinessAction(
   //TODO: ensure that the business name is unique alongside the country
 
   // find if existing businesses already exists
-  // const existingBusinesses = await prisma.businessClient.findMany({
+  // const existingBusinesses = await prisma.company.findMany({
   //   where: {
   //     name: formData.get("name") as string,
   //   },
@@ -32,7 +32,7 @@ export default async function addBusinessAction(
   });
 
   try {
-    await prisma.businessClient.create({
+    await prisma.company.create({
       data: {
         name: formData.get("name") as string,
         shortName: formData.get("shortName") as string,

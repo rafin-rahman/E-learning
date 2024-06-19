@@ -907,10 +907,10 @@ async function main() {
 
   //region Business courses
 
-  await prisma.businessClientUser.deleteMany();
-  await prisma.businessClient.deleteMany();
+  await prisma.companyEmployee.deleteMany();
+  await prisma.company.deleteMany();
 
-  await prisma.businessClient.createMany({
+  await prisma.company.createMany({
     data: [
       {
         name: "Elizabeth School of London Limited",
@@ -943,40 +943,35 @@ async function main() {
     ],
   });
 
-  const businessClientEsl = await prisma.businessClient.findFirst({
+  const companyEsl = await prisma.company.findFirst({
     where: {
       name: "Elizabeth School of London Limited",
     },
   });
 
-  const businessClientVcad = await prisma.businessClient.findFirst({
+  const companyVcad = await prisma.company.findFirst({
     where: {
       name: "Victoria College of Arts and Design",
     },
   });
 
-  const businessClientWilliam = await prisma.businessClient.findFirst({
+  const companyWilliam = await prisma.company.findFirst({
     where: {
       name: "William College",
     },
   });
 
-  const businessClientLpc = await prisma.businessClient.findFirst({
+  const companyLpc = await prisma.company.findFirst({
     where: {
       name: "London Professional College",
     },
   });
 
-  if (
-    !businessClientEsl ||
-    !businessClientVcad ||
-    !businessClientWilliam ||
-    !businessClientLpc
-  ) {
+  if (!companyEsl || !companyVcad || !companyWilliam || !companyLpc) {
     return console.error("Business client not found");
   }
 
-  await prisma.businessClientUser.createMany({
+  await prisma.companyEmployee.createMany({
     data: [
       {
         firstName: "Moshfiqur",
@@ -985,7 +980,7 @@ async function main() {
         telephone: "1234567890",
         password: "123123",
         roles: ["BUSINESS_ADMIN"],
-        businessClientId: businessClientEsl.id,
+        companyId: companyEsl.id,
       },
       {
         firstName: "Moshfiqur",
@@ -994,7 +989,7 @@ async function main() {
         telephone: "1234567890",
         password: "123123",
         roles: ["BUSINESS_ADMIN"],
-        businessClientId: businessClientVcad.id,
+        companyId: companyVcad.id,
       },
       {
         firstName: "Moshfiqur",
@@ -1003,7 +998,7 @@ async function main() {
         telephone: "1234567890",
         password: "123123",
         roles: ["BUSINESS_ADMIN"],
-        businessClientId: businessClientWilliam.id,
+        companyId: companyWilliam.id,
       },
       {
         firstName: "Moshfiqur",
@@ -1012,7 +1007,7 @@ async function main() {
         telephone: "1234567890",
         password: "123123",
         roles: ["BUSINESS_ADMIN"],
-        businessClientId: businessClientEsl.id,
+        companyId: companyEsl.id,
       },
     ],
   });
