@@ -41,7 +41,7 @@ export default function CoursesCard({
                 />
               </div>{" "}
               <Separator className="my-4" />
-              <p className={"text-black"}>{course.course}</p>
+              <div className={"text-black"}>{course.course}</div>
             </div>
           ))}
           <div
@@ -57,7 +57,6 @@ export default function CoursesCard({
               ADD NEW COURSE
               <Separator className="my-4" />
             </div>{" "}
-            <p className={"text-black"}></p>
           </div>
         </div>
       </CardContent>

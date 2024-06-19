@@ -16,16 +16,12 @@ export default function businessClientDetails({
   const [businessData, setBusinessData] = useState<{
     name: string;
     logo: string;
-  }>({
-    name: "",
-    logo: "",
-  });
-  // const [progress, setProgress] = useState(13);
+  } | null>(null);
 
   useEffect(() => {
     (async () => {
       const data = await getBusinessClientDetailsAction(params.id);
-      //@ts-ignore
+
       setBusinessData(data);
     })();
   }, [params.id]);

@@ -3,7 +3,7 @@ import prisma from "@/lib/prisma";
 
 export default async function getBusinessClientDetailsAction(id: string) {
   try {
-    const business = await prisma.businessClient.findUnique({
+    const business: any = await prisma.businessClient.findUnique({
       where: {
         id: id,
       },
