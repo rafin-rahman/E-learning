@@ -118,17 +118,17 @@ model CourseLevel {
 }
 
 model Company {
-  id               String             @id @default(uuid())
-  status           String             @default("ACTIVE") // ACTIVE, SUSPENDED
-  name             String
-  shortName        String?
-  country          String?
-  logo             String?
-  domains          String[]
-  createdAt        DateTime           @default(now())
-  updatedAt        DateTime           @updatedAt
-  CompanyEmployee  CompanyEmployee[]
-  BusinessPurchase BusinessPurchase[]
+  id              String            @id @default(uuid())
+  status          String            @default("ACTIVE") // ACTIVE, SUSPENDED
+  name            String
+  shortName       String?
+  country         String?
+  logo            String?
+  domains         String[]
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  CompanyEmployee CompanyEmployee[]
+  BusinessOrder   BusinessOrder[]
 }
 
 model CompanyEmployee {
@@ -146,29 +146,42 @@ model CompanyEmployee {
   updatedAt DateTime @updatedAt
 }
 
-model BusinessPurchase {
+model BusinessOrder {
+  id                          String                        @id @default(uuid())
+  status                      String                        @default("ACTIVE") // ACTIVE, SUSPENDED
+  company                     Company                       @relation(fields: [companyId], references: [id])
+  companyId                   String
+  createdAt                   DateTime                      @default(now())
+  updatedAt                   DateTime                      @updatedAt
+  BusinessOrderCourseQuantity BusinessOrderCourseQuantity[]
+}
+
+model BusinessOrderCourseQuantity {
   id               String         @id @default(uuid())
-  status           String         @default("ACTIVE") // ACTIVE, SUSPENDED
-  company          Company        @relation(fields: [companyId], references: [id])
-  companyId        String
+  quantity         Int
+  businessOrder    BusinessOrder  @relation(fields: [businessOrderId], references: [id])
+  businessOrderId  String
   businessCourse   BusinessCourse @relation(fields: [businessCourseId], references: [id])
   businessCourseId String
   createdAt        DateTime       @default(now())
   updatedAt        DateTime       @updatedAt
+
+  // this ensures that same course is not added to the same order more than once
+  @@unique([businessOrderId, businessCourseId])
 }
 
 model BusinessCourse {
-  id                   String                 @id @default(uuid())
-  status               String                 @default("ACTIVE") // ACTIVE, SUSPENDED
-  title                String
-  description          String
-  country              String
-  thumbnail            String
-  price                Float
-  createdAt            DateTime               @default(now())
-  updatedAt            DateTime               @updatedAt
-  businessCourseModule BusinessCourseModule[]
-  BusinessPurchase     BusinessPurchase[]
+  id                          String                        @id @default(uuid())
+  status                      String                        @default("ACTIVE") // ACTIVE, SUSPENDED
+  title                       String
+  description                 String
+  country                     String
+  thumbnail                   String
+  price                       Float
+  createdAt                   DateTime                      @default(now())
+  updatedAt                   DateTime                      @updatedAt
+  businessCourseModule        BusinessCourseModule[]
+  businessOrderCourseQuantity BusinessOrderCourseQuantity[]
 }
 
 model BusinessCourseModule {

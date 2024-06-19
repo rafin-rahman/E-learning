@@ -67,6 +67,8 @@ async function main() {
     ],
   });
 
+  //region Courses
+
   await prisma.course.deleteMany();
   await prisma.deliveryPartner.deleteMany();
   await prisma.courseSubject.deleteMany();
@@ -209,7 +211,6 @@ async function main() {
     return level.id;
   };
 
-  //region Courses
   // random image urls to populate courses background images
   const listOfImgUrls = [
     "https://images.unsplash.com/photo-1520333789090-1afc82db536a?q=80&w=3542&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -240,8 +241,6 @@ async function main() {
   const getRandomImageUrl = () => {
     return listOfImgUrls[Math.floor(Math.random() * listOfImgUrls.length)];
   };
-
-  // Array of courses
   const courses = [
     {
       title: "Introduction to Programming",
@@ -903,6 +902,15 @@ async function main() {
       deliveryPartnerId: findPartnerId(2),
     },
   ];
+  // Create courses in the database
+
+  await Promise.all(
+    courses.map((courseData) =>
+      prisma.course.create({
+        data: courseData,
+      })
+    )
+  );
   //endregion
 
   //region Business courses
@@ -915,30 +923,51 @@ async function main() {
       {
         name: "Elizabeth School of London Limited",
         shortName: "ESL",
-        logo: "https://www.pengroup.com/_next/image?url=%2Flogos%2FESL%2FESL.png&w=640&q=75",
+        logo: "/testings/esl_logo.png",
         domains: ["esl.ac.uk", "elizabethschool.com"],
       },
       {
         name: "Victoria College of Arts and Design",
         shortName: "VCAD",
-        logo: "https://www.pengroup.com/_next/image?url=%2Flogos%2FVCAD%2FVCAD.png&w=640&q=75",
+        logo: "/testings/vcad_logo.png",
         domains: ["vcad.ac.uk"],
       },
       {
         name: "William College",
         shortName: "WC",
-        logo: "https://www.pengroup.com/_next/image?url=%2Flogos%2FWilliam%2FWilliam.png&w=640&q=75",
+        logo: "/testings/wc_logo.png",
         domains: ["williamcollege.com"],
       },
       {
         name: "London Professional College",
         shortName: "LPC",
-        logo: "https://www.pengroup.com/_next/image?url=%2Flogos%2FWilliam%2FWilliam.png&w=640&q=75",
+        logo: "/testings/lpc_logo.png",
         domains: [
           "londonprofessionalcollege.com",
           "lpc.ac.uk",
           "londonpc.org.uk",
         ],
+      },
+      {
+        name: "University Application Portal",
+        shortName: "UAP",
+        logo: "/testings/uap_logo.png",
+        domains: [
+          "uniapplicationportal.com",
+          "universityapplicationportal.com",
+        ],
+      },
+      {
+        name: "Planet Education Networks",
+        shortName: "pengroup",
+        logo: "/testings/pen_logo.png",
+        domains: ["planeteducationnetworks.com", "pengroup.com"],
+      },
+      {
+        name: "Zenith School of Studies",
+        shortName: "ZSOS",
+        logo: "/testings/zsos_logo.png",
+        domains: ["zenithschool.com", "zsos.com"],
       },
     ],
   });
@@ -1013,15 +1042,6 @@ async function main() {
   });
 
   //endregion
-
-  // Create courses in the database
-  await Promise.all(
-    courses.map((courseData) =>
-      prisma.course.create({
-        data: courseData,
-      })
-    )
-  );
 
   console.log("Database seeded successfully.");
 }

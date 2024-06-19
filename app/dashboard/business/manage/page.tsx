@@ -5,8 +5,9 @@ import loadBusinessesAction from "./loadBusinessesAction";
 async function getData(): Promise<Businesses[]> {
   const response = await loadBusinessesAction();
 
-  if ("error" in response) {
-    throw new Error(response.error);
+  if (response.error) {
+    console.error(response.error);
+    return [];
   }
 
   return response as Businesses[];
