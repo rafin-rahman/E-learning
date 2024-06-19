@@ -151,7 +151,7 @@ export default function ManageCourses() {
   });
 
   return (
-    <div className={"container"}>
+    <div className={"container mt-10"}>
       <h1 className={"text-4xl mb-10"}>Manage Courses</h1>
       <div className={"flex"}>
         <div className={"flex-none w-56"}>
@@ -246,7 +246,14 @@ export default function ManageCourses() {
             />
 
             <div className={"ml-auto -translate-x-20"}>
-              <Button variant={"ghost"}>Add new</Button>
+              <Button
+                variant={"outline"}
+                className={
+                  "shadow bg-gradient-to-br from-white to-red-100 bg-opacity-10"
+                }
+              >
+                Add new
+              </Button>
             </div>
           </div>
           <ScrollArea className="h-dvh w-full ">

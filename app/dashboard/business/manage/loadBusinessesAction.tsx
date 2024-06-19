@@ -8,6 +8,7 @@ export default async function loadBusinessesAction() {
         status: "ACTIVE",
       },
       select: {
+        id: true,
         name: true,
         logo: true,
       },

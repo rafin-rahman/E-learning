@@ -4,10 +4,12 @@ import { ColumnDef } from "@tanstack/react-table";
 import Image from "next/image";
 import { ArrowUpDown, MoreHorizontal } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
 export type Businesses = {
+  id: string;
   name: string;
   logo: string;
   licenses: number;
@@ -49,8 +51,11 @@ export const columns: ColumnDef<Businesses>[] = [
     cell: ({ row }) => {
       const business = row.original;
       return (
-        <div className="flex gap-4 items-center">
-          {" "}
+        <Link
+          href={"manage/" + business.id}
+          className={"flex gap-4 items-center"}
+          target={"_blank"}
+        >
           <div className={"relative h-8 w-20"}>
             {business.logo ? (
               <Image
@@ -64,7 +69,7 @@ export const columns: ColumnDef<Businesses>[] = [
             )}
           </div>
           <div>{business.name}</div>
-        </div>
+        </Link>
       );
     },
   },

@@ -201,7 +201,7 @@ const PublicNavbar: React.FC<PublicNavbarProps> = ({ isLoggedIn }) => {
               "relative  right-10 w-full bg-gradient-to-r from-amber-300 to-red-400 hover:from-amber-300 hover:via-amber-400  hover:to-red-400 "
             }
           >
-            <Link href={"/studentSpace"} className="font-black">
+            <Link href={"/dashboard"} className="font-black">
               Go to Portal
             </Link>
           </Button>

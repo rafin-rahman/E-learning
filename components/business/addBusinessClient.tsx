@@ -1,6 +1,5 @@
 import * as React from "react";
 
-import { cn } from "@/lib/utils";
 import { useMediaQuery } from "react-responsive";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -129,7 +128,9 @@ function ProfileForm({ className }: React.ComponentProps<"form">) {
       formData.append("domains", values.domains);
       // Call API to create business
       const response = await addBusinessAction(formData);
-    } catch (error) {}
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const getCountry = (country: string) => {
@@ -206,6 +207,7 @@ function ProfileForm({ className }: React.ComponentProps<"form">) {
                       accept={"image/png, image/jpeg, image/jpg"}
                       onChange={(e) => {
                         setLogo(e.target.files?.[0] || null);
+                        console.log(logo as Blob);
                         field.onChange(e);
                       }}
                     />

@@ -6,6 +6,8 @@ import { log } from "node:util";
 export default async function addBusinessAction(
   formData: FormData
 ): Promise<string> {
+  //TODO: ensure that the business name is unique alongside the country
+
   // find if existing businesses already exists
   // const existingBusinesses = await prisma.businessClient.findMany({
   //   where: {
