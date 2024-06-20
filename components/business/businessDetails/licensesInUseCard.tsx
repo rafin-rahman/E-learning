@@ -11,9 +11,25 @@ import { Progress } from "@/components/ui/progress";
 import { Separator } from "@/components/ui/separator";
 
 export default function LicensesInUseCard({
-  emailsList,
+  employeesList,
 }: {
-  emailsList: { email: string; progress: number; awards: string }[];
+  employeesList:
+    | {
+        id: string;
+        status: string;
+        firstName: string;
+        lastName: string;
+        email: string;
+        telephone: string;
+        password: string;
+        roles: string[];
+        companyId: string;
+        createdAt: Date;
+        updatedAt: Date;
+        progress: number;
+        awards: string;
+      }[]
+    | null;
 }) {
   return (
     <Card className={" shadow"}>
@@ -35,7 +51,7 @@ export default function LicensesInUseCard({
       />
       <CardContent>
         <ul className={"leading-10"}>
-          {emailsList.map((item) => {
+          {employeesList?.map((item) => {
             return (
               <li className={"flex items-center gap-10 group justify-between"}>
                 <div className={"w-[20%]"}>{item.email}</div>

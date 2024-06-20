@@ -31,6 +31,8 @@ export default function businessClientDetails({
         companyId: string;
         createdAt: Date;
         updatedAt: Date;
+        progress: number;
+        awards: string;
       }[]
     | null
   >(null);
@@ -130,7 +132,7 @@ export default function businessClientDetails({
 
       <div className={"mx-20 mt-10"}>
         {/* Manage licences  */}
-        <LicensesInUseCard emailsList={employees} />
+        <LicensesInUseCard employeesList={employees} />
         {/* Manage  courses */}
         <CoursesCard coursesList={coursesList} />
       </div>
