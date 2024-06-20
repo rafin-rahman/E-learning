@@ -28,7 +28,7 @@ export const staffNavigationMenuOptions = [
     icon: BriefcaseIcon,
     count: "",
     current: false,
-    allowedRoles: ["BUSINESS_ADMIN"],
+    allowedRoles: ["COMPANY_ADMIN"],
   },
 ];
 

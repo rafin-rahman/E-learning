@@ -1,7 +1,7 @@
 "use server";
 import prisma from "@/lib/prisma";
 
-export default async function getBusinessClientDetailsAction(id: string) {
+export default async function getCompanyDetailsAction(id: string) {
   try {
     const business: any = await prisma.company.findUnique({
       where: {

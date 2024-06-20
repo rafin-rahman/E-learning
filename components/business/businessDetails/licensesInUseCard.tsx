@@ -19,7 +19,7 @@ export default function LicensesInUseCard({
     <Card className={" shadow"}>
       <CardHeader>
         <CardTitle>
-          <div>Licenses in use </div>
+          <div>Employees </div>
         </CardTitle>
         <CardDescription className={"flex justify-between"}>
           <div>Licences is use: 10/50</div>

@@ -22,7 +22,7 @@ model User {
   telephone    String?
   password     String
   profileImage String?
-  role         String[] // SUPER_ADMIN, BUSINESS_ADMIN, COURSE_MANAGER, LECTURER, STUDENT_SUPPORT, REGISTRY, FINANCE
+  role         String[] // SUPER_ADMIN, COMPANY_ADMIN, COURSE_MANAGER, LECTURER, STUDENT_SUPPORT, REGISTRY, FINANCE
   permissions  String[]
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
@@ -139,7 +139,7 @@ model CompanyEmployee {
   email     String   @unique
   telephone String
   password  String
-  roles     String[] // BUSINESS_ADMIN, BUSINESS_LEARNER
+  roles     String[] // COMPANY_ADMIN, COMPANY_EMPLOYEE
   company   Company  @relation(fields: [companyId], references: [id])
   companyId String
   createdAt DateTime @default(now())
@@ -175,7 +175,6 @@ model BusinessCourse {
   status                      String                        @default("ACTIVE") // ACTIVE, SUSPENDED
   title                       String
   description                 String
-  country                     String
   thumbnail                   String
   price                       Float
   createdAt                   DateTime                      @default(now())

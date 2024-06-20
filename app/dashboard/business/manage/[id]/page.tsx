@@ -1,28 +1,58 @@
 "use client";
-import getBusinessClientDetailsAction from "@/app/dashboard/business/manage/[id]/getBusinessClientDetailsAction";
+import getCompanyDetailsAction from "@/app/dashboard/business/manage/[id]/getCompanyDetailsAction";
 
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import LicensesInUseCard from "@/components/business/businessDetails/licensesInUseCard";
 import CoursesCard from "@/components/business/businessDetails/coursesCard";
+import getCompanyEmployeesAction from "@/app/dashboard/business/manage/[id]/getCompanyEmployeesAction";
 
 export default function businessClientDetails({
   params,
 }: {
   params: { id: string };
 }) {
-  // const businessData = getBusinessClientDetailsAction(params.id);
+  // const businessData = getCompanyDetailsAction(params.id);
   const [businessData, setBusinessData] = useState<{
     name: string;
     logo: string;
   } | null>(null);
+  const [employees, setEmployees] = useState<
+    | {
+        id: string;
+        status: string;
+        firstName: string;
+        lastName: string;
+        email: string;
+        telephone: string;
+        password: string;
+        roles: string[];
+        companyId: string;
+        createdAt: Date;
+        updatedAt: Date;
+      }[]
+    | null
+  >(null);
 
   useEffect(() => {
     (async () => {
-      const data = await getBusinessClientDetailsAction(params.id);
+      const data = await getCompanyDetailsAction(params.id);
+      const employeesActionResponse = await getCompanyEmployeesAction(
+        params.id
+      );
 
       setBusinessData(data);
+
+      // add 2 properties in the employeesActionResponse, progress and awards
+      const employeesList = employeesActionResponse.map((employee) => {
+        const progress = Math.floor(Math.random() * 100);
+        const awards = `${Math.floor(Math.random() * 5)}/${Math.floor(
+          Math.random() * 5
+        )}`;
+        return { ...employee, progress, awards };
+      });
+      setEmployees(employeesList);
     })();
   }, [params.id]);
 
@@ -100,7 +130,7 @@ export default function businessClientDetails({
 
       <div className={"mx-20 mt-10"}>
         {/* Manage licences  */}
-        <LicensesInUseCard emailsList={emailsList} />
+        <LicensesInUseCard emailsList={employees} />
         {/* Manage  courses */}
         <CoursesCard coursesList={coursesList} />
       </div>

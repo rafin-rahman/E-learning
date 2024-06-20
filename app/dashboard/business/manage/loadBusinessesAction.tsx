@@ -14,8 +14,6 @@ export default async function loadBusinessesAction() {
       },
     });
 
-    console.log("my test log");
-
     if (!businesses) {
       return {
         error: "No businesses found",
