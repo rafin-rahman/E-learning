@@ -63,19 +63,6 @@ export default function businessClientDetails({
     return <>Business not found</>;
   }
 
-  const emailsList = [
-    { email: "john.doe@vcad.co.uk", progress: 13, awards: "2/5" },
-    { email: "jane.smith@vcad.co.uk", progress: 23, awards: "1/5" },
-    { email: "robert.jones@vcad.co.uk", progress: 43, awards: "0/5" },
-    { email: "emily.taylor@vcad.co.uk", progress: 3, awards: "5/5" },
-    { email: "michael.brown@vcad.co.uk", progress: 56, awards: "4/5" },
-    { email: "linda.white@vcad.co.uk", progress: 28, awards: "0/5" },
-    { email: "william.davis@vcad.co.uk", progress: 78, awards: "3/5" },
-    { email: "patricia.martin@vcad.co.uk", progress: 84, awards: "2/5" },
-    { email: "david.wilson@vcad.co.uk", progress: 48, awards: "5/5" },
-    { email: "susan.moore@vcad.co.uk", progress: 90, awards: "2/5" },
-  ];
-
   const coursesList = [
     {
       course: "The Essentials of Data Protection",
