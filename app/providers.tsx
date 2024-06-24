@@ -22,7 +22,8 @@ function Providers({ children }: { children: ReactNode }) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <ReactQueryDevtools initialIsOpen={false} />
+      {/* Uncomment to activate dev tools   */}
+      {/*<ReactQueryDevtools initialIsOpen={false} />*/}
       {children}
     </QueryClientProvider>
   );

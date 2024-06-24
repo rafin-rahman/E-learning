@@ -1837,45 +1837,160 @@ async function main() {
       title: "The Essentials of Data Protection",
       description:
         "Learn the core principles of data protection with this comprehensive course. Covering topics such as data privacy laws, information security, and risk management, this course provides a solid foundation for safeguarding sensitive information in any organization.",
-      thumbnail: "getRandomImageUrl()",
+      thumbnail: "testings/data_protection.png",
       price: 2500,
     },
     {
       title: "Radicalisation and Extremism (Prevent)",
       description:
         "Understand the causes and consequences of radicalization and extremism with this course. Learn about the strategies and policies in place to prevent radicalization, identify warning signs, and promote community cohesion.",
-      thumbnail: "getRandomImageUrl()",
+      thumbnail: "testings/extremism.png",
       price: 2000,
     },
     {
       title: "Level 2 Safeguarding Adults",
       description:
         "Gain essential knowledge on safeguarding adults with this Level 2 course. Learn about the legal responsibilities, types of abuse, and best practices for protecting vulnerable adults in various settings.",
-      thumbnail: "getRandomImageUrl()",
+      thumbnail: "testings/safeguarding_adults.png",
       price: 1800,
     },
     {
       title: "Unconscious Bias in the Workplace",
       description:
         "Identify and address unconscious biases in the workplace with this insightful course. Learn about the impact of biases on decision-making, workplace culture, and how to implement strategies for creating a more inclusive environment.",
-      thumbnail: "getRandomImageUrl()",
+      thumbnail: "testings/bias.png",
       price: 2200,
     },
     {
       title: "Bullying and Harassment in the Workplace",
       description:
         "Learn how to recognize, prevent, and address bullying and harassment in the workplace. This course covers the legal framework, organizational policies, and practical steps for creating a safe and respectful work environment.",
-      thumbnail: "getRandomImageUrl()",
+      thumbnail: "testings/bullying.png",
       price: 2300,
     },
     {
       title: "Equality, Diversity and Inclusion for Employees",
       description:
         "Understand the principles of equality, diversity, and inclusion in the workplace with this course. Learn about the benefits of a diverse workforce, legal requirements, and strategies for promoting an inclusive organizational culture.",
-      thumbnail: "getRandomImageUrl()",
+      thumbnail: "testings/equality.png",
       price: 2400,
     },
+    {
+      title: "Cybersecurity Fundamentals",
+      description:
+        "Get an introduction to the basics of cybersecurity. Learn about different types of cyber threats, security protocols, and measures to protect your digital assets from cyber-attacks.",
+      thumbnail: "testings/cybersecurity.png",
+      price: 2750,
+    },
+    {
+      title: "Project Management Professional (PMP) Certification Prep",
+      description:
+        "Prepare for the PMP certification with this comprehensive course. Covering all key aspects of project management, this course is designed to help you pass the PMP exam with confidence.",
+      thumbnail: "",
+      price: 2900,
+    },
+    {
+      title: "Emotional Intelligence in Leadership",
+      description:
+        "Enhance your leadership skills by developing emotional intelligence. This course explores techniques to improve self-awareness, empathy, and effective communication in a leadership role.",
+      thumbnail: "testings/emotional_intelligence.png",
+      price: 2600,
+    },
+    {
+      title: "Advanced Excel for Data Analysis",
+      description:
+        "Master advanced Excel functions and tools for data analysis. Learn about pivot tables, macros, and data visualization techniques to enhance your data analysis skills.",
+      thumbnail: "testings/analytics.webp",
+      price: 2000,
+    },
+    {
+      title: "Introduction to Digital Marketing",
+      description:
+        "Discover the fundamentals of digital marketing, including SEO, social media marketing, content marketing, and email marketing. Learn how to create effective digital marketing strategies.",
+      thumbnail: "testings/digital_marketing.jpeg",
+      price: 1800,
+    },
+    {
+      title: "Time Management and Productivity",
+      description:
+        "Improve your productivity by mastering time management skills. This course provides practical tips and techniques for organizing your tasks, setting priorities, and managing your time effectively.",
+      thumbnail: "testings/time_management.jpg",
+      price: 1500,
+    },
+    {
+      title: "Conflict Resolution in the Workplace",
+      description:
+        "Learn strategies for resolving conflicts in the workplace. This course covers conflict resolution techniques, negotiation skills, and how to foster a collaborative work environment.",
+      thumbnail: "testings/conflict_resolution.png",
+      price: 2300,
+    },
+    {
+      title: "Mental Health Awareness for Managers",
+      description:
+        "Equip managers with the knowledge to support employees' mental health. This course covers mental health awareness, recognizing signs of mental distress, and providing appropriate support.",
+      thumbnail: "testings/mental_health.jpg",
+      price: 2200,
+    },
+    {
+      title: "Effective Communication Skills",
+      description:
+        "Enhance your communication skills with this course. Learn about different communication styles, active listening, and how to convey your message clearly and effectively.",
+      thumbnail: "testings/communication_skills.jpg",
+      price: 1700,
+    },
+    {
+      title: "Customer Service Excellence",
+      description:
+        "Develop outstanding customer service skills with this course. Learn how to handle customer inquiries, manage complaints, and deliver exceptional service to enhance customer satisfaction.",
+      thumbnail: "testings/customer_service.png",
+      price: 1900,
+    },
   ];
+
+  function getRandomBusinessCourseId(businessCourses) {
+    //businessCourses is an array of business courses, each with an id
+    const randomIndex = Math.floor(Math.random() * businessCourses.length);
+    return businessCourses[randomIndex].id;
+  }
+
+  await prisma.businessCourse.createMany({
+    data: businessCourses,
+  });
+
+  //endregion
+
+  //region Business orders
+  await prisma.businessOrderCourseQuantity.deleteMany();
+  await prisma.businessOrder.deleteMany();
+
+  // TODO: Create business orders with random courses and quantities
+
+  // await prisma.businessOrder.createMany({
+  //   data: [
+  //     {
+  //       companyId: companyEsl.id,
+  //       businessOrderCourseQuantity: {
+  //         create: {
+  //           quantity: 1,
+  //           businessCourseId: getRandomBusinessCourseId(businessCourses),
+  //           businessOrderId:
+  //         },
+  //       },
+  //     },
+  //     {
+  //       companyId: companyVcad.id,
+  //     },
+  //     {
+  //       companyId: companyWilliam.id,
+  //     },
+  //     {
+  //       companyId: companyLpc.id,
+  //     },
+  //     {
+  //       companyId: companyUap.id,
+  //     },
+  //   ],
+  // });
 
   //endregion
 

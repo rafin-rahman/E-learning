@@ -9,27 +9,28 @@ import {
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Separator } from "@/components/ui/separator";
+import { useQuery } from "@tanstack/react-query";
+
+type employeesListType =
+  | {
+      id: string;
+      status: string;
+      firstName: string;
+      lastName: string;
+      email: string;
+      telephone: string;
+      roles: string[];
+      companyId: string;
+      createdAt: Date;
+      progress: number;
+      awards: string;
+    }[]
+  | null;
 
 export default function LicensesInUseCard({
   employeesList,
 }: {
-  employeesList:
-    | {
-        id: string;
-        status: string;
-        firstName: string;
-        lastName: string;
-        email: string;
-        telephone: string;
-        password: string;
-        roles: string[];
-        companyId: string;
-        createdAt: Date;
-        updatedAt: Date;
-        progress: number;
-        awards: string;
-      }[]
-    | null;
+  employeesList: employeesListType;
 }) {
   return (
     <Card className={" shadow"}>

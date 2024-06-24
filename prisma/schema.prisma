@@ -148,7 +148,7 @@ model CompanyEmployee {
 
 model BusinessOrder {
   id                          String                        @id @default(uuid())
-  status                      String                        @default("ACTIVE") // ACTIVE, SUSPENDED
+  status                      String                        @default("COMPLETED") // COMPLETED
   company                     Company                       @relation(fields: [companyId], references: [id])
   companyId                   String
   createdAt                   DateTime                      @default(now())

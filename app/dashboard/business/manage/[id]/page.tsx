@@ -39,12 +39,12 @@ export default function businessClientDetails({
 
   useEffect(() => {
     (async () => {
-      const data = await getCompanyDetailsAction(params.id);
+      const companyDetailsResponse = await getCompanyDetailsAction(params.id);
       const employeesActionResponse = await getCompanyEmployeesAction(
         params.id
       );
 
-      setBusinessData(data);
+      setBusinessData(companyDetailsResponse);
 
       // add 2 properties in the employeesActionResponse, progress and awards
       const employeesList = employeesActionResponse.map((employee) => {
@@ -58,10 +58,7 @@ export default function businessClientDetails({
     })();
   }, [params.id]);
 
-  if (!businessData) {
-    console.log(`Business with id "${params.id}" not found`);
-    return <>Business not found</>;
-  }
+  if (!businessData || !employees) return null;
 
   const coursesList = [
     {
@@ -98,7 +95,7 @@ export default function businessClientDetails({
         <div className={"flex justify-between"}>
           <div>
             <div>
-              {businessData.logo ? (
+              {businessData?.logo ? (
                 <Image
                   src={businessData.logo}
                   alt="logo"
@@ -107,7 +104,7 @@ export default function businessClientDetails({
                 />
               ) : null}
             </div>
-            {businessData.name}
+            {businessData?.name}
           </div>
 
           <Button variant="outline" className={"shadow float-right"}>
