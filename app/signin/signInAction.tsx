@@ -13,26 +13,37 @@ export default async function signInAction(
   // Get data from the sign in form
   const email = formData.get("email") as string;
   const password = formData.get("password") as string;
+  const userType = formData.get("userType") as string;
+  console.log("userType", userType);
   let student;
-  const staff = await prisma.user.findUnique({
-    where: {
-      email: email.toLowerCase(),
-    },
-  });
+  let staff;
+  let companyEmployee;
 
-  if (!staff) {
+  if (userType === "staff") {
+    staff = await prisma.user.findUnique({
+      where: {
+        email: email.toLowerCase(),
+      },
+    });
+  }
+
+  if (userType === "student") {
     student = await prisma.student.findUnique({
       where: {
         email: email.toLowerCase(),
       },
     });
-
-    if (!student) {
-      return "Password or email address is wrong";
-    }
   }
 
-  const user = staff || student;
+  if (userType === "companyEmployee") {
+    companyEmployee = await prisma.companyEmployee.findUnique({
+      where: {
+        email: email.toLowerCase(),
+      },
+    });
+  }
+
+  const user = staff || student || companyEmployee;
   if (!user) {
     return "Password or email address is wrong";
   }
@@ -44,7 +55,7 @@ export default async function signInAction(
   const secret = new TextEncoder().encode(process.env.JWT_SECRET);
   const alg = "HS256";
 
-  const jwt = await new jose.SignJWT({ userRole: user.role, userId: user.id })
+  const jwt = await new jose.SignJWT({ userRole: user.roles, userId: user.id })
     .setProtectedHeader({ alg })
     .setIssuedAt()
     .setExpirationTime("10min")
@@ -65,11 +76,12 @@ export default async function signInAction(
     if (staff) {
       // redirect to staff dashboard
       redirect("/dashboard");
-    }
-
-    if (student) {
+    } else if (student) {
       // redirect to student dashboard
       redirect("/studentSpace");
+    } else if (companyEmployee) {
+      // redirect to company employee dashboard
+      redirect("/business");
     }
 
     redirect("/");

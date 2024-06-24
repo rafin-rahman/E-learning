@@ -22,7 +22,7 @@ model User {
   telephone    String?
   password     String
   profileImage String?
-  role         String[] // SUPER_ADMIN, COMPANY_ADMIN, COURSE_MANAGER, LECTURER, STUDENT_SUPPORT, REGISTRY, FINANCE
+  roles        String[] // SUPER_ADMIN, COMPANY_ADMIN, COURSE_MANAGER, LECTURER, STUDENT_SUPPORT, REGISTRY, FINANCE
   permissions  String[]
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
@@ -37,7 +37,7 @@ model Student {
   email       String          @unique
   telephone   String
   password    String
-  role        String[] // STUDENT, BUSINESS_LEARNER
+  roles       String[] // STUDENT, BUSINESS_LEARNER
   permissions String[]
   createdAt   DateTime        @default(now())
   updatedAt   DateTime        @updatedAt

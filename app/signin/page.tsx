@@ -6,6 +6,15 @@ import { redirect } from "next/navigation";
 import { roboto_mono } from "@/lib/font";
 import { SEO } from "@/lib/company";
 import Image from "next/image";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 export default function signin() {
   // if the user is already logged in, redirect to the home page
@@ -28,6 +37,8 @@ export default function signin() {
       <Button asChild variant={"outline"} className={"mr-4"}>
         <Link href={"/"}> {"< "}Home page</Link>
       </Button>
+
+      {/* Staff - it's an internal user to OQ unlike students or business users */}
       <SignInForm />
       <p>
         Don't have an account? <Link href={"signup"}>Sign Up</Link>

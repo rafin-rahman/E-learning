@@ -211,7 +211,7 @@ export default async function StaffSidebar() {
                   <TooltipContent className={"bg-gray-100 bg-opacity-5"}>
                     <p>
                       User role: <br />
-                      {validatedUser.role.map((role: string) => {
+                      {validatedUser.roles.map((role: string) => {
                         return (
                           <div>
                             - {role} <br />

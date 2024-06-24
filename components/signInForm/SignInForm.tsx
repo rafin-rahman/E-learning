@@ -2,18 +2,28 @@
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Form } from "@/components/ui/form";
+import { Form, FormLabel } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import React, { useState, useRef, useEffect } from "react";
 import { signInFormSchema as formSchema } from "@/lib/zodSchema.js";
 import SignInFormField from "@/components/signInForm/SignInFormField";
 import signInAction from "../../app/signin/signInAction";
 import { useToast } from "@/components/ui/use-toast";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const SignInForm = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const { toast } = useToast();
   const signInEmailRef = useRef<HTMLInputElement>(null);
+  const [userType, setUserType] = useState<string>("");
 
   useEffect(() => {
     if (signInEmailRef.current) {
@@ -35,6 +45,8 @@ const SignInForm = () => {
       const formData = new FormData();
       formData.append("email", values.email);
       formData.append("password", values.password);
+      formData.append("userType", userType);
+
       const response = await signInAction({}, formData);
       if (response) {
         setLoading(false);
@@ -78,6 +90,21 @@ const SignInForm = () => {
             description={"Password must be at least 6 characters"}
             formControl={form.control}
           />
+          <div className={"mt-2"}></div>
+          <FormLabel>Select user type</FormLabel>
+          <div className={"mt-2"}></div>
+          <Select onValueChange={setUserType}>
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder="" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectItem value="staff">OQ Staff</SelectItem>
+                <SelectItem value="student">Student</SelectItem>
+                <SelectItem value="companyEmployee">Business</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
 
           <Button type={"submit"} className={"mt-2"} disabled={loading}>
             {loading ? "Loading..." : "Sign In"}
