@@ -29,7 +29,7 @@ export async function POST(request: NextRequest) {
   const secret = new TextEncoder().encode(process.env.JWT_SECRET);
   const alg = "HS256";
 
-  const jwt = await new jose.SignJWT({ userRole: user.role, userId: user.id })
+  const jwt = await new jose.SignJWT({ userRole: user.roles, userId: user.id })
     .setProtectedHeader({ alg })
     .setIssuedAt()
     .setExpirationTime("10min")

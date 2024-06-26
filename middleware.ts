@@ -22,23 +22,26 @@ export async function middleware(request: NextRequest) {
     };
 
     //TODO uncomment this to complete the user status check
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_LOCALHOST_URL}/api/user`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ userId: payload.userId }),
-      }
-    );
-    const user = await response.json();
+    //TODO API/user route needs to be adjust with user / student / companyEmployee
 
-    // Logout and redirect if user account is not active
-    if (user.status !== "ACTIVE") {
-      //TODO: add proper error message for the user, so they know their account is suspended
-      return NextResponse.redirect(new URL("/", request.url));
-    }
+    // const response = await fetch(
+    //   `${process.env.NEXT_PUBLIC_LOCALHOST_URL}/api/user`,
+    //   {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({ userId: payload.userId }),
+    //   }
+    // );
+    // const user = await response.json();
+    //
+    // // Logout and redirect if user account is not active
+    // if (user.status !== "ACTIVE") {
+    //TODO: add proper error message for the user, so they know their account is suspended
+
+    //   return NextResponse.redirect(new URL("/", request.url));
+    // }
 
     const userRole = payload.userRole;
     const currentRoute: string = request.nextUrl.pathname;
@@ -60,6 +63,14 @@ export async function middleware(request: NextRequest) {
       {
         route: "/dashboard/admin/manageCourses:path*",
         roles: ["SUPER_ADMIN", "COURSE_MANAGER"],
+      },
+      {
+        route: "/business",
+        roles: ["SUPER_ADMIN", "COMPANY_ADMIN", "COMPANY_EMPLOYEE"],
+      },
+      {
+        route: "/business/companyEmployee:path*",
+        roles: ["SUPER_ADMIN", "COMPANY_ADMIN", "COMPANY_EMPLOYEE"],
       },
       // Add more route configurations here as needed
       // {route: "another-route-path",
@@ -109,5 +120,5 @@ export async function middleware(request: NextRequest) {
 }
 // matching paths
 export const config = {
-  matcher: ["/dashboard/:path*", "/studentSpace/:path*"],
+  matcher: ["/dashboard/:path*", "/studentSpace/:path*", "/business/:path*"],
 };

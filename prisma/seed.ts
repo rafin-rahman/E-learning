@@ -22,7 +22,7 @@ async function main() {
         email: "admin@gmail.com",
         telephone: "1234567890",
         password: await hashPassword("123123"),
-        role: ["STAFF", "SUPER_ADMIN"],
+        roles: ["STAFF", "SUPER_ADMIN"],
       },
       {
         firstName: "Jonah",
@@ -30,7 +30,7 @@ async function main() {
         email: "business@gmail.com",
         telephone: "1234567890",
         password: await hashPassword("123123"),
-        role: ["STAFF", "COMPANY_ADMIN"],
+        roles: ["STAFF", "COMPANY_ADMIN"],
       },
       {
         firstName: "Keanu",
@@ -38,7 +38,7 @@ async function main() {
         email: "course@gmail.com",
         telephone: "1234567890",
         password: await hashPassword("123123"),
-        role: ["STAFF", "COURSE_MANAGER"],
+        roles: ["STAFF", "COURSE_MANAGER"],
         permissions: ["can_delete_students"],
       },
     ],
@@ -55,7 +55,7 @@ async function main() {
         email: "student@gmail.com",
         telephone: "1234567890",
         password: await hashPassword("123123"),
-        role: ["STUDENT"],
+        roles: ["STUDENT"],
       },
       {
         firstName: "Elizabeth",
@@ -63,7 +63,7 @@ async function main() {
         email: "student2@gmail.com",
         telephone: "1234567890",
         password: await hashPassword("123123"),
-        role: ["STUDENT"],
+        roles: ["STUDENT"],
       },
     ],
   });
@@ -1027,13 +1027,13 @@ async function main() {
     return console.error("Business client not found");
   }
 
-  // Create admins for each company
+  // Create ADMINS for each company
   await prisma.companyEmployee.createMany({
     data: [
       {
         firstName: "Moshfiqur",
         lastName: "Rahman",
-        email: "moshfiqur@esl.ac.uk",
+        email: "companyesl@esl.ac.uk",
         telephone: "1234567890",
         password: await hashPassword("123123"),
         roles: ["COMPANY_ADMIN"],
@@ -1099,9 +1099,9 @@ async function main() {
   // Create random employees for each company
   const employeeData = [
     {
-      firstName: "Jane",
-      lastName: "Smith",
-      email: "jane@esl.ac.uk",
+      firstName: "Rafin Rahman",
+      lastName: "Moshfiqur",
+      email: "employeeesl@esl.ac.uk",
       telephone: "9876543210",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],

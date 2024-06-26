@@ -79,9 +79,18 @@ export default async function signInAction(
     } else if (student) {
       // redirect to student dashboard
       redirect("/studentSpace");
-    } else if (companyEmployee) {
+    } else if (
+      companyEmployee &&
+      companyEmployee.roles.includes("COMPANY_EMPLOYEE")
+    ) {
       // redirect to company employee dashboard
-      redirect("/business");
+      redirect("/business/companyEmployee/dashboard");
+    } else if (
+      companyEmployee &&
+      companyEmployee.roles.includes("COMPANY_ADMIN")
+    ) {
+      // redirect to company admin dashboard
+      redirect("/business/companyAdmin/dashboard");
     }
 
     redirect("/");
