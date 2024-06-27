@@ -49,6 +49,8 @@ export default function Learning() {
         image={course.image}
         numberOfModules={course.numberOfModules}
         progressionPercentage={course.progressionPercentage}
+        //TODO replace with actual id
+        id={course.title}
       />
     ));
   }

@@ -10,13 +10,17 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import Providers from "@/app/providers";
+import { redirect } from "next/navigation";
+import Link from "next/link";
 
 export default function BusinessCourseCard({
+  id,
   title,
   image,
   numberOfModules,
   progressionPercentage,
 }: {
+  id: string;
   title: string;
   image: string;
   numberOfModules: number;
@@ -44,7 +48,9 @@ export default function BusinessCourseCard({
         </CardContent>
         <CardFooter>
           <Button>
-            {progressionPercentage > 0 ? "Continue" : "Start course"}
+            <Link href={`/business/companyEmployee/learning/${id}`}>
+              {progressionPercentage > 0 ? "Continue" : "Start course"}
+            </Link>
           </Button>
         </CardFooter>
       </Card>
