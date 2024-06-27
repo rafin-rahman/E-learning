@@ -9,15 +9,15 @@ export default function CompanyEmployee({
   const menu = [
     {
       name: "Dashboard",
-      link: "dashboard",
+      link: "/business/companyEmployee/dashboard",
     },
     {
       name: "Learning",
-      link: "learning",
+      link: "/business/companyEmployee/learning",
     },
     {
       name: "Awards",
-      link: "awards",
+      link: "/business/companyEmployee/awards",
     },
   ];
 

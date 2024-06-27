@@ -1,13 +1,14 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 
 export default function Menu({
   menuOptions,
 }: {
   menuOptions: { name: string; link: string }[];
 }) {
-  const [activeMenu, setActiveMenu] = useState<string>("Dashboard");
+  const currentUrl = usePathname();
 
   return (
     <ul className={"flex gap-6 "}>
@@ -15,17 +16,12 @@ export default function Menu({
         <li
           key={item.name}
           className={`${
-            activeMenu === item.name ? "" : "border-b-transparent"
+            currentUrl.includes(item.name.toLowerCase())
+              ? ""
+              : "border-b-transparent"
           } hover:border-b-gray-400  border-b-2  p-2 `}
         >
-          <Link
-            href={item.link}
-            onClick={() => {
-              setActiveMenu(item.name);
-            }}
-          >
-            {item.name}
-          </Link>
+          <Link href={item.link}>{item.name}</Link>
         </li>
       ))}
     </ul>

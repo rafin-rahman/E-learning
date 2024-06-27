@@ -27,21 +27,44 @@ export default function CpdDetails({ params }: { params: { id: string } }) {
         prevent radicalization, identify warning signs, and promote community
         cohesion.
       </p>
-      <Tabs defaultValue="account" className="w-full flex gap-10 mt-20 ">
+      <Tabs defaultValue="account" className="w-full flex gap-10 mt-20 my-10">
         <TabsList className="flex flex-wrap w-[150px] gap-6">
-          <TabsTrigger value="account">Chapter 1</TabsTrigger>
-          <TabsTrigger value="password">Chapter 2</TabsTrigger>
-          <TabsTrigger value="account1">
-            Chapter 1
+          <TabsTrigger value="0">Introduction</TabsTrigger>
+          <TabsTrigger value="1">Chapter 1</TabsTrigger>
+          <TabsTrigger value="2">Chapter 2</TabsTrigger>
+          <TabsTrigger value="3">
+            Chapter 3
             <LockClosedIcon className={"h-4 inline ml-2"} />
           </TabsTrigger>
-          <TabsTrigger value="password2">
-            Chapter 2<LockClosedIcon className={"h-4 inline ml-2"} />
+          <TabsTrigger value="4">
+            Chapter 4<LockClosedIcon className={"h-4 inline ml-2"} />
+          </TabsTrigger>
+          <TabsTrigger value="5">
+            Chapter 5
+            <LockClosedIcon className={"h-4 inline ml-2"} />
+          </TabsTrigger>
+          <TabsTrigger value="6">
+            Chapter 6<LockClosedIcon className={"h-4 inline ml-2"} />
+          </TabsTrigger>{" "}
+          <TabsTrigger value="7">
+            Chapter 7
+            <LockClosedIcon className={"h-4 inline ml-2"} />
+          </TabsTrigger>
+          <TabsTrigger value="8">
+            Chapter 8<LockClosedIcon className={"h-4 inline ml-2"} />
+          </TabsTrigger>
+          <TabsTrigger value="9">
+            Chapter 9
+            <LockClosedIcon className={"h-4 inline ml-2"} />
+          </TabsTrigger>
+          <TabsTrigger value="10">
+            Chapter 10
+            <LockClosedIcon className={"h-4 inline ml-2"} />
           </TabsTrigger>
         </TabsList>
         <div className={"w-full"}>
-          <TabsContent value="account">
-            <Card>
+          <TabsContent value="0">
+            <Card className={"flex-1"}>
               <CardHeader>
                 <CardTitle>Account</CardTitle>
                 <CardDescription>
@@ -64,7 +87,7 @@ export default function CpdDetails({ params }: { params: { id: string } }) {
               </CardFooter>
             </Card>
           </TabsContent>
-          <TabsContent value="password">
+          <TabsContent value="1">
             <Card>
               <CardHeader>
                 <CardTitle>Password</CardTitle>
