@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import React, { useState, useRef, useEffect } from "react";
 import { signInFormSchema as formSchema } from "@/lib/zodSchema.js";
 import SignInFormField from "@/components/signInForm/SignInFormField";
-import signInAction from "../../app/signin/signInAction";
+import signInAction from "@/app/auth/signin/signInAction";
 import { useToast } from "@/components/ui/use-toast";
 import {
   Select,

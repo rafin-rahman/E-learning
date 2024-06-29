@@ -206,7 +206,7 @@ const PublicNavbar: React.FC<PublicNavbarProps> = ({ isLoggedIn }) => {
             </Link>
           </Button>
           <Button variant={"default"} className={"relative w-24 right-10 "}>
-            <Link href={"/logout"} className="">
+            <Link href={"/auth/logout"} className="">
               Logout
             </Link>
           </Button>
@@ -217,7 +217,7 @@ const PublicNavbar: React.FC<PublicNavbarProps> = ({ isLoggedIn }) => {
           variant={"default"}
           className={"relative w-24 right-10 "}
         >
-          <Link href={"/signin"} className="">
+          <Link href={"/auth/signin"} className="">
             Login
           </Link>
         </Button>

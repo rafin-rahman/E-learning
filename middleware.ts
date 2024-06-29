@@ -9,7 +9,7 @@ export async function middleware(request: NextRequest) {
   // Check for cookies and redirect if not present
   const cookie = cookies().get("Authorization");
   if (!cookie) {
-    return NextResponse.redirect(new URL("/signin", request.url));
+    return NextResponse.redirect(new URL("/auth/signin", request.url));
   }
 
   // if there's cookies, validate it
@@ -98,14 +98,14 @@ export async function middleware(request: NextRequest) {
       })
         .setProtectedHeader({ alg: "HS256" })
         .setIssuedAt()
-        .setExpirationTime("10min")
+        .setExpirationTime(`${userLoginTimeout}s`) // 30 minutes
         .setSubject(payload.sub)
         .sign(secret);
 
       // Prepare response to set new cookie
       const response = NextResponse.next();
       response.cookies.set("Authorization", newJwt, {
-        maxAge: 1800,
+        maxAge: userLoginTimeout, // 30 minutes
         path: "/",
         sameSite: "strict",
         secure: true,
@@ -115,7 +115,7 @@ export async function middleware(request: NextRequest) {
       return response;
     }
   } catch (err) {
-    return NextResponse.redirect(new URL("/signin", request.url));
+    return NextResponse.redirect(new URL("/auth/signin", request.url));
   }
 }
 // matching paths

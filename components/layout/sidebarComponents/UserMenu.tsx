@@ -130,7 +130,7 @@ export default function UserMenu({
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem className={"focus:bg-opacity-50 focus:bg-gray-200"}>
-          <Link href={"/logout"} className={"flex justify-around w-full"}>
+          <Link href={"/auth/logout"} className={"flex justify-around w-full"}>
             <LogOut className="mr-2 h-4 w-4" />
             <span>Log out</span>
             <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>

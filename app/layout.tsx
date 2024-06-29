@@ -3,7 +3,7 @@ import "./globals.css";
 import { poppins } from "@/lib/font";
 import { Toaster } from "@/components/ui/toaster";
 import { SEO } from "@/lib/company";
-import Providers from "@/app/providers";
+import Providers from "@/lib/providers";
 import React from "react";
 
 export const metadata: Metadata = {

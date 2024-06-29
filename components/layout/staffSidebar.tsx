@@ -79,11 +79,11 @@ export default async function StaffSidebar() {
     userRoles = payload.userRole;
   } else {
     console.log("no user cookie found");
-    redirect("/logout");
+    redirect("/auth/logout");
   }
 
   if (!userId) {
-    redirect("/logout");
+    redirect("/auth/logout");
   }
 
   let validatedUser;
@@ -93,7 +93,7 @@ export default async function StaffSidebar() {
       console.log(
         "staffSidebar.tsx - User info not found when using fetchUserInfo() function"
       );
-      redirect("/somethingWrong");
+      redirect("/error/somethingWrong");
     }
   }
 

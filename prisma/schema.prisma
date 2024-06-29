@@ -132,18 +132,20 @@ model Company {
 }
 
 model CompanyEmployee {
-  id        String   @id @default(uuid())
-  status    String   @default("ACTIVE") // ACTIVE, SUSPENDED
-  firstName String
-  lastName  String
-  email     String   @unique
-  telephone String
-  password  String
-  roles     String[] // COMPANY_ADMIN, COMPANY_EMPLOYEE
-  company   Company  @relation(fields: [companyId], references: [id])
-  companyId String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id                               String                             @id @default(uuid())
+  status                           String                             @default("ACTIVE") // ACTIVE, SUSPENDED
+  firstName                        String
+  lastName                         String
+  email                            String                             @unique
+  telephone                        String
+  password                         String
+  roles                            String[] // COMPANY_ADMIN, COMPANY_EMPLOYEE
+  company                          Company                            @relation(fields: [companyId], references: [id])
+  companyId                        String
+  createdAt                        DateTime                           @default(now())
+  updatedAt                        DateTime                           @updatedAt
+  BusinessCourseChapter            BusinessCourseChapter[]
+  BusinessCourseChapterQuizAttempt BusinessCourseChapterQuizAttempt[]
 }
 
 model BusinessOrder {
@@ -179,17 +181,55 @@ model BusinessCourse {
   price                       Float
   createdAt                   DateTime                      @default(now())
   updatedAt                   DateTime                      @updatedAt
-  businessCourseModule        BusinessCourseModule[]
+  BusinessCourseChapter       BusinessCourseChapter[]
   businessOrderCourseQuantity BusinessOrderCourseQuantity[]
 }
 
-model BusinessCourseModule {
-  id               String          @id @default(uuid())
-  title            String
-  description      String
-  order            Int
-  BusinessCourse   BusinessCourse? @relation(fields: [businessCourseId], references: [id])
-  businessCourseId String?
+model BusinessCourseChapter {
+  id                        String                      @id @default(uuid())
+  title                     String
+  order                     Int
+  progressionPercentage     String
+  CompanyEmployee           CompanyEmployee             @relation(fields: [companyEmployeeId], references: [id])
+  companyEmployeeId         String
+  BusinessCourse            BusinessCourse?             @relation(fields: [businessCourseId], references: [id])
+  businessCourseId          String?
+  BusinessCourseChapterQuiz BusinessCourseChapterQuiz[]
+  createdAt                 DateTime                    @default(now())
+  updatedAt                 DateTime                    @updatedAt
+}
+
+model BusinessCourseChapterQuiz {
+  id                                 String                               @id @default(uuid())
+  title                              String
+  BusinessCourseChapter              BusinessCourseChapter                @relation(fields: [businessCourseChapterId], references: [id])
+  businessCourseChapterId            String
+  createdAt                          DateTime                             @default(now())
+  updatedAt                          DateTime                             @updatedAt
+  BusinessCourseChapterQuizAttempt   BusinessCourseChapterQuizAttempt[]
+  BusinessCourseChapterQuizQuestions BusinessCourseChapterQuizQuestions[]
+}
+
+model BusinessCourseChapterQuizQuestions {
+  id                          String                    @id @default(uuid())
+  question                    String
+  answers                     String[]
+  correctAnswer               String
+  BusinessCourseChapterQuiz   BusinessCourseChapterQuiz @relation(fields: [businessCourseChapterQuizId], references: [id])
+  businessCourseChapterQuizId String
+  createdAt                   DateTime                  @default(now())
+  updatedAt                   DateTime                  @updatedAt
+}
+
+model BusinessCourseChapterQuizAttempt {
+  id                          String                    @id @default(uuid())
+  score                       Int
+  BusinessCourseChapterQuiz   BusinessCourseChapterQuiz @relation(fields: [businessCourseChapterQuizId], references: [id])
+  businessCourseChapterQuizId String
+  CompanyEmployee             CompanyEmployee           @relation(fields: [companyEmployeeId], references: [id])
+  companyEmployeeId           String
+  createdAt                   DateTime                  @default(now())
+  updatedAt                   DateTime                  @updatedAt
 }
 
 // Course Subjects

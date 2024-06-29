@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import React from "react";
 import { signUpFormSchema as formSchema } from "@/lib/zodSchema.js";
 import SignUpFormField from "@/components/signUpForm/SignUpFormField";
-import signUpAction from "@/app/signup/signUpAction";
+import signUpAction from "@/app/auth/signup/signUpAction";
 import { useToast } from "@/components/ui/use-toast";
 
 export default function SignUpForm() {
