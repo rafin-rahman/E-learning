@@ -1,6 +1,6 @@
 import prisma from "@/lib/prisma";
 import { NextRequest } from "next/server";
 
-export default function GET(request: NextRequest) {
+export async function GET(request: NextRequest) {
   return null;
 }
