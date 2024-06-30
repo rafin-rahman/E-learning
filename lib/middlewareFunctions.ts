@@ -13,7 +13,7 @@ export function checkRole(
         `User with role ${userRoles[0]} tried to access ${currentRoute} but is not allowed`
       );
 
-      return "/unauthorized";
+      return "/error/unauthorized";
     }
   }
   return null;

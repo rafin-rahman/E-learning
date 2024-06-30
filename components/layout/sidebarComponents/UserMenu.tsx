@@ -58,7 +58,7 @@ export default function UserMenu({
         <DropdownMenuGroup>
           <DropdownMenuItem className={"focus:bg-opacity-50 focus:bg-gray-200"}>
             <Link
-              href={"/dashboard/settings/myProfile"}
+              href={"/oq-staff/settings/myProfile"}
               className="flex justify-around w-full "
             >
               <User />

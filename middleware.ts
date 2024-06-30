@@ -48,30 +48,33 @@ export async function middleware(request: NextRequest) {
 
     // Define the configuration for your routes and their allowed roles
     const routeRoleConfig = [
+      // major routes: oq-staff, oq-business, oq-learner, oq-recruiter
       {
-        route: "/studentSpace:path*",
-        roles: ["STUDENT"],
-      },
-      {
-        route: "/dashboard:path*",
+        route: "/oq-staff:path*",
         roles: ["STAFF"],
       },
       {
-        route: "/dashboard/admin/manageUsers:path*",
+        route: "/oq-business/:path*",
+        roles: ["SUPER_ADMIN", "COMPANY_ADMIN", "COMPANY_EMPLOYEE"],
+      },
+      {
+        route: "/oq-learner:path*",
+        roles: ["STUDENT"],
+      },
+      {
+        route: "/oq-recruiter:path*",
+        roles: ["RECRUITER"],
+      },
+      // sub pages
+      {
+        route: "/oq-staff/admin/manageUsers:path*",
         roles: ["SUPER_ADMIN"],
       },
       {
-        route: "/dashboard/admin/manageCourses:path*",
+        route: "/oq-staff/admin/manageCourses:path*",
         roles: ["SUPER_ADMIN", "COURSE_MANAGER"],
       },
-      {
-        route: "/business",
-        roles: ["SUPER_ADMIN", "COMPANY_ADMIN", "COMPANY_EMPLOYEE"],
-      },
-      {
-        route: "/business/companyEmployee:path*",
-        roles: ["SUPER_ADMIN", "COMPANY_ADMIN", "COMPANY_EMPLOYEE"],
-      },
+
       // Add more route configurations here as needed
       // {route: "another-route-path",
       // roles: ["ROLE1", "ROLE2"]}
@@ -120,5 +123,10 @@ export async function middleware(request: NextRequest) {
 }
 // matching paths
 export const config = {
-  matcher: ["/dashboard/:path*", "/studentSpace/:path*", "/business/:path*"],
+  matcher: [
+    "/oq-staff/:path*",
+    "/oq-learner/:path*",
+    "/oq-business/:path*",
+    "/oq-recruiter/:path*",
+  ],
 };

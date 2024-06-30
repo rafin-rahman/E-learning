@@ -37,7 +37,7 @@ import {
 import { CountrySelect } from "@/components/business/countrySelect";
 
 import { createBusinessClientSchema as formSchema } from "@/lib/zodSchema";
-import addBusinessAction from "@/app/(OQAdmin)/dashboard/business/manage/addBusinessAction";
+import addBusinessAction from "@/app/oq-staff/manage-businesses/addBusinessAction";
 
 export function AddBusinessClient() {
   const [open, setOpen] = React.useState(false);

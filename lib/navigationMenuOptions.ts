@@ -7,7 +7,7 @@ import {
 export const staffNavigationMenuOptions = [
   {
     name: "Manage Users",
-    href: "/dashboard/admin/manageUsers",
+    href: "/oq-staff/manage-users",
     icon: UsersIcon,
     count: "",
     current: false,
@@ -16,7 +16,7 @@ export const staffNavigationMenuOptions = [
   },
   {
     name: "Manage Courses",
-    href: "/dashboard/admin/manageCourses",
+    href: "/oq-staff/manage-courses",
     icon: QueueListIcon,
     count: "",
     current: false,
@@ -24,7 +24,7 @@ export const staffNavigationMenuOptions = [
   },
   {
     name: "Manage Businesses",
-    href: "/dashboard/business/manage",
+    href: "/oq-staff/manage-businesses",
     icon: BriefcaseIcon,
     count: "",
     current: false,

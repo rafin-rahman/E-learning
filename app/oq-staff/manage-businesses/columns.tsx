@@ -52,7 +52,7 @@ export const columns: ColumnDef<Businesses>[] = [
       const business = row.original;
       return (
         <Link
-          href={"manage/" + business.id}
+          href={"/oq-staff/manage-businesses/" + business.id}
           className={"flex gap-4 items-center"}
           target={"_blank"}
         >

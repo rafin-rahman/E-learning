@@ -9,7 +9,7 @@ import {
 import { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
-import getImageUrlAction from "@/app/(OQAdmin)/dashboard/admin/courseDetails/[id]/getImageUrlAction";
+import getImageUrlAction from "@/app/oq-staff/manage-courses/[id]/getImageUrlAction";
 import { ArrowUpTrayIcon } from "@heroicons/react/24/solid";
 
 type Course = {
@@ -169,9 +169,7 @@ export default function CourseDetails({ params }: { params: { id: string } }) {
   return (
     <div className={"container mx-10"}>
       <Button asChild variant={"outline"} className={"my-10 "}>
-        <Link href={"/dashboard/admin/manageCourses"}>
-          {"< "}Manage Courses
-        </Link>
+        <Link href={"/oq-staff "}>{"< "}Manage Courses</Link>
       </Button>
 
       <div className={"font-light text-gray-400"}>

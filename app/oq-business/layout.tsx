@@ -8,16 +8,12 @@ export default function CompanyEmployee({
 }: Readonly<{ children: React.ReactNode }>) {
   const menu = [
     {
-      name: "Dashboard",
-      link: "/business/companyEmployee/dashboard",
-    },
-    {
       name: "Learning",
-      link: "/business/companyEmployee/learning",
+      link: "/oq-business/learning",
     },
     {
       name: "Awards",
-      link: "/business/companyEmployee/awards",
+      link: "/oq-business/awards",
     },
   ];
 

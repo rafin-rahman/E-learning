@@ -1,12 +1,12 @@
 "use client";
-import getCompanyDetailsAction from "@/app/(OQAdmin)/dashboard/business/manage/[id]/getCompanyDetailsAction";
+import getCompanyDetailsAction from "@/app/oq-staff/manage-businesses/[id]/getCompanyDetailsAction";
 
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import LicensesInUseCard from "@/components/business/businessDetails/licensesInUseCard";
 import CoursesCard from "@/components/business/businessDetails/coursesCard";
-import getCompanyEmployeesAction from "@/app/(OQAdmin)/dashboard/business/manage/[id]/getCompanyEmployeesAction";
+import getCompanyEmployeesAction from "@/app/oq-staff/manage-businesses/[id]/getCompanyEmployeesAction";
 import { useQuery } from "@tanstack/react-query";
 
 export default function businessClientDetails({

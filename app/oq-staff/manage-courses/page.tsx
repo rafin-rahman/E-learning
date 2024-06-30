@@ -265,7 +265,7 @@ export default function ManageCourses() {
                   tag={course.courseLevel.name}
                   deliveryPartner={course.deliveryPartner.name}
                   editLink={""}
-                  viewLink={"/dashboard/admin/courseDetails/" + course.id}
+                  viewLink={"/oq-staff/manage-courses/" + course.id}
                   imageUrl={course.image}
                 />
               ))}

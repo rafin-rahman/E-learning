@@ -48,7 +48,7 @@ export default function BusinessCourseCard({
         </CardContent>
         <CardFooter>
           <Button>
-            <Link href={`/business/companyEmployee/learning/${id}`}>
+            <Link href={`/oq-business/learning/${id}`}>
               {progressionPercentage > 0 ? "Continue" : "Start course"}
             </Link>
           </Button>
