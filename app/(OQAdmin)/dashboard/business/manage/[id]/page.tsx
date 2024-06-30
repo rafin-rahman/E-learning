@@ -1,12 +1,13 @@
 "use client";
-import getCompanyDetailsAction from "@/app/dashboard/business/manage/[id]/getCompanyDetailsAction";
+import getCompanyDetailsAction from "@/app/(OQAdmin)/dashboard/business/manage/[id]/getCompanyDetailsAction";
 
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import LicensesInUseCard from "@/components/business/businessDetails/licensesInUseCard";
 import CoursesCard from "@/components/business/businessDetails/coursesCard";
-import getCompanyEmployeesAction from "@/app/dashboard/business/manage/[id]/getCompanyEmployeesAction";
+import getCompanyEmployeesAction from "@/app/(OQAdmin)/dashboard/business/manage/[id]/getCompanyEmployeesAction";
+import { useQuery } from "@tanstack/react-query";
 
 export default function businessClientDetails({
   params,
@@ -40,6 +41,7 @@ export default function businessClientDetails({
   useEffect(() => {
     (async () => {
       const companyDetailsResponse = await getCompanyDetailsAction(params.id);
+      // Get list of employees
       const employeesActionResponse = await getCompanyEmployeesAction(
         params.id
       );
@@ -57,6 +59,14 @@ export default function businessClientDetails({
       setEmployees(employeesList);
     })();
   }, [params.id]);
+
+  const courseList = useQuery({
+    queryKey: ["courses", params.id],
+    queryFn: async () => {
+      const response = await fetch(`/api/business/${params.id}/courses`);
+      return response.json();
+    },
+  });
 
   if (!businessData || !employees) return null;
 
