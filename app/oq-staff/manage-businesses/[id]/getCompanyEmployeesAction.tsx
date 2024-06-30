@@ -20,13 +20,11 @@ export default async function getCompanyEmployeesAction(
 > {
   console.log("getCompanyEmployeesAction");
   try {
-    const employees = await prisma.companyEmployee.findMany({
+    return await prisma.companyEmployee.findMany({
       where: {
         companyId: companyId,
       },
     });
-
-    return employees;
   } catch (error) {
     console.error(error);
     return [];

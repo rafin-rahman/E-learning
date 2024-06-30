@@ -9,8 +9,6 @@ import {
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import Providers from "@/lib/providers";
-import { redirect } from "next/navigation";
 import Link from "next/link";
 
 export default function BusinessCourseCard({

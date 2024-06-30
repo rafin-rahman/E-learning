@@ -22,7 +22,6 @@ import {
 import { Input } from "@/components/ui/input";
 import React from "react";
 import { AddBusinessClient } from "@/components/business/addBusinessClient";
-import Link from "next/link";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];

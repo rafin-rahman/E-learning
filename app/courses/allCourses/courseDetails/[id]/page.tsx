@@ -7,7 +7,6 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
 import { useEffect, useState } from "react";
-import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import getImageUrlAction from "@/app/oq-staff/manage-courses/[id]/getImageUrlAction";
 
@@ -53,9 +52,7 @@ export default function CourseDetails({ params }: { params: { id: string } }) {
     },
     courseCode: "loading...",
   });
-  const [file, setFile] = useState<File | null>(null);
   const [courseImageUrl, setCourseImageUrl] = useState<string | null>(null);
-  const [toggleImageUploadForm, setToggle] = useState<boolean>(false);
   const [imageUploadLoading, setImageUploadLoading] = useState<boolean>(false);
 
   // Function to format the price

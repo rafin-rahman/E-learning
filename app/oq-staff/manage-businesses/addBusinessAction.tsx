@@ -1,6 +1,6 @@
 "use server";
 import prisma from "@/lib/prisma";
-import { put, del, PutBlobResult } from "@vercel/blob";
+import { put } from "@vercel/blob";
 import { log } from "node:util";
 
 export default async function addBusinessAction(
