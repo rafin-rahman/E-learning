@@ -9,7 +9,7 @@ import {
 import { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
-import getImageUrlAction from "@/app/dashboard/admin/courseDetails/[id]/getImageUrlAction";
+import getImageUrlAction from "@/app/(OQAdmin)/dashboard/admin/courseDetails/[id]/getImageUrlAction";
 
 type Course = {
   id: string;
