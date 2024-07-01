@@ -71,30 +71,30 @@ export default function businessClientDetails({
   if (!businessData || !employees) return null;
 
   const coursesList = [
-    {
-      course: "The Essentials of Data Protection",
-      thumbnail: "/testings/data_protection.png",
-    },
-    {
-      course: "Radicalisation and Extremism (Prevent)",
-      thumbnail: "/testings/extremism.png",
-    },
-    {
-      course: "Level 2 Safeguarding Adults",
-      thumbnail: "/testings/safeguarding_adults.png",
-    },
-    {
-      course: "Unconscious Bias in the Workplace",
-      thumbnail: "/testings/bias.png",
-    },
-    {
-      course: "Bullying and Harassment in the Workplace",
-      thumbnail: "/testings/bullying.png",
-    },
-    {
-      course: "Equality, Diversity and Inclusion for Employees",
-      thumbnail: "/testings/equality.png",
-    },
+    // {
+    //   course: "The Essentials of Data Protection",
+    //   thumbnail: "/testings/data_protection.png",
+    // },
+    // {
+    //   course: "Radicalisation and Extremism (Prevent)",
+    //   thumbnail: "/testings/extremism.png",
+    // },
+    // {
+    //   course: "Level 2 Safeguarding Adults",
+    //   thumbnail: "/testings/safeguarding_adults.png",
+    // },
+    // {
+    //   course: "Unconscious Bias in the Workplace",
+    //   thumbnail: "/testings/bias.png",
+    // },
+    // {
+    //   course: "Bullying and Harassment in the Workplace",
+    //   thumbnail: "/testings/bullying.png",
+    // },
+    // {
+    //   course: "Equality, Diversity and Inclusion for Employees",
+    //   thumbnail: "/testings/equality.png",
+    // },
   ];
 
   return (

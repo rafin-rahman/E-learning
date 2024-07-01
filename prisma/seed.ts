@@ -1828,7 +1828,7 @@ async function main() {
 
   //region Business Courses and Modules
   // delete all courses
-  await prisma.businessCourseModule.deleteMany();
+  await prisma.businessCourseChapter.deleteMany();
   await prisma.businessCourse.deleteMany();
 
   // create business courses
@@ -1961,11 +1961,11 @@ async function main() {
 
   //region Business orders
   await prisma.businessOrderCourseQuantity.deleteMany();
-  await prisma.businessOrder.deleteMany();
+  await prisma.businessPurchase.deleteMany();
 
-  // TODO: Create business orders with random courses and quantities
+  // TODO: Create business purchases with random courses and quantities
 
-  // await prisma.businessOrder.createMany({
+  // await prisma.businessPurchase.createMany({
   //   data: [
   //     {
   //       companyId: companyEsl.id,

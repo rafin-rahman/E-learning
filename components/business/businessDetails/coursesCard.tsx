@@ -29,40 +29,44 @@ export default function CoursesCard({
         }
       />
       <CardContent>
-        <div className={"flex flex-wrap gap-10"}>
-          {coursesList.map((course) => (
-            <div className={"shadow p-6  max-w-72 hover:shadow-xl"}>
-              <div className={"h-28 w-[80%] relative mx-auto"}>
-                <Image
-                  src={course.thumbnail ? course.thumbnail : ""}
-                  alt={"image"}
-                  className={"object-contain"}
-                  fill
-                />
-              </div>{" "}
-              <Separator className="my-4" />
-              <div className={"text-black"}>{course.course}</div>
-            </div>
-          ))}
-          <div
-            className={
-              "shadow p-6  max-w-72 hover:shadow-xl bg-gray-50 flex items-center border-4 hover:bg-gray-100"
-            }
-          >
+        {!coursesList || coursesList.length === 0 ? (
+          <div>No course available</div>
+        ) : (
+          <div className={"flex flex-wrap gap-10"}>
+            {coursesList.map((course) => (
+              <div className={"shadow p-6  max-w-72 hover:shadow-xl"}>
+                <div className={"h-28 w-[80%] relative mx-auto"}>
+                  <Image
+                    src={course.thumbnail ? course.thumbnail : ""}
+                    alt={"image"}
+                    className={"object-contain"}
+                    fill
+                  />
+                </div>{" "}
+                <Separator className="my-4" />
+                <div className={"text-black"}>{course.course}</div>
+              </div>
+            ))}
             <div
               className={
-                "h-28 w-[80%]  mx-auto  text-center text-xl text-gray-700 "
+                "shadow p-6  max-w-72 hover:shadow-xl bg-gray-50 flex items-center border-4 hover:bg-gray-100"
               }
             >
-              ADD NEW COURSE
-              <Separator className="my-4" />
-            </div>{" "}
+              <div
+                className={
+                  "h-28 w-[80%]  mx-auto  text-center text-xl text-gray-700 "
+                }
+              >
+                ADD NEW COURSE
+                <Separator className="my-4" />
+              </div>{" "}
+            </div>
           </div>
-        </div>
+        )}
       </CardContent>
       <CardFooter>
         <Button variant="outline" className={"shadow"}>
-          Edit
+          Buy courses
         </Button>
       </CardFooter>
     </Card>

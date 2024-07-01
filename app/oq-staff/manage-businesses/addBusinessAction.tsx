@@ -5,7 +5,7 @@ import { log } from "node:util";
 
 export default async function addBusinessAction(
   formData: FormData
-): Promise<string> {
+): Promise<{ error?: string; message?: string; status: number }> {
   //TODO: ensure that the business name is unique alongside the country
 
   // find if existing businesses already exists
@@ -32,7 +32,7 @@ export default async function addBusinessAction(
   });
 
   try {
-    await prisma.company.create({
+    const newCompany = await prisma.company.create({
       data: {
         name: formData.get("name") as string,
         shortName: formData.get("shortName") as string,
@@ -42,7 +42,18 @@ export default async function addBusinessAction(
         domains: domainsToArray as string[],
       },
     });
-  } catch (error) {}
 
-  return "";
+    if (!newCompany) {
+      return { error: "Failed to create a new company", status: 500 };
+    }
+
+    return { message: "Company created successfully", status: 200 };
+  } catch (error) {
+    console.log("Error: ", error);
+    return {
+      error:
+        "Ops, Something went wrong, failed to create a new company, check dev logs for more details",
+      status: 500,
+    };
+  }
 }

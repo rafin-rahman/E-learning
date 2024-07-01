@@ -35,6 +35,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { CountrySelect } from "@/components/business/countrySelect";
+import { useToast } from "@/components/ui/use-toast";
 
 import { createBusinessClientSchema as formSchema } from "@/lib/zodSchema";
 import addBusinessAction from "@/app/oq-staff/manage-businesses/addBusinessAction";
@@ -61,7 +62,7 @@ export function AddBusinessClient() {
               Make sure the business is approved.
             </DialogDescription>
           </DialogHeader>
-          <ProfileForm />
+          <ProfileForm setOpen={setOpen} />
         </DialogContent>
       </Dialog>
     );
@@ -83,7 +84,7 @@ export function AddBusinessClient() {
             Make sure the business is approved.
           </DrawerDescription>
         </DrawerHeader>
-        <ProfileForm className="px-4" />
+        <ProfileForm className="px-4" setOpen={setOpen} />
         <DrawerFooter className="pt-2">
           <DrawerClose asChild>
             <Button variant="outline">Cancel</Button>
@@ -94,7 +95,12 @@ export function AddBusinessClient() {
   );
 }
 
-function ProfileForm({ className }: React.ComponentProps<"form">) {
+interface ProfileFormProps extends React.ComponentProps<"form"> {
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+function ProfileForm({ className, setOpen }: ProfileFormProps) {
+  const { toast } = useToast();
   const [logo, setLogo] = React.useState<File | null>(null);
   const [domains, setDomains] = React.useState<string[]>([]);
   const [countryFromImportedComponent, setCountryFromImportedComponent] =
@@ -128,7 +134,31 @@ function ProfileForm({ className }: React.ComponentProps<"form">) {
       formData.append("domains", values.domains);
       // Call API to create business
       const response = await addBusinessAction(formData);
+      if (response.error) {
+        toast({
+          variant: "destructive",
+          title: "Notification",
+          description: response.error,
+          duration: 2000,
+        });
+
+        setOpen(false);
+      } else {
+        toast({
+          variant: "default",
+          title: "Notification",
+          description: response.message,
+          duration: 2000,
+        });
+
+        setOpen(false);
+        // wait 2 seconds before refreshing the page
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
+      }
     } catch (error) {
+      setOpen(false);
       console.error(error);
     }
   };
