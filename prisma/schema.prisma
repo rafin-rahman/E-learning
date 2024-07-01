@@ -149,16 +149,16 @@ model CompanyEmployee {
 }
 
 model BusinessPurchase {
-  id                          String                        @id @default(uuid())
-  status                      String                        @default("COMPLETED") // COMPLETED
-  Company                     Company                       @relation(fields: [companyId], references: [id])
-  companyId                   String
-  createdAt                   DateTime                      @default(now())
-  updatedAt                   DateTime                      @updatedAt
-  BusinessOrderCourseQuantity BusinessOrderCourseQuantity[]
+  id                             String                           @id @default(uuid())
+  status                         String                           @default("COMPLETED") // COMPLETED
+  Company                        Company                          @relation(fields: [companyId], references: [id])
+  companyId                      String
+  createdAt                      DateTime                         @default(now())
+  updatedAt                      DateTime                         @updatedAt
+  BusinessPurchaseCourseQuantity BusinessPurchaseCourseQuantity[]
 }
 
-model BusinessOrderCourseQuantity {
+model BusinessPurchaseCourseQuantity {
   id                 String           @id @default(uuid())
   quantity           Int
   BusinessPurchase   BusinessPurchase @relation(fields: [businessPurchaseId], references: [id])
@@ -173,16 +173,16 @@ model BusinessOrderCourseQuantity {
 }
 
 model BusinessCourse {
-  id                          String                        @id @default(uuid())
-  status                      String                        @default("ACTIVE") // ACTIVE, SUSPENDED
-  title                       String
-  description                 String
-  thumbnail                   String
-  price                       Float
-  createdAt                   DateTime                      @default(now())
-  updatedAt                   DateTime                      @updatedAt
-  BusinessCourseChapter       BusinessCourseChapter[]
-  businessOrderCourseQuantity BusinessOrderCourseQuantity[]
+  id                             String                           @id @default(uuid())
+  status                         String                           @default("ACTIVE") // ACTIVE, SUSPENDED
+  title                          String
+  description                    String
+  thumbnail                      String
+  price                          Float
+  createdAt                      DateTime                         @default(now())
+  updatedAt                      DateTime                         @updatedAt
+  BusinessCourseChapter          BusinessCourseChapter[]
+  BusinessPurchaseCourseQuantity BusinessPurchaseCourseQuantity[]
 }
 
 model BusinessCourseChapter {

@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import LicensesInUseCard from "@/components/business/businessDetails/licensesInUseCard";
 import CoursesCard from "@/components/business/businessDetails/coursesCard";
 import getCompanyEmployeesAction from "@/app/oq-staff/manage-businesses/[id]/getCompanyEmployeesAction";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, UseQueryResult } from "@tanstack/react-query";
 
 export default function businessClientDetails({
   params,
@@ -60,42 +60,53 @@ export default function businessClientDetails({
     })();
   }, [params.id]);
 
-  const courseList = useQuery({
-    queryKey: ["courses", params.id],
+  const {
+    data: coursesList,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["businessPurchases", params.id],
     queryFn: async () => {
-      const response = await fetch(`/api/business/${params.id}/courses`);
-      return response.json();
+      const response = await fetch(`/api/oq-business/business-purchase`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ companyId: params.id }),
+      });
+
+      return await response.json();
     },
   });
 
   if (!businessData || !employees) return null;
 
-  const coursesList = [
-    // {
-    //   course: "The Essentials of Data Protection",
-    //   thumbnail: "/testings/data_protection.png",
-    // },
-    // {
-    //   course: "Radicalisation and Extremism (Prevent)",
-    //   thumbnail: "/testings/extremism.png",
-    // },
-    // {
-    //   course: "Level 2 Safeguarding Adults",
-    //   thumbnail: "/testings/safeguarding_adults.png",
-    // },
-    // {
-    //   course: "Unconscious Bias in the Workplace",
-    //   thumbnail: "/testings/bias.png",
-    // },
-    // {
-    //   course: "Bullying and Harassment in the Workplace",
-    //   thumbnail: "/testings/bullying.png",
-    // },
-    // {
-    //   course: "Equality, Diversity and Inclusion for Employees",
-    //   thumbnail: "/testings/equality.png",
-    // },
-  ];
+  // const coursesList = [
+  //   {
+  //     course: "The Essentials of Data Protection",
+  //     thumbnail: "/testings/data_protection.png",
+  //   },
+  //   {
+  //     course: "Radicalisation and Extremism (Prevent)",
+  //     thumbnail: "/testings/extremism.png",
+  //   },
+  //   {
+  //     course: "Level 2 Safeguarding Adults",
+  //     thumbnail: "/testings/safeguarding_adults.png",
+  //   },
+  //   {
+  //     course: "Unconscious Bias in the Workplace",
+  //     thumbnail: "/testings/bias.png",
+  //   },
+  //   {
+  //     course: "Bullying and Harassment in the Workplace",
+  //     thumbnail: "/testings/bullying.png",
+  //   },
+  //   {
+  //     course: "Equality, Diversity and Inclusion for Employees",
+  //     thumbnail: "/testings/equality.png",
+  //   },
+  // ];
 
   return (
     <>

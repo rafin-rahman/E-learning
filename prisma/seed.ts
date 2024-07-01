@@ -1960,7 +1960,7 @@ async function main() {
   //endregion
 
   //region Business orders
-  await prisma.businessOrderCourseQuantity.deleteMany();
+  await prisma.businessPurchaseCourseQuantity.deleteMany();
   await prisma.businessPurchase.deleteMany();
 
   // TODO: Create business purchases with random courses and quantities
@@ -1969,7 +1969,7 @@ async function main() {
   //   data: [
   //     {
   //       companyId: companyEsl.id,
-  //       businessOrderCourseQuantity: {
+  //       businessPurchaseCourseQuantity: {
   //         create: {
   //           quantity: 1,
   //           businessCourseId: getRandomBusinessCourseId(businessCourses),
