@@ -64,7 +64,7 @@ export default function businessClientDetails({
     data: coursesList,
     isLoading,
     error,
-  } = useQuery({
+  }: UseQueryResult = useQuery({
     queryKey: ["businessPurchases", params.id],
     queryFn: async () => {
       const response = await fetch(`/api/oq-business/business-purchase`, {
@@ -139,7 +139,7 @@ export default function businessClientDetails({
         {/* Manage licences  */}
         <LicensesInUseCard employeesList={employees} />
         {/* Manage  courses */}
-        <CoursesCard coursesList={coursesList} />
+        <CoursesCard coursesList={coursesList} companyId={params.id} />
       </div>
     </>
   );

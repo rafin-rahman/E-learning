@@ -9,18 +9,22 @@ import {
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import Image from "next/image";
+import { redirect } from "next/navigation";
+import Link from "next/link";
 
 export default function CoursesCard({
   coursesList,
+  companyId,
 }: {
   coursesList: { course: string; thumbnail: string }[];
+  companyId: string;
 }) {
   return (
     <Card className={"mt-10 shadow"}>
       <CardHeader>
         <CardTitle> Courses </CardTitle>
         <CardDescription>
-          <div>Available courses: {coursesList.length}</div>
+          {coursesList && <div>Available courses: {coursesList.length}</div>}
         </CardDescription>
       </CardHeader>
       <Separator
@@ -34,7 +38,10 @@ export default function CoursesCard({
         ) : (
           <div className={"flex flex-wrap gap-10"}>
             {coursesList.map((course) => (
-              <div className={"shadow p-6  max-w-72 hover:shadow-xl"}>
+              <div
+                className={"shadow p-6  max-w-72 hover:shadow-xl"}
+                key={course.thumbnail}
+              >
                 <div className={"h-28 w-[80%] relative mx-auto"}>
                   <Image
                     src={course.thumbnail ? course.thumbnail : ""}
@@ -66,7 +73,9 @@ export default function CoursesCard({
       </CardContent>
       <CardFooter>
         <Button variant="outline" className={"shadow"}>
-          Buy courses
+          <Link href={`/oq-staff/manage-businesses/${companyId}/buy-courses`}>
+            Buy courses
+          </Link>
         </Button>
       </CardFooter>
     </Card>
