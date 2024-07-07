@@ -12,12 +12,20 @@ import { AspectRatio } from "@/components/ui/aspect-ratio";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { ShoppingCartIcon } from "@heroicons/react/20/solid";
+import {Badge} from "@/components/ui/badge";
+import { useState } from "react";
+import {inter} from "@/lib/font";
 
 interface Course {
   title: string;
   description: string;
   thumbnail: string;
   price: number;
+}
+
+interface Basket {
+  businessCourseTitle: string;
+  quantity: number;
 }
 
 export default function BuyCoursesCard({
@@ -27,6 +35,10 @@ export default function BuyCoursesCard({
   companyId: string;
   userType: string;
 }) {
+  const [basket, setBasket] = useState<Basket[]>([
+    { businessCourseTitle: "The Essentials of Data Protection", quantity: 10 },
+    { businessCourseTitle: "course2", quantity: 1 },
+  ]);
   const {
     data: coursesList,
     isLoading,
@@ -49,6 +61,7 @@ export default function BuyCoursesCard({
   if (!coursesList) {
     return <div>Loading...</div>;
   }
+
 
   const coursesCard = coursesList.map((course) => {
     return (
@@ -73,8 +86,12 @@ export default function BuyCoursesCard({
         </CardContent>
         <CardFooter className={"flex gap-6"}>
           <div className={"mr-4"}>{"£" + " " + course.price}</div>
-          <Button variant={"default"}>Add </Button>
-          <Input type="number" value={"10"} className={"w-20"} />
+          <Button variant={"default"} >Add </Button>
+          <Input type="number"  value={
+            basket.find((item) => item.businessCourseTitle === course.title)
+              ?.quantity
+          } className={"w-20"}  />
+
         </CardFooter>
       </Card>
     );
@@ -83,7 +100,8 @@ export default function BuyCoursesCard({
   return (
     <Card>
       <CardHeader >
-        <CardTitle className={''}>Buy courses<ShoppingCartIcon className={'h-6'}/></CardTitle>
+        <CardTitle className={'flex justify-between'}>Buy courses<div className={'relative'}><ShoppingCartIcon className={'h-8 mr-10 '}/> <Badge
+            variant={'destructive'} className={'absolute  -left-4 bottom-0 z-10  text-xs'}>2</Badge></div></CardTitle>
 
       </CardHeader>
       <CardContent>{isLoading ? "Loading" : coursesCard}</CardContent>
