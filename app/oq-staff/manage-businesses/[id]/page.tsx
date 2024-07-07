@@ -9,6 +9,11 @@ import CoursesCard from "@/components/business/businessDetails/coursesCard";
 import getCompanyEmployeesAction from "@/app/oq-staff/manage-businesses/[id]/getCompanyEmployeesAction";
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
 
+type CourseList ={
+    course: string;
+    thumbnail: string;
+}
+
 export default function businessClientDetails({
   params,
 }: {
@@ -61,10 +66,10 @@ export default function businessClientDetails({
   }, [params.id]);
 
   const {
-    data: coursesList,
+    data: coursesList = [], // default value is an empty array,
     isLoading,
     error,
-  }: UseQueryResult = useQuery({
+  }: UseQueryResult<CourseList[]> = useQuery({
     queryKey: ["businessPurchases", params.id],
     queryFn: async () => {
       const response = await fetch(`/api/oq-business/business-purchase`, {
@@ -72,7 +77,6 @@ export default function businessClientDetails({
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ companyId: params.id }),
       });
 
       return await response.json();
@@ -81,32 +85,7 @@ export default function businessClientDetails({
 
   if (!businessData || !employees) return null;
 
-  // const coursesList = [
-  //   {
-  //     course: "The Essentials of Data Protection",
-  //     thumbnail: "/testings/data_protection.png",
-  //   },
-  //   {
-  //     course: "Radicalisation and Extremism (Prevent)",
-  //     thumbnail: "/testings/extremism.png",
-  //   },
-  //   {
-  //     course: "Level 2 Safeguarding Adults",
-  //     thumbnail: "/testings/safeguarding_adults.png",
-  //   },
-  //   {
-  //     course: "Unconscious Bias in the Workplace",
-  //     thumbnail: "/testings/bias.png",
-  //   },
-  //   {
-  //     course: "Bullying and Harassment in the Workplace",
-  //     thumbnail: "/testings/bullying.png",
-  //   },
-  //   {
-  //     course: "Equality, Diversity and Inclusion for Employees",
-  //     thumbnail: "/testings/equality.png",
-  //   },
-  // ];
+
 
   return (
     <>
