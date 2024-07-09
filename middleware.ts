@@ -22,7 +22,7 @@ export async function middleware(request: NextRequest) {
     };
 
     //TODO uncomment this to complete the user status check
-    //TODO API/user route needs to be adjust with user / student / companyEmployee
+    //TODO API/user route needs to be adjust with user / student / businessEmployee
 
     // const response = await fetch(
     //   `${process.env.NEXT_PUBLIC_LOCALHOST_URL}/api/user`,

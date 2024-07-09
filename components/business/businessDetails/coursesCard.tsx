@@ -16,7 +16,7 @@ export default function CoursesCard({
   coursesList,
   companyId,
 }: {
-  coursesList: { course: string; thumbnail: string }[]  ;
+  coursesList: { course: string; thumbnail: string }[];
   companyId: string;
 }) {
   return (

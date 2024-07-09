@@ -1,8 +1,8 @@
 "use server";
 import prisma from "@/lib/prisma";
 
-export default async function getCompanyEmployeesAction(
-  companyId: string
+export default async function getBusinessEmployeesAction(
+  businessId: string
 ): Promise<
   {
     id: string;
@@ -13,16 +13,17 @@ export default async function getCompanyEmployeesAction(
     telephone: string;
     password: string;
     roles: string[];
-    companyId: string;
+    businessId: string;
     createdAt: Date;
     updatedAt: Date;
   }[]
 > {
-  console.log("getCompanyEmployeesAction");
   try {
-    return await prisma.companyEmployee.findMany({
+    console.log("businessId");
+    console.log(businessId);
+    return await prisma.businessEmployee.findMany({
       where: {
-        companyId: companyId,
+        businessId: businessId,
       },
     });
   } catch (error) {

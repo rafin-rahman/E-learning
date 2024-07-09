@@ -1,25 +1,25 @@
 "use client";
-import getCompanyDetailsAction from "@/app/oq-staff/manage-businesses/[id]/getCompanyDetailsAction";
+import getBusinessDetailsAction from "@/app/oq-staff/manage-businesses/[id]/getBusinessDetailsAction";
 
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import LicensesInUseCard from "@/components/business/businessDetails/licensesInUseCard";
 import CoursesCard from "@/components/business/businessDetails/coursesCard";
-import getCompanyEmployeesAction from "@/app/oq-staff/manage-businesses/[id]/getCompanyEmployeesAction";
+import getBusinessEmployeesAction from "@/app/oq-staff/manage-businesses/[id]/getBusinessEmployeesAction";
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
 
-type CourseList ={
-    course: string;
-    thumbnail: string;
-}
+type CourseList = {
+  course: string;
+  thumbnail: string;
+};
 
 export default function businessClientDetails({
   params,
 }: {
   params: { id: string };
 }) {
-  // const businessData = getCompanyDetailsAction(params.id);
+  // const businessData = getBusinessDetailsAction(params.id);
   const [businessData, setBusinessData] = useState<{
     name: string;
     logo: string;
@@ -34,7 +34,7 @@ export default function businessClientDetails({
         telephone: string;
         password: string;
         roles: string[];
-        companyId: string;
+        businessId: string;
         createdAt: Date;
         updatedAt: Date;
         progress: number;
@@ -45,13 +45,13 @@ export default function businessClientDetails({
 
   useEffect(() => {
     (async () => {
-      const companyDetailsResponse = await getCompanyDetailsAction(params.id);
+      const businessDetailsResponse = await getBusinessDetailsAction(params.id);
       // Get list of employees
-      const employeesActionResponse = await getCompanyEmployeesAction(
+      const employeesActionResponse = await getBusinessEmployeesAction(
         params.id
       );
 
-      setBusinessData(companyDetailsResponse);
+      setBusinessData(businessDetailsResponse);
 
       // add 2 properties in the employeesActionResponse, progress and awards
       const employeesList = employeesActionResponse.map((employee) => {
@@ -61,6 +61,9 @@ export default function businessClientDetails({
         )}`;
         return { ...employee, progress, awards };
       });
+      console.log("employeesList");
+      console.log(employeesList);
+
       setEmployees(employeesList);
     })();
   }, [params.id]);
@@ -84,8 +87,6 @@ export default function businessClientDetails({
   });
 
   if (!businessData || !employees) return null;
-
-
 
   return (
     <>

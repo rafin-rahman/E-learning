@@ -20,7 +20,7 @@ type employeesListType =
       email: string;
       telephone: string;
       roles: string[];
-      companyId: string;
+      businessId: string;
       createdAt: Date;
       progress: number;
       awards: string;

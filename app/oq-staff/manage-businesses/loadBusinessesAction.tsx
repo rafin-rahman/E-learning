@@ -3,7 +3,7 @@ import prisma from "@/lib/prisma";
 
 export default async function loadBusinessesAction() {
   try {
-    const businesses = await prisma.company.findMany({
+    const businesses = await prisma.business.findMany({
       where: {
         status: "ACTIVE",
       },

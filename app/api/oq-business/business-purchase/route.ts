@@ -9,7 +9,7 @@ export async function POST(request: NextRequest) {
   try {
     // const businessPurchases = await prisma.businessPurchase.findMany({
     //   where: {
-    //     companyId: companyId,
+    //     businessId: businessId,
     //     status: "COMPLETED",
     //   },
     //   orderBy: {
@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
     //
     // return NextResponse.json({ data: businessPurchases });
 
-    const purchasedCourses = await prisma.company.findUnique({
+    const purchasedCourses = await prisma.business.findUnique({
       where: {
         id: companyId,
       },

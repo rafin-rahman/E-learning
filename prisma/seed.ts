@@ -916,10 +916,10 @@ async function main() {
 
   //region Company and Company Employee
 
-  await prisma.companyEmployee.deleteMany();
-  await prisma.company.deleteMany();
+  await prisma.businessEmployee.deleteMany();
+  await prisma.business.deleteMany();
 
-  await prisma.company.createMany({
+  await prisma.business.createMany({
     data: [
       {
         name: "Elizabeth School of London Limited",
@@ -973,43 +973,43 @@ async function main() {
     ],
   });
 
-  const companyEsl = await prisma.company.findFirst({
+  const companyEsl = await prisma.business.findFirst({
     where: {
       name: "Elizabeth School of London Limited",
     },
   });
 
-  const companyVcad = await prisma.company.findFirst({
+  const companyVcad = await prisma.business.findFirst({
     where: {
       name: "Victoria College of Arts and Design",
     },
   });
 
-  const companyWilliam = await prisma.company.findFirst({
+  const companyWilliam = await prisma.business.findFirst({
     where: {
       name: "William College",
     },
   });
 
-  const companyLpc = await prisma.company.findFirst({
+  const companyLpc = await prisma.business.findFirst({
     where: {
       name: "London Professional College",
     },
   });
 
-  const companyUap = await prisma.company.findFirst({
+  const companyUap = await prisma.business.findFirst({
     where: {
       name: "University Application Portal",
     },
   });
 
-  const companyPen = await prisma.company.findFirst({
+  const companyPen = await prisma.business.findFirst({
     where: {
       name: "Planet Education Networks",
     },
   });
 
-  const companyZsos = await prisma.company.findFirst({
+  const companyZsos = await prisma.business.findFirst({
     where: {
       name: "Zenith School of Studies",
     },
@@ -1028,7 +1028,7 @@ async function main() {
   }
 
   // Create ADMINS for each company
-  await prisma.companyEmployee.createMany({
+  await prisma.businessEmployee.createMany({
     data: [
       {
         firstName: "Moshfiqur",
@@ -1037,7 +1037,7 @@ async function main() {
         telephone: "1234567890",
         password: await hashPassword("123123"),
         roles: ["COMPANY_ADMIN"],
-        companyId: companyEsl.id,
+        businessId: companyEsl.id,
       },
       {
         firstName: "Moshfiqur",
@@ -1046,7 +1046,7 @@ async function main() {
         telephone: "1234567890",
         password: await hashPassword("123123"),
         roles: ["COMPANY_ADMIN"],
-        companyId: companyVcad.id,
+        businessId: companyVcad.id,
       },
       {
         firstName: "Moshfiqur",
@@ -1055,7 +1055,7 @@ async function main() {
         telephone: "1234567890",
         password: await hashPassword("123123"),
         roles: ["COMPANY_ADMIN"],
-        companyId: companyWilliam.id,
+        businessId: companyWilliam.id,
       },
       {
         firstName: "Moshfiqur",
@@ -1064,7 +1064,7 @@ async function main() {
         telephone: "1234567890",
         password: await hashPassword("123123"),
         roles: ["COMPANY_ADMIN"],
-        companyId: companyEsl.id,
+        businessId: companyEsl.id,
       },
       {
         firstName: "Moshfiqur",
@@ -1073,7 +1073,7 @@ async function main() {
         telephone: "1234567890",
         password: await hashPassword("123123"),
         roles: ["COMPANY_ADMIN"],
-        companyId: companyUap.id,
+        businessId: companyUap.id,
       },
       {
         firstName: "Moshfiqur",
@@ -1082,7 +1082,7 @@ async function main() {
         telephone: "1234567890",
         password: await hashPassword("123123"),
         roles: ["COMPANY_ADMIN"],
-        companyId: companyPen.id,
+        businessId: companyPen.id,
       },
       {
         firstName: "Moshfiqur",
@@ -1091,7 +1091,7 @@ async function main() {
         telephone: "1234567890",
         password: await hashPassword("123123"),
         roles: ["COMPANY_ADMIN"],
-        companyId: companyZsos.id,
+        businessId: companyZsos.id,
       },
     ],
   });
@@ -1105,7 +1105,7 @@ async function main() {
       telephone: "9876543210",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyEsl.id,
+      businessId: companyEsl.id,
     },
     {
       firstName: "Alice",
@@ -1114,7 +1114,7 @@ async function main() {
       telephone: "1231231234",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyEsl.id,
+      businessId: companyEsl.id,
     },
     {
       firstName: "Bob",
@@ -1123,7 +1123,7 @@ async function main() {
       telephone: "4564564567",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyVcad.id,
+      businessId: companyVcad.id,
     },
     {
       firstName: "Charlie",
@@ -1132,7 +1132,7 @@ async function main() {
       telephone: "7897897890",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyVcad.id,
+      businessId: companyVcad.id,
     },
     {
       firstName: "David",
@@ -1141,7 +1141,7 @@ async function main() {
       telephone: "2342342345",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyZsos.id,
+      businessId: companyZsos.id,
     },
     {
       firstName: "Eva",
@@ -1150,7 +1150,7 @@ async function main() {
       telephone: "3453453456",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyZsos.id,
+      businessId: companyZsos.id,
     },
     {
       firstName: "Frank",
@@ -1159,7 +1159,7 @@ async function main() {
       telephone: "4564564567",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyUap.id,
+      businessId: companyUap.id,
     },
     {
       firstName: "Grace",
@@ -1168,7 +1168,7 @@ async function main() {
       telephone: "5675675678",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyUap.id,
+      businessId: companyUap.id,
     },
     {
       firstName: "Hank",
@@ -1177,7 +1177,7 @@ async function main() {
       telephone: "6786786789",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyWilliam.id,
+      businessId: companyWilliam.id,
     },
     {
       firstName: "Ivy",
@@ -1186,7 +1186,7 @@ async function main() {
       telephone: "7897897890",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyWilliam.id,
+      businessId: companyWilliam.id,
     },
     {
       firstName: "Jack",
@@ -1195,7 +1195,7 @@ async function main() {
       telephone: "8908908901",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyLpc.id,
+      businessId: companyLpc.id,
     },
     {
       firstName: "Kara",
@@ -1204,7 +1204,7 @@ async function main() {
       telephone: "9019019012",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyLpc.id,
+      businessId: companyLpc.id,
     },
     {
       firstName: "Liam",
@@ -1213,7 +1213,7 @@ async function main() {
       telephone: "0120120123",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyLpc.id,
+      businessId: companyLpc.id,
     },
     {
       firstName: "Mia",
@@ -1222,7 +1222,7 @@ async function main() {
       telephone: "1231231234",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyPen.id,
+      businessId: companyPen.id,
     },
     {
       firstName: "Nate",
@@ -1231,7 +1231,7 @@ async function main() {
       telephone: "2342342345",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyPen.id,
+      businessId: companyPen.id,
     },
     {
       firstName: "Olivia",
@@ -1240,7 +1240,7 @@ async function main() {
       telephone: "1111111111",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyEsl.id,
+      businessId: companyEsl.id,
     },
     {
       firstName: "Liam",
@@ -1249,7 +1249,7 @@ async function main() {
       telephone: "2222222222",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyEsl.id,
+      businessId: companyEsl.id,
     },
     {
       firstName: "Sophia",
@@ -1258,7 +1258,7 @@ async function main() {
       telephone: "3333333333",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyEsl.id,
+      businessId: companyEsl.id,
     },
     {
       firstName: "Lucas",
@@ -1267,7 +1267,7 @@ async function main() {
       telephone: "4444444444",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyEsl.id,
+      businessId: companyEsl.id,
     },
     {
       firstName: "Mia",
@@ -1276,7 +1276,7 @@ async function main() {
       telephone: "5555555555",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyEsl.id,
+      businessId: companyEsl.id,
     },
     {
       firstName: "Emma",
@@ -1285,7 +1285,7 @@ async function main() {
       telephone: "6666666666",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyEsl.id,
+      businessId: companyEsl.id,
     },
     {
       firstName: "Ava",
@@ -1294,7 +1294,7 @@ async function main() {
       telephone: "7777777777",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyEsl.id,
+      businessId: companyEsl.id,
     },
     {
       firstName: "Noah",
@@ -1303,7 +1303,7 @@ async function main() {
       telephone: "8888888888",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyEsl.id,
+      businessId: companyEsl.id,
     },
     {
       firstName: "Isabella",
@@ -1312,7 +1312,7 @@ async function main() {
       telephone: "9999999999",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyEsl.id,
+      businessId: companyEsl.id,
     },
     {
       firstName: "Elijah",
@@ -1321,7 +1321,7 @@ async function main() {
       telephone: "1010101010",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyEsl.id,
+      businessId: companyEsl.id,
     },
     {
       firstName: "James",
@@ -1330,7 +1330,7 @@ async function main() {
       telephone: "1111222233",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyVcad.id,
+      businessId: companyVcad.id,
     },
     {
       firstName: "Charlotte",
@@ -1339,7 +1339,7 @@ async function main() {
       telephone: "2222333344",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyVcad.id,
+      businessId: companyVcad.id,
     },
     {
       firstName: "Benjamin",
@@ -1348,7 +1348,7 @@ async function main() {
       telephone: "3333444455",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyVcad.id,
+      businessId: companyVcad.id,
     },
     {
       firstName: "Harper",
@@ -1357,7 +1357,7 @@ async function main() {
       telephone: "4444555566",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyVcad.id,
+      businessId: companyVcad.id,
     },
     {
       firstName: "Ethan",
@@ -1366,7 +1366,7 @@ async function main() {
       telephone: "5555666677",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyVcad.id,
+      businessId: companyVcad.id,
     },
     {
       firstName: "Amelia",
@@ -1375,7 +1375,7 @@ async function main() {
       telephone: "6666777788",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyZsos.id,
+      businessId: companyZsos.id,
     },
     {
       firstName: "Alexander",
@@ -1384,7 +1384,7 @@ async function main() {
       telephone: "7777888899",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyZsos.id,
+      businessId: companyZsos.id,
     },
     {
       firstName: "Mason",
@@ -1393,7 +1393,7 @@ async function main() {
       telephone: "8888999900",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyZsos.id,
+      businessId: companyZsos.id,
     },
     {
       firstName: "Evelyn",
@@ -1402,7 +1402,7 @@ async function main() {
       telephone: "9999000011",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyZsos.id,
+      businessId: companyZsos.id,
     },
     {
       firstName: "Logan",
@@ -1411,7 +1411,7 @@ async function main() {
       telephone: "0000111122",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyZsos.id,
+      businessId: companyZsos.id,
     },
     {
       firstName: "Oliver",
@@ -1420,7 +1420,7 @@ async function main() {
       telephone: "1111333344",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyZsos.id,
+      businessId: companyZsos.id,
     },
     {
       firstName: "Scarlett",
@@ -1429,7 +1429,7 @@ async function main() {
       telephone: "2222444455",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyZsos.id,
+      businessId: companyZsos.id,
     },
     {
       firstName: "Henry",
@@ -1438,7 +1438,7 @@ async function main() {
       telephone: "3333555566",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyZsos.id,
+      businessId: companyZsos.id,
     },
     {
       firstName: "Emily",
@@ -1447,7 +1447,7 @@ async function main() {
       telephone: "4444666677",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyZsos.id,
+      businessId: companyZsos.id,
     },
     {
       firstName: "Jack",
@@ -1456,7 +1456,7 @@ async function main() {
       telephone: "5555777788",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyZsos.id,
+      businessId: companyZsos.id,
     },
     {
       firstName: "Michael",
@@ -1465,7 +1465,7 @@ async function main() {
       telephone: "6666888899",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyUap.id,
+      businessId: companyUap.id,
     },
     {
       firstName: "Luna",
@@ -1474,7 +1474,7 @@ async function main() {
       telephone: "7777999900",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyUap.id,
+      businessId: companyUap.id,
     },
     {
       firstName: "William",
@@ -1483,7 +1483,7 @@ async function main() {
       telephone: "8888000011",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyUap.id,
+      businessId: companyUap.id,
     },
     {
       firstName: "Ella",
@@ -1492,7 +1492,7 @@ async function main() {
       telephone: "9998111122",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyUap.id,
+      businessId: companyUap.id,
     },
     {
       firstName: "Daniel",
@@ -1501,7 +1501,7 @@ async function main() {
       telephone: "0008222233",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyUap.id,
+      businessId: companyUap.id,
     },
     {
       firstName: "Jacob",
@@ -1510,7 +1510,7 @@ async function main() {
       telephone: "1119333344",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyUap.id,
+      businessId: companyUap.id,
     },
     {
       firstName: "Aiden",
@@ -1519,7 +1519,7 @@ async function main() {
       telephone: "2229444455",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyUap.id,
+      businessId: companyUap.id,
     },
     {
       firstName: "Zoey",
@@ -1528,7 +1528,7 @@ async function main() {
       telephone: "3339555566",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyUap.id,
+      businessId: companyUap.id,
     },
     {
       firstName: "Sebastian",
@@ -1537,7 +1537,7 @@ async function main() {
       telephone: "4449666677",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyUap.id,
+      businessId: companyUap.id,
     },
     {
       firstName: "Aria",
@@ -1546,7 +1546,7 @@ async function main() {
       telephone: "5559777788",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyUap.id,
+      businessId: companyUap.id,
     },
     {
       firstName: "Matthew",
@@ -1555,7 +1555,7 @@ async function main() {
       telephone: "6669888899",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyWilliam.id,
+      businessId: companyWilliam.id,
     },
     {
       firstName: "Ella",
@@ -1564,7 +1564,7 @@ async function main() {
       telephone: "7779999900",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyWilliam.id,
+      businessId: companyWilliam.id,
     },
     {
       firstName: "Samuel",
@@ -1573,7 +1573,7 @@ async function main() {
       telephone: "8881000011",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyWilliam.id,
+      businessId: companyWilliam.id,
     },
     {
       firstName: "Avery",
@@ -1582,7 +1582,7 @@ async function main() {
       telephone: "9991111122",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyWilliam.id,
+      businessId: companyWilliam.id,
     },
     {
       firstName: "Carter",
@@ -1591,7 +1591,7 @@ async function main() {
       telephone: "0001222233",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyWilliam.id,
+      businessId: companyWilliam.id,
     },
     {
       firstName: "Sofia",
@@ -1600,7 +1600,7 @@ async function main() {
       telephone: "1111333355",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyLpc.id,
+      businessId: companyLpc.id,
     },
     {
       firstName: "Dylan",
@@ -1609,7 +1609,7 @@ async function main() {
       telephone: "2221444466",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyLpc.id,
+      businessId: companyLpc.id,
     },
     {
       firstName: "Leah",
@@ -1618,7 +1618,7 @@ async function main() {
       telephone: "3331555577",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyLpc.id,
+      businessId: companyLpc.id,
     },
     {
       firstName: "Jackson",
@@ -1627,7 +1627,7 @@ async function main() {
       telephone: "4441666688",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyLpc.id,
+      businessId: companyLpc.id,
     },
     {
       firstName: "Grace",
@@ -1636,7 +1636,7 @@ async function main() {
       telephone: "5551777799",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyLpc.id,
+      businessId: companyLpc.id,
     },
     {
       firstName: "Victoria2",
@@ -1645,7 +1645,7 @@ async function main() {
       telephone: "6661888800",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyLpc.id,
+      businessId: companyLpc.id,
     },
     {
       firstName: "Gabriel",
@@ -1654,7 +1654,7 @@ async function main() {
       telephone: "7771999911",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyLpc.id,
+      businessId: companyLpc.id,
     },
     {
       firstName: "Riley",
@@ -1663,7 +1663,7 @@ async function main() {
       telephone: "8882111122",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyLpc.id,
+      businessId: companyLpc.id,
     },
     {
       firstName: "Victoria",
@@ -1672,7 +1672,7 @@ async function main() {
       telephone: "9992222233",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyLpc.id,
+      businessId: companyLpc.id,
     },
     {
       firstName: "David",
@@ -1681,7 +1681,7 @@ async function main() {
       telephone: "0002333344",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyLpc.id,
+      businessId: companyLpc.id,
     },
     {
       firstName: "Zoey",
@@ -1690,7 +1690,7 @@ async function main() {
       telephone: "1112444455",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyLpc.id,
+      businessId: companyLpc.id,
     },
     {
       firstName: "Lillian",
@@ -1699,7 +1699,7 @@ async function main() {
       telephone: "2222555566",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyLpc.id,
+      businessId: companyLpc.id,
     },
     {
       firstName: "Lucas",
@@ -1708,7 +1708,7 @@ async function main() {
       telephone: "3332666677",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyLpc.id,
+      businessId: companyLpc.id,
     },
     {
       firstName: "Addison",
@@ -1717,7 +1717,7 @@ async function main() {
       telephone: "4442777788",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyLpc.id,
+      businessId: companyLpc.id,
     },
     {
       firstName: "Grace",
@@ -1726,7 +1726,7 @@ async function main() {
       telephone: "5552888899",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyLpc.id,
+      businessId: companyLpc.id,
     },
     {
       firstName: "Victoria",
@@ -1735,7 +1735,7 @@ async function main() {
       telephone: "6662999900",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyPen.id,
+      businessId: companyPen.id,
     },
     {
       firstName: "Luna",
@@ -1744,7 +1744,7 @@ async function main() {
       telephone: "7772111122",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyPen.id,
+      businessId: companyPen.id,
     },
     {
       firstName: "Sebastian",
@@ -1753,7 +1753,7 @@ async function main() {
       telephone: "8882222233",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyPen.id,
+      businessId: companyPen.id,
     },
     {
       firstName: "Grace",
@@ -1762,7 +1762,7 @@ async function main() {
       telephone: "9992333344",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyPen.id,
+      businessId: companyPen.id,
     },
     {
       firstName: "Evelyn",
@@ -1771,7 +1771,7 @@ async function main() {
       telephone: "0002444455",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyPen.id,
+      businessId: companyPen.id,
     },
     {
       firstName: "Riley",
@@ -1780,7 +1780,7 @@ async function main() {
       telephone: "1112555566",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyPen.id,
+      businessId: companyPen.id,
     },
     {
       firstName: "Daniel",
@@ -1789,7 +1789,7 @@ async function main() {
       telephone: "2222666677",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyPen.id,
+      businessId: companyPen.id,
     },
     {
       firstName: "Aria",
@@ -1798,7 +1798,7 @@ async function main() {
       telephone: "3332777788",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyPen.id,
+      businessId: companyPen.id,
     },
     {
       firstName: "Jacob",
@@ -1807,7 +1807,7 @@ async function main() {
       telephone: "4442888899",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyPen.id,
+      businessId: companyPen.id,
     },
     {
       firstName: "Ella",
@@ -1816,11 +1816,11 @@ async function main() {
       telephone: "5552999900",
       password: await hashPassword("123123"),
       roles: ["COMPANY_EMPLOYEE"],
-      companyId: companyPen.id,
+      businessId: companyPen.id,
     },
   ];
 
-  await prisma.companyEmployee.createMany({
+  await prisma.businessEmployee.createMany({
     data: employeeData,
   });
 
@@ -1968,7 +1968,7 @@ async function main() {
   // await prisma.businessPurchase.createMany({
   //   data: [
   //     {
-  //       companyId: companyEsl.id,
+  //       businessId: companyEsl.id,
   //       businessPurchaseCourseQuantity: {
   //         create: {
   //           quantity: 1,
@@ -1978,16 +1978,16 @@ async function main() {
   //       },
   //     },
   //     {
-  //       companyId: companyVcad.id,
+  //       businessId: companyVcad.id,
   //     },
   //     {
-  //       companyId: companyWilliam.id,
+  //       businessId: companyWilliam.id,
   //     },
   //     {
-  //       companyId: companyLpc.id,
+  //       businessId: companyLpc.id,
   //     },
   //     {
-  //       companyId: companyUap.id,
+  //       businessId: companyUap.id,
   //     },
   //   ],
   // });

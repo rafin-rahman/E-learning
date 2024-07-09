@@ -1,8 +1,9 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+// On schema change do the followings:
+// - Migrate the schema and do manual adjustments if needed
+// - Prisma generate
+// - Update codebase prisma calls e.g. prisma.client -> prisma.customer
+// - Test / Check APIs
+// - GIT commit
 
 generator client {
   provider = "prisma-client-js"
@@ -22,7 +23,7 @@ model User {
   telephone    String?
   password     String
   profileImage String?
-  roles        String[] // SUPER_ADMIN, COMPANY_ADMIN, COURSE_MANAGER, LECTURER, STUDENT_SUPPORT, REGISTRY, FINANCE
+  roles        String[] // SUPER_ADMIN, BUSINESS_ADMIN, COURSE_MANAGER, LECTURER, STUDENT_SUPPORT, REGISTRY, FINANCE
   permissions  String[]
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
@@ -127,12 +128,12 @@ model Business {
   domains          String[]
   createdAt        DateTime           @default(now())
   updatedAt        DateTime           @updatedAt
-  CompanyEmployee  CompanyEmployee[]
+  BusinessEmployee BusinessEmployee[]
   BusinessPurchase BusinessPurchase[]
   BusinessBasket   BusinessBasket?
 }
 
-model CompanyEmployee {
+model BusinessEmployee {
   id                               String                             @id @default(uuid())
   status                           String                             @default("ACTIVE") // ACTIVE, SUSPENDED
   firstName                        String
@@ -140,7 +141,7 @@ model CompanyEmployee {
   email                            String                             @unique
   telephone                        String
   password                         String
-  roles                            String[] // COMPANY_ADMIN, COMPANY_EMPLOYEE
+  roles                            String[] // BUSINESS_ADMIN, BUSINESS_EMPLOYEE
   Business                         Business                           @relation(fields: [businessId], references: [id])
   businessId                       String
   createdAt                        DateTime                           @default(now())
@@ -198,8 +199,8 @@ model BusinessCourseChapter {
   title                     String
   order                     Int
   progressionPercentage     String
-  CompanyEmployee           CompanyEmployee             @relation(fields: [companyEmployeeId], references: [id])
-  companyEmployeeId         String
+  BusinessEmployee          BusinessEmployee            @relation(fields: [businessEmployeeId], references: [id])
+  businessEmployeeId        String
   BusinessCourse            BusinessCourse?             @relation(fields: [businessCourseId], references: [id])
   businessCourseId          String?
   BusinessCourseChapterQuiz BusinessCourseChapterQuiz[]
@@ -234,13 +235,13 @@ model BusinessCourseChapterQuizAttempt {
   score                       Int
   BusinessCourseChapterQuiz   BusinessCourseChapterQuiz @relation(fields: [businessCourseChapterQuizId], references: [id])
   businessCourseChapterQuizId String
-  CompanyEmployee             CompanyEmployee           @relation(fields: [companyEmployeeId], references: [id])
-  companyEmployeeId           String
+  BusinessEmployee            BusinessEmployee          @relation(fields: [businessEmployeeId], references: [id])
+  businessEmployeeId          String
   createdAt                   DateTime                  @default(now())
   updatedAt                   DateTime                  @updatedAt
 }
 
-// Course Subjects
+// Course Subjects for seeding & testing purpose only
 // BUSINESS_AND_MANAGEMENT,
 // ARTIFICIAL_INTELLIGENCE,
 // CYBER_SECURITY,

@@ -36,7 +36,7 @@ export default async function signInAction(
   }
 
   if (userType === "companyEmployee") {
-    companyEmployee = await prisma.companyEmployee.findUnique({
+    companyEmployee = await prisma.businessEmployee.findUnique({
       where: {
         email: email.toLowerCase(),
       },
@@ -83,18 +83,18 @@ export default async function signInAction(
       companyEmployee &&
       companyEmployee.roles.includes("COMPANY_EMPLOYEE")
     ) {
-      // redirect to company employee dashboard
+      // redirect to business employee dashboard
       redirect("/oq-business/learning");
     } else if (
       companyEmployee &&
       companyEmployee.roles.includes("COMPANY_ADMIN")
     ) {
-      // redirect to company admin dashboard
+      // redirect to business admin dashboard
       redirect("/oq-business/learning");
     }
 
     redirect("/");
   } else {
-    return "Something went wrong in the signinAction.tsx";
+    return "Something went wrong in the signInAction.tsx";
   }
 }
