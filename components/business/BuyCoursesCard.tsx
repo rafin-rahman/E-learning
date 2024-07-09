@@ -12,9 +12,10 @@ import { AspectRatio } from "@/components/ui/aspect-ratio";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { ShoppingCartIcon } from "@heroicons/react/20/solid";
-import {Badge} from "@/components/ui/badge";
+import { Badge } from "@/components/ui/badge";
 import { useState } from "react";
-import {inter} from "@/lib/font";
+import { inter } from "@/lib/font";
+import Link from "next/link";
 
 interface Course {
   title: string;
@@ -23,7 +24,7 @@ interface Course {
   price: number;
 }
 
-interface Basket {
+interface CourseQuantity {
   businessCourseTitle: string;
   quantity: number;
 }
@@ -35,10 +36,8 @@ export default function BuyCoursesCard({
   companyId: string;
   userType: string;
 }) {
-  const [basket, setBasket] = useState<Basket[]>([
-    { businessCourseTitle: "The Essentials of Data Protection", quantity: 10 },
-    { businessCourseTitle: "course2", quantity: 1 },
-  ]);
+  const [courseQuantity, setCourseQuantity] = useState<CourseQuantity[]>([]);
+
   const {
     data: coursesList,
     isLoading,
@@ -62,6 +61,26 @@ export default function BuyCoursesCard({
     return <div>Loading...</div>;
   }
 
+  // function addToBasket(courseTitle: string) {
+  //   const course = basket.find(
+  //     (item) => item.businessCourseTitle === courseTitle
+  //   );
+  //
+  //   if (course) {
+  //     setBasket(
+  //       basket.map((item) =>
+  //         item.businessCourseTitle === courseTitle
+  //           ? { ...item, quantity: item.quantity }
+  //           : item
+  //       )
+  //     );
+  //   } else {
+  //     setBasket([
+  //       ...basket,
+  //       { businessCourseTitle: courseTitle, quantity: item.quantity },
+  //     ]);
+  //   }
+  // }
 
   const coursesCard = coursesList.map((course) => {
     return (
@@ -86,12 +105,18 @@ export default function BuyCoursesCard({
         </CardContent>
         <CardFooter className={"flex gap-6"}>
           <div className={"mr-4"}>{"£" + " " + course.price}</div>
-          <Button variant={"default"} >Add </Button>
-          <Input type="number"  value={
-            basket.find((item) => item.businessCourseTitle === course.title)
-              ?.quantity
-          } className={"w-20"}  />
-
+          <Button variant={"default"} onClick={() => {}}>
+            Add{" "}
+          </Button>
+          <Input
+            type="number"
+            value={
+              courseQuantity.find(
+                (item) => item.businessCourseTitle === course.title
+              )?.quantity
+            }
+            className={"w-20"}
+          />
         </CardFooter>
       </Card>
     );
@@ -99,10 +124,24 @@ export default function BuyCoursesCard({
 
   return (
     <Card>
-      <CardHeader >
-        <CardTitle className={'flex justify-between'}>Buy courses<div className={'relative'}><ShoppingCartIcon className={'h-8 mr-10 '}/> <Badge
-            variant={'destructive'} className={'absolute  -left-4 bottom-0 z-10  text-xs'}>2</Badge></div></CardTitle>
-
+      <CardHeader>
+        <CardTitle className={"flex justify-between"}>
+          Buy courses
+          <Button
+            variant={"outline"}
+            className={"relative border-none hover:bg-transparent"}
+          >
+            <div>
+              <ShoppingCartIcon className={"h-8 mr-10"} />
+              <Badge
+                variant={"destructive"}
+                className={"absolute  -left-4 bottom-0 z-10  text-xs"}
+              >
+                2
+              </Badge>
+            </div>
+          </Button>
+        </CardTitle>
       </CardHeader>
       <CardContent>{isLoading ? "Loading" : coursesCard}</CardContent>
       <CardFooter></CardFooter>

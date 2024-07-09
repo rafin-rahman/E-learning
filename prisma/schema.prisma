@@ -117,7 +117,7 @@ model CourseLevel {
   updatedAt DateTime @updatedAt
 }
 
-model Company {
+model Business {
   id               String             @id @default(uuid())
   status           String             @default("ACTIVE") // ACTIVE, SUSPENDED
   name             String
@@ -129,6 +129,7 @@ model Company {
   updatedAt        DateTime           @updatedAt
   CompanyEmployee  CompanyEmployee[]
   BusinessPurchase BusinessPurchase[]
+  BusinessBasket   BusinessBasket?
 }
 
 model CompanyEmployee {
@@ -140,19 +141,26 @@ model CompanyEmployee {
   telephone                        String
   password                         String
   roles                            String[] // COMPANY_ADMIN, COMPANY_EMPLOYEE
-  company                          Company                            @relation(fields: [companyId], references: [id])
-  companyId                        String
+  Business                         Business                           @relation(fields: [businessId], references: [id])
+  businessId                       String
   createdAt                        DateTime                           @default(now())
   updatedAt                        DateTime                           @updatedAt
   BusinessCourseChapter            BusinessCourseChapter[]
   BusinessCourseChapterQuizAttempt BusinessCourseChapterQuizAttempt[]
 }
 
+model BusinessBasket {
+  id         String   @id @default(uuid())
+  Business   Business @relation(fields: [businessId], references: [id])
+  businessId String   @unique
+  createdAt  DateTime @default(now())
+}
+
 model BusinessPurchase {
   id                             String                           @id @default(uuid())
-  status                         String                           @default("COMPLETED") // COMPLETED
-  Company                        Company                          @relation(fields: [companyId], references: [id])
-  companyId                      String
+  status                         String                           @default("COMPLETED") // COMPLETED. INCOMPLETE
+  Business                       Business                         @relation(fields: [businessId], references: [id])
+  businessId                     String
   createdAt                      DateTime                         @default(now())
   updatedAt                      DateTime                         @updatedAt
   BusinessPurchaseCourseQuantity BusinessPurchaseCourseQuantity[]
