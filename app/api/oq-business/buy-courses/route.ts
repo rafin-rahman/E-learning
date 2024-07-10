@@ -10,6 +10,7 @@ export async function GET() {
         status: "ACTIVE",
       },
       select: {
+        id: true,
         title: true,
         description: true,
         thumbnail: true,
