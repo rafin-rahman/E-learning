@@ -17,19 +17,7 @@ export default function layout({
           <StaffSidebar />
         </div>
 
-        <div className={"mt-4 w-full"}>
-          <div className={"fixed top-0 left-0 w-full h-full -z-10 bg-white bg-opacity-50"}>
-            <Image
-              src={"/images/backgrounds/dashboard bg.jpg"}
-              alt={"logo"}
-              className={
-                "absolute object-cover h-1/2 blur-2xl -z-10 opacity-30"
-              }
-              fill
-            />
-          </div>
-          {children}
-        </div>
+        <div className={"w-full"}>{children}</div>
       </div>
     </>
   );

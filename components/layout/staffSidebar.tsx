@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/tooltip";
 import { SEO } from "@/lib/company";
 import { staffNavigationMenuOptions } from "@/lib/navigationMenuOptions";
+import Link from "next/link";
 
 //TODO sidebar navigation needs to highlight the current page
 
@@ -119,7 +120,7 @@ export default async function StaffSidebar() {
           fill
         />
       </div>
-      <div className="flex h-16 shrink-0 items-center">
+      <Link href={"/"} className={"flex h-16 shrink-0 items-center"}>
         <Image
           className="h-8 w-auto"
           src={SEO.logo_light_no_text}
@@ -131,7 +132,7 @@ export default async function StaffSidebar() {
         <span className={"hidden group-hover:block ml-3"}>
           Online Qualification
         </span>
-      </div>
+      </Link>
       <nav className="flex flex-1 flex-col">
         <ul role="list" className="flex flex-1 flex-col gap-y-7">
           <li>

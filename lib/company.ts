@@ -39,3 +39,14 @@ export const addresses = [
 ];
 
 export const userLoginTimeout = 1800;
+
+// TODO - complete theming for the app
+
+export const brandIdentity = {
+  primaryColor: "#FFB400",
+  secondaryColor: "#FFD700",
+  accentColor: "#FFD700",
+  backgroundColor: "#F9F9F9",
+  primaryText: "#000000",
+  secondaryText: "#FFFFFF",
+};

@@ -19,16 +19,6 @@ export default function RootLayout({
   return (
     <html lang="en" className={poppins.className}>
       <body>
-        <div
-          className={
-            "flex flex-wrap h-12 sm:h-6 justify-center bg-gradient-to-r from-amber-300 to-red-400 items-center text-center opacity-50 text-xs"
-          }
-        >
-          <p>
-            This is a demo/test application for presentation purposes only and
-            is not part of our official business operations.
-          </p>
-        </div>
         <Providers>{children}</Providers>
         <div>
           <Toaster />
