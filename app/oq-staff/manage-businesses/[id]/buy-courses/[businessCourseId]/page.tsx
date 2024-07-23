@@ -151,6 +151,12 @@ export default function BuyBusinessCourseDetails({
                   tempus vitae quis lacus. Vestibulum interdum diam non mi
                   cursus venenatis. Morbi lacinia libero et elementum vulputate.
                 </p>
+                <h2 className={"text-2xl my-6"}>Leaning outcomes:</h2>
+                <ul>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                </ul>
               </div>
             </TabsContent>
           </div>
@@ -191,8 +197,8 @@ export default function BuyBusinessCourseDetails({
             <p className={"text-xl mt-2"}>Certification type:</p>
             <ChevronRightIcon className={"h-3 inline text-cyan-400"} />
             CPD<p className={"text-xl mt-2"}>Fee:</p>
-            <ChevronRightIcon className={"h-3 inline text-cyan-400"} />
-            £50
+            <ChevronRightIcon className={"h-3 inline text-cyan-400"} />£
+            {businessCourse.price}
           </CardContent>
           <CardFooter className={"flex justify-start gap-6"}>
             <Input

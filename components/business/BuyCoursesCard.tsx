@@ -78,7 +78,7 @@ export default function BuyCoursesCard({
         </CardContent>
         <CardFooter className={"flex justify-between"}>
           <div className={"mr-4"}>{"£" + " " + course.price}</div>
-          <Button variant={"default"} type={"submit"}>
+          <Button asChild variant={"default"} type={"submit"}>
             <Link
               href={`/oq-staff/manage-businesses/${companyId}/buy-courses/${course.id}`}
             >
