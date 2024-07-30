@@ -111,15 +111,7 @@ export default async function StaffSidebar() {
   });
 
   return (
-    <div className=" group w-20 hover:w-64 transition-all duration-300 flex pt-4 grow flex-col gap-y-5 overflow-y-auto bg-white px-6  h-screen sticky top-0 ">
-      <div className={" -z-10"}>
-        <Image
-          src={"/images/backgrounds/red background image.jpg"}
-          className={"absolute object-cover h-1/2 blur-3xl -z-10 opacity-25"}
-          alt={"logo"}
-          fill
-        />
-      </div>
+    <div className=" group w-20 hover:w-64 transition-all duration-300 flex pt-4 grow flex-col gap-y-5 overflow-y-auto border-r-2  px-6  h-screen sticky top-0 ">
       <Link href={"/"} className={"flex h-16 shrink-0 items-center"}>
         <Image
           className="h-8 w-auto"

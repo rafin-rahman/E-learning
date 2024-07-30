@@ -151,11 +151,36 @@ export default function BuyBusinessCourseDetails({
                   tempus vitae quis lacus. Vestibulum interdum diam non mi
                   cursus venenatis. Morbi lacinia libero et elementum vulputate.
                 </p>
-                <h2 className={"text-2xl my-6"}>Leaning outcomes:</h2>
+                <h2 className={"text-2xl my-6"}>Learning outcomes:</h2>
                 <ul>
-                  <li></li>
-                  <li></li>
-                  <li></li>
+                  <li>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    Duis aute irure dolor in reprehenderit in voluptate velit
+                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+                    occaecat cupidatat non proident, sunt in culpa qui officia
+                    deserunt mollit anim id est laborum.
+                  </li>
+                  <li>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    Duis aute irure dolor in reprehenderit in voluptate velit
+                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+                    occaecat cupidatat non proident, sunt in culpa qui officia
+                    deserunt mollit anim id est laborum.
+                  </li>
+                  <li>
+                    roin et eros varius, ornare turpis ac, dapibus nisi. Morbi
+                    luctus arcu non massa consequat, et tristique velit semper.
+                    Curabitur interdum vulputate sagittis. Donec erat massa,
+                    tincidunt sed feugiat id, suscipit in est. Proin laoreet
+                    orci quis augue eleifend varius. Donec hendrerit ex ut lacus
+                    blandit euismod.
+                  </li>
                 </ul>
               </div>
             </TabsContent>
@@ -200,21 +225,31 @@ export default function BuyBusinessCourseDetails({
             <ChevronRightIcon className={"h-3 inline text-cyan-400"} />£
             {businessCourse.price}
           </CardContent>
-          <CardFooter className={"flex justify-start gap-6"}>
-            <Input
-              type={"number"}
-              value={courseQuantity}
-              onChange={(e) => {
-                setCourseQuantity(parseInt(e.target.value));
-              }}
-              className={"w-20"}
-            />
-            <Button className={""}>Buy</Button>
-            {courseQuantity > 0 ? (
-              <p>£{courseQuantity * businessCourse.price}</p>
-            ) : (
-              ""
-            )}
+          <CardFooter className={""}>
+            <div className={"flex flex-col"}>
+              <div className={"flex justify-start gap-6 "}>
+                <Input
+                  type={"number"}
+                  value={courseQuantity}
+                  onChange={(e) => {
+                    if (parseInt(e.target.value) < 0) {
+                      setCourseQuantity(0);
+                      return;
+                    }
+                    setCourseQuantity(parseInt(e.target.value));
+                  }}
+                  className={"w-20"}
+                />
+                <Button className={""}>Buy</Button>
+                {courseQuantity > 0 ? (
+                  <p>£{courseQuantity * businessCourse.price}</p>
+                ) : (
+                  ""
+                )}
+              </div>
+
+              <div className={"mt-6"}>basket</div>
+            </div>
           </CardFooter>
         </Card>
       </div>
