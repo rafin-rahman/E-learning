@@ -9,6 +9,7 @@ import {
   TagIcon,
   GlobeAltIcon,
   ChevronRightIcon,
+  ShoppingCartIcon,
 } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -248,7 +249,9 @@ export default function BuyBusinessCourseDetails({
                 )}
               </div>
 
-              <div className={"mt-6"}>basket</div>
+              <div className={"mt-6"}>
+                <ShoppingCartIcon className={"h-6"} />
+              </div>
             </div>
           </CardFooter>
         </Card>

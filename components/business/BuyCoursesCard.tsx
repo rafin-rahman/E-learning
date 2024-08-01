@@ -11,8 +11,8 @@ import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
-import { ShoppingCartIcon } from "@heroicons/react/20/solid";
 import { Badge } from "@/components/ui/badge";
+
 import { useState } from "react";
 import { inter } from "@/lib/font";
 import Link from "next/link";

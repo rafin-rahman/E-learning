@@ -9,7 +9,6 @@ import {
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Separator } from "@/components/ui/separator";
-import { useQuery } from "@tanstack/react-query";
 
 type employeesListType =
   | {

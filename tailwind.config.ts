@@ -29,6 +29,9 @@ const config = {
         ultrabold: "950", // Even bolder custom weight
       },
       colors: {
+        // Manually added
+        offWhite: "#f9f9f9",
+        // End of Manually added
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
