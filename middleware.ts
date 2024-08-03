@@ -114,7 +114,12 @@ export async function middleware(request: NextRequest) {
         secure: true,
         httpOnly: true,
       });
-      console.log("Middleware.ts - Refreshed session with 10 more minutes");
+      console.log(
+        `Middleware.ts - Refreshed session with ${
+          userLoginTimeout / 60
+        } minutes`
+      );
+
       return response;
     }
   } catch (err) {

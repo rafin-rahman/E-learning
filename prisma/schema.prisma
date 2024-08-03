@@ -130,7 +130,6 @@ model Business {
   updatedAt        DateTime           @updatedAt
   BusinessEmployee BusinessEmployee[]
   BusinessPurchase BusinessPurchase[]
-  BusinessBasket   BusinessBasket?
 }
 
 model BusinessEmployee {
@@ -148,13 +147,6 @@ model BusinessEmployee {
   updatedAt                        DateTime                           @updatedAt
   BusinessCourseChapter            BusinessCourseChapter[]
   BusinessCourseChapterQuizAttempt BusinessCourseChapterQuizAttempt[]
-}
-
-model BusinessBasket {
-  id         String   @id @default(uuid())
-  Business   Business @relation(fields: [businessId], references: [id])
-  businessId String   @unique
-  createdAt  DateTime @default(now())
 }
 
 model BusinessPurchase {

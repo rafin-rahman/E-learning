@@ -22,6 +22,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import BuyModalButton from "@/app/oq-staff/manage-businesses/[id]/buy-courses/[businessCourseId]/BuyModalButton";
 
 interface BusinessCourse {
   title: string;
@@ -241,7 +242,10 @@ export default function BuyBusinessCourseDetails({
                   }}
                   className={"w-20"}
                 />
-                <Button className={""}>Buy</Button>
+                <BuyModalButton
+                  quantity={courseQuantity}
+                  totalValue={courseQuantity * businessCourse.price}
+                />
                 {courseQuantity > 0 ? (
                   <p>£{courseQuantity * businessCourse.price}</p>
                 ) : (
@@ -249,9 +253,7 @@ export default function BuyBusinessCourseDetails({
                 )}
               </div>
 
-              <div className={"mt-6"}>
-                <ShoppingCartIcon className={"h-6"} />
-              </div>
+              <div className={"mt-6"}></div>
             </div>
           </CardFooter>
         </Card>
