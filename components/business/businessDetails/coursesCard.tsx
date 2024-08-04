@@ -16,7 +16,7 @@ export default function CoursesCard({
   coursesList,
   companyId,
 }: {
-  coursesList: { course: string; thumbnail: string }[];
+  coursesList: { title: string; course: string; thumbnail: string }[];
   companyId: string;
 }) {
   return (
@@ -42,11 +42,11 @@ export default function CoursesCard({
                 className={"shadow p-6  max-w-72 hover:shadow-xl"}
                 key={course.thumbnail}
               >
-                <div className={"h-28 w-[80%] relative mx-auto"}>
+                <div className={"h-28 w-28 relative mx-auto"}>
                   <Image
-                    src={course.thumbnail ? course.thumbnail : ""}
+                    src={course.thumbnail ? "/" + course.thumbnail : ""}
                     alt={"image"}
-                    className={"object-contain"}
+                    className={"object-cover"}
                     fill
                   />
                 </div>{" "}
@@ -54,20 +54,6 @@ export default function CoursesCard({
                 <div className={"text-black"}>{course.course}</div>
               </div>
             ))}
-            <div
-              className={
-                "shadow p-6  max-w-72 hover:shadow-xl bg-gray-50 flex items-center border-4 hover:bg-gray-100"
-              }
-            >
-              <div
-                className={
-                  "h-28 w-[80%]  mx-auto  text-center text-xl text-gray-700 "
-                }
-              >
-                ADD NEW COURSE
-                <Separator className="my-4" />
-              </div>{" "}
-            </div>
           </div>
         )}
       </CardContent>

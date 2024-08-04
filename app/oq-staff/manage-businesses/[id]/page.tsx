@@ -12,6 +12,7 @@ import { useQuery, UseQueryResult } from "@tanstack/react-query";
 type CourseList = {
   course: string;
   thumbnail: string;
+  title: string;
 };
 
 export default function businessClientDetails({
@@ -61,28 +62,37 @@ export default function businessClientDetails({
         )}`;
         return { ...employee, progress, awards };
       });
-      console.log("employeesList");
-      console.log(employeesList);
 
       setEmployees(employeesList);
     })();
   }, [params.id]);
-
   const {
     data: coursesList = [], // default value is an empty array,
     isLoading,
     error,
   }: UseQueryResult<CourseList[]> = useQuery({
     queryKey: ["businessPurchases", params.id],
-    queryFn: async () => {
-      const response = await fetch(`/api/oq-business/business-purchase`, {
-        method: "GET",
+    queryFn: async (): Promise<CourseList[]> => {
+      const response = await fetch(`/api/oq-business/business-purchases/`, {
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
+        body: JSON.stringify({ companyId: params.id }),
       });
+      if (!response.ok) {
+        throw new Error(
+          `Business Purchase failed with status ${response.status}`
+        );
+      }
 
-      return await response.json();
+      const result = await response.json();
+
+      if (!Array.isArray(result.data)) {
+        throw new Error("Unexpected response structure");
+      }
+
+      return result.data as CourseList[];
     },
   });
 

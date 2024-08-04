@@ -202,3 +202,7 @@ export const countries = [
   "Zambia",
   "Zimbabwe",
 ];
+
+export function formatCurrencyToGBP(number: number) {
+  return "£" + number.toLocaleString("en-gb");
+}

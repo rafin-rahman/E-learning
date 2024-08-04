@@ -916,6 +916,8 @@ async function main() {
 
   //region Company and Company Employee
 
+  await prisma.businessPurchaseCourseQuantity.deleteMany();
+  await prisma.businessPurchase.deleteMany();
   await prisma.businessEmployee.deleteMany();
   await prisma.business.deleteMany();
 

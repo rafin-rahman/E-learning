@@ -7,6 +7,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
+import { formatCurrencyToGBP } from "@/lib/utils";
 
 export default function BuyModalButton({
   quantity,
@@ -24,7 +25,7 @@ export default function BuyModalButton({
         <DialogHeader>
           <DialogTitle className={"text-center"}>Attention!</DialogTitle>
           You are about to allocate {quantity} licenses - Total value{" "}
-          {totalValue}
+          {formatCurrencyToGBP(totalValue)}
           <DialogDescription>
             <br />
             Ensure you received the payment before adding the licences.

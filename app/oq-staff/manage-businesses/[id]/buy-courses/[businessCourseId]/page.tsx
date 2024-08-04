@@ -23,6 +23,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import BuyModalButton from "@/app/oq-staff/manage-businesses/[id]/buy-courses/[businessCourseId]/BuyModalButton";
+import { formatCurrencyToGBP } from "@/lib/utils";
 
 interface BusinessCourse {
   title: string;
@@ -224,8 +225,8 @@ export default function BuyBusinessCourseDetails({
             <p className={"text-xl mt-2"}>Certification type:</p>
             <ChevronRightIcon className={"h-3 inline text-cyan-400"} />
             CPD<p className={"text-xl mt-2"}>Fee:</p>
-            <ChevronRightIcon className={"h-3 inline text-cyan-400"} />£
-            {businessCourse.price}
+            <ChevronRightIcon className={"h-3 inline text-cyan-400"} />
+            {formatCurrencyToGBP(businessCourse.price)}
           </CardContent>
           <CardFooter className={""}>
             <div className={"flex flex-col"}>
@@ -247,7 +248,9 @@ export default function BuyBusinessCourseDetails({
                   totalValue={courseQuantity * businessCourse.price}
                 />
                 {courseQuantity > 0 ? (
-                  <p>£{courseQuantity * businessCourse.price}</p>
+                  <p>
+                    {formatCurrencyToGBP(courseQuantity * businessCourse.price)}
+                  </p>
                 ) : (
                   ""
                 )}

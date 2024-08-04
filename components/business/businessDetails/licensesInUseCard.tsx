@@ -53,7 +53,10 @@ export default function LicensesInUseCard({
         <ul className={"leading-10"}>
           {employeesList?.map((item) => {
             return (
-              <li className={"flex items-center gap-10 group justify-between"}>
+              <li
+                key={item.id}
+                className={"flex items-center gap-10 group justify-between"}
+              >
                 <div className={"w-[20%]"}>{item.email}</div>
                 <div className={"flex w-[50%] items-center gap-4 "}>
                   {" "}

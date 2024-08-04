@@ -1,28 +1,13 @@
 import prisma from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 
+// Show list of purchased courses from a business
 export async function POST(request: NextRequest) {
   const body = await request.json();
 
   const { companyId } = body;
 
   try {
-    // const businessPurchases = await prisma.businessPurchase.findMany({
-    //   where: {
-    //     businessId: businessId,
-    //     status: "COMPLETED",
-    //   },
-    //   orderBy: {
-    //     createdAt: "desc",
-    //   },
-    // });
-    //
-    // if (!businessPurchases) {
-    //   return NextResponse.json({ error: "No order found" });
-    // }
-    //
-    // return NextResponse.json({ data: businessPurchases });
-
     const purchasedCourses = await prisma.business.findUnique({
       where: {
         id: companyId,
@@ -53,11 +38,12 @@ export async function POST(request: NextRequest) {
     }
 
     // Flatten the results to get a list of courses
-    const courses = purchasedCourses.BusinessPurchase.flatMap((purchase) =>
-      purchase.BusinessPurchaseCourseQuantity.map(
-        (quantity) => quantity.BusinessCourse
-      )
-    );
+    const courses =
+      purchasedCourses.BusinessPurchase.flatMap((purchase) =>
+        purchase.BusinessPurchaseCourseQuantity.map(
+          (quantity) => quantity.BusinessCourse
+        )
+      ) ?? [];
 
     if (!courses) {
       return NextResponse.json({ error: "No courses found" });

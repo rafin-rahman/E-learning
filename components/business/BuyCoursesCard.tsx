@@ -39,7 +39,12 @@ export default function BuyCoursesCard({
   }: UseQueryResult<Course[]> = useQuery({
     queryKey: ["courses", companyId],
     queryFn: async () => {
-      const response = await fetch(`/api/oq-business/buy-courses/`);
+      const response = await fetch(`/api/oq-business/course/cpd/`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }

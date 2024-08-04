@@ -9,9 +9,21 @@ export default function Home() {
   // Check if the user is logged in, return a boolean
   const isLoggedIn = !!cookie;
 
+  const list = [
+    {
+      title: "dashboard",
+      description: "Something went wrong",
+    },
+    {
+      title: "dashboard",
+      description: "Something went wrong",
+    },
+  ];
+
   return (
     <div>
       <PublicNavbar isLoggedIn={isLoggedIn} />
+      <div className={"textc"}></div>
       <Homepage />
       <Footer />
     </div>

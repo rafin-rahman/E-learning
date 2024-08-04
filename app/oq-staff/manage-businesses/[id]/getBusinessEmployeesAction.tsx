@@ -19,8 +19,6 @@ export default async function getBusinessEmployeesAction(
   }[]
 > {
   try {
-    console.log("businessId");
-    console.log(businessId);
     return await prisma.businessEmployee.findMany({
       where: {
         businessId: businessId,
