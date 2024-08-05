@@ -246,6 +246,7 @@ export default function BuyBusinessCourseDetails({
                 <BuyModalButton
                   quantity={courseQuantity}
                   totalValue={courseQuantity * businessCourse.price}
+                  businessId={params.id}
                 />
                 {courseQuantity > 0 ? (
                   <p>

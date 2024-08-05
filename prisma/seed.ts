@@ -1888,7 +1888,7 @@ async function main() {
       title: "Project Management Professional (PMP) Certification Prep",
       description:
         "Prepare for the PMP certification with this comprehensive course. Covering all key aspects of project management, this course is designed to help you pass the PMP exam with confidence.",
-      thumbnail: "",
+      thumbnail: "testings/Project_Management.jpg",
       price: 2900,
     },
     {
@@ -1902,7 +1902,7 @@ async function main() {
       title: "Advanced Excel for Data Analysis",
       description:
         "Master advanced Excel functions and tools for data analysis. Learn about pivot tables, macros, and data visualization techniques to enhance your data analysis skills.",
-      thumbnail: "testings/analytics.webp",
+      thumbnail: "testings/advanced_excel.jpeg",
       price: 2000,
     },
     {

@@ -8,13 +8,18 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { formatCurrencyToGBP } from "@/lib/utils";
+import handleBuyBusinessCourse from "@/app/oq-staff/manage-businesses/[id]/buy-courses/[businessCourseId]/handleBuyBusinessCourse";
 
 export default function BuyModalButton({
   quantity,
   totalValue,
+  businessId,
+  courseId,
 }: {
   quantity: number;
   totalValue: number;
+  courseId: string;
+  businessId: string;
 }) {
   return (
     <Dialog>
@@ -31,7 +36,17 @@ export default function BuyModalButton({
             Ensure you received the payment before adding the licences.
           </DialogDescription>
           <br />
-          <Button>Add licences</Button>
+          <Button
+            onClick={() => {
+              handleBuyBusinessCourse({
+                courseQuantity: quantity,
+                courseId,
+                businessId,
+              });
+            }}
+          >
+            Add licences
+          </Button>
         </DialogHeader>
       </DialogContent>
     </Dialog>
