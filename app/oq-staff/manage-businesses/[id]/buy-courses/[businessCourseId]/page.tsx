@@ -30,6 +30,7 @@ interface BusinessCourse {
   description: string;
   thumbnail: string;
   price: number;
+  id: string;
 }
 
 export default function BuyBusinessCourseDetails({
@@ -243,15 +244,21 @@ export default function BuyBusinessCourseDetails({
                   }}
                   className={"w-20"}
                 />
-                <BuyModalButton
-                  quantity={courseQuantity}
-                  totalValue={courseQuantity * businessCourse.price}
-                  businessId={params.id}
-                />
+
                 {courseQuantity > 0 ? (
-                  <p>
-                    {formatCurrencyToGBP(courseQuantity * businessCourse.price)}
-                  </p>
+                  <div>
+                    <BuyModalButton
+                      quantity={courseQuantity}
+                      totalValue={courseQuantity * businessCourse.price}
+                      businessId={params.id}
+                      courseId={businessCourse.id}
+                    />
+                    <p className={"ml-4 inline"}>
+                      {formatCurrencyToGBP(
+                        courseQuantity * businessCourse.price
+                      )}
+                    </p>
+                  </div>
                 ) : (
                   ""
                 )}

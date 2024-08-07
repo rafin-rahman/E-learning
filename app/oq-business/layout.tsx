@@ -26,14 +26,15 @@ export default function CompanyEmployee({
             <Menu menuOptions={menu} />
           </div>
           {/* Account icon */}
-          <div>
+          <div className={""}>
             <Image
               src={"/logo/Logo-LightBG-No-Text.svg"}
               alt="logo"
               width={50}
               height={50}
+              priority
             />
-            Business
+            Businessasdasd
           </div>
         </div>
       </nav>

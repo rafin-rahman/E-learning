@@ -13,6 +13,7 @@ export default function signup() {
           className={"object-fill"}
           fill
           alt={"logo"}
+          priority
         />
       </div>
       <h1 className={"text-4xl mb-10"}>Sign up page</h1>

@@ -30,6 +30,7 @@ export default function signin() {
           className={"object-fill"}
           fill
           alt={"logo"}
+          priority
         />
       </div>
 
