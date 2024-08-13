@@ -15,6 +15,7 @@ import axios from "axios";
 import { SEO } from "@/lib/company";
 import { useState } from "react";
 import BuyCourses from "@/app/oq-staff/manage-businesses/[id]/buy-courses/page";
+import { useToast } from "@/components/ui/use-toast";
 
 type BuyBusinessCourse = {
     businessId: string;
@@ -33,6 +34,7 @@ export default function BuyModalButton({
     courseId: string;
     businessId: string;
 }) {
+    const { toast } = useToast();
     const [modalCloseButton, setModalCloseButton] = useState(false);
     const buyCourseObject = {
         courseQuantity: quantity,
@@ -49,8 +51,14 @@ export default function BuyModalButton({
             buyCourse(buyCourseObject),
         onSuccess: async ({ data }) => {
             setModalCloseButton(true);
-
-            console.log(data.message);
+        },
+        onError: async () => {
+            toast({
+                variant: "destructive",
+                title: "Notification",
+                description: "Something went wrong",
+                duration: 2000,
+            });
         },
     });
 

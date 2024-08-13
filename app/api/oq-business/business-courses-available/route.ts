@@ -1,7 +1,7 @@
 import prisma from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 
-// Show list of purchased courses  / transactions from a business
+// Show list of unique course purchased
 export async function POST(request: NextRequest) {
     const body = await request.json();
 
@@ -38,12 +38,19 @@ export async function POST(request: NextRequest) {
         }
 
         // Flatten the results to get a list of courses
+        const courseSet = new Set();
         const courses =
             purchasedCourses.BusinessPurchase.flatMap((purchase) =>
                 purchase.BusinessPurchaseCourseQuantity.map(
                     (quantity) => quantity.BusinessCourse
                 )
-            ) ?? [];
+            ).filter((course) => {
+                const isDuplicate = courseSet.has(course.id);
+                // Set will only add course.id if it's unique
+                courseSet.add(course.id);
+                // returning FALSE so .filter will ignore all duplicate entries
+                return !isDuplicate;
+            }) ?? [];
 
         if (!courses) {
             return NextResponse.json({ error: "No courses found" });
