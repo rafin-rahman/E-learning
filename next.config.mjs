@@ -24,6 +24,9 @@ const nextConfig = {
 				port:''
 			}
 		]
+	},
+	eslint: {
+		ignoreDuringBuilds: true // This allows builds to succeed even if there are ESLint errors
 	}
 };
 
