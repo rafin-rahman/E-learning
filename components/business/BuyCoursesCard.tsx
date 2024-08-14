@@ -6,15 +6,11 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card";
-import {Button} from "@/components/ui/button";
-import {useQuery, UseQueryResult} from "@tanstack/react-query";
-import {AspectRatio} from "@/components/ui/aspect-ratio";
+import { Button } from "@/components/ui/button";
+import { useQuery, UseQueryResult } from "@tanstack/react-query";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 import Image from "next/image";
-import {Input} from "@/components/ui/input";
-import {Badge} from "@/components/ui/badge";
 
-import {useState} from "react";
-import {inter} from "@/lib/font";
 import Link from "next/link";
 
 interface Course {
@@ -25,13 +21,15 @@ interface Course {
     price: number;
 }
 
-export default function BuyCoursesCard({
-                                           companyId,
-                                           userType,
-                                       }: {
+interface BuyCoursesCardProps {
     companyId: string;
     userType: string;
-}) {
+}
+
+export default function BuyCoursesCard({
+    companyId,
+    userType,
+}: BuyCoursesCardProps) {
     const {
         data: coursesList,
         isLoading,

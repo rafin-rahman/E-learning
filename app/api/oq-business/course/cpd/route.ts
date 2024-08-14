@@ -1,24 +1,25 @@
 import prisma from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET() {
-  try {
-    const businessCoursesList = await prisma.businessCourse.findMany({
-      where: {
-        status: "ACTIVE",
-      },
-    });
+export async function GET(request: NextRequest) {
+    // no cache
+    request.headers.set("Cache-Control", "no-cache");
+    try {
+        const businessCoursesList = await prisma.businessCourse.findMany({
+            where: {
+                status: "ACTIVE",
+            },
+        });
 
-    if (!businessCoursesList) {
-      return NextResponse.json({ error: "No course found" });
+        if (!businessCoursesList) {
+            return NextResponse.json({ error: "No course found" });
+        }
+
+        return NextResponse.json({ data: businessCoursesList });
+    } catch (error) {
+        console.log(error);
+        return NextResponse.json({
+            error: "Ops, Something went wrong while fetching list of all business courses",
+        });
     }
-
-    return NextResponse.json({ data: businessCoursesList });
-  } catch (error) {
-    console.log(error);
-    return NextResponse.json({
-      error:
-        "Ops, Something went wrong while fetching list of all business courses",
-    });
-  }
 }
