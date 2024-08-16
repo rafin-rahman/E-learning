@@ -28,40 +28,50 @@ export default function PublicNavbarMobile() {
 						<Bars3Icon className={"h-10 w-10"} />
 					</Button>
 				</SheetTrigger>
-				<SheetContent side={"left"} className={"bg-gray-900 "}>
+				<SheetContent side={"left"} className={" "}>
 					<SheetHeader>
-						<SheetTitle className={"text-white"}>Online Qualification</SheetTitle>
-						<SheetDescription className={"text-white"}>Menu</SheetDescription>
+						<SheetTitle className={""}>
+							Online Qualification
+						</SheetTitle>
+						<SheetDescription className={""}>Menu</SheetDescription>
 					</SheetHeader>
 					<div className={"mt-10"}>
 						{/*    Navigation menu options*/}
 						<nav className="flex flex-1 flex-col ">
-							<ul role="list" className="flex flex-1 flex-col gap-y-7">
+							<ul
+								role="list"
+								className="flex flex-1 flex-col gap-y-7"
+							>
 								<li>
 									<ul role="list" className="-mx-2 space-y-1">
-										{publicNavigationMenuOptions.map((item) => (
-											<li key={item.name} className={"py-3"}>
-												<a
-													href={item.href}
-													className={classNames(
-														item.current
-															? "bg-gray-800 text-white"
-															: "text-gray-400 hover:text-white hover:bg-gray-800",
-														"group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
-													)}
+										{publicNavigationMenuOptions.map(
+											(item) => (
+												<li
+													key={item.name}
+													className={"py-3"}
 												>
-													{item.name}
-													{item.count ? (
-														<span
-															className="ml-auto w-9 min-w-max whitespace-nowrap rounded-full bg-gray-900 px-2.5 py-0.5 text-center text-xs font-medium leading-5 text-white ring-1 ring-inset ring-gray-700"
-															aria-hidden="true"
-														>
-															{item.count}
-														</span>
-													) : null}
-												</a>
-											</li>
-										))}
+													<a
+														href={item.href}
+														className={classNames(
+															item.current
+																? "bg-gray-800"
+																: "text-gray-600 hover:text-white  hover:bg-gray-800",
+															"group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+														)}
+													>
+														{item.name}
+														{item.count ? (
+															<span
+																className="ml-auto w-9 min-w-max whitespace-nowrap rounded-full bg-gray-900 px-2.5 py-0.5 text-center text-xs font-medium leading-5  ring-1 ring-inset ring-gray-700"
+																aria-hidden="true"
+															>
+																{item.count}
+															</span>
+														) : null}
+													</a>
+												</li>
+											)
+										)}
 									</ul>
 								</li>
 								{/*<li>*/}
@@ -93,7 +103,7 @@ export default function PublicNavbarMobile() {
 						</nav>
 					</div>
 					<SheetFooter className={"bottom-0 mt-10"}>
-						<SheetClose className={"text-white"}>Close</SheetClose>
+						<SheetClose className={""}>Close</SheetClose>
 					</SheetFooter>
 				</SheetContent>
 			</Sheet>
