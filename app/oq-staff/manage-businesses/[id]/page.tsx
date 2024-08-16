@@ -9,12 +9,19 @@ import CoursesCard from "@/components/business/businessDetails/coursesCard";
 import getBusinessEmployeesAction from "@/app/oq-staff/manage-businesses/[id]/getBusinessEmployeesAction";
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import axios from "axios";
-import { isArray } from "node:util";
 
 type CourseList = {
     course: string;
     thumbnail: string;
     title: string;
+};
+
+type CourseListProps = {
+    id: string;
+    title: string;
+    licencesAvailable: number;
+    licencesInUse: number;
+    thumbnail: string;
 };
 
 export default function businessClientDetails({
@@ -86,6 +93,7 @@ export default function businessClientDetails({
             console.log(result.data.data);
             return result.data.data as CourseList[];
         },
+        staleTime: 1000 * 60, // 1 minute
     });
 
     if (!businessData || !employees) return null;
