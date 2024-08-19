@@ -1,12 +1,12 @@
 import {
-    Dialog,
-    DialogContent,
-    DialogDescription,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger,
-    DialogFooter,
-    DialogClose,
+	Dialog,
+	DialogContent,
+	DialogDescription,
+	DialogHeader,
+	DialogTitle,
+	DialogTrigger,
+	DialogFooter,
+	DialogClose,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { formatCurrencyToGBP } from "@/lib/utils";
@@ -18,96 +18,97 @@ import BuyCourses from "@/app/oq-staff/manage-businesses/[id]/buy-courses/page";
 import { useToast } from "@/components/ui/use-toast";
 
 type BuyBusinessCourse = {
-    businessId: string;
-    courseId: string;
-    courseQuantity: number;
+	businessId: string;
+	courseId: string;
+	courseQuantity: number;
 };
 
 export default function BuyModalButton({
-    quantity,
-    totalValue,
-    businessId,
-    courseId,
+	quantity,
+	totalValue,
+	businessId,
+	courseId,
 }: {
-    quantity: number;
-    totalValue: number;
-    courseId: string;
-    businessId: string;
+	quantity: number;
+	totalValue: number;
+	courseId: string;
+	businessId: string;
 }) {
-    const { toast } = useToast();
-    const [modalCloseButton, setModalCloseButton] = useState(false);
-    const buyCourseObject = {
-        courseQuantity: quantity,
-        courseId: courseId,
-        businessId: businessId,
-    };
+	const { toast } = useToast();
+	const [modalCloseButton, setModalCloseButton] = useState(false);
+	const buyCourseObject = {
+		courseQuantity: quantity,
+		courseId: courseId,
+		businessId: businessId,
+	};
 
-    const buyCourse = (buyCourseObject: BuyBusinessCourse) => {
-        return axios.post("/api/oq-business/buy-courses", buyCourseObject);
-    };
+	const buyCourse = (buyCourseObject: BuyBusinessCourse) => {
+		return axios.post("/api/oq-business/buy-courses", buyCourseObject);
+	};
 
-    const buyCourseMutation = useMutation({
-        mutationFn: (buyCourseObject: BuyBusinessCourse) =>
-            buyCourse(buyCourseObject),
-        onSuccess: async ({ data }) => {
-            setModalCloseButton(true);
-        },
-        onError: async () => {
-            toast({
-                variant: "destructive",
-                title: "Notification",
-                description: "Something went wrong",
-                duration: 2000,
-            });
-        },
-    });
+	const buyCourseMutation = useMutation({
+		mutationFn: (buyCourseObject: BuyBusinessCourse) =>
+			buyCourse(buyCourseObject),
+		onSuccess: async ({ data }) => {
+			setModalCloseButton(true);
+		},
+		onError: async () => {
+			toast({
+				variant: "destructive",
+				title: "Notification",
+				description: "Something went wrong",
+				duration: 2000,
+			});
+		},
+	});
 
-    return (
-        <Dialog>
-            <DialogTrigger>
-                <Button>Buy</Button>
-            </DialogTrigger>
-            <DialogContent>
-                {modalCloseButton ? (
-                    <DialogFooter>
-                        <DialogClose asChild>
-                            <Button
-                                type="button"
-                                variant="default"
-                                className={"w-full"}
-                                onClick={() => {
-                                    setTimeout(() => {
-                                        setModalCloseButton(false);
-                                    }, 1000);
-                                }}
-                            >
-                                {quantity} licenses has been added!
-                            </Button>
-                        </DialogClose>
-                    </DialogFooter>
-                ) : (
-                    <DialogHeader>
-                        <DialogTitle className={"text-center"}>
-                            Attention!
-                        </DialogTitle>
-                        You are about to allocate {quantity} licenses - Total
-                        value {formatCurrencyToGBP(totalValue)}
-                        <DialogDescription>
-                            <br />
-                            Ensure you received the payment before adding the
-                            licences.
-                        </DialogDescription>
-                        <br />
-                        <Button
-                            onClick={() => {
-                                buyCourseMutation.mutate(buyCourseObject);
-                            }}
-                        >
-                            Add licences
-                        </Button>
-                    </DialogHeader>
-                )}
-            </DialogContent>
-        </Dialog>
-    );
+	return (
+		<Dialog>
+			<DialogTrigger>
+				<Button>Buy</Button>
+			</DialogTrigger>
+			<DialogContent>
+				{modalCloseButton ? (
+					<DialogFooter>
+						<DialogClose asChild>
+							<Button
+								type="button"
+								variant="default"
+								className={"w-full"}
+								onClick={() => {
+									setTimeout(() => {
+										setModalCloseButton(false);
+									}, 1000);
+								}}
+							>
+								{quantity} licenses has been added!
+							</Button>
+						</DialogClose>
+					</DialogFooter>
+				) : (
+					<DialogHeader>
+						<DialogTitle className={"text-center"}>
+							Attention!
+						</DialogTitle>
+						You are about to allocate {quantity} licenses - Total
+						value {formatCurrencyToGBP(totalValue)}
+						<DialogDescription>
+							<br />
+							Ensure you received the payment before adding the
+							licences.
+						</DialogDescription>
+						<br />
+						{/*TODO disable button while loading*/}
+						<Button
+							onClick={() => {
+								buyCourseMutation.mutate(buyCourseObject);
+							}}
+						>
+							Add licences
+						</Button>
+					</DialogHeader>
+				)}
+			</DialogContent>
+		</Dialog>
+	);
 }
