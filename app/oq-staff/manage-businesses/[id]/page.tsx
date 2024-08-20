@@ -66,7 +66,6 @@ export default function businessClientDetails({
 				)}`;
 				return { ...employee, progress, awards };
 			});
-
 			setEmployees(employeesList);
 		})();
 	}, [params.id]);
