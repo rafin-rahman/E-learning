@@ -4,8 +4,8 @@ import getBusinessDetailsAction from "@/app/oq-staff/manage-businesses/[id]/getB
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import LicensesInUseCard from "@/components/business/businessDetails/licensesInUseCard";
-import CoursesCard from "@/components/business/businessDetails/coursesCard";
+import EmployeesCard from "@/components/business/businessDetails/EmployeesCard";
+import CoursesCard from "@/components/business/businessDetails/CoursesCard";
 import getBusinessEmployeesAction from "@/app/oq-staff/manage-businesses/[id]/getBusinessEmployeesAction";
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import axios from "axios";
@@ -122,7 +122,7 @@ export default function businessClientDetails({
 
 			<div className={"mx-20 mt-10"}>
 				{/* Manage licences  */}
-				<LicensesInUseCard employeesList={employees} />
+				<EmployeesCard employeesList={employees} />
 				{/* Manage  courses */}
 				<CoursesCard coursesList={coursesList} companyId={params.id} />
 			</div>

@@ -22,7 +22,7 @@ import {
 	PaginationNext,
 	PaginationPrevious,
 } from "@/components/ui/pagination";
-import { SearchFilter } from "@/components/SearchFilter";
+import { SearchFilter } from "@/components/business/businessDetails/SearchFilter";
 import { useState } from "react";
 
 type employeesListType =
@@ -41,18 +41,28 @@ type employeesListType =
 	  }[]
 	| null;
 
-export default function LicensesInUseCard({
+export default function EmployeesCard({
 	employeesList,
 }: {
 	employeesList: employeesListType;
 }) {
 	const itemsPerPage = 10;
 	const [currentPage, setCurrentPage] = useState(1);
-	const totalPages = employeesList
-		? Math.ceil(employeesList.length / itemsPerPage)
+	const [searchValue, setSearchValue] = useState("");
+
+	let filteredEmployeesList = employeesList ?? [];
+
+	if (searchValue) {
+		filteredEmployeesList = filteredEmployeesList.filter((employee) =>
+			employee.email.includes(searchValue)
+		);
+	}
+
+	const totalPages = filteredEmployeesList
+		? Math.ceil(filteredEmployeesList.length / itemsPerPage)
 		: 1;
 
-	const employeesListForSearchBox = employeesList?.map((employee) => {
+	const employeesListForSearchBox = filteredEmployeesList?.map((employee) => {
 		return {
 			label: employee.email,
 			value: employee.email,
@@ -64,7 +74,7 @@ export default function LicensesInUseCard({
 		const startIndex = (page - 1) * itemsPerPage;
 		const endIndex = page * itemsPerPage;
 
-		return employeesList?.slice(startIndex, endIndex);
+		return filteredEmployeesList?.slice(startIndex, endIndex);
 	}
 
 	// Handler for page change
@@ -77,12 +87,22 @@ export default function LicensesInUseCard({
 	// Get the data for the current page
 	const paginatedItems = getPaginatedData(currentPage);
 
+	// Callback function to handle the filtered value from the SearchFilter component
+	function handleFilterChange(value: string) {
+		setSearchValue(value);
+	}
+
 	return (
 		<Card className={" shadow"}>
 			<CardHeader>
 				<CardTitle className={"flex justify-between"}>
 					<div>Employees</div>
-					<SearchFilter list={employeesListForSearchBox ?? []} />
+					<div className={"w-72"}>
+						<SearchFilter
+							list={employeesListForSearchBox ?? []}
+							onFilterChange={handleFilterChange}
+						/>
+					</div>
 				</CardTitle>
 				<CardDescription className={"flex justify-between"}>
 					<div>Licences is use: 10/50</div>
@@ -140,43 +160,47 @@ export default function LicensesInUseCard({
 						);
 					})}
 				</ul>
-				<Pagination className={"mt-10"}>
-					<PaginationContent>
-						<PaginationItem>
-							<PaginationPrevious
-								href="#"
-								onClick={() =>
-									handlePageChange(currentPage - 1)
-								}
-							/>
-						</PaginationItem>
-						{/* Dynamically render page numbers */}
-						{[...Array(totalPages)].map((_, index) => (
-							<PaginationItem key={index}>
-								<PaginationLink
+				{filteredEmployeesList.length > 0 && (
+					<Pagination className={"mt-10"}>
+						<PaginationContent>
+							<PaginationItem>
+								<PaginationPrevious
 									href="#"
-									className={
-										currentPage === index + 1
-											? 'bg-gray-200   px-3 py-1"'
-											: ""
+									onClick={() =>
+										handlePageChange(currentPage - 1)
 									}
-									onClick={() => handlePageChange(index + 1)}
-								>
-									{index + 1}
-								</PaginationLink>
+								/>
 							</PaginationItem>
-						))}
+							{/* Dynamically render page numbers */}
+							{[...Array(totalPages)].map((_, index) => (
+								<PaginationItem key={index}>
+									<PaginationLink
+										href="#"
+										className={
+											currentPage === index + 1
+												? 'bg-gray-200   px-3 py-1"'
+												: ""
+										}
+										onClick={() =>
+											handlePageChange(index + 1)
+										}
+									>
+										{index + 1}
+									</PaginationLink>
+								</PaginationItem>
+							))}
 
-						<PaginationItem>
-							<PaginationNext
-								href="#"
-								onClick={() =>
-									handlePageChange(currentPage + 1)
-								}
-							/>
-						</PaginationItem>
-					</PaginationContent>
-				</Pagination>
+							<PaginationItem>
+								<PaginationNext
+									href="#"
+									onClick={() =>
+										handlePageChange(currentPage + 1)
+									}
+								/>
+							</PaginationItem>
+						</PaginationContent>
+					</Pagination>
+				)}
 			</CardContent>
 
 			<CardFooter>
