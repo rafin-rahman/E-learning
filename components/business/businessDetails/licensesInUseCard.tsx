@@ -101,6 +101,7 @@ export default function LicensesInUseCard({
 					"mb-12 mt-4 shadow bg-gradient-to-r from-amber-300 to-red-400 opacity-40"
 				}
 			/>
+
 			<CardContent>
 				<ul className={"leading-10"}>
 					{paginatedItems?.map((item) => {
