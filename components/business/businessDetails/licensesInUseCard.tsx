@@ -22,6 +22,7 @@ import {
 	PaginationNext,
 	PaginationPrevious,
 } from "@/components/ui/pagination";
+import { SearchFilter } from "@/components/SearchFilter";
 import { useState } from "react";
 
 type employeesListType =
@@ -50,6 +51,14 @@ export default function LicensesInUseCard({
 	const totalPages = employeesList
 		? Math.ceil(employeesList.length / itemsPerPage)
 		: 1;
+
+	const employeesListForSearchBox = employeesList?.map((employee) => {
+		return {
+			label: employee.email,
+			value: employee.email,
+		};
+	});
+
 	// Get the total number of pages based on the employeesList length
 	function getPaginatedData(page: number) {
 		const startIndex = (page - 1) * itemsPerPage;
@@ -71,13 +80,19 @@ export default function LicensesInUseCard({
 	return (
 		<Card className={" shadow"}>
 			<CardHeader>
-				<CardTitle>
-					<div>Employees </div>
+				<CardTitle className={"flex justify-between"}>
+					<div>Employees</div>
+					<SearchFilter list={employeesListForSearchBox ?? []} />
 				</CardTitle>
 				<CardDescription className={"flex justify-between"}>
 					<div>Licences is use: 10/50</div>
 					<div>
-						Account <span className={"text-green-600"}>ACTIVE</span>
+						<Button asChild variant={"default"}>
+							<select name="options">
+								<option value="active">Active</option>
+								<option value="inactive">Inactive</option>
+							</select>
+						</Button>
 					</div>
 				</CardDescription>
 			</CardHeader>
