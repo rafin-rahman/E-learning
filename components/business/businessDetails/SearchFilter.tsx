@@ -18,6 +18,7 @@ import {
 	PopoverContent,
 	PopoverTrigger,
 } from "@/components/ui/popover";
+import { useEffect, useState } from "react";
 
 export function SearchFilter({
 	list,
@@ -26,15 +27,16 @@ export function SearchFilter({
 	list: { label: string; value: string }[];
 	onFilterChange: (value: string) => void;
 }) {
-	const [open, setOpen] = React.useState(false);
-	const [value, setValue] = React.useState("");
+	const [open, setOpen] = useState(false);
+	const [value, setValue] = useState("");
 
-	onFilterChange(value);
+	useEffect(() => {
+		onFilterChange(value);
+	}, [value, onFilterChange]);
 
 	// Clear the selected value
 	const clearSelection = () => {
 		setValue("");
-		onFilterChange("");
 	};
 
 	return (
@@ -56,7 +58,11 @@ export function SearchFilter({
 				</PopoverTrigger>
 				<PopoverContent className="w-full p-0">
 					<Command>
-						<CommandInput placeholder="Search items..." />
+						<CommandInput
+							placeholder="Search items..."
+							value={value}
+							onValueChange={(newValue) => setValue(newValue)}
+						/>
 						<CommandList>
 							<CommandEmpty>No item found.</CommandEmpty>
 							<CommandGroup>
