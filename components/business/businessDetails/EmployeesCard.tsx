@@ -23,7 +23,7 @@ import {
 	PaginationPrevious,
 } from "@/components/ui/pagination";
 import { SearchFilter } from "@/components/business/businessDetails/SearchFilter";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
 	Select,
 	SelectContent,
@@ -32,33 +32,36 @@ import {
 	SelectValue,
 } from "@/components/ui/select";
 
-type employeesListType =
-	| {
-			id: string;
-			status: string;
-			firstName: string;
-			lastName: string;
-			email: string;
-			telephone: string;
-			roles: string[];
-			businessId: string;
-			createdAt: Date;
-			progress: number;
-			awards: string;
-	  }[]
-	| null;
+type Employee = {
+	id: string;
+	status: string;
+	firstName: string;
+	lastName: string;
+	email: string;
+	telephone: string;
+	roles: string[];
+	businessId: string;
+	createdAt: Date;
+	progress: number;
+	awards: string;
+};
+
+type EmployeesListType = Employee[] | null;
 
 export default function EmployeesCard({
 	employeesList,
 }: {
-	employeesList: employeesListType;
+	employeesList: EmployeesListType;
 }) {
 	const itemsPerPage = 10;
 	const [currentPage, setCurrentPage] = useState(1);
 	const [searchValue, setSearchValue] = useState("");
-	const [statusFilter, setStatusFilter] = useState("active");
+	const [statusFilter, setStatusFilter] = useState("ACTIVE");
+	let [filteredEmployeesList, setFilteredEmployeesList] = useState<
+		Employee[]
+	>(employeesList ?? []);
 
-	let filteredEmployeesList = employeesList ?? [];
+	// let filteredEmployeesList = employeesList ?? [];
 
 	if (searchValue) {
 		filteredEmployeesList = filteredEmployeesList.filter((employee) =>
@@ -76,6 +79,18 @@ export default function EmployeesCard({
 			value: employee.email,
 		};
 	});
+
+	useEffect(() => {
+		if (statusFilter) {
+			setFilteredEmployeesList(
+				employeesList?.filter((employee) =>
+					statusFilter === "ACTIVE"
+						? employee.status === "ACTIVE"
+						: employee.status === "INACTIVE"
+				) ?? []
+			);
+		}
+	}, [statusFilter]);
 
 	// Get the total number of pages based on the employeesList length
 	function getPaginatedData(page: number) {
@@ -128,14 +143,14 @@ export default function EmployeesCard({
 								<SelectTrigger className="w-[180px]">
 									<SelectValue
 										placeholder="Active"
-										defaultValue={"active"}
+										defaultValue={"ACTIVE"}
 									/>
 								</SelectTrigger>
 								<SelectContent>
-									<SelectItem value="active">
+									<SelectItem value="ACTIVE">
 										Active
 									</SelectItem>
-									<SelectItem value="inactive">
+									<SelectItem value="INACTIVE">
 										Inactive
 									</SelectItem>
 								</SelectContent>
