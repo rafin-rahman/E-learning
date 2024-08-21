@@ -24,6 +24,13 @@ import {
 } from "@/components/ui/pagination";
 import { SearchFilter } from "@/components/business/businessDetails/SearchFilter";
 import { useState } from "react";
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from "@/components/ui/select";
 
 type employeesListType =
 	| {
@@ -49,6 +56,7 @@ export default function EmployeesCard({
 	const itemsPerPage = 10;
 	const [currentPage, setCurrentPage] = useState(1);
 	const [searchValue, setSearchValue] = useState("");
+	const [statusFilter, setStatusFilter] = useState("active");
 
 	let filteredEmployeesList = employeesList ?? [];
 
@@ -87,9 +95,14 @@ export default function EmployeesCard({
 	// Get the data for the current page
 	const paginatedItems = getPaginatedData(currentPage);
 
-	// Callback function to handle the filtered value from the SearchFilter component
+	// Callback function to handle SearchFilter component
 	function handleFilterChange(value: string) {
 		setSearchValue(value);
+	}
+
+	// Update to handle status filter
+	function handleStatusChange(value: string) {
+		setStatusFilter(value);
 	}
 
 	return (
@@ -108,10 +121,25 @@ export default function EmployeesCard({
 					<div>Licences is use: 10/50</div>
 					<div>
 						<Button asChild variant={"default"}>
-							<select name="options">
-								<option value="active">Active</option>
-								<option value="inactive">Inactive</option>
-							</select>
+							<Select
+								onValueChange={handleStatusChange}
+								value={statusFilter}
+							>
+								<SelectTrigger className="w-[180px]">
+									<SelectValue
+										placeholder="Active"
+										defaultValue={"active"}
+									/>
+								</SelectTrigger>
+								<SelectContent>
+									<SelectItem value="active">
+										Active
+									</SelectItem>
+									<SelectItem value="inactive">
+										Inactive
+									</SelectItem>
+								</SelectContent>
+							</Select>
 						</Button>
 					</div>
 				</CardDescription>

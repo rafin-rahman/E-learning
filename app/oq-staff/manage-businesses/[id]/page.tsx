@@ -81,7 +81,6 @@ export default function businessClientDetails({
 			const result = await axios.post("/api/oq-business/licenses/", {
 				companyId: params.id,
 			});
-			console.log(result.data.data);
 			return result.data.data as CourseList[];
 		},
 		staleTime: 1000 * 60, // 1 minute
