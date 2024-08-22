@@ -172,16 +172,24 @@ export default function EmployeesCard({
 							<li
 								key={item.id}
 								className={
-									"flex items-center gap-10 group justify-between"
+									"flex items-center gap-10 group justify-between hover:bg-gray-100 px-4 py-1 rounded-2xl"
 								}
 							>
 								<div
 									className={
-										"w-[20%] flex items-center gap-x-2"
+										"w-[20%] flex items-center gap-x-2 "
 									}
 								>
-									<PencilSquareIcon className={"h-4"} />
-									<ArchiveBoxXMarkIcon className={"h-4"} />
+									<PencilSquareIcon
+										className={
+											"h-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+										}
+									/>
+									<ArchiveBoxXMarkIcon
+										className={
+											"h-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+										}
+									/>
 									{item.email}
 								</div>
 								<div
@@ -247,9 +255,9 @@ export default function EmployeesCard({
 				)}
 			</CardContent>
 
-			<CardFooter>
+			<CardFooter className={"flex justify-end"}>
 				<Button variant="outline" className={"shadow"}>
-					Edit
+					+
 				</Button>
 			</CardFooter>
 		</Card>
